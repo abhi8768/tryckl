@@ -1,0 +1,20 @@
+/* Preloader */
+#preloader {
+	background-color: rgba(49, 63, 66, 0.5); position: fixed; left: 0px; top: 0px; bottom: 0px; right: 0px; z-index: 99999; display: none; }
+  .preloaderIcon {width:35px; height:35px; display:inline-block; padding:0px; border-radius:100%; position: absolute; left: 47%; top: 35%;
+   /*margin: -18px 0px 0px -18px;
+   border-top-color:rgba(255, 255, 255, 0.65);
+   border-bottom-color:rgba(255, 255, 255, 0.15);
+   border-left-color:rgba(255, 255, 255, 0.65);
+   border-right-color:rgba(255, 255, 255, 0.15);
+   -webkit-animation: preloaderIcon 0.8s linear infinite;
+   animation: preloaderIcon 0.8s linear infinite;*/
+  }
+  @keyframes preloaderIcon {
+	from {transform: rotate(0deg);}
+	to {transform: rotate(360deg);}
+  }
+  @-webkit-keyframes preloaderIcon {
+	from {-webkit-transform: rotate(0deg);}
+	to {-webkit-transform: rotate(360deg);}
+  }

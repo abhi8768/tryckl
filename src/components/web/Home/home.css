@@ -1,0 +1,26 @@
+.notfound_head{
+    font-family: "Open Sans Extrabold";
+    font-size: 70px;
+    margin-left: 8%;
+    color: #fdcd01;
+}
+.notfound_div{
+    font-family: "Open Sans Extrabold";
+    font-size: 26px;
+    color: #fff;
+}
+.notfound_msg{
+    margin-top: 15%;
+}
+.notfound_btn{
+    background: transparent;
+    width: 22%;
+    height: 20%;
+    margin: 10p;
+    padding: 25px;
+    border-radius: 113px;
+    font-family: "Open Sans light";
+    color: #000;
+    border-color: #fff;
+    margin-top: 5%;
+}

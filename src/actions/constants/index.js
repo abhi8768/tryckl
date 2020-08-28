@@ -1,0 +1,3 @@
+export const SET_CURRENT_USER       = 'SET_CURRENT_USER';
+export const NOTIFICATION_LIST      = 'NOTIFICATION_LIST';
+
