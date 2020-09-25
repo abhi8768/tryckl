@@ -72,7 +72,7 @@ module.exports = (env , argv) => {
         filename : "index.html",
         title: "Baaldhabb",
         hash: true,
-        favicon: "./src/assets/images/fav.png",
+        favicon: "./src/assets/img/fav.png",
         production: isProd,
         minify: isProd && {
             removeComments: true,
@@ -148,9 +148,9 @@ module.exports = (env , argv) => {
             new CopyWebpackPlugin([
                 { from: './src/assets/css', to: 'assets/css' },
                 { from: './src/assets/fonts', to: 'assets/fonts/' },
-                { from: './src/assets/images', to: 'assets/images/' },
+                { from: './src/assets/img', to: 'assets/img/' },
                 { from: './src/assets/js', to: 'assets/js/' },
-                { from: './src/assets/vendors', to: 'assets/vendors/' }
+                { from: './src/assets/vendor', to: 'assets/vendors/' }
             ]),
         ],
         performance: isProd && {

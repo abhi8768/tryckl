@@ -1,5 +1,5 @@
 import Home from "../containers/web/Home";
-import Login from "../containers/web/Login";
+import Auth from "../containers/web/Auth";
 import Dashboard from "../containers/web/Dashboard";
 import ForgetPassword from "../containers/web/ForgetPassword";
 
@@ -10,17 +10,16 @@ import components from "../components";
 /* List of all container classes */
 const allContainers = {
    
-    Home      : Home,
-    Login     : Login,
-    Dashboard : Dashboard,
-    ForgetPassword : ForgetPassword,
-    AdminLogin : AdminLogin
+    Home            : Home,
+    Auth            : Auth,
+    Dashboard       : Dashboard,
+    ForgetPassword  : ForgetPassword,
+    AdminLogin      : AdminLogin
   
 };
 
 /* List of all component classes */
 const allComponents = {
-    Auth         : components.Auth,
     NotFoundPage : components.NotFoundPage
 }
 
