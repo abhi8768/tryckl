@@ -37,7 +37,7 @@ body {
 
 .loginwrapper{ position: relative }
 
-.container {
+.container2 {
    
     border-radius: 10px;
    
@@ -46,6 +46,7 @@ body {
     width: 768px;
     max-width: 100%;
     min-height: 640px;
+    margin:auto; 
 }
 
 .form-container form {
@@ -69,8 +70,9 @@ body {
     background: #666666;
     border: none;
     padding: 8px 0px;
-    margin: 0px 0;  
-    width: 99%;
+    margin: 0px 0;
+  
+    width: 100%;
     border-bottom: 1px solid #cdcdcd;
 }
 
@@ -188,34 +190,34 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a1a1', end
 }
 
 /* Move signin to right */
-.container.right-panel-active .sign-in-container {
+.container2.right-panel-active .sign-in-container {
     transform: translateY(100%);
 }
 
 /* Move overlay to left */
-.container.right-panel-active .overlay-container {
+.container2.right-panel-active .overlay-container {
     transform: translateX(-100%);
 }
 
 /* Bring signup over signin */
-.container.right-panel-active .sign-up-container {
+.container2.right-panel-active .sign-up-container {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
 }
 
 /* Move overlay back to right */
-.container.right-panel-active .overlay {
+.container2.right-panel-active .overlay {
     transform: translateX(50%);
 }
 
 /* Bring back the text to center */
-.container.right-panel-active .overlay-left {
+.container2.right-panel-active .overlay-left {
     transform: translateY(0);
 }
 
 /* Same effect for right */
-.container.right-panel-active .overlay-right {
+.container2.right-panel-active .overlay-right {
     transform: translateY(20%);
 }
 
@@ -321,7 +323,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a1a1', end
 
 .help-center p a{ display: inline-block ; color: #fff;}
 .forg{ color: #00ffff; }
-.marigin-needed{ margin-top: 5% }
+.marigin-needed{ margin-top: 2% }
 .marigin-needed p{ color: #fff; margin: 10px 0 40px 0;font-family: 'Conv_GothamBook'; }
 
 
@@ -329,3 +331,34 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a1a1', end
 .sign-up-container .slimScrollBar{ background: #00ffff !important;  width:4px !important }
 .overlay-panel h1{ font-family: 'Conv_GothamMedium'; font-weight: normal; font-size: 26px; color: #000; text-transform:uppercase;}
 .reg-frm input{margin-bottom:10px;}
+
+/* ------------------------------------select------------------------------------------------ */
+.custom-select{    width: 325px;
+    /* background: none; */
+    border: none;
+    border-bottom: 1px solid #cdcdcd;
+    border-radius: 0;
+    color: #fff;
+   
+    padding-left: 0;
+     font-family: 'Conv_GothamBook';
+     font-weight: normal;
+     background: url('../img/drop-arrow.png') #666 no-repeat right 1rem center/8px 10px;
+}
+
+
+
+.custom-select:focus{ outline: none; box-shadow: none; border-color: #cdcdcd }
+
+
+
+/* ----------------------------------------------index------------------------------------------ */
+.wrapper .section-container{ background: none; }
+.wrapper .aside-container{ background: #666 }
+.sidebar{background: #666}
+.topnavbar{ background-color: #666;
+    background-image: none  }
+    .wrapper .section-container{ background: url('../img/banner.jpg') no-repeat !important }
+    .gapfrm-top{ margin-top: 200px; }
+
+    .content-part-wrapper{background:#666666; width:100%; border-radius: 5px;}

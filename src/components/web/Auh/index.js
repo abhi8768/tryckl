@@ -67,7 +67,7 @@ class Auth extends Component {
 				<p>WELCOME to TRYCKL</p>
 				</div>
 				<div
-					className={`container ${rightPanelActive ? `right-panel-active` : ``}`}
+					className={`container2 ${rightPanelActive ? `right-panel-active` : ``}`} 
 					id="container"
 				>
 					<SignUp />
