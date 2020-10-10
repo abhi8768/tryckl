@@ -6,8 +6,9 @@ import { withRouter } from "react-router-dom";
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
 import Footer from '../Footer';
-import { notificationRequest } from "../../../actions/web/notificationAction";
+import { dashboardRequest } from "../../../actions/web/dashboardAction";
 import { setPublicIP } from "../../../helpers/authHelper";
+import Rate from "./rating";
 
 
 class Dashboard extends Component {
@@ -15,100 +16,252 @@ class Dashboard extends Component {
     super(props);
    // setPublicIP();
 	this.state = {
-		list : []
+		notification : [],
+		profilesec   : {},
+		listing	     : []
 	}
 
   }
  
     componentDidMount(){
          
-	this.props.notificationRequest();
+		this.props.dashboardRequest();
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-		//console.log(nextProps.notificationlist);
 		this.setState({
-			list : nextProps.notificationlist
+			notification : nextProps.dasboarddetail.list,
+			profilesec	 : nextProps.dasboarddetail.my_profile_details,
+			listing		 : nextProps.dasboarddetail.my_list,
 		})
 	}
   
  
 
    render() {
-	
+	let profile = this.state.profilesec || {};
+	let notificationlist = this.state.notification || [];
+	let list = this.state.listing || [];
+
+	let rating = 3;
+	let blank_rating = (5 - 3); 
     return (
-		<div className="wrapper theme-2-active navbar-top-light horizontal-nav">
-				<HeaderUser />
-				<Menu />
-				<div className="page-wrapper">
-					<div className="container">
-						<div className="row heading-bg">
-							<div className="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-								<h5 className="txt-dark">Dashboard</h5>
-							</div>
-						</div>
+		<div className="wrapper">
+			<HeaderUser />
+			<Menu />
+
+			<section className="section-container">
+         
+				<div className="content-wrapper">
+				
+					<div className="container gapfrm-top">
 						<div className="row">
-							<aside className="col-lg-12 col-md-8 pl-0">
-								<div className="panel panel-refresh pa-0">
-									<div className="refresh-container">
-										<div className="la-anim-1"></div>
-									</div>
-									
-									<div className="panel-wrapper collapse in">
-										<div className="panel-body inbox-body pa-0">
-											<div className="table-responsive mb-0">
-												<table className="table table-inbox table-hover mb-0">
-													<tbody>
-														{   (this.state.list.length > 0) ?
-															
-																(this.state.list).map((listitem,index) => {
-																	return(
-																	<tr className="" key={index}>
-																	<td className="inbox-small-cells">
-																		<div className="checkbox checkbox-default inline-block">
-																			<img width="50px" height="50px" src={listitem.sender_profile_photo} alt="user_auth" className="user-auth-img img-circle"></img>
-																		</div>
-																		{/* <i className="zmdi zmdi-star inline-block font-16"></i> */}
-																	</td>
-																	<td className="view-message  dont-show">{listitem.sender_name}</td>
-																	<td className="view-message ">{listitem.notification_description} <b> {listitem.group_name}</b></td>
-																	<td className="view-message  text-right">
-																		
-																		<span  className="time-chat-history inline-block">{listitem.posted_at}</span>
-																	</td>
-																</tr>
-																)
-															})
-															: null
-														}
-													</tbody>
-												</table>
+							<div className="col-lg-3">
+								<div className="content-part-wrapper text-center">
+									<div className="item user-block user-part">
+										
+										<div className="user-block-picture custom-user-block-picture">
+											<div className="user-block-status">
+												{
+													(profile.profile_photo != '') ? 
+													<img className="img-thumbnail rounded-circle" src={profile.profile_photo} alt={profile.first_name} width="80" height="80"/>
+													: <img className="img-thumbnail rounded-circle" src={"assets/img/user/02.jpg"} alt="Avatar" width="80" height="80"/>
+												}
+											</div>
+
+										</div>
+											<p className="user-name">{profile.first_name} {profile.last_name}</p>
+											<div className="user-info-wrapper">
+											<p>
+												<Rate />
+												<img className="" src={"assets/img/star-icon.png"} />
+											</p>
+											<p className="user-address">{profile.brokerage_name}
+												{profile.street_name},
+												{profile.city},
+												<a href="">{profile.phone}</a>
+												<a href="">{profile.email}</a>
+												{profile.license_issuing_state_code} Lic. #{profile.license_no}
+											</p>
+
+										</div>
+										</div>
+								</div>
+								{/* <div className="content-part-wrapper left-content-small-pic">
+									<h2 className="mid-heading">my cards <a href="">View All</a></h2>
+									<div className="content-part-wrapper dark-part">
+										<div className="row dashboard-loop">
+										<div className="col-sm-12 d-flex align-items-center">
+											<div className="user-block-picture custom-user-block-picture align-items-center">
+											<div className="user-block-status">
+												<img className="img-thumbnail rounded-circle" src="assets/img/user/02.jpg" alt="Avatar" width="80" height="80" />
 											</div>
 										</div>
+											<div className="secend-block">
+											<p className="user-name">Damonvvv Luke</p>
+											<p className="user-name-card">16 Members</p>
+										</div>
+										</div>
+										
+									</div>
+									</div>
+									<div className="content-part-wrapper dark-part">
+											<div className="row dashboard-loop">
+										<div className="col-sm-12 d-flex align-items-center">
+											<div className="user-block-picture custom-user-block-picture">
+											<div className="user-block-status">
+												<img className="img-thumbnail rounded-circle" src="assets/img/user/02.jpg" alt="Avatar" width="80" height="80" />
+											</div>
+										</div>
+											<div className="secend-block">
+											<p className="user-name">Damon Luke</p>
+											<p className="user-name-card">Won a card!</p>
+										</div>
+										</div>
+										
+									</div>
+									</div>
+									<div className="content-part-wrapper dark-part">
+											<div className="row dashboard-loop">
+										<div className="col-sm-12 d-flex align-items-center">
+											<div className="user-block-picture custom-user-block-picture">
+											<div className="user-block-status">
+												<img className="img-thumbnail rounded-circle" src="assets/img/user/02.jpg" alt="Avatar" width="80" height="80" />
+											</div>
+										</div>
+											<div className="secend-block">
+											<p className="user-name">Damon Luke</p>
+											<p className="user-name-card">Won a card!</p>
+										</div>
+										</div>
+										
+									</div>
 									</div>
 								</div>
-							</aside>
+								<div className="content-part-wrapper">
+									<h2 className="mid-heading">my cards <a href="">View All</a></h2>
+									<div className="content-part-wrapper dark-part">
+										<h2 className="card-amount">$ 100</h2>
+										<p className="ohters-color">Due in 24 days</p>
+										<p className="ohters-color2">Thursday / July 15, 2020</p>
+										<p className="ohters-color2">05:45 pm</p>
+									</div>
+									<div className="content-part-wrapper dark-part">
+										<h2 className="card-amount">$ 100</h2>
+										<p className="ohters-color">Due in 24 days</p>
+										<p className="ohters-color2">Thursday / July 15, 2020</p>
+										<p className="ohters-color2">05:45 pm</p>
+									</div>
+									<div className="content-part-wrapper dark-part">
+										<h2 className="card-amount">$ 100</h2>
+										<p className="ohters-color">Due in 24 days</p>
+										<p className="ohters-color2">Thursday / July 15, 2020</p>
+										<p className="ohters-color2">05:45 pm</p>
+									</div>
+								</div>
+								
+ */}
+									
+							</div>
+							<div className="col-lg-6">
+								<div className="content-part-wrapper">
+									<h2 className="mid-heading">Your dashboard</h2>
+									{ 
+										  (notificationlist).map((item) => {
+											return (
+												<div className="content-part-wrapper light-part">
+													<div className="row dashboard-loop">
+														<div className="col-sm-9 d-flex align-items-center">
+															<div className="user-block-picture custom-user-block-picture">
+															<div className="user-block-status">
+
+																	{	(item.sender_profile_photo != '') ? 
+																		<img className="img-thumbnail rounded-circle" src={item.sender_profile_photo} alt={item.sender_name} width="80" height="80"/>
+																		: <img className="img-thumbnail rounded-circle" src={"assets/img/user/02.jpg"} alt="Avatar" width="80" height="80"/>
+																	}
+															</div>
+														</div>
+															<div className="secend-block">
+															<p className="user-name">{item.sender_name}</p>
+															<p className="user-name-card">{item.notification_description}</p>
+														</div>
+														</div>
+														<div className="col-sm-3 d-flex align-items-center text-right">
+																<p className="calculation">{item.posted_at}</p>
+														</div>
+													</div>
+												</div>
+								
+											)
+										})
+									}
+								</div>
+						</div>
+							<div className="col-lg-3">
+								<div className="content-part-wrapper">
+									<h2 className="mid-heading">my listing <a href="">View All</a></h2>
+									{ 
+										  (list).map((item2) => {
+											return (
+												<div className="content-part-wrapper dark-part">
+													<h2 className="card-amount">$ {item2.offer_amount}</h2>
+													<p className="ohters-color">Due in 24 days</p>
+													<p className="ohters-color2">{item2.date}</p>
+													<p className="ohters-color2">{item2.time}</p>
+												</div>
+											)  
+										  })
+									}							
+								</div>
+								
+								{/* <div className="content-part-wrapper text-center">
+									<h2 className="mid-heading">Your dashboard</h2>
+									<img className="img-fluid" src="assets/img/round-graph.png" />
+								</div>
+								<div className="content-part-wrapper">
+									<h2 className="mid-heading">my cards <a href="">View All</a></h2>
+									<div className="content-part-wrapper dark-part">
+										<h2 className="card-amount">$ 100</h2>
+										<p className="ohters-color">Due in 24 days</p>
+										<p className="ohters-color2">Thursday / July 15, 2020</p>
+										<p className="ohters-color2">05:45 pm</p>
+									</div>
+									<div className="content-part-wrapper dark-part">
+										<h2 className="card-amount">$ 100</h2>
+										<p className="ohters-color">Due in 24 days</p>
+										<p className="ohters-color2">Thursday / July 15, 2020</p>
+										<p className="ohters-color2">05:45 pm</p>
+									</div>
+									<div className="content-part-wrapper dark-part">
+										<h2 className="card-amount">$ 100</h2>
+										<p className="ohters-color">Due in 24 days</p>
+										<p className="ohters-color2">Thursday / July 15, 2020</p>
+										<p className="ohters-color2">05:45 pm</p>
+									</div>
+								</div>
+ */}
+
+								</div>
 						</div>
 					</div>
-				<Footer />
+				
 				</div>
-		
-		
-    	</div>
-    );
+      		</section>
+		</div>
+	 );
   }
 }
 
 const mapStateToProps = state => {
 	return {
-	  notificationlist  : state.notificationlist.notification,
+	  dasboarddetail  : state.dashboarddetail.dashboard,
 	 
 	}
   }
   
   const mapDispatchToProps = dispatch => {
 	return {
-		notificationRequest       : bindActionCreators(notificationRequest , dispatch),
+		dashboardRequest : bindActionCreators(dashboardRequest , dispatch),
 	  
 	}
   }

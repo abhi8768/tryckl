@@ -1,13 +1,13 @@
-import { CREATE_ACCOUNT } from '../../actions/constants';
+import { MASTER_STATE } from '../../actions/constants';
+
 const initialState = {
-  registeruser: {},
+    masterstate: []
 };
 export default (state = initialState, action = {}) => {
-  switch (action.type) {
-    case CREATE_ACCOUNT:
-       
+switch (action.type) {
+    case MASTER_STATE:
       return {
-        registeruser: action.registeruser.response,
+        masterstate: action.masterstate.response,
         status     : action.masterstate.status,
         message    : action.masterstate.status_msg,
       };

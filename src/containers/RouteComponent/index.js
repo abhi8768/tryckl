@@ -17,9 +17,10 @@ class RouteComponent extends Component {
           <PublicRoute exact={true} path={pathList.login.path} title={pageTitles.login} component={routes.Auth}/>
           <PublicRoute exact={true} path={pathList.forgetpassword.path} title={pageTitles.forgetpassword} component={routes.ForgetPassword}/>
           <PrivateRoute exact={true} path={pathList.dashboard.path} title={pageTitles.dashboard} component={routes.Dashboard}/>
+          <PrivateRoute exact={true} path="/profile" title="profile" component={routes.Profile}/>
           
           <PublicRoute exact={true} path="/admin" title="admin - login" component={routes.AdminLogin}/>
-          <Redirect exact={true} from="/home" to="/" />
+          <Redirect exact={true} from="/login" to="/" />
           <Route exact={true} title={pageTitles.notFound} component={routes.NotFoundPage} /> 
         </Switch>
       </main>

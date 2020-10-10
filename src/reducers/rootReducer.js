@@ -7,6 +7,11 @@ import verifyotp             from './auth/verifyotp';
 import resendotp             from './auth/resendotp';
 import reviewmembership      from './auth/reviewmembership';
 import notificationlist      from './notification/list';
+import masterstate           from './masterdata/masterstate';
+import masterbrokerage       from './masterdata/masterbrokerage';
+import masterlicense         from './masterdata/masterlicense';
+import dashboarddetail       from './dashboard/detail';
+import brokerdetail          from './broker/details';
 
 
 
@@ -17,7 +22,12 @@ const allReducers = {
   login,
   
   logout,
-  notificationlist
+  notificationlist,
+  masterstate,
+  masterbrokerage,
+  masterlicense,
+  dashboarddetail,
+  brokerdetail
   
 };
 

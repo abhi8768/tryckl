@@ -13,70 +13,89 @@ class HeaderUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user_image : null
+	  user_image : '',
+	  name		 : ''
      };
   }
   componentDidMount(){
    
     this.setState({
-      user_image : (this.props.currentUserDetails.profile_photo != null) ? this.props.currentUserDetails.profile_photo : 'S'
+	  user_image : (this.props.currentUserDetails.profile_photo != null) ? this.props.currentUserDetails.profile_photo : '',
+	  name		 : `${this.props.currentUserDetails.first_name} ${this.props.currentUserDetails.last_name}`
     })
   }
 
   render() {
     
     return (
-      <nav className="navbar navbar-inverse navbar-fixed-top">
-      <div className="nav-wrap">
-      <div className="mobile-only-brand pull-left">
-        <div className="nav-header pull-left">
-          <div className="logo-wrap">
-            <a href="index.html">
-              <img className="brand-img" src={iconPath.LOGOWHITE} alt="brand"/>
-              <span className="brand-text"><img height="50px" width="120px" src={iconPath.LOGOWHITE} alt="brand"/></span>
-            </a>
-          </div>
-        </div>	
-        <a id="toggle_nav_btn" className="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i className="zmdi zmdi-menu"></i></a>
-        <a id="toggle_mobile_search" data-toggle="collapse" data-target="#search_form" className="mobile-only-view" href="javascript:void(0);"><i className="zmdi zmdi-search"></i></a>
-        <a id="toggle_mobile_nav" className="mobile-only-view" href="javascript:void(0);"><i className="zmdi zmdi-more"></i></a>
-        <form id="search_form" role="search" className="top-nav-search collapse pull-left">
-          <div className="input-group">
-            <input type="text" name="example-input1-group2" className="form-control" placeholder="Search" />
-            <span className="input-group-btn">
-            <button type="button" className="btn  btn-default"  data-target="#search_form" data-toggle="collapse" aria-label="Close" aria-expanded="true"><i className="zmdi zmdi-search"></i></button>
-            </span>
-          </div>
-        </form>
-      </div>
-      <div id="mobile_only_nav" className="mobile-only-nav pull-right">
-        <ul className="nav navbar-right top-nav pull-right">
-          
-          
-          <li className="dropdown alert-drp">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown"><i className="zmdi zmdi-notifications top-nav-icon"></i><span className="top-nav-icon-badge"></span></a>
-          </li>
-          <li>
-            <a id="open_right_sidebar" href="#"><i className="zmdi zmdi-settings  top-nav-icon"></i></a>
-          </li>
-          <li className="dropdown auth-drp">
-            <a href="#" className="dropdown-toggle pr-0" data-toggle="dropdown"><img src={this.state.user_image} alt="user_auth" className="user-auth-img img-circle"/><span className="user-online-status"></span><span className="user-auth-name inline-block">micheal hogan <span className="ti-angle-down"></span></span></a>
-            <ul className="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
-              <li>
-                <a href="profile.html"><i className="zmdi zmdi-account"></i><span>Profile</span></a>
-              </li>
-                         
-              <li className="divider"></li>
-              <li>
-                <a href="#"><i className="zmdi zmdi-power"></i><span>Log Out</span></a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>	
-      </div>
-    </nav>
-			
+      <header className="topnavbar-wrapper">
+		   
+		   <nav className="navbar topnavbar">
+			 
+			  <div className="navbar-header">
+          <a className="navbar-brand" href="#/" >
+            <div className="brand-logo"><img className="img-fluid" src="assets/img/logo.png" alt="App Logo" /></div>
+            <div className="brand-logo-collapsed"><img className="img-fluid" src="assets/img/logo-single.png" alt="App Logo" /></div>
+				  </a>
+         </div>
+		
+			  <ul className="navbar-nav mr-auto flex-row position-custom">
+				 <li className="nav-item no-border">
+				   <a className="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
+					   <em className=""><img className="img-fluid sand" src="assets/img/nav-nenu-ico.png" /></em></a>
+  
+					   <a className="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+					   <em className=""><img className="img-fluid" src="assets/img/nav-nenu-ico.png" /></em></a></li>
+				 <li className="nav-item d-none d-md-block dropdown active">
+					
+					<a className="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
+					   <em className="sp-home"></em>
+					   
+					</a>
+					</li>
+				 <li className="nav-item d-none d-md-block dropdown"><a className="nav-link" href="lock.html" title="Lock screen">
+					<em className="sp-flag"></em>
+  
+					<span className="badge badge-danger custom-badge2">!</span></a></li>
+				  <li className="nav-item d-none d-md-block dropdown">
+					<a className="nav-link" href="lock.html" title="Lock screen">
+					   <em className="sp-box"></em>
+					   <span className="badge badge-danger custom-badge">22</span></a></li>
+				   <li className="nav-item d-none d-md-block dropdown"><a className="nav-link" href="#" data-search-open="" title="Lock screen">
+					<em className="sp-search"></em></a></li>
+			  </ul>
+			  <ul className="navbar-nav flex-row custom-nav">
+				  <li className="nav-item"> 
+					  <div className="top-p-pic-name">
+					   <p className="top-name">{this.state.name}</p>
+					   <p className="top-under">$ 19.75</p>
+					  </div>
+				  </li>
+				
+				 <li className="nav-item"> 
+					<div className="item user-block">
+							 
+							 <div className="user-block-picture">
+								<div className="user-block-status">
+									{
+										(this.state.user_image != '')	?	
+										<img className="img-thumbnail rounded-circle" src={this.state.user_image} alt="Avatar" width="60" height="60"/>
+										: <img className="img-thumbnail rounded-circle" src="assets/img/user/02.jpg" alt="Avatar" width="60" height="60"/>
+									}
+									
+								   <div className="circle bg-success circle-lg custom-circle"></div>
+								</div>
+							 </div>
+							
+						  </div></li>
+			  </ul>
+			  <form className="navbar-form" role="search" action="http://themicon.co/theme/angle/v4.7.5/static-html/app/search.html">
+				 <div className="form-group"><input className="form-control" type="text" placeholder="Type and hit enter ..." />
+					<div className="fas fa-times navbar-form-close" data-search-dismiss=""></div>
+				 </div><button className="d-none" type="submit">Submit</button>
+			  </form>
+		   </nav>
+		</header>
     );
   };
 }

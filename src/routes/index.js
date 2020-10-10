@@ -1,6 +1,7 @@
 import Home from "../containers/web/Home";
 import Auth from "../containers/web/Auth";
 import Dashboard from "../containers/web/Dashboard";
+import Profile from "../containers/web/Profile";
 import ForgetPassword from "../containers/web/ForgetPassword";
 
 import AdminLogin from "../containers/admin/Login";
@@ -14,6 +15,7 @@ const allContainers = {
     Auth            : Auth,
     Dashboard       : Dashboard,
     ForgetPassword  : ForgetPassword,
+    Profile         : Profile,
     AdminLogin      : AdminLogin
   
 };

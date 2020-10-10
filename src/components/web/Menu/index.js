@@ -47,44 +47,67 @@ class Menu extends Component {
   
 
   render() {
-    const animation=['slideIn' , 'slideOut']
+    
     return (
-        <div className="fixed-sidebar-left">
-                <table>
-                    <tr>
-                        <td><Menulist /></td>
-                        <td><Menulist /></td>
-                    </tr>
-                </table>
-            
-           
-            {/* <Menubar data={MenuItems} animation={animation} backgroundColor="#FF5733" className="menubar">sdfsdfds</Menubar>
-            <Menubar data={MenuItems} animation={animation} backgroundColor="#FF5733" className="menubar"></Menubar> */}
-          {/*  <ul className="nav navbar-nav side-nav">
-            
-            <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div className="pull-left"><i className="ti-dashboard mr-20"></i><span className="right-nav-text">Dashboard</span></div><div className="pull-right"><i className="ti-angle-down"></i></div><div className="clearfix"></div></a>
-                
-            </li>
-            <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr"><div className="pull-left"><i className="ti-shopping-cart  mr-20"></i><span className="right-nav-text">E-Commerce</span></div><div className="pull-right"><i className="ti-angle-down"></i></div><div className="clearfix"></div></a>
-                <Menubar data={MenuItems} animation={animation} backgroundColor="#FF5733" className="menubar">sdfsdfds</Menubar>
-            </li>
-            <li>
-                <a className="active" href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div className="pull-left"><i className="ti-image mr-20"></i><span className="right-nav-text">Apps </span></div><div className="pull-right"><i className="ti-angle-down"></i></div><div className="clearfix"></div></a>
-                
-            </li>
-           
-            <li>
-                <a href="javascript:void(0);" data-toggle="collapse" data-target="#ui_dr"><div className="pull-left"><i className="ti-pencil-alt  mr-20"></i><span className="right-nav-text">UI Elements</span></div><div className="pull-right"><i className="ti-angle-down "></i></div><div className="clearfix"></div></a>
-               
-            </li>
-           
-           
+      <aside className="aside-container">
+   
+      <div className="aside-inner">
+       <nav className="sidebar" data-sidebar-anyclick-close="">
+      
+        <ul className="sidebar-nav">
           
+        
+         
+         <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+ 
+           <em className="pro"></em><span data-localize="sidebar.nav.DASHBOARD">Profile</span>
+         </a>
+        </li>
+         <li className="active"><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+           <em className="age"></em><span data-localize="sidebar.nav.DASHBOARD">Agents & Groups</span>
+         </a>
+        </li>
+         <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+           <em className="try"></em><span data-localize="sidebar.nav.DASHBOARD">Trycklitics</span>
+         </a>
+        </li>
+        <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+           <em className="set"></em><span data-localize="sidebar.nav.DASHBOARD">Settings</span>
+         </a>
+        </li>
+        <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+           <em className="cont"></em><span data-localize="sidebar.nav.DASHBOARD">Contact Us</span>
+         </a>
+        </li>
+          <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+            <em className="com"></em><span data-localize="sidebar.nav.DASHBOARD">Company</span>
+             <em className="icon-arrow-down not-show" style={{position: 'absolute', right: '10px', top: '18px'}}></em>
+           
+            </a>
+            <ul className="sidebar-nav sidebar-subnav collapse" id="dashboard">
+             <li className="sidebar-subnav-header">Dashboard</li>
+             <li className=" "><a href="dashboard.html" title="Dashboard v1"><em className="ter"></em><span className="adj">Terms & Conditions</span></a></li>
+             <li className=" "><a href="dashboard_v2.html" title="Dashboard v2"><em className="pol"></em><span className="adj">Privacy Policy</span></a></li>
+             <li className=""><a href="dashboard_v3.html" title="Dashboard v3"><em className="pay"></em><span className="adj">Payment Policy</span></a></li>
+             <li className=""><a href="dashboard_v3.html" title="Dashboard v3"><em className="abt"></em><span className="adj">About Us</span></a></li>
+            </ul>
+         </li>
+         <li className="hide-shik"><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+           
+           <em className="log"></em><span data-localize="sidebar.nav.DASHBOARD">LogOut</span>  
+         </a></li>
+ 
+ 
+ 
+         <li className="sick-hide"><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+            <div>
+           <em className="icon-power"></em><span data-localize="sidebar.nav.DASHBOARD">LogOut</span></div>
+         </a></li>
+         
         </ul>
-            */}
-        </div>
+       </nav>
+      </div>
+   </aside>
     );
   }
 }
