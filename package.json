@@ -74,6 +74,7 @@
     "react-linkify": "^1.0.0-alpha",
     "react-modal-image": "^2.5.0",
     "react-player": "^1.14.2",
+    "react-rating-stars-component": "^2.2.0",
     "react-redux": "^7.1.3",
     "react-responsive-modal": "^4.0.1",
     "react-responsive-multi-level-menu": "^2.2.5",
