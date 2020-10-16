@@ -7,6 +7,7 @@ import {withRouter} from "react-router-dom";
 
 import './HeaderUser.css';
 import iconPath from "../../../helpers/iconHelper";
+import $$ from 'jquery';
 
 
 class HeaderUser extends Component {
@@ -15,18 +16,35 @@ class HeaderUser extends Component {
     this.state = {
 	  user_image : '',
 	  name		 : ''
-     };
+	};
+	this.menuCollanse = this.menuCollanse.bind(this);
   }
-  componentDidMount(){
-   
-    this.setState({
-	  user_image : (this.props.currentUserDetails.profile_photo != null) ? this.props.currentUserDetails.profile_photo : '',
-	  name		 : `${this.props.currentUserDetails.first_name} ${this.props.currentUserDetails.last_name}`
-    })
-  }
+	componentDidMount(){
+		
+		this.setState({
+			user_image : (this.props.currentUserDetails.profile_photo != null) ? this.props.currentUserDetails.profile_photo : '',
+			name		 : `${this.props.currentUserDetails.first_name} ${this.props.currentUserDetails.last_name}`
+		})
+	}
 
-  render() {
+  	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
     
+		if(nextProps.profileimage != this.props.profileimage){
+			this.setState({
+				user_image : nextProps.profileimage.profile_photo
+			})
+		}
+	}
+	menuCollanse(){
+		if($$("body").hasClass( "aside-collapsed" )){
+			$$('body').removeClass("aside-collapsed");
+		}else{
+			$$('body').addClass("aside-collapsed");
+		}
+	}
+	
+  render() {
+    let letterImage = this.state.name.charAt(0);
     return (
       <header className="topnavbar-wrapper">
 		   
@@ -41,8 +59,8 @@ class HeaderUser extends Component {
 		
 			  <ul className="navbar-nav mr-auto flex-row position-custom">
 				 <li className="nav-item no-border">
-				   <a className="nav-link d-none d-md-block d-lg-block d-xl-block" href="#" data-trigger-resize="" data-toggle-state="aside-collapsed">
-					   <em className=""><img className="img-fluid sand" src="assets/img/nav-nenu-ico.png" /></em></a>
+				   <a className="nav-link d-none d-md-block d-lg-block d-xl-block" href={void(0)} onClick={this.menuCollanse} data-trigger-resize="" data-toggle-state="aside-collapsed">
+					   <em className="" ><img className="img-fluid sand" src="assets/img/nav-nenu-ico.png" /></em></a>
   
 					   <a className="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
 					   <em className=""><img className="img-fluid" src="assets/img/nav-nenu-ico.png" /></em></a></li>
@@ -79,8 +97,8 @@ class HeaderUser extends Component {
 								<div className="user-block-status">
 									{
 										(this.state.user_image != '')	?	
-										<img className="img-thumbnail rounded-circle" src={this.state.user_image} alt="Avatar" width="60" height="60"/>
-										: <img className="img-thumbnail rounded-circle" src="assets/img/user/02.jpg" alt="Avatar" width="60" height="60"/>
+										<img className="img-thumbnail rounded-circle" src={this.state.user_image} alt="Avatar" style={{width:'40px', height : '40px'}}/>
+										:  <div className="small-profile-alpha">{letterImage}</div>  
 									}
 									
 								   <div className="circle bg-success circle-lg custom-circle"></div>
@@ -101,7 +119,8 @@ class HeaderUser extends Component {
 }
 const mapStateToProps = state => {
   return {
-             currentUserDetails  : state.login.user,
+			 currentUserDetails  : state.login.user,
+			 profileimage  : state.profilepicture.profilepicture,
         }
 }
 const mapDispatchToProps = dispatch => {

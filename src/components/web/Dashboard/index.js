@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
+import ReactStars from "react-rating-stars-component";
 
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
@@ -18,7 +19,8 @@ class Dashboard extends Component {
 	this.state = {
 		notification : [],
 		profilesec   : {},
-		listing	     : []
+		listing	     : [],
+		rating       : 0
 	}
 
   }
@@ -33,6 +35,7 @@ class Dashboard extends Component {
 			notification : nextProps.dasboarddetail.list,
 			profilesec	 : nextProps.dasboarddetail.my_profile_details,
 			listing		 : nextProps.dasboarddetail.my_list,
+			rating		 : Number(nextProps.dasboarddetail.my_profile_details.rating),
 		})
 	}
   
@@ -72,10 +75,25 @@ class Dashboard extends Component {
 										</div>
 											<p className="user-name">{profile.first_name} {profile.last_name}</p>
 											<div className="user-info-wrapper">
-											<p>
-												<Rate />
-												<img className="" src={"assets/img/star-icon.png"} />
-											</p>
+												<div style={{marginLeft: '24px'}}>  
+												{(this.state.rating != 0) ? 
+													<ReactStars
+														value={this.state.rating}
+														size={18}
+														count= {5}
+														color= "#00FFFF"
+														activeColor= "#00FFFF"
+														edit = {false}
+														isHalf= {true} 
+														a11y = {true}
+														emptyIcon = {<i className="far fa-star" />}
+														halfIcon= {<i className="fa fa-star-half-alt" />}
+														filledIcon= {<i className="fa fa-star" />}
+													/>
+													: null
+												
+												}</div>
+                                       
 											<p className="user-address">{profile.brokerage_name}
 												{profile.street_name},
 												{profile.city},
@@ -168,6 +186,7 @@ class Dashboard extends Component {
 									<h2 className="mid-heading">Your dashboard</h2>
 									{ 
 										  (notificationlist).map((item) => {
+											let letterImage = item.sender_name.charAt(0);
 											return (
 												<div className="content-part-wrapper light-part">
 													<div className="row dashboard-loop">
@@ -176,8 +195,8 @@ class Dashboard extends Component {
 															<div className="user-block-status">
 
 																	{	(item.sender_profile_photo != '') ? 
-																		<img className="img-thumbnail rounded-circle" src={item.sender_profile_photo} alt={item.sender_name} width="80" height="80"/>
-																		: <img className="img-thumbnail rounded-circle" src={"assets/img/user/02.jpg"} alt="Avatar" width="80" height="80"/>
+																		<img className="img-thumbnail rounded-circle" src={item.sender_profile_photo} alt={item.sender_name} style={{width:'80px', height : '80px'}}/>
+																		:  <div className="small-profile-alpha">{letterImage}</div> 
 																	}
 															</div>
 														</div>

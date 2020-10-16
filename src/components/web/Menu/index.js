@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import {Link} from 'react-router-dom';
 
-import Menubar from "react-responsive-multi-level-menu";
-import MenuItems from "../../../helpers/menuHelper";
-import Menulist from "./menulist";
 import $ from "jquery";
 
 class Menu extends Component {
@@ -58,16 +56,18 @@ class Menu extends Component {
           
         
          
-         <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
- 
-           <em className="pro"></em><span data-localize="sidebar.nav.DASHBOARD">Profile</span>
-         </a>
+         <li className="" id="menu_profile">
+          {/*  <a href="#dashboard" title="Dashboard"> */}
+            <Link to="/profile"  title="Dashboard" >
+                <em className="pro"></em><span data-localize="sidebar.nav.DASHBOARD">Profile</span>
+            </Link>
+         {/*  </a> */}
         </li>
-         <li className="active"><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+         <li className="" ><a href="#dashboard" title="Dashboard" data-toggle="collapse">
            <em className="age"></em><span data-localize="sidebar.nav.DASHBOARD">Agents & Groups</span>
          </a>
         </li>
-         <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+         <li className=""><a href="#dashboard" title="Dashboard" data-toggle="collapse">
            <em className="try"></em><span data-localize="sidebar.nav.DASHBOARD">Trycklitics</span>
          </a>
         </li>

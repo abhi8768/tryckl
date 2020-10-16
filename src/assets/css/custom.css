@@ -648,3 +648,9 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
         border: 1px solid #7c7f7f !important;
         background: #7c7f7f !important;
     }
+    .edit-user em{
+        font-size: 1em !important;
+        color: #00FFFF;
+        font-weight: 100 !important;
+        float: right;
+    }

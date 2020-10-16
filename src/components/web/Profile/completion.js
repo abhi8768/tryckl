@@ -3,14 +3,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 
-import HeaderUser from '../HeaderUser';
-import Menu from '../Menu';
-import Footer from '../Footer';
-import { dashboardRequest } from "../../../actions/web/dashboardAction";
-import { setPublicIP } from "../../../helpers/authHelper";
+
+import { getprofileDetails, changeView } from "../../../actions/web/brokerAction";
 
 
-class Profile extends Component {
+
+class ProfileCompletion extends Component {
   constructor(props) {
     super(props);
    // setPublicIP();
@@ -18,14 +16,18 @@ class Profile extends Component {
 		notification : [],
 		profilesec   : {},
 		listing	     : []
-	}
+    }
+    this.gotoEdit = this.gotoEdit.bind(this);
 
   }
  
     componentDidMount(){
-         
-		this.props.dashboardRequest();
-	}
+        
+    }
+    
+    gotoEdit(){
+        this.props.changeView('detail');
+    }
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
 		this.setState({
@@ -45,40 +47,15 @@ class Profile extends Component {
 	let rating = 3;
 	let blank_rating = (5 - 3); 
     return (
-		<div className="wrapper">
-			<HeaderUser />
-			<Menu />
-
-            <section className="section-container">
-         
-                <div className="content-wrapper">
-                    <div className="container gapfrm-top">
-                        <div className="row">
-                            <div className="col-lg-3">
-                                <div className="content-part-wrapper text-center">
-                                    <h2 className="mid-heading">Change Image</h2>
-                                    <div className="item user-block user-part no-pad">
-                                        <div className="user-block-picture custom-user-block-picture2">
-                                            <div className="user-block-status">
-                                            <img className="img-thumbnail rounded-circle" src="img/user/02.jpg" alt="Avatar" />
-                                            <div className="pic-edit">
-                                                <label for="up">
-                                                    <img className="" src="img/edit-image.png" alt="Avatar" />
-                                                </label>
-                                            </div>
-                                            <input type="file" id="up"style="display: none" />
-                                    
-                                        
-                                    </div>
-
-                                </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div className="col-lg-6">
+		<div className="col-lg-6">
                             <div className="content-part-wrapper">
-                            <h2 className="mid-heading">PROFILE</h2>
+                            <h2 className="mid-heading">EDIT PROFILE 
+                            <span className="edit-user">
+                                <a href={void(0)} onClick={this.gotoEdit}>
+                                    <em className="fa-2x mr-2 far fa-user"></em>
+                                </a>
+                            </span>
+                            </h2>
                             <div className="content-part-wrapper profile-content-part-wrapper">
                             <div className="form-container2">
                             <div className="frm-wrapper text-left frm-wrapper-profile">
@@ -144,31 +121,20 @@ class Profile extends Component {
                             </div>
                         </div>
                   
-                            <div className="col-lg-3">
-
-                        
-
-
-                    </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+                            
 	 );
   }
 }
 
 const mapStateToProps = state => {
 	return {
-	  dasboarddetail  : state.dashboarddetail.dashboard,
-	 
+      changeview     : state.profileactiveview.activeview,
 	}
   }
   
   const mapDispatchToProps = dispatch => {
 	return {
-		dashboardRequest : bindActionCreators(dashboardRequest , dispatch),
+        changeView       : bindActionCreators(changeView , dispatch),
 	  
 	}
   }
@@ -176,5 +142,5 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Profile);
+)(ProfileCompletion);
 

@@ -2,7 +2,8 @@ const pageTitles = {
   home           : "Tryckl | Home",
   login          : "Tryckl | Login",
   dashboard      : "Tryckl | Dashboard",
-  forgetpassword : "Tryckl | Forget password"
+  forgetpassword : "Tryckl | Forget password",
+  profile        : "Tryckl | Profile"
   
 
 };

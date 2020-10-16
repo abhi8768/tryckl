@@ -12,7 +12,8 @@ import masterbrokerage       from './masterdata/masterbrokerage';
 import masterlicense         from './masterdata/masterlicense';
 import dashboarddetail       from './dashboard/detail';
 import brokerdetail          from './broker/details';
-
+import profilepicture        from './broker/profilepicture';
+import profileactiveview     from './broker/profileactiveview';
 
 
 import { USER_LOGGED_OUT } from '../actions/constants';
@@ -27,8 +28,9 @@ const allReducers = {
   masterbrokerage,
   masterlicense,
   dashboarddetail,
-  brokerdetail
-  
+  brokerdetail,
+  profilepicture,
+  profileactiveview
 };
 
 const appReducer = combineReducers(allReducers);
