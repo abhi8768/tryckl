@@ -196,7 +196,7 @@ class Dashboard extends Component {
 
 																	{	(item.sender_profile_photo != '') ? 
 																		<img className="img-thumbnail rounded-circle" src={item.sender_profile_photo} alt={item.sender_name} style={{width:'80px', height : '80px'}}/>
-																		:  <div className="small-profile-alpha">{letterImage}</div> 
+																		:  <div className="small-profile-alpha text-center">{letterImage}</div> 
 																	}
 															</div>
 														</div>

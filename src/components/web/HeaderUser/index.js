@@ -98,7 +98,7 @@ class HeaderUser extends Component {
 									{
 										(this.state.user_image != '')	?	
 										<img className="img-thumbnail rounded-circle" src={this.state.user_image} alt="Avatar" style={{width:'40px', height : '40px'}}/>
-										:  <div className="small-profile-alpha">{letterImage}</div>  
+										:  <div className="small-profile-alpha text-center">{letterImage}</div>  
 									}
 									
 								   <div className="circle bg-success circle-lg custom-circle"></div>

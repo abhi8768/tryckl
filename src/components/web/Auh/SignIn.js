@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import {ToastsStore} from 'react-toasts';
 import Modal from "react-responsive-modal";
-
+import {Link} from 'react-router-dom';
 
 import { createLoginRequest } from "../../../actions/web/authAction";
 import { setPublicIP } from "../../../helpers/authHelper";
@@ -51,7 +51,7 @@ class SignIn extends Component {
                     <div className="frm-wrapper text-left">
                         <label>User ID</label>
                         <input type="text" name="user_id" id="user_id" onChange={this.handleChange} required  placeholder="Enter registered mobile no." />
-                        <a href="#" className="forg">Forgot User ID?</a>
+                        <Link to="/forget-userid" className="forg">Forgot User ID?</Link>
                         
                         <label>Password</label>
                         <input type="password" name="password" id="password" onChange={this.handleChange} required  placeholder="Enter valid password " />
@@ -60,7 +60,7 @@ class SignIn extends Component {
                             <span className="checkmark"></span>
                         </label>
                         
-                        <a href="#" className="float-right forg">Forgot password?</a>
+                        <Link to="/forget-password" className="float-right forg">Forgot password?</Link>
                         <button type="submit">LOGIN</button>
                         <div className="help-center">
                             <p>

@@ -39,7 +39,7 @@ class Auth extends Component {
 			<div className="wrapper">
 				<ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_RIGHT} lightBackground />
 				<div className="text-center marigin-needed"><a href="#"><img className="block-center rounded" src="assets/img/login-logo.png" alt="Image" /></a>
-				<p>WELCOME to TRYCKL</p>
+					<p>WELCOME to TRYCKL</p>
 				</div>
 				<div
 					className={`container2 ${rightPanelActive ? `right-panel-active` : ``}`} 

@@ -83,7 +83,7 @@ class ProfileDetail extends Component {
                                                 
                                                 {   (joined.group_photo != '') ?
                                                         <img className="rounded-circle" src={joined.group_photo} alt="Avatar" style={{width : '60px', height : "60px"}} />
-                                                        : <div className="small-profile-alpha">{letterImage}</div>
+                                                        : <div className="small-profile-alpha text-center">{letterImage}</div>
                                                 }
                                                 
                                             </div>
@@ -123,7 +123,7 @@ class ProfileDetail extends Component {
                                                     <div className="user-block-status">
                                                         {   (my.group_photo != '') ?
                                                             <img className="rounded-circle" src={my.group_photo} alt="Avatar" style={{width : '60px', height : "60px"}} />
-                                                            : <div className="small-profile-alpha">{letterImage}</div>
+                                                            : <div className="small-profile-alpha text-center">{letterImage}</div>
                                                         }
                                                     </div>
                                                 </div>

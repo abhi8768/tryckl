@@ -618,12 +618,14 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
     padding: 20px 30px;
     }
 
-    .veri-wrapper h1 {
-    color: #00ffff;
-   margin:40px 0; 
-    font-family: 'Conv_GothamBook';
-    font-size: 26px;
-    font-weight: 300;
+ .veri-wrapper h1 {
+        color: #00ffff;
+        margin: 40px 0;
+        margin-bottom: 10px;
+        font-family: 'Conv_GothamBook';
+        font-size: 26px;
+        font-weight: 300;
+        text-transform: uppercase;
   }
   .ver-small-txt{color:  #ffff;  font-family: 'Conv_GothamBook'; font-weight: normal; font-size: 13px; margin-bottom: 0}
   .ver-big-txt{color:  #ffff;  font-family: 'Conv_GothamBook'; font-weight: normal; font-size: 18px; margin-bottom: 0}
@@ -642,6 +644,134 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
    
 }
 
+
+.ver-form input{ color: #fff; }
+
+.ver-form input::-webkit-input-placeholder { /* Edge */
+  color: #fff;
+  font-family: 'Conv_GothamBook'; font-size: 25px;
+  opacity: 1
+}
+
+.ver-form input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #fff;
+   font-family: 'Conv_GothamBook'; font-size: 25px;
+    opacity: 1
+}
+
+.ver-form input::placeholder {
+  color: #fff;
+    font-family: 'Conv_GothamBook'; font-size: 25px;
+     opacity: 1
+}
+.ver-form{ margin-top: 20px; }
+.veri-wrapper h4{color: #ffff; font-size: 14px; font-family: 'Conv_GothamMedium'; text-transform: uppercase; position: relative; top: 26px;
+    left: 14px;}
+    .veri-wrapper h4 img{ margin-right: 15px; }
+
+
+.frm-wrapper-profile button {
+    margin-top: 20px;
+}
+.ver-frm-wrapper{ margin-top:40px; }
+.ver-frm-wrapper button {
+    border-radius: 5px;
+    border: 1px solid #00ffff;
+    background: #00ffff;
+    color: #000;
+    font-size: 16px;
+    font-weight: normal;
+    padding: 15px 0px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    display: block;
+    width: 90%;
+    margin: 20px auto;
+    font-family: 'Conv_GothamBook';
+}
+.dis-btn{ background: #c5c5c5 !important;border: 1px solid #c5c5c5 !important; }
+
+
+/* ................................concat section.................................... */
+.contact-frm input {
+    background: #666666;
+    border: none;
+    padding: 8px 0px;
+    margin: 0px 0;
+    width: 100%;
+    border-bottom: 1px solid #cdcdcd;
+    color: #fff;
+}
+
+.contact-frm textarea {
+    background: #666666;
+    border: none;
+    padding: 8px 0px;
+    margin: 0px 0;
+    width: 100%;
+    border-bottom: 1px solid #cdcdcd;
+    color: #fff;
+}
+.contact-frm label {
+    color: #fff;
+    margin-bottom: 0;
+    margin-top:15px;
+    font-family: 'Conv_GothamMedium';
+    font-size: 13px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+.contact-frm{ margin-top:40px; }
+
+
+.contact-frm input::-webkit-input-placeholder { /* Edge */
+  color: #c5c5c5;
+  font-family: 'Conv_GothamBook'; font-size: 18px;
+  opacity: 1
+}
+
+.contact-frm input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #c5c5c5;
+   font-family: 'Conv_GothamBook'; font-size: 18px;
+    opacity: 1
+}
+
+.contact-frm input::placeholder {
+  color: #c5c5c5;
+    font-family: 'Conv_GothamBook'; font-size: 18px;
+     opacity: 1
+}
+.contact-frm textarea::-webkit-input-placeholder { /* Edge */
+  color: #c5c5c5;
+  font-family: 'Conv_GothamBook'; font-size: 18px;
+  opacity: 1
+}
+
+.contact-frm textarea:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: #c5c5c5;
+   font-family: 'Conv_GothamBook'; font-size: 18px;
+    opacity: 1
+}
+
+.contact-frm textarea::placeholder {
+  color: #c5c5c5;
+    font-family: 'Conv_GothamBook'; font-size: 18px;
+     opacity: 1
+}
+
+
+
+.veri-wrapper p.frg-txt{font-family: 'Conv_GothamBook';
+    font-size: 16px; color: #fff; margin-bottom:100px; margin-top: 50px ;}
+
+
+    .custom-back-link{display: block; text-align: center; text-transform: uppercase; font-family: 'Conv_GothamBook';
+    font-size: 14px; margin-bottom: 50px; }
+
+    .need-mar-top-ver{ margin-top:150px }
+    .forg:hover{ color: #039494; text-decoration: none }
+    
     /*somwrita*/
 
     .inactive_btn{
@@ -649,8 +779,9 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
         background: #7c7f7f !important;
     }
     .edit-user em{
-        font-size: 1em !important;
+        font-size: 1.5em !important;
         color: #00FFFF;
         font-weight: 100 !important;
         float: right;
+        cursor: pointer;
     }

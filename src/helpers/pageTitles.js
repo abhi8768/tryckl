@@ -3,6 +3,7 @@ const pageTitles = {
   login          : "Tryckl | Login",
   dashboard      : "Tryckl | Dashboard",
   forgetpassword : "Tryckl | Forget password",
+  forgetuserid   : "Tryckl | Forget Userid",
   profile        : "Tryckl | Profile"
   
 

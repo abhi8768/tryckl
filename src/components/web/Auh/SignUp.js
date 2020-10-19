@@ -149,7 +149,7 @@ class SignUp extends Component {
                             <input type="email" placeholder="Enter your email address" name="email" id="email" onChange={this.handleChange} required/>
 
                             <label>Real estate license #</label>
-                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number" onChange={this.handleChange} required value={this.state.license_number}/>
+                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={this.handleChange} required value={this.state.license_number}/>
 
                             <label>Real estate lic issuing state</label>
                             <select className="custom-select" name="license_state" id="license_state" onChange={this.handleChange} required>

@@ -87,10 +87,13 @@ class Menu extends Component {
              <li className=""><a href="dashboard_v3.html" title="Dashboard v3"><em className="abt"></em><span className="adj">About Us</span></a></li>
             </ul>
          </li>
-         <li className="hide-shik"><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+         <li className="hide-shik">
+            <a href={void(0)} title="Dashboard" onClick={this.logoutReq}>
            
-           <em className="log"></em><span data-localize="sidebar.nav.DASHBOARD">LogOut</span>  
-         </a></li>
+                <em className="log"></em>
+                <span data-localize="sidebar.nav.DASHBOARD">LogOut</span>  
+            </a>
+         </li>
  
  
  

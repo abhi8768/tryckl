@@ -5,11 +5,11 @@ import { withRouter } from "react-router-dom";
 import {Link} from 'react-router-dom';
 import {ToastsContainer, ToastsStore, ToastsContainerPosition} from 'react-toasts';
 
-import { forgetpasswordRequest } from "../../../actions/web/authAction";
+import { forgetuseridRequest } from "../../../actions/web/authAction";
 
 
 
-class ForgetPassword extends Component {
+class ForgetUserid extends Component {
   constructor(props) {
     super(props);
    // setPublicIP();
@@ -24,17 +24,16 @@ class ForgetPassword extends Component {
  
   onSubmit(e){
 	e.preventDefault();
-	console.log(this.state);
-	this.props.forgetpasswordRequest(this.state);
+	this.props.forgetuseridRequest(this.state);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-	if(nextProps.forgetpass.status == true){
+	if(nextProps.forgetuserid.status == true){
 		// 
-		ToastsStore.success(nextProps.forgetpass.message);
+		ToastsStore.success(nextProps.forgetuserid.message);
 		
 	 }else{
-		ToastsStore.error(nextProps.forgetpass.message);
+		ToastsStore.error(nextProps.forgetuserid.message);
 	 }
   }
 
@@ -59,13 +58,13 @@ class ForgetPassword extends Component {
 					<div className="row">
 						<div className="col-lg-6 justify-content-lg-center m-auto">
 							<div className="veri-wrapper">
-								<h1>forgot password</h1>
+								<h1>forgot USER ID</h1>
 									<form onSubmit={this.onSubmit}>
 									<div className="contact-frm">
 										<p className="frg-txt">
-											If you forgot your Password, please enter your <br/>
-											registered email here.  We will send a linkto reset <br/>
-											your PASSWORD via email.
+										If you forgot your User ID, please enter your <br/>
+										registered email here. We will send your USER ID <br/>
+										via email..
 										</p>
 										<label>EMAIL</label>
 										<input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" name="email" id="email" value={this.state.email} onChange={this.handleChange} required placeholder="Please enter your registered Email" />
@@ -73,7 +72,7 @@ class ForgetPassword extends Component {
 									</div>
 
 									<div className="ver-frm-wrapper">
-										<button type="submit">Email password reset link</button>
+										<button type="submit">Email my user id</button>
 										<Link to="/login" className="forg custom-back-link">Back to login</Link>
 										
 									</div>
@@ -95,13 +94,13 @@ class ForgetPassword extends Component {
 const mapStateToProps = state => {
 	return {
 	  currentUserDetails  : state.login.user,
-	  forgetpass	      : state.forgetpassword
+	  forgetuserid	      : state.forgetuserid
 	}
   }
   
   const mapDispatchToProps = dispatch => {
 	return {
-		forgetpasswordRequest       : bindActionCreators(forgetpasswordRequest , dispatch),
+		forgetuseridRequest       : bindActionCreators(forgetuseridRequest , dispatch),
 	  
 	}
   }
@@ -109,5 +108,5 @@ const mapStateToProps = state => {
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ForgetPassword));
+)(ForgetUserid));
 

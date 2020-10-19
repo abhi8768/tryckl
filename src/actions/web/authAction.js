@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER  } from '../constants';
+import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID  } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession , removeSessionData} from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -111,6 +111,74 @@ import { handleResponse , loader } from '../utils';
       .then(handleResponse)
       .then((res) => {
         dispatch(logoutUser(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
+
+  export const forgetpassword = (forgetpassword) => {
+    
+    return {
+      type: FORGET_PASSWORD,
+      forgetpassword,
+    };
+  };
+
+  export const forgetpasswordRequest = (params) => {
+
+    const param = JSON.stringify({
+      email  : params.email,
+      ip     : getPublicIP()
+    
+   });
+    const headers = 
+    {
+       Authorization     : `Bearer ${getAuthHeader()}`,
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+      
+      postReq(`${apiURLPrefix}/auth/forgetPassword`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+        dispatch(forgetpassword(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
+
+  export const forgetuserid = (forgetuserid) => {
+    
+    return {
+      type: FORGET_USERID,
+      forgetuserid,
+    };
+  };
+
+  export const forgetuseridRequest = (params) => {
+
+    const param = JSON.stringify({
+      email  : params.email,
+      ip     : getPublicIP()
+    
+   });
+    const headers = 
+    {
+       Authorization     : `Bearer ${getAuthHeader()}`,
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+      
+      postReq(`${apiURLPrefix}/auth/forgetUserid`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+        dispatch(forgetuserid(res));
       }).catch((err)=>{
         console.log(err)
       }) 

@@ -3,6 +3,8 @@ import { combineReducers } from 'redux';
 import signup                from './auth/signup';
 import login                 from './auth/login';
 import logout                from './auth/logout';
+import forgetpassword        from './auth/forgetpassword';
+import forgetuserid          from './auth/forgetuserid';
 import verifyotp             from './auth/verifyotp';
 import resendotp             from './auth/resendotp';
 import reviewmembership      from './auth/reviewmembership';
@@ -24,6 +26,8 @@ const allReducers = {
   login,
   
   logout,
+  forgetpassword,
+  forgetuserid,
   notificationlist,
   masterstate,
   masterbrokerage,
