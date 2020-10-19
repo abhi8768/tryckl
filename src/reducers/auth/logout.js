@@ -1,13 +1,13 @@
-import { USER_LOGGED_OUT } from '../../actions/constants';
+import { LOGOUT_USER } from '../../actions/constants';
 const initialState = {
-    loggedUser: {},
+  logoutuser: {},
 };
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case USER_LOGGED_OUT:
+    case LOGOUT_USER:
        
       return {
-        loggedUser: action.loggedoutUser
+        logoutuser: action.logoutUser
       };
     default:
       return state;

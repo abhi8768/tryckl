@@ -40,22 +40,26 @@
     </body>
 	<script src="https://www.baaldahab.com/assets/js/jquery-1.11.3.min.js"></script>
 	<script>
-
-		$.ajax({ 
-			method: 'POST', 
-			url: 'http://34.233.129.3:3000/api/v1/auth/authenticate', 
-			data: JSON.stringify({ 'brokers_id': 123}),
-			dataType: 'json',
-            contentType: 'application/json',
-			headers: {
-			'Content-Type':'application/json'
-			},
-			success: function (res) { 
-				console.log(res);	
-				localStorage.setItem('jwtToken', res.response._jwtToken);
-				//localStorage.setItem('jwtToken', res.response._jwtToken);
-			}
-       });
+		let userDetails    = localStorage.getItem('userDetails');
+		let userDetailsobj = JSON.parse(userDetails);
+		if(userDetails != null){
+			$.ajax({ 
+				method: 'POST', 
+				url: 'http://34.233.129.3:3000/api/v1/auth/authenticate', 
+				data: JSON.stringify({ 'brokers_id': userDetailsobj.brokers_id}),
+				dataType: 'json',
+				contentType: 'application/json',
+				headers: {
+				'Content-Type':'application/json'
+				},
+				success: function (res) { 
+					console.log(res);	
+					localStorage.setItem('jwtToken', res.response._jwtToken);
+					//localStorage.setItem('jwtToken', res.response._jwtToken);
+				}
+       		});
+		}
+		
 	</script>
 
     <!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->

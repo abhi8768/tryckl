@@ -3,24 +3,20 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Link} from 'react-router-dom';
 
+import { logoutRequest } from "../../../actions/web/authAction";
 import $ from "jquery";
 
 class Menu extends Component {
   constructor(props) {
     super(props);
    
-	this.state = {
-		
-	}
-   
+    this.state = {
+    }
+    this.logoutReq = this.logoutReq.bind(this);
    	
   }
  
   componentDidMount () { 
-    
-    
-   
-
     const script = document.createElement("script");
     script.src = "assets/js/jquery.slimscroll.js";
     script.async = true;
@@ -30,13 +26,12 @@ class Menu extends Component {
     $( document ).ready(function() {
         $('.nicescroll-bar').slimscroll({height:'100%',color: '#878787', disableFadeOut : true,borderRadius:0,size:'4px',alwaysVisible:false});
     })
-    /* const script2 = document.createElement("script");
-    script2.src = "assets/js/init.js";
-    script2.async = true;
-    document.body.appendChild(script2);    */
-
    
- }
+  }
+
+  logoutReq(){
+    this.props.logoutRequest({user_id : this.props.currentUserDetails.brokers_id});
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
 	
@@ -99,10 +94,14 @@ class Menu extends Component {
  
  
  
-         <li className="sick-hide"><a href="#dashboard" title="Dashboard" data-toggle="collapse">
-            <div>
-           <em className="icon-power"></em><span data-localize="sidebar.nav.DASHBOARD">LogOut</span></div>
-         </a></li>
+          <li className="sick-hide">
+            <a href={void(0)} title="Dashboard" onClick={this.logoutReq}>
+              <div>
+                <em className="icon-power"></em>
+                <span data-localize="sidebar.nav.DASHBOARD">LogOut</span>
+              </div>
+            </a>
+          </li>
          
         </ul>
        </nav>
@@ -112,17 +111,17 @@ class Menu extends Component {
   }
 }
 
-const mapStateToProps = state => {
-	return {
-	  currentUserDetails  : state.login.user,
-	 
-	}
+  const mapStateToProps = state => {
+    return {
+      currentUserDetails  : state.login.user,
+      logout              : state.logout.logoutuser
+    }
   }
   
   const mapDispatchToProps = dispatch => {
-	return {
-	 
-	}
+    return {
+      logoutRequest   : bindActionCreators(logoutRequest , dispatch),
+    }
   }
 
 export default connect(

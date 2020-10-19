@@ -9,3 +9,4 @@ export const PROFILE_DETAIL         = 'PROFILE_DETAIL';
 export const PROFILE_PICTURE        = 'PROFILE_PICTURE';
 export const ACTIVE_VIEW            = 'ACTIVE_VIEW';
 export const PROFILE_UPDATE         = 'PROFILE_UPDATE';
+export const LOGOUT_USER            = 'LOGOUT_USER';

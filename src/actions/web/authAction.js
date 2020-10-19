@@ -1,19 +1,19 @@
-import { SET_CURRENT_USER, CREATE_ACCOUNT, VERIFIED_OTP, RESEND_OTP, REVIEW_MEMBERSHIP } from '../constants';
-import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession } from "../../helpers/authHelper";
+import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER  } from '../constants';
+import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession , removeSessionData} from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
 
 
-export const loginUser = (user) => {
-  setUserInSession(user.response);
-  setJWTToken(user.response._jwtToken);
-  return {
-    type: SET_CURRENT_USER,
-    user,
+  export const loginUser = (user) => {
+    setUserInSession(user.response);
+    setJWTToken(user.response._jwtToken);
+    return {
+      type: SET_CURRENT_USER,
+      user,
+    };
   };
-};
 
-export const createLoginRequest = (params) => {
+  export const createLoginRequest = (params) => {
 
     const param = JSON.stringify({
       user_id		    : params.user_id,
@@ -24,7 +24,7 @@ export const createLoginRequest = (params) => {
    });
     const headers = 
     {
-      'Authentication'  : getAuthHeader(),
+       Authorization     : `Bearer ${getAuthHeader()}`,
       'content-type'    : 'application/json'
     }
 
@@ -65,7 +65,7 @@ export const createLoginRequest = (params) => {
      });
       const headers = 
       {
-        'Authentication'  : getAuthHeader(),
+         Authorization     : `Bearer ${getAuthHeader()}`,
         'content-type'    : 'application/json'
       }
   
@@ -80,4 +80,40 @@ export const createLoginRequest = (params) => {
         }) 
       } 
       
+  };
+
+
+  export const logoutUser = (logoutUser) => {
+    removeSessionData();
+    return {
+      type: LOGOUT_USER,
+      logoutUser,
     };
+  };
+
+  export const logoutRequest = (params) => {
+
+    const param = JSON.stringify({
+      brokers_id    : params.user_id,
+      device_type   : "WEB",
+      device_id     : getPublicIP()
+    
+   });
+    const headers = 
+    {
+       Authorization     : `Bearer ${getAuthHeader()}`,
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+      
+      postReq(`${apiURLPrefix}/auth/logout`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+        dispatch(logoutUser(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
