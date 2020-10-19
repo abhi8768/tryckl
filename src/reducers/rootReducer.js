@@ -14,6 +14,7 @@ import dashboarddetail       from './dashboard/detail';
 import brokerdetail          from './broker/details';
 import profilepicture        from './broker/profilepicture';
 import profileactiveview     from './broker/profileactiveview';
+import profileupdate         from './broker/profileupdate';
 
 
 import { USER_LOGGED_OUT } from '../actions/constants';
@@ -30,7 +31,8 @@ const allReducers = {
   dashboarddetail,
   brokerdetail,
   profilepicture,
-  profileactiveview
+  profileactiveview,
+  profileupdate
 };
 
 const appReducer = combineReducers(allReducers);
