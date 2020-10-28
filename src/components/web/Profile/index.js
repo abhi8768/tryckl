@@ -22,7 +22,9 @@ class Profile extends Component {
       profilepicture : '',
       name           : '',
       rating         : 0,
-      currentview    : 'detail'
+      currentview    : 'detail',
+      brokerId       : this.props.brokerId == '' ? this.props.currentUserDetails.brokers_id : this.props.brokerId,
+      isOwn          : (this.props.brokerId == '') ? true : false
     }
     this.updatePicture = this.updatePicture.bind(this);
   }
@@ -33,7 +35,7 @@ class Profile extends Component {
   
   updatePicture(e){
 
-    this.props.updateprofilePicture({image : e.target.files[0]});
+    this.props.updateprofilePicture({ image : e.target.files[0] });
 
   }
 
@@ -85,13 +87,21 @@ class Profile extends Component {
                                                             :  <div className="alpha">{letterImage}</div>
                                                         }
                                                         
-
-                                                        <div className="pic-edit">
-                                                          <label htmlFor="up">
-                                                            <img className="" src="assets/img/edit-image.png" alt="Avatar" />
-                                                          </label>
-                                                        </div>
-                                                        <input type="file" id="up"style={{display : "none"}} onChange={this.updatePicture}/>
+                                                        {
+                                                          (this.state.isOwn == true) ?
+                                                          <div className="pic-edit">
+                                                            <label htmlFor="up">
+                                                              <img className="" src="assets/img/edit.png" alt="Image upload" />
+                                                            </label>
+                                                          </div>
+                                                          : null
+                                                        }
+                                                        {
+                                                          (this.state.isOwn == true) ?
+                                                            <input type="file" id="up"style={{display : "none"}} onChange={this.updatePicture}/>
+                                                          : null
+                                                        }
+                                                       
                                                 </div>
 
                                             </div>
@@ -122,8 +132,8 @@ class Profile extends Component {
                                 </div>
                                  {
                                    (this.state.currentview == 'detail') ?
-                                   <ProfileDetail /> 
-                                   : <ProfileCompletion />
+                                   <ProfileDetail brokerId = {this.state.brokerId} isOwn={this.state.isOwn}/> 
+                                   : <ProfileCompletion brokerId = {this.state.brokerId} />
                                  }         
                                  
                             </div>
@@ -137,9 +147,10 @@ class Profile extends Component {
 
 const mapStateToProps = state => {
 	return {
-    profileimage  : state.profilepicture.profilepicture,
-    profiledetail : state.brokerdetail.profiledetail,
-    changeview    : state.profileactiveview.activeview,
+    profileimage        : state.profilepicture.profilepicture,
+    profiledetail       : state.brokerdetail.profiledetail,
+    changeview          : state.profileactiveview.activeview,
+    currentUserDetails  : state.login.user,
 	}
 }
   

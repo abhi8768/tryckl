@@ -72,7 +72,7 @@ body {
     border: none;
     padding: 8px 0px;
     margin: 0px 0;
-  
+    color: white;
     width: 100%;
     border-bottom: 1px solid #cdcdcd;
 }
@@ -788,3 +788,14 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
     .user-block-status img{
         object-fit: cover !important;
     }
+    .dashboard-thumbnail{
+        object-fit: cover !important;
+        width:80px;
+        height: 80px;
+    }
+   .contact-frm .fas{
+       color : #d1d1d1;
+   }
+   .reset-input{
+       width : 90% !important;
+   }

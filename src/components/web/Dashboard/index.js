@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import { Link } from 'react-router-dom';
 
+import {encrypt} from "../../../helpers/CryptoJs";
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
 import Footer from '../Footer';
@@ -67,8 +69,8 @@ class Dashboard extends Component {
 											<div className="user-block-status">
 												{
 													(profile.profile_photo != '') ? 
-													<img className="img-thumbnail rounded-circle" src={profile.profile_photo} alt={profile.first_name} width="80" height="80"/>
-													: <img className="img-thumbnail rounded-circle" src={"assets/img/user/02.jpg"} alt="Avatar" width="80" height="80"/>
+													<img className="img-thumbnail rounded-circle dashboard-thumbnail" src={profile.profile_photo} alt={profile.first_name} />
+													: <img className="img-thumbnail rounded-circle" src={"assets/img/user/02.jpg"} alt="Avatar" />
 												}
 											</div>
 
@@ -201,7 +203,7 @@ class Dashboard extends Component {
 															</div>
 														</div>
 															<div className="secend-block">
-															<p className="user-name">{item.sender_name}</p>
+															<p className="user-name"><Link to={`/profile/${encrypt(item.notification_from_broker_id)}`} >{item.sender_name}</Link></p>
 															<p className="user-name-card">{item.notification_description}</p>
 														</div>
 														</div>

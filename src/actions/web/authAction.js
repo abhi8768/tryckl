@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID  } from '../constants';
+import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID, RESET_PASSWORD } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession , removeSessionData} from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -179,6 +179,41 @@ import { handleResponse , loader } from '../utils';
       .then(handleResponse)
       .then((res) => {
         dispatch(forgetuserid(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
+
+
+  export const resetpassword = (resetpassword) => {
+    
+    return {
+      type: RESET_PASSWORD,
+      resetpassword,
+    };
+  };
+
+  export const resetpasswordRequest = (params) => {
+
+    const param = JSON.stringify({
+      brokers_id  : params.brokerId,
+      password    : params.password
+    
+   });
+    const headers = 
+    {
+       Authorization    : `Bearer ${getAuthHeader()}`,
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+       
+      postReq(`${apiURLPrefix}/auth/resetPassword`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+        dispatch(resetpassword(res));
       }).catch((err)=>{
         console.log(err)
       }) 

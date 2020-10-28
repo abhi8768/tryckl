@@ -22,7 +22,7 @@ import { handleResponse , loader } from '../utils';
     return (dispatch, getState) => {
         const {login} = getState();
         const param = JSON.stringify({
-            brokers_id : login.user.id
+            brokers_id : params.brokers_id
        });
        
       postReq(`${apiURLPrefix}/broker/profile_details`, param , headers)

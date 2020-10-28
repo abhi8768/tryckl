@@ -21,6 +21,8 @@ class RouteComponent extends Component {
           <PrivateRoute exact={true} path={pathList.profile.path} title={pageTitles.profile} component={routes.Profile}/>
           <PrivateRoute exact={true} path={pathList.brokerprofile.path} title={pageTitles.profile} component={routes.Profile}/>
 
+
+          <PublicRoute exact={true} path={pathList.resetpassword.path} title={pageTitles.resetpassword} component={routes.ResetPassword}/>
           <PublicRoute exact={true} path="/admin" title="admin - login" component={routes.AdminLogin}/>
           <Redirect exact={true} from="/login" to="/" />
           <Route exact={true} title={pageTitles.notFound} component={routes.NotFoundPage} /> 

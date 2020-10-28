@@ -136,8 +136,8 @@ class SignUp extends Component {
 
                             <label>Password </label>
                             <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Enter valid password " name="password" id="password" onChange={this.handleChange} required/>
-                            <i class="fa fa-info" aria-hidden="true"></i>
-                            <i class="fa fa-eye"></i>
+                            <i className="fa fa-info" aria-hidden="true"></i>
+                            <i className="fa fa-eye"></i>
 
                             <label>CONFIRM PASSWORD</label>
                             <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Retype your password" name="confirm_password" id="confirm_password" onChange={this.handleChange} required/>

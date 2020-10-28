@@ -5,6 +5,7 @@ import login                 from './auth/login';
 import logout                from './auth/logout';
 import forgetpassword        from './auth/forgetpassword';
 import forgetuserid          from './auth/forgetuserid';
+import resetpassword         from './auth/resetpassword';
 import verifyotp             from './auth/verifyotp';
 import resendotp             from './auth/resendotp';
 import reviewmembership      from './auth/reviewmembership';
@@ -28,6 +29,7 @@ const allReducers = {
   logout,
   forgetpassword,
   forgetuserid,
+  resetpassword,
   notificationlist,
   masterstate,
   masterbrokerage,

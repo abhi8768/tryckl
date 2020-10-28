@@ -13,7 +13,9 @@ class ProfileDetail extends Component {
 	this.state = {
 		details            : {},
 		myGrouplist        : [],
-		joinedGrouplist	   : []
+        joinedGrouplist	   : [],
+        brokerId           : this.props.brokerId,
+        isOwn              : this.props.isOwn
     }
     this.gotoEdit = this.gotoEdit.bind(this);
 
@@ -21,7 +23,7 @@ class ProfileDetail extends Component {
  
     componentDidMount(){
          
-		this.props.getprofileDetails();
+		this.props.getprofileDetails({brokers_id : this.state.brokerId});
 	}
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
@@ -46,7 +48,12 @@ class ProfileDetail extends Component {
             <div className="content-part-wrapper">
                 <h2 className="mid-heading">{this.state.details.first_name} {this.state.details.last_name}
                 <span className="edit-user">
-                    <a href={void(0)} onClick={this.gotoEdit}><em className="fa-2x mr-2 fas fa-edit"></em> </a>
+                    {
+                        (this.state.isOwn == true) ? 
+                          <a href={void(0)} onClick={this.gotoEdit}><em className="fa-2x mr-2 fas fa-edit"></em> </a>
+                        : null
+                    }
+                    
                 </span>
                 </h2>
                 <div className="content-part-wrapper profile-content-part-wrapper">

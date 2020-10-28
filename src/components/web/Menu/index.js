@@ -17,15 +17,7 @@ class Menu extends Component {
   }
  
   componentDidMount () { 
-    const script = document.createElement("script");
-    script.src = "assets/js/jquery.slimscroll.js";
-    script.async = true;
-    document.body.appendChild(script);  
-
-
-    $( document ).ready(function() {
-        $('.nicescroll-bar').slimscroll({height:'100%',color: '#878787', disableFadeOut : true,borderRadius:0,size:'4px',alwaysVisible:false});
-    })
+   
    
   }
 
@@ -91,7 +83,7 @@ class Menu extends Component {
             <a href={void(0)} title="Dashboard" onClick={this.logoutReq}>
            
                 <em className="log"></em>
-                <span data-localize="sidebar.nav.DASHBOARD">LogOut</span>  
+                <span data-localize="sidebar.nav.DASHBOARD">Log Out</span>  
             </a>
          </li>
  
@@ -101,7 +93,7 @@ class Menu extends Component {
             <a href={void(0)} title="Dashboard" onClick={this.logoutReq}>
               <div>
                 <em className="icon-power"></em>
-                <span data-localize="sidebar.nav.DASHBOARD">LogOut</span>
+                <span data-localize="sidebar.nav.DASHBOARD">Log Out</span>
               </div>
             </a>
           </li>

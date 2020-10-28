@@ -12,3 +12,4 @@ export const PROFILE_UPDATE         = 'PROFILE_UPDATE';
 export const LOGOUT_USER            = 'LOGOUT_USER';
 export const FORGET_PASSWORD        = 'FORGET_PASSWORD';
 export const FORGET_USERID          = 'FORGET_USERID';
+export const RESET_PASSWORD         = 'RESET_PASSWORD';

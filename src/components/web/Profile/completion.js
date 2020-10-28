@@ -29,6 +29,7 @@ class ProfileCompletion extends Component {
       brokerage_city_name     : '',
       brokerage_state         : '',
       zipcode                 : '',
+      brokerId                : this.props.brokerId
     }
     this.gotoEdit     = this.gotoEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
