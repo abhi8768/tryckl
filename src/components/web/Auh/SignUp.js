@@ -8,6 +8,7 @@ import {ToastsStore} from 'react-toasts';
 import { fetchMasterData } from "../../../actions/web/masterAction";
 import { createAccountRequest } from "../../../actions/web/authAction";
 import "./login.css"
+import { TrendingUpTwoTone } from '@material-ui/icons';
 
 class SignUp extends Component {
 
@@ -49,18 +50,37 @@ class SignUp extends Component {
         this.props.fetchMasterData(param2);
     }
     
-    UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
+    UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
+        //console.log('@@ ',nextProps.registeruserdata.status);
         if(nextProps.masterlicensedata != this.props.masterlicensedata && nextProps.masterlicensedata.status == false){
             ToastsStore.error(nextProps.masterlicensedata.message);
             this.setState({
                 license_number      : '',
                 license_number_id   : nextProps.masterlicensedata.masterlicense.id
             });
-        }else{
+        }
+        else if(nextProps.masterlicensedata != this.props.masterlicensedata && nextProps.masterlicensedata.status == true){
+            console.log('id :: ', nextProps.masterlicensedata.masterlicense[0].id);
+            this.setState({
+                license_number_id   : nextProps.masterlicensedata.masterlicense[0].id
+            });
+        }
+        else if(nextProps.registeruserdata != this.props.registeruserdata && nextProps.registeruserdata.status === false){
+            ToastsStore.error(nextProps.registeruserdata.message);
+        }
+        else if(nextProps.registeruserdata != this.props.registeruserdata && nextProps.registeruserdata.status === true){
+            console.log('Sign up complete');
+            let otp_data = nextProps.registeruserdata.registeruser;
+            otp_data.user_id = this.state.user_id;
+            otp_data.email_id = this.state.email;
+            this.props.openOtpBox(otp_data);
+        }
+        else{
             this.setState({
                 master_state     : nextProps.masterstatedata,
                 master_brokerage : nextProps.masterbrokeragedata,
             })
+           
         }
        
     }
@@ -84,9 +104,22 @@ class SignUp extends Component {
     }
 
     handleChange(e) {
-        this.setState({
-          [e.target.name]: e.target.value,
-        });
+        if(e.target.name == 'first_name'){
+            let current_state = this.state.license_state;
+            let current_brokerage = this.state.brokerage;
+            if(current_state===''){
+                let state_arr = this.state.master_state;
+                this.setState({
+                    license_state: state_arr[0].id,
+                });
+            }
+            if(current_brokerage===''){
+                let brokerage_arr = this.state.master_brokerage;
+                this.setState({
+                    brokerage: brokerage_arr[0].id,
+                });
+            }
+        }
 
         if(e.target.name == 'license_number'){
             if(e.target.value.length > 7){
@@ -99,6 +132,35 @@ class SignUp extends Component {
             }
             
         }
+
+        if(e.target.name == 'terms_n_condition'){
+            if(this.state.terms_n_condition===1)
+            {
+                this.setState({
+                    [e.target.name]: 0,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            }   
+            else{
+                this.setState({
+                    [e.target.name]: 1,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            } 
+        }else{
+            this.setState({
+                [e.target.name]: e.target.value,
+            },function(){
+                this.activeSubmitBtn();
+            });
+        }
+        
+    }
+
+    activeSubmitBtn(){
+        //console.log(this.state.terms_n_condition);
         if((this.state.first_name != '') 
             && (this.state.last_name != '') 
             && (this.state.password != '') 
@@ -110,10 +172,17 @@ class SignUp extends Component {
             && (this.state.license_state != '')
             && (this.state.brokerage != '')
             && (this.state.terms_n_condition != 0)){
+                //console.log('HEllo');
                 this.setState({
                     inactive_btn : false
                 })
+            }else{
+                this.setState({
+                    inactive_btn : true
+                })
             }
+
+            //console.log('==>> ', this.state.inactive_btn);
     }
 
     render() {
@@ -143,13 +212,14 @@ class SignUp extends Component {
                             <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Retype your password" name="confirm_password" id="confirm_password" onChange={this.handleChange} required/>
 
                             <label>MOBILE NO. (USER ID)</label>
-                            <input type="tel" placeholder="Enter your mobile no." name="user_id" id="user_id" onChange={this.handleChange} required/>
+                            <input type="tel" placeholder="Enter your mobile no." name="user_id" id="user_id" onChange={this.handleChange}  required/>
 
                             <label>Email</label>
                             <input type="email" placeholder="Enter your email address" name="email" id="email" onChange={this.handleChange} required/>
 
+                            {/* pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" */}
                             <label>Real estate license #</label>
-                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" onChange={this.handleChange} required value={this.state.license_number}/>
+                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number"  onChange={this.handleChange} required value={this.state.license_number}/>
 
                             <label>Real estate lic issuing state</label>
                             <select className="custom-select" name="license_state" id="license_state" onChange={this.handleChange} required>
@@ -166,20 +236,21 @@ class SignUp extends Component {
                                 
                             <label>Brokerage</label>
                             <select className="custom-select" name="brokerage" id="brokerage" onChange={this.handleChange} required>
-                            {   (this.state.master_brokerage.length > 0) ?
-															
-                                (this.state.master_brokerage).map((listitem,index) => {
-                                    return(
-                                        <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
-                                    )
-                                })
-                                : null
-                            }
+                                
+                                {   (this.state.master_brokerage.length > 0) ?
+                                                                
+                                    (this.state.master_brokerage).map((listitem,index) => {
+                                        return(
+                                            <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
+                                        )
+                                    })
+                                    : null
+                                }
                             </select>
 
                             
                             <label className="container-check float-left"><span>i accept the terms and conditions</span>
-                                <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} value="1"/>
+                                <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} />
                                 <span className="checkmark"></span>
                             </label>
                         </div>
@@ -198,6 +269,7 @@ class SignUp extends Component {
       masterbrokeragedata  : state.masterbrokerage.masterbrokerage,
       masterstatedata      : state.masterstate.masterstate,
       masterlicensedata    : state.masterlicense,
+      registeruserdata     : state.signup,
 	}
   }
   
