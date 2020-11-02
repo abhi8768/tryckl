@@ -28,13 +28,26 @@ class SignUp extends Component {
             license_state    : '',
             brokerage        : '',
             terms_n_condition: 0,
-            inactive_btn     : true
+            inactive_btn     : true,
+            brokers_id       : this.props.brokers_id,
         }
         this.onSubmit  = this.onSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount(){
+        this.setState({
+            first_name       : localStorage.getItem('first_name'),
+            last_name        : localStorage.getItem('last_name'),
+            user_id          : localStorage.getItem('mobile_no'),
+            email            : localStorage.getItem('email_id'),
+            license_number   : localStorage.getItem('license_number'),
+            license_number_id: localStorage.getItem('license_number_id'),
+            license_state    : localStorage.getItem('license_issuing_state_id'),
+            brokerage        : localStorage.getItem('brokerage_id'),
+            terms_n_condition: localStorage.getItem('terms_n_condition'),
+        });
+
         let param1 = {
             type               : 'STATE',
             search_param       : '',
@@ -100,6 +113,17 @@ class SignUp extends Component {
             brokerage_id              : this.state.brokerage,
             brokers_id                : null
         }
+
+        localStorage.setItem('first_name', this.state.first_name);
+        localStorage.setItem('last_name', this.state.last_name);
+        localStorage.setItem('mobile_no', this.state.user_id);
+        localStorage.setItem('email_id', this.state.email);
+        localStorage.setItem('license_number', this.state.license_number);
+        localStorage.setItem('license_number_id', this.state.license_number_id);
+        localStorage.setItem('license_issuing_state_id', this.state.license_state);
+        localStorage.setItem('brokerage_id', this.state.brokerage);
+        localStorage.setItem('terms_n_condition', this.state.terms_n_condition);
+
         this.props.createAccountRequest(param);
     }
 
@@ -198,10 +222,10 @@ class SignUp extends Component {
                     >
                         <div className="frm-wrapper text-left" data-height="40vh" data-scrollable="">
                             <label>FIRST NAME</label>
-                            <input type="text" placeholder="Enter your First Name"  name="first_name" id="first_name" onChange={this.handleChange} required/>
+                            <input type="text" placeholder="Enter your First Name"  name="first_name" id="first_name" onChange={this.handleChange} required value={this.state.first_name} />
                     
                             <label>LAST NAME</label>
-                            <input type="text" placeholder="Enter your Last Name" name="last_name" id="last_name" onChange={this.handleChange} required/>
+                            <input type="text" placeholder="Enter your Last Name" name="last_name" id="last_name" onChange={this.handleChange} required value={this.state.last_name} />
 
                             <label>Password </label>
                             <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Enter valid password " name="password" id="password" onChange={this.handleChange} required/>
@@ -212,14 +236,14 @@ class SignUp extends Component {
                             <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Retype your password" name="confirm_password" id="confirm_password" onChange={this.handleChange} required/>
 
                             <label>MOBILE NO. (USER ID)</label>
-                            <input type="tel" placeholder="Enter your mobile no." name="user_id" id="user_id" onChange={this.handleChange}  required/>
+                            <input type="tel" placeholder="Enter your mobile no." value={this.state.user_id} name="user_id" id="user_id" onChange={this.handleChange}  required/>
 
                             <label>Email</label>
-                            <input type="email" placeholder="Enter your email address" name="email" id="email" onChange={this.handleChange} required/>
+                            <input type="email" placeholder="Enter your email address" name="email" id="email" value={this.state.email} onChange={this.handleChange} required/>
 
                             {/* pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" */}
                             <label>Real estate license #</label>
-                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number"  onChange={this.handleChange} required value={this.state.license_number}/>
+                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number"  onChange={this.handleChange} value={this.state.first_name} required value={this.state.license_number}/>
 
                             <label>Real estate lic issuing state</label>
                             <select className="custom-select" name="license_state" id="license_state" onChange={this.handleChange} required>
@@ -227,7 +251,7 @@ class SignUp extends Component {
 															
                                     (this.state.master_state).map((listitem,index) => {
                                         return(
-                                            <option key={`state_${index}`} value={listitem.id}>{listitem.state_code}</option>
+                                            <option key={`state_${index}`} value={listitem.id} selected={(this.state.license_state==listitem.id)?'selected':''}>{listitem.state_code}</option>
                                         )
                                     })
                                     : null
@@ -241,7 +265,7 @@ class SignUp extends Component {
                                                                 
                                     (this.state.master_brokerage).map((listitem,index) => {
                                         return(
-                                            <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
+                                            <option key={`brokerage_${index}`} value={listitem.id} selected={(this.state.brokerage==listitem.id)?'selected':''}>{listitem.name}</option>
                                         )
                                     })
                                     : null
@@ -250,7 +274,8 @@ class SignUp extends Component {
 
                             
                             <label className="container-check float-left"><span>i accept the terms and conditions</span>
-                                <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} />
+                                <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} 
+                                checked={(this.state.terms_n_condition==1)?'checked':''} />
                                 <span className="checkmark"></span>
                             </label>
                         </div>

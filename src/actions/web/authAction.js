@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID, RESET_PASSWORD } from '../constants';
+import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID, RESET_PASSWORD, REGISTRATION_VERIFICATION } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession , removeSessionData} from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -34,6 +34,47 @@ import { handleResponse , loader } from '../utils';
       .then(handleResponse)
       .then((res) => {
         dispatch(loginUser(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
+
+  export const registrationVerificationUser = (user) => {
+    if(user.status===true){
+      setUserInSession(user.response);
+      setJWTToken(user.response._jwtToken);
+    }
+    
+    return {
+      type: REGISTRATION_VERIFICATION,
+      user,
+    };
+  };
+
+  export const registrationVerificationRequest = (params) => {
+
+    const param = JSON.stringify({
+      brokers_id          : params.brokers_id,
+      mobile_otp          : params.mobile_otp,
+      email_otp           : params.email_otp,
+      verification_type   : params.verification_type,
+      device_type         : "WEB",
+      device_id           : getPublicIP()
+    
+   });
+    const headers = 
+    {
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+      
+      postReq(`${apiURLPrefix}/auth/verification`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+        dispatch(registrationVerificationUser(res));
       }).catch((err)=>{
         console.log(err)
       }) 

@@ -13,10 +13,11 @@ class Auth extends Component {
 	this.state = {
 		rightPanelActive: false,
 		otpActive 		: false,
-		otpData 		: {}
+		otpData 		: {},
+		brokers_id 		: '',
 	}
-	this.openOtpBox        = this.openOtpBox.bind(this);
-  
+	this.openOtpBox        		= this.openOtpBox.bind(this);
+	//this.backToCreateAccount    = this.backToCreateAccount.bind(this);
   }
  
 
@@ -26,10 +27,22 @@ class Auth extends Component {
 		this.props.history.push(`/forget-password`);
 	}
 
-  	handleClickSignUpButton(){
-	 this.setState({
-		rightPanelActive: true,
-	  });
+  	handleClickSignUpButton(obj){
+		console.log('==>> ', obj.brokers_id);
+		if(obj.brokers_id==='' || obj.brokers_id === undefined || obj.brokers_id === null){
+			this.setState({
+				rightPanelActive: true,
+				otpActive : false,
+				brokers_id : ''
+			});
+		}else{
+			this.setState({
+				rightPanelActive: true,
+				otpActive : false,
+				brokers_id : obj.brokers_id
+			});
+		}
+		
 	}
 
 	openOtpBox(obj){
@@ -60,6 +73,7 @@ class Auth extends Component {
 						<div className="container">
 							<Otp 
 								otpData 	= {this.state.otpData} 
+								handleClickSignUpButton={this.handleClickSignUpButton.bind(this)}
 							/>
 						</div>
 					:
@@ -67,7 +81,8 @@ class Auth extends Component {
 							className={`container2 ${rightPanelActive ? `right-panel-active` : ``}`} 
 							id="container"
 						>
-							<SignUp openOtpBox = {this.openOtpBox} />
+							<SignUp openOtpBox = {this.openOtpBox} 
+									brokers_id = {this.state.brokers_id} />
 							<SignIn />
 							<Overlay
 								handleClickSignInButton={this.handleClickSignInButton.bind(this)}
