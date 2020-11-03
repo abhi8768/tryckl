@@ -5,7 +5,8 @@ const pageTitles = {
   forgetpassword : "Tryckl | Forget password",
   resetpassword  : "Tryckl | Reset password",
   forgetuserid   : "Tryckl | Forget Userid",
-  profile        : "Tryckl | Profile"
+  profile        : "Tryckl | Profile",
+  createlist     : "Tryckl | Create List"
   
 
 };

@@ -111,7 +111,7 @@ class Profile extends Component {
                                     <div className="content-part-wrapper text-center">
                                     <h2 className="mid-heading">RATING</h2>
                                         <div style={{marginLeft: '50px'}}>  
-                                          { (this.state.rating != 0) ?          
+                                             
                                               <ReactStars
                                                 value={this.state.rating}
                                                 size={20}
@@ -125,8 +125,7 @@ class Profile extends Component {
                                                 halfIcon= {<i className="fa fa-star-half-alt" />}
                                                 filledIcon= {<i className="fa fa-star" />}
                                               />
-                                              : null
-                                          }
+                                              
                                         </div>   
                                     </div>
                                 </div>

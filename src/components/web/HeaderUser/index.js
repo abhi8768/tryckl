@@ -51,11 +51,15 @@ class HeaderUser extends Component {
 		   <nav className="navbar topnavbar">
 			 
 			  <div className="navbar-header">
-          <a className="navbar-brand" href="#/" >
-            <div className="brand-logo"><img className="img-fluid" src="assets/img/logo.png" alt="App Logo" /></div>
-            <div className="brand-logo-collapsed"><img className="img-fluid" src="assets/img/logo-single.png" alt="App Logo" /></div>
-				  </a>
-         </div>
+          		<Link className="navbar-brand" to="/dashboard">
+					<div className="brand-logo">
+						<img className="img-fluid" src="assets/img/logo.png" alt="App Logo" />
+					</div>
+					<div className="brand-logo-collapsed">
+						<img className="img-fluid" src="assets/img/logo-single.png" alt="App Logo" />
+					</div>
+				</Link>
+         	 </div>
 		
 			  <ul className="navbar-nav mr-auto flex-row position-custom">
 				 <li className="nav-item no-border">
@@ -63,14 +67,16 @@ class HeaderUser extends Component {
 					   <em className="" ><img className="img-fluid sand" src="assets/img/nav-nenu-ico.png" /></em></a>
   
 					   <a className="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
-					   <em className=""><img className="img-fluid" src="assets/img/nav-nenu-ico.png" /></em></a></li>
-				 <li className="nav-item d-none d-md-block dropdown active">
+					   <em className=""><img className="img-fluid" src="assets/img/nav-nenu-ico.png" /></em>
+					</a>
+				 </li>
+				 <li className="nav-item d-none d-md-block dropdown" id="home-header-icon">
 					
-					<a className="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
+					<Link to="/dashboard" className="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
 					   <em className="sp-home"></em>
 					   
-					</a>
-					</li>
+					</Link>
+				</li>
 				 <li className="nav-item d-none d-md-block dropdown"><a className="nav-link" href="lock.html" title="Lock screen">
 					<em className="sp-flag"></em>
   
@@ -101,7 +107,7 @@ class HeaderUser extends Component {
 										:  <div className="small-profile-alpha text-center">{letterImage}</div>  
 									}
 									
-								   <div className="circle bg-success circle-lg custom-circle"></div>
+								   {/* <div className="circle bg-success circle-lg custom-circle"></div> */}
 								</div>
 							 </div>
 							

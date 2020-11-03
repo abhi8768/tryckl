@@ -5,6 +5,7 @@ import Profile from "../containers/web/Profile";
 import ForgetPassword from "../containers/web/ForgetPassword";
 import ResetPassword from "../containers/web/ResetPassword";
 import ForgetUserid from "../containers/web/ForgetUserid";
+import Listing from "../containers/web/Listing";
 
 import AdminLogin from "../containers/admin/Login";
 
@@ -20,7 +21,8 @@ const allContainers = {
     ResetPassword   : ResetPassword,
     ForgetUserid    : ForgetUserid,
     Profile         : Profile,
-    AdminLogin      : AdminLogin
+    AdminLogin      : AdminLogin,
+    Listing         : Listing
   
 };
 

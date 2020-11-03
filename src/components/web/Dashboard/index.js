@@ -8,10 +8,8 @@ import { Link } from 'react-router-dom';
 import {encrypt} from "../../../helpers/CryptoJs";
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
-import Footer from '../Footer';
 import { dashboardRequest } from "../../../actions/web/dashboardAction";
-import { setPublicIP } from "../../../helpers/authHelper";
-import Rate from "./rating";
+import $$ from 'jquery';
 
 
 class Dashboard extends Component {
@@ -28,7 +26,8 @@ class Dashboard extends Component {
   }
  
     componentDidMount(){
-         
+		
+		$$("#home-header-icon").addClass('active');
 		this.props.dashboardRequest();
 	}
 
@@ -187,19 +186,18 @@ class Dashboard extends Component {
 								<div className="content-part-wrapper">
 									<h2 className="mid-heading">Your dashboard</h2>
 									{ 
-										  (notificationlist).map((item) => {
+										  (notificationlist).map((item,index) => {
 											let letterImage = item.sender_name.charAt(0);
 											return (
-												<div className="content-part-wrapper light-part">
+												<div className="content-part-wrapper light-part" key={`notification${index}`}>
 													<div className="row dashboard-loop">
 														<div className="col-sm-9 d-flex align-items-center">
 															<div className="user-block-picture custom-user-block-picture">
 															<div className="user-block-status">
-
-																	{	(item.sender_profile_photo != '') ? 
-																		<img className="img-thumbnail rounded-circle" src={item.sender_profile_photo} alt={item.sender_name} style={{width:'80px', height : '80px'}}/>
-																		:  <div className="small-profile-alpha text-center">{letterImage}</div> 
-																	}
+																{	(item.sender_profile_photo != '') ? 
+																	<img className="img-thumbnail rounded-circle" src={item.sender_profile_photo} alt={item.sender_name} style={{width:'80px', height : '80px'}}/>
+																	:  <div className="small-profile-alpha text-center">{letterImage}</div> 
+																}
 															</div>
 														</div>
 															<div className="secend-block">

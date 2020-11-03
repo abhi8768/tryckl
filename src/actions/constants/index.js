@@ -13,3 +13,5 @@ export const LOGOUT_USER            = 'LOGOUT_USER';
 export const FORGET_PASSWORD        = 'FORGET_PASSWORD';
 export const FORGET_USERID          = 'FORGET_USERID';
 export const RESET_PASSWORD         = 'RESET_PASSWORD';
+export const LISTING_ACTIVE_VIEW    = 'LISTING_ACTIVE_VIEW';
+export const MASTER_MLS             = 'MASTER_MLS';

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
-
+import {ToastsStore} from 'react-toasts';
 
 import { updateprofileDetails, changeView } from "../../../actions/web/brokerAction";
 import { fetchMasterData } from "../../../actions/web/masterAction";
@@ -84,7 +84,7 @@ class ProfileCompletion extends Component {
     }
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-    console.log(nextProps.profiledetail);
+  
     if(nextProps.masterlicensedata != this.props.masterlicensedata && nextProps.masterlicensedata.status == false){
       ToastsStore.error(nextProps.masterlicensedata.message);
       this.setState({

@@ -13,11 +13,13 @@ import notificationlist      from './notification/list';
 import masterstate           from './masterdata/masterstate';
 import masterbrokerage       from './masterdata/masterbrokerage';
 import masterlicense         from './masterdata/masterlicense';
+import mastermls             from './masterdata/mastermls';
 import dashboarddetail       from './dashboard/detail';
 import brokerdetail          from './broker/details';
 import profilepicture        from './broker/profilepicture';
 import profileactiveview     from './broker/profileactiveview';
 import profileupdate         from './broker/profileupdate';
+
 
 
 import { USER_LOGGED_OUT } from '../actions/constants';
@@ -38,7 +40,8 @@ const allReducers = {
   brokerdetail,
   profilepicture,
   profileactiveview,
-  profileupdate
+  profileupdate,
+  mastermls
 };
 
 const appReducer = combineReducers(allReducers);

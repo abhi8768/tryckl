@@ -1,4 +1,4 @@
-import { MASTER_STATE, MASTER_BROKERAGE, MASTER_LICENSE} from '../constants';
+import { MASTER_STATE, MASTER_BROKERAGE, MASTER_LICENSE, MASTER_MLS} from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession } from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -26,11 +26,18 @@ export const masterLicense = (masterlicense) => {
     };
 };
 
+export const masterMLS = (mastermls) => {
+  return {
+    type: MASTER_MLS,
+    mastermls,
+  };
+};
+
 export const fetchMasterData = (params) => {
     const param = JSON.stringify({
       type		            : params.type,
       search_param 		    : params.search_param,
-      logged_in_brokerid    : ""
+      logged_in_brokerid  : (params.logged_in_brokerid) ? params.logged_in_brokerid : ""
     });
     const headers = 
     {
@@ -49,6 +56,8 @@ export const fetchMasterData = (params) => {
             dispatch(masterBrokerage(res));
           }else if(params.type == 'LICENSE'){
             dispatch(masterLicense(res));
+          }else if(params.type == 'MLS'){
+            dispatch(masterMLS(res));
           }
        
       }).catch((err)=>{

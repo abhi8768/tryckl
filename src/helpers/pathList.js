@@ -9,9 +9,7 @@ const pathList = {
     resetpassword     : {name : "reset-password", path : "/reset-password/:id" },
     profile           : {name : "profile", path : "/profile" },
     brokerprofile     : {name : "profile",  path : "/profile/:id" },
-
-
-    
+    createlist        : {name : "createlist",  path : "/create-listing" },
 };
 
 
