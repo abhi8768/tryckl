@@ -27,25 +27,36 @@ class SignUp extends Component {
             license_number_id: '',
             license_state    : '',
             brokerage        : '',
+            latitude         : '',
+            longitude        : '',
             terms_n_condition: 0,
             inactive_btn     : true,
             brokers_id       : this.props.brokers_id,
         }
-        this.onSubmit  = this.onSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.onSubmit       = this.onSubmit.bind(this);
+        this.handleChange   = this.handleChange.bind(this);
     }
 
     componentDidMount(){
+        
+        navigator.geolocation.getCurrentPosition(function(position) {
+            console.log("Latitude is :", position.coords.latitude);
+            console.log("Longitude is :", position.coords.longitude);
+            localStorage.setItem('latitude', position.coords.latitude);
+            localStorage.setItem('longitude', position.coords.longitude);
+        });
+        
         this.setState({
-            first_name       : localStorage.getItem('first_name'),
-            last_name        : localStorage.getItem('last_name'),
-            user_id          : localStorage.getItem('mobile_no'),
-            email            : localStorage.getItem('email_id'),
-            license_number   : localStorage.getItem('license_number'),
-            license_number_id: localStorage.getItem('license_number_id'),
-            license_state    : localStorage.getItem('license_issuing_state_id'),
-            brokerage        : localStorage.getItem('brokerage_id'),
-            terms_n_condition: localStorage.getItem('terms_n_condition'),
+            first_name       : (localStorage.getItem('first_name')===null || localStorage.getItem('first_name')=== undefined)?'':localStorage.getItem('first_name'),
+            last_name        : (localStorage.getItem('last_name')===null || localStorage.getItem('last_name')=== undefined)?'':localStorage.getItem('last_name'),
+            user_id          : (localStorage.getItem('mobile_no')===null || localStorage.getItem('mobile_no')=== undefined)?'':localStorage.getItem('mobile_no'),
+            email            : (localStorage.getItem('email_id')===null || localStorage.getItem('email_id')=== undefined)?'':localStorage.getItem('email_id'),
+            license_number   : (localStorage.getItem('license_number')===null || localStorage.getItem('license_number')=== undefined)?'':localStorage.getItem('license_number'),
+            license_number_id: (localStorage.getItem('license_number_id')===null || localStorage.getItem('license_number_id')=== undefined)?'':localStorage.getItem('license_number_id'),
+            license_state    : (localStorage.getItem('license_issuing_state_id')===null || localStorage.getItem('license_issuing_state_id')=== undefined)?'':localStorage.getItem('license_issuing_state_id'),
+            brokerage        : (localStorage.getItem('brokerage_id')===null || localStorage.getItem('brokerage_id')=== undefined)?'':localStorage.getItem('brokerage_id'),
+            terms_n_condition: (localStorage.getItem('terms_n_condition')===null || localStorage.getItem('terms_n_condition')=== undefined)?'':localStorage.getItem('terms_n_condition'),
+
         });
 
         let param1 = {
@@ -111,9 +122,11 @@ class SignUp extends Component {
             password                  : this.state.password,
             license_issuing_state_id  : this.state.license_state,
             brokerage_id              : this.state.brokerage,
-            brokers_id                : null
+            latitude                  : localStorage.getItem('latitude'),
+            longitude                 : localStorage.getItem('longitude'),
+            brokers_id                : this.state.brokers_id
         }
-
+        console.log(param);
         localStorage.setItem('first_name', this.state.first_name);
         localStorage.setItem('last_name', this.state.last_name);
         localStorage.setItem('mobile_no', this.state.user_id);

@@ -45,6 +45,7 @@ class Otp extends Component {
         e.preventDefault();
         let mobile_otp = this.state.mobile_otp1+''+this.state.mobile_otp2+''+this.state.mobile_otp3+''+this.state.mobile_otp4;
         let email_otp = this.state.email_otp1+''+this.state.email_otp2+''+this.state.email_otp3+''+this.state.email_otp4;
+        //console.log('mobile_otp : ', mobile_otp , ' email_otp : ', email_otp);
         let param = {
             brokers_id          : this.state.otpData.brokers_id,
             mobile_otp          : mobile_otp,
@@ -64,8 +65,18 @@ class Otp extends Component {
                 console.log('OTP verified');
                 ToastsStore.success(nextProps.verifyotpdata.message);
                 this.props.history.push(`/dashboard`);
-             }else{
-                 ToastsStore.error(nextProps.verifyotpdata.message);
+            }else{
+                ToastsStore.error(nextProps.verifyotpdata.message);
+                this.setState({
+                    mobile_otp1 : "",
+                    mobile_otp2 : "",
+                    mobile_otp3 : "",
+                    mobile_otp4 : "",
+                    email_otp1 : "",
+                    email_otp2 : "",
+                    email_otp3 : "",
+                    email_otp4 : "",
+                });
              }
         }
     }
@@ -87,10 +98,10 @@ class Otp extends Component {
                                     <p className="ver-small-txt">We have sent a CODE to your phone</p>
                                     <p className="ver-big-txt">+1 {mobileNo.substring(0, 3)}-XXX-XXXX</p>
                                     <div className="ver-form">
-                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp1" id="mobile_otp1" onChange={this.handleChange} maxLength="1" required />
-                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp2" id="mobile_otp2" onChange={this.handleChange} maxLength="1" required />
-                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp3" id="mobile_otp3" onChange={this.handleChange} maxLength="1" required />
-                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp4" id="mobile_otp4" onChange={this.handleChange} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp1" id="mobile_otp1" onChange={this.handleChange} value={this.state.mobile_otp1} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp2" id="mobile_otp2" onChange={this.handleChange} value={this.state.mobile_otp2} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp3" id="mobile_otp3" onChange={this.handleChange} value={this.state.mobile_otp3} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="mobile_otp4" id="mobile_otp4" onChange={this.handleChange} value={this.state.mobile_otp4} maxLength="1" required />
                                     </div>
                                 </div>
 
@@ -99,10 +110,10 @@ class Otp extends Component {
                                     <p className="ver-small-txt">We have sent a CODE to your email</p>
                                     <p className="ver-big-txt">{email_id.substring(0, 2)}XXX@XXXX.XXX</p>
                                     <div className="ver-form">
-                                        <input type="password" placeholder="*" className="text-center" name="email_otp1" id="email_otp1" onChange={this.handleChange} maxLength="1" required />
-                                        <input type="password" placeholder="*" className="text-center" name="email_otp2" id="email_otp2" onChange={this.handleChange} maxLength="1" required />
-                                        <input type="password" placeholder="*" className="text-center" name="email_otp3" id="email_otp3" onChange={this.handleChange} maxLength="1" required />
-                                        <input type="password" placeholder="*" className="text-center" name="email_otp4" id="email_otp4" onChange={this.handleChange} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="email_otp1" id="email_otp1" onChange={this.handleChange} value={this.state.email_otp1} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="email_otp2" id="email_otp2" onChange={this.handleChange} value={this.state.email_otp2} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="email_otp3" id="email_otp3" onChange={this.handleChange} value={this.state.email_otp3} maxLength="1" required />
+                                        <input type="password" placeholder="*" className="text-center" name="email_otp4" id="email_otp4" onChange={this.handleChange} value={this.state.email_otp4} maxLength="1" required />
                                     </div>
                                 </div>
                                 <div className="ver-frm-wrapper">

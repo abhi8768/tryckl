@@ -101,7 +101,9 @@ import { handleResponse , loader } from '../utils';
         password                  : params.password,
         license_issuing_state_id  : params.license_issuing_state_id,
         brokerage_id              : params.brokerage_id,
-        brokers_id                : null
+        latitude                  : params.latitude,
+        longitude                 : params.longitude,
+        brokers_id                : params.brokers_id
       
      });
      console.log('Param :: ', param);
