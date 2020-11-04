@@ -35,16 +35,10 @@ class SignUp extends Component {
         }
         this.onSubmit       = this.onSubmit.bind(this);
         this.handleChange   = this.handleChange.bind(this);
+        this.success        = this.success.bind(this);
     }
 
     componentDidMount(){
-        
-        navigator.geolocation.getCurrentPosition(function(position) {
-            console.log("Latitude is :", position.coords.latitude);
-            console.log("Longitude is :", position.coords.longitude);
-            localStorage.setItem('latitude', position.coords.latitude);
-            localStorage.setItem('longitude', position.coords.longitude);
-        });
         
         this.setState({
             first_name       : (localStorage.getItem('first_name')===null || localStorage.getItem('first_name')=== undefined)?'':localStorage.getItem('first_name'),
@@ -91,6 +85,7 @@ class SignUp extends Component {
         }
         else if(nextProps.registeruserdata != this.props.registeruserdata && nextProps.registeruserdata.status === false){
             ToastsStore.error(nextProps.registeruserdata.message);
+
         }
         else if(nextProps.registeruserdata != this.props.registeruserdata && nextProps.registeruserdata.status === true){
             console.log('Sign up complete');
@@ -109,10 +104,11 @@ class SignUp extends Component {
        
     }
 
-    onSubmit(e){
-        e.preventDefault();
-        
-       
+    
+      
+    success(pos) {
+        var crd = pos.coords;
+
         let param = {
             first_name                : this.state.first_name,
             last_name                 : this.state.last_name,
@@ -122,8 +118,8 @@ class SignUp extends Component {
             password                  : this.state.password,
             license_issuing_state_id  : this.state.license_state,
             brokerage_id              : this.state.brokerage,
-            latitude                  : localStorage.getItem('latitude'),
-            longitude                 : localStorage.getItem('longitude'),
+            latitude                  : crd.latitude,
+            longitude                 : crd.longitude,
             brokers_id                : this.state.brokers_id
         }
         console.log(param);
@@ -138,6 +134,25 @@ class SignUp extends Component {
         localStorage.setItem('terms_n_condition', this.state.terms_n_condition);
 
         this.props.createAccountRequest(param);
+    }
+      
+    error(err) {
+        console.warn(`ERROR(${err.code}): ${err.message}`);
+        ToastsStore.error('Please allow your browser geolocation. ');
+    }
+      
+      
+
+    onSubmit(e){
+        e.preventDefault();
+
+        var options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        navigator.geolocation.getCurrentPosition(this.success, this.error, options);
     }
 
     handleChange(e) {
@@ -245,6 +260,7 @@ class SignUp extends Component {
                             <i className="fa fa-info" aria-hidden="true"></i>
                             <i className="fa fa-eye"></i>
 
+                            <br />
                             <label>CONFIRM PASSWORD</label>
                             <input type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Retype your password" name="confirm_password" id="confirm_password" onChange={this.handleChange} required/>
 
@@ -259,12 +275,13 @@ class SignUp extends Component {
                             <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number"  onChange={this.handleChange} value={this.state.first_name} required value={this.state.license_number}/>
 
                             <label>Real estate lic issuing state</label>
-                            <select className="custom-select" name="license_state" id="license_state" onChange={this.handleChange} required>
+                            <select className="custom-select" value={this.state.license_state} name="license_state" id="license_state" onChange={this.handleChange} required>
                                 {   (this.state.master_state.length > 0) ?
 															
                                     (this.state.master_state).map((listitem,index) => {
                                         return(
-                                            <option key={`state_${index}`} value={listitem.id} selected={(this.state.license_state==listitem.id)?'selected':''}>{listitem.state_code}</option>
+                                            // <option key={`state_${index}`} value={listitem.id} selected={(this.state.license_state==listitem.id)?'selected':''}>{listitem.state_code}</option>
+                                            <option key={`state_${index}`} value={listitem.id}>{listitem.state_code}</option>
                                         )
                                     })
                                     : null
@@ -272,13 +289,13 @@ class SignUp extends Component {
                             </select>
                                 
                             <label>Brokerage</label>
-                            <select className="custom-select" name="brokerage" id="brokerage" onChange={this.handleChange} required>
+                            <select className="custom-select" value={this.state.brokerage} name="brokerage" id="brokerage" onChange={this.handleChange} required>
                                 
                                 {   (this.state.master_brokerage.length > 0) ?
                                                                 
                                     (this.state.master_brokerage).map((listitem,index) => {
                                         return(
-                                            <option key={`brokerage_${index}`} value={listitem.id} selected={(this.state.brokerage==listitem.id)?'selected':''}>{listitem.name}</option>
+                                            <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
                                         )
                                     })
                                     : null

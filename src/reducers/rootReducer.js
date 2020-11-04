@@ -26,6 +26,7 @@ const allReducers = {
   signup,
   login,
   verifyotp,
+  resendotp,
   logout,
   forgetpassword,
   forgetuserid,

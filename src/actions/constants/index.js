@@ -14,3 +14,4 @@ export const FORGET_PASSWORD                = 'FORGET_PASSWORD';
 export const FORGET_USERID                  = 'FORGET_USERID';
 export const RESET_PASSWORD                 = 'RESET_PASSWORD';
 export const REGISTRATION_VERIFICATION      = 'REGISTRATION_VERIFICATION';
+export const RESEND_OTP                     = 'RESEND_OTP';

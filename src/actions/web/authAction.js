@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID, RESET_PASSWORD, REGISTRATION_VERIFICATION } from '../constants';
+import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID, RESET_PASSWORD, REGISTRATION_VERIFICATION, RESEND_OTP } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession , removeSessionData} from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -106,7 +106,7 @@ import { handleResponse , loader } from '../utils';
         brokers_id                : params.brokers_id
       
      });
-     console.log('Param :: ', param);
+     
       const headers = 
       {
          Authorization     : `Bearer ${getAuthHeader()}`,
@@ -124,6 +124,39 @@ import { handleResponse , loader } from '../utils';
         }) 
       } 
       
+  };
+
+  export const resendOTP = (data) => {
+    //console.log('data : ', data);
+    return {
+      type: RESEND_OTP,
+      data,
+    };
+  };
+
+  export const resendOTPRequest = (params) => {
+      const param = JSON.stringify({
+          brokers_id		      : params.brokers_id,
+          otp_type 			      : params.otp_type,
+          verification_type   : params.verification_type
+      });
+
+      const headers = 
+      {
+          'content-type'    : 'application/json'
+      }
+  
+      return (dispatch, getState) => {
+        
+          postReq(`${apiURLPrefix}/auth/resendOtp`, param , headers)
+          .then(handleResponse)
+          .then((res) => {
+            //console.log('res : ',res);
+            dispatch(resendOTP(res));
+          }).catch((err)=>{
+            console.log(err);
+          }) 
+      } 
   };
 
 

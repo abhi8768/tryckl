@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import {ToastsStore} from 'react-toasts';
-import { registrationVerificationRequest } from "../../../actions/web/authAction";
+import { registrationVerificationRequest, resendOTPRequest } from "../../../actions/web/authAction";
 import "./login.css"
 
 class Otp extends Component {
@@ -26,6 +26,17 @@ class Otp extends Component {
         this.onSubmit               = this.onSubmit.bind(this);
         this.handleChange           = this.handleChange.bind(this);
         this.backToCreateAccount    = this.backToCreateAccount.bind(this);
+    }
+
+    resendOtp(type){
+        console.log('type :: ',type);
+        let param = {
+            brokers_id          : this.state.otpData.brokers_id,
+            otp_type            : type,
+            verification_type   : 'Registration'
+        }
+        //console.log('params : ',param);
+        this.props.resendOTPRequest(param);
     }
 
     handleChange(e) {
@@ -52,7 +63,7 @@ class Otp extends Component {
             email_otp           : email_otp,
             verification_type   : "Registration"
         }
-        console.log('params : ',param);
+        //console.log('params : ',param);
         this.props.registrationVerificationRequest(param);
 
     }
@@ -62,7 +73,7 @@ class Otp extends Component {
         if(nextProps.verifyotpdata != this.props.verifyotpdata){
             
             if(nextProps.verifyotpdata.status == true){
-                console.log('OTP verified');
+                //console.log('OTP verified');
                 ToastsStore.success(nextProps.verifyotpdata.message);
                 this.props.history.push(`/dashboard`);
             }else{
@@ -78,6 +89,9 @@ class Otp extends Component {
                     email_otp4 : "",
                 });
              }
+        }
+        else if(nextProps.resendotpdata != this.props.resendotpdata){
+            ToastsStore.success(nextProps.resendotpdata.message);
         }
     }
 
@@ -104,6 +118,7 @@ class Otp extends Component {
                                         <input type="password" placeholder="*" className="text-center" name="mobile_otp4" id="mobile_otp4" onChange={this.handleChange} value={this.state.mobile_otp4} maxLength="1" required />
                                     </div>
                                 </div>
+                                <div style={{float: "right", cursor : "pointer"}} onClick={this.resendOtp.bind(this,'Mobile')}> <p className="ver-small-txt">Resend OTP</p></div>
 
                                 <h4><img className="" src="assets/img/heading-ico-2.png" />Verify Email</h4>
                                 <div className="content-part-wrapper dark-part text-center">
@@ -116,6 +131,7 @@ class Otp extends Component {
                                         <input type="password" placeholder="*" className="text-center" name="email_otp4" id="email_otp4" onChange={this.handleChange} value={this.state.email_otp4} maxLength="1" required />
                                     </div>
                                 </div>
+                                <div style={{float: "right", cursor : "pointer"}} onClick={this.resendOtp.bind(this,'Email')}> <p className="ver-small-txt">Resend OTP</p></div>
                                 <div className="ver-frm-wrapper">
                                     <button type="submit">NEXT</button>
                                     <button type="button" onClick={this.backToCreateAccount} className="dis-btn">BACK</button>
@@ -133,13 +149,15 @@ class Otp extends Component {
 const mapStateToProps = state => {
     //console.log('state : ',state);
     return {
-        verifyotpdata  : state.verifyotp
+        verifyotpdata  : state.verifyotp,
+        resendotpdata  : state.resendotp,
     }
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
         registrationVerificationRequest  : bindActionCreators(registrationVerificationRequest , dispatch),
+        resendOTPRequest                 : bindActionCreators(resendOTPRequest, dispatch),
 	}
 }
 
