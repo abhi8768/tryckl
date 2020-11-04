@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID, RESET_PASSWORD } from '../constants';
+import { SET_CURRENT_USER, CREATE_ACCOUNT, LOGOUT_USER, FORGET_PASSWORD, FORGET_USERID, RESET_PASSWORD, REGISTRATION_VERIFICATION, RESEND_OTP } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession , removeSessionData} from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -41,6 +41,47 @@ import { handleResponse , loader } from '../utils';
     
   };
 
+  export const registrationVerificationUser = (user) => {
+    if(user.status===true){
+      setUserInSession(user.response);
+      setJWTToken(user.response._jwtToken);
+    }
+    
+    return {
+      type: REGISTRATION_VERIFICATION,
+      user,
+    };
+  };
+
+  export const registrationVerificationRequest = (params) => {
+
+    const param = JSON.stringify({
+      brokers_id          : params.brokers_id,
+      mobile_otp          : params.mobile_otp,
+      email_otp           : params.email_otp,
+      verification_type   : params.verification_type,
+      device_type         : "WEB",
+      device_id           : getPublicIP()
+    
+   });
+    const headers = 
+    {
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+      
+      postReq(`${apiURLPrefix}/auth/verification`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+        dispatch(registrationVerificationUser(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
+
 
   export const registerUser = (registeruser) => {
     return {
@@ -60,9 +101,12 @@ import { handleResponse , loader } from '../utils';
         password                  : params.password,
         license_issuing_state_id  : params.license_issuing_state_id,
         brokerage_id              : params.brokerage_id,
-        brokers_id                : null
+        latitude                  : params.latitude,
+        longitude                 : params.longitude,
+        brokers_id                : params.brokers_id
       
      });
+     
       const headers = 
       {
          Authorization     : `Bearer ${getAuthHeader()}`,
@@ -80,6 +124,39 @@ import { handleResponse , loader } from '../utils';
         }) 
       } 
       
+  };
+
+  export const resendOTP = (data) => {
+    //console.log('data : ', data);
+    return {
+      type: RESEND_OTP,
+      data,
+    };
+  };
+
+  export const resendOTPRequest = (params) => {
+      const param = JSON.stringify({
+          brokers_id		      : params.brokers_id,
+          otp_type 			      : params.otp_type,
+          verification_type   : params.verification_type
+      });
+
+      const headers = 
+      {
+          'content-type'    : 'application/json'
+      }
+  
+      return (dispatch, getState) => {
+        
+          postReq(`${apiURLPrefix}/auth/resendOtp`, param , headers)
+          .then(handleResponse)
+          .then((res) => {
+            //console.log('res : ',res);
+            dispatch(resendOTP(res));
+          }).catch((err)=>{
+            console.log(err);
+          }) 
+      } 
   };
 
 

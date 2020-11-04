@@ -28,7 +28,8 @@ import { USER_LOGGED_OUT } from '../actions/constants';
 const allReducers = {
   signup,
   login,
-  
+  verifyotp,
+  resendotp,
   logout,
   forgetpassword,
   forgetuserid,

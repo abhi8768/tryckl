@@ -8,8 +8,8 @@ export default (state = initialState, action = {}) => {
        
       return {
         registeruser: action.registeruser.response,
-        status     : action.masterstate.status,
-        message    : action.masterstate.status_msg,
+        status     : action.registeruser.status,
+        message    : action.registeruser.status_msg,
       };
     default:
       return state;

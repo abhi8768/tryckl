@@ -1,13 +1,17 @@
-import { VERIFIED_OTP } from '../../actions/constants';
+import { REGISTRATION_VERIFICATION } from '../../actions/constants';
+import { getUserFromSession } from '../../helpers/authHelper';
+
 const initialState = {
-  verifyOtp: {},
+  user: getUserFromSession(),
 };
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case VERIFIED_OTP:
+    case REGISTRATION_VERIFICATION:
        
       return {
-        verifyOtp: action.verifyOtp
+        user   : action.user.response,
+        status : action.user.status,
+        message: action.user.status_msg,
       };
     default:
       return state;

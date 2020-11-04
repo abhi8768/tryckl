@@ -16,3 +16,5 @@ export const RESET_PASSWORD         = 'RESET_PASSWORD';
 export const LISTING_ACTIVE_VIEW    = 'LISTING_ACTIVE_VIEW';
 export const MASTER_MLS             = 'MASTER_MLS';
 export const MY_LISTING             = 'MY_LISTING';
+export const REGISTRATION_VERIFICATION      = 'REGISTRATION_VERIFICATION';
+export const RESEND_OTP                     = 'RESEND_OTP';
