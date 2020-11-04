@@ -772,6 +772,106 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
     .need-mar-top-ver{ margin-top:150px }
     .forg:hover{ color: #039494; text-decoration: none }
     
+    /* -------------------------------login-help---------------------------------------------- */
+
+    .ac-container{
+        width: 400px;
+        margin: 10px auto 30px auto;
+        text-align: left;
+      }
+      .ac-container label{
+        font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+        padding: 5px 0;
+        position: relative;
+        z-index: 20;
+        display: block;
+        height: 30px;
+        cursor: pointer;
+        color: #00ffff;
+        }
+      .ac-container label:hover{
+       
+      }
+      .ac-container input:checked + label,
+      .ac-container input:checked + label:hover{
+        
+        color: #00ffff;
+        
+      }
+      .ac-container label:after,
+      .ac-container input:checked + label:after{
+        content: '';
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        right: 13px;
+        top: 7px;
+        background: transparent url(../img/down-arrow.png) no-repeat center center;  
+      }
+      .ac-container input:checked + label:after{
+        background-image: url(../img/up-arrow.png);
+      }
+      .ac-container input{
+        display: none;
+      }
+      .ac-container article{
+        
+        margin-top: -1px;
+        overflow: hidden;
+        height: 0px;
+        position: relative;
+        z-index: 10;
+        -webkit-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+        -moz-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+        -o-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+        -ms-transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+        transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
+      }
+      .ac-container article p{
+        font-style: italic;
+        color: #fff;
+        line-height: 23px;
+        font-size: 14px;
+        padding: 0px;
+       
+      }
+      .ac-container input:checked ~ article{
+        -webkit-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+        -moz-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+        -o-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+        -ms-transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+        transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
+        
+      }
+      .ac-container input:checked ~ article.ac-small{
+        height: 140px;
+      }
+      .ac-container input:checked ~ article.ac-medium{
+        height: 180px;
+      }
+      .ac-container input:checked ~ article.ac-large{
+        height: 230px;
+      }
+      
+      .right-posi{ position: absolute; right: 10px; top: 24px; }
+      
+      .position-absulute{ position: absolute; left: 0 }
+      .custom-height{ height: 160px; overflow: hidden }
+      .sv-btn{border-radius: 5px;
+          border: 1px solid #00ffff;
+          background: #00ffff;
+          color: #000;
+          font-size: 16px;
+          font-weight: normal;
+          padding: 10px 45px;
+          letter-spacing: 1px;
+          text-transform: uppercase;
+          transition: transform 80ms ease-in;
+          display: block;
+          width: 100%;
+          margin-top: 20px;
+          font-family: 'Conv_GothamBook';}
+          .list-pre p.ohters-color{ text-transform: uppercase }
     /*somwrita*/
 
     .inactive_btn{

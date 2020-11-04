@@ -1,4 +1,4 @@
-import { LISTING_ACTIVE_VIEW} from '../constants';
+import { LISTING_ACTIVE_VIEW, MY_LISTING} from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession } from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -15,16 +15,18 @@ export const currentActiveView = (activelistingview) => {
         dispatch(currentActiveView(params));
     }
   };
-/* 
-  export const profilepicture = (profilepicture) => {
+
+  export const mylisting = (mylisting) => {
     return {
-      type: PROFILE_PICTURE,
-      profilepicture,
+      type: MY_LISTING,
+      mylisting,
     };
   };
 
-  export const updateprofilePicture = (params) => {
-   
+  export const requestMylisting = () => {
+    const param = JSON.stringify({
+      
+    });
     const headers = 
     {
       Authorization     : `Bearer ${getAuthHeader()}`,
@@ -32,21 +34,14 @@ export const currentActiveView = (activelistingview) => {
     }
 
     return (dispatch, getState) => {
-      const bodyFormData = new FormData();
-      bodyFormData.set('image', params.image);
-      const {login} = getState();
      
-      postReq(`${apiURLPrefix}/broker/update_profile_photo`, bodyFormData , headers)
+      postReq(`${apiURLPrefix}/listing/my_listing`, param , headers)
       .then(handleResponse)
       .then((res) => {
-      
-          login.user.profile_photo = res.response.profile_photo;
-          setUserInSession(login.user);
-          dispatch(profilepicture(res));
+          dispatch(mylisting(res));
       }).catch((err)=>{
         console.log(err)
       }) 
     } 
     
   };
- */

@@ -6,10 +6,12 @@ import Chip from '@material-ui/core/Chip';
 import {ToastsStore} from 'react-toasts';
 
 import { fetchMasterData } from "../../../actions/web/masterAction";
+import { currentActiveView } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import MAP from './map_autocomplete';
 import Datepicker from './datepicker';
 import Timepicker from './timepicker';
+import MyCardPreview from './mycardpreview';
 
 
 class ListingCreate extends Component {
@@ -27,6 +29,7 @@ class ListingCreate extends Component {
     this.handleChange  = this.handleChange.bind(this);
     this.handleEnter   = this.handleEnter.bind(this);
     this.addRow        = this.addRow.bind(this);
+    this.handleSubmit  = this.handleSubmit.bind(this);
   }
  
   componentDidMount(){ 
@@ -58,7 +61,10 @@ class ListingCreate extends Component {
       [e.target.name]: e.target.value,
     });
   }
-
+  handleSubmit(e){
+    e.preventDefault(); 
+    this.props.currentActiveView('previewlisting');
+  }
   handleEnter(e){
       var keywords = this.state.keyword;
       if(e.key === "Enter"){
@@ -90,31 +96,7 @@ class ListingCreate extends Component {
      
     return (
         <div className="row">
-            <div className="col-lg-3">
-                <div className="content-part-wrapper">
-                    <h2 className="mid-heading">my cards <a href="">View All</a></h2>
-                    <div className="content-part-wrapper dark-part position-relative">
-                    <img src="/assets/img/error.png" className="right-posi" />
-                        <h2 className="card-amount">$ 100</h2>
-                        <p className="ohters-color">Due in 24 days</p>
-                        <p className="ohters-color2">Thursday / July 15, 2020</p>
-                        <p className="ohters-color2">05:45 pm</p>
-                    </div>
-                    <div className="content-part-wrapper dark-part position-relative">
-                        <h2 className="card-amount">$ 100</h2>
-                        <p className="ohters-color">Due in 24 days</p>
-                        <p className="ohters-color2">Thursday / July 15, 2020</p>
-                        <p className="ohters-color2">05:45 pm</p>
-                    </div>
-                    <div className="content-part-wrapper dark-part position-relative">
-                        <h2 className="card-amount">$ 100</h2>
-                        <p className="ohters-color">Due in 24 days</p>
-                        <p className="ohters-color2">Thursday / July 15, 2020</p>
-                        <p className="ohters-color2">05:45 pm</p>
-                    </div>
-                </div>
-            </div>
-        
+            <MyCardPreview />
             <div className="col-lg-6">
                 <div className="content-part-wrapper profile-content-part-wrapper">
                   <div className="content-part-wrapper">
@@ -122,6 +104,7 @@ class ListingCreate extends Component {
                     <div className="content-part-wrapper profile-content-part-wrapper">
                      <div className="form-container2">
                        <div className="frm-wrapper text-left frm-wrapper-profile">
+                         <form onSubmit={this.handleSubmit}>
                             <label>Type</label>
                             <select name="" className="custom-select2">
                                 <option value="">Select</option>
@@ -202,7 +185,8 @@ class ListingCreate extends Component {
                             
                             <label>Offer Amount</label>
                             <input type="text" placeholder="$  Enter amount" />
-                            <button>SAVE</button>     
+                            <button type="submit">SAVE</button> 
+                            </form>    
                          </div>
                         </div>
                        </div>     
@@ -227,7 +211,8 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchMasterData : bindActionCreators(fetchMasterData , dispatch),
+    fetchMasterData : bindActionCreators(fetchMasterData , dispatch),
+    currentActiveView : bindActionCreators(currentActiveView , dispatch),
 	}
 }
 

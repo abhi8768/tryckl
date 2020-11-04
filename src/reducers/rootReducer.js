@@ -19,7 +19,8 @@ import brokerdetail          from './broker/details';
 import profilepicture        from './broker/profilepicture';
 import profileactiveview     from './broker/profileactiveview';
 import profileupdate         from './broker/profileupdate';
-
+import listingactiveview     from './listing/listingactiveview';
+import mylisting             from './listing/mylisting';
 
 
 import { USER_LOGGED_OUT } from '../actions/constants';
@@ -41,7 +42,9 @@ const allReducers = {
   profilepicture,
   profileactiveview,
   profileupdate,
-  mastermls
+  mastermls,
+  listingactiveview,
+  mylisting
 };
 
 const appReducer = combineReducers(allReducers);

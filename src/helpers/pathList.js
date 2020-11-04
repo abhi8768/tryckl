@@ -10,6 +10,7 @@ const pathList = {
     profile           : {name : "profile", path : "/profile" },
     brokerprofile     : {name : "profile",  path : "/profile/:id" },
     createlist        : {name : "createlist",  path : "/create-listing" },
+    listpreview       : {name : "listpreview",  path : "/preview-listing" },
 };
 
 

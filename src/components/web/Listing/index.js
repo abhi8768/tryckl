@@ -7,11 +7,11 @@ import ReactStars from "react-rating-stars-component";
 
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
-import Footer from '../Footer';
-import { updateprofilePicture } from "../../../actions/web/brokerAction";
+import { currentActiveView } from "../../../actions/web/listingAction";
 
 import $$ from 'jquery';
 import ListingCreate from "./create";
+import ListingPreview from "./preview";
 
 
 class Listing extends Component {
@@ -19,12 +19,8 @@ class Listing extends Component {
     super(props);
    // setPublicIP();
     this.state = {
-      profilepicture : '',
-      name           : '',
-      rating         : 0,
-      currentview    : 'detail',
-      brokerId       : this.props.brokerId == '' ? this.props.currentUserDetails.brokers_id : this.props.brokerId,
-      isOwn          : (this.props.brokerId == '') ? true : false
+      currentview    : 'mylisting',
+      
     }
     this.updatePicture = this.updatePicture.bind(this);
   }
@@ -40,18 +36,7 @@ class Listing extends Component {
   }
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-    
-    if(nextProps.profileimage != this.props.profileimage){
-      this.setState({
-       profilepicture : nextProps.profileimage.profile_photo
-      })
-    }else{
-      this.setState({
-        profilepicture : nextProps.profiledetail.profile_photo,
-        name           : nextProps.profiledetail.first_name,
-        rating         : Number(nextProps.profiledetail.rating)
-      })
-    }
+    console.log(nextProps.changeview);
     this.setState({
       currentview : nextProps.changeview
     })
@@ -61,8 +46,7 @@ class Listing extends Component {
  
 
   render() {
-    let letterImage = this.state.name.charAt(0);
-  
+      
     return (
 		<div className="wrapper">
 			<HeaderUser />
@@ -73,7 +57,12 @@ class Listing extends Component {
                      <div className="content-wrapper">
           
                         <div className="container gapfrm-top">
-                            <ListingCreate />
+                          {
+                            (this.state.currentview == 'previewlisting') ? 
+                            <ListingPreview />
+                            : <ListingCreate />
+                          }
+                            
                         </div>
                     </div>
             </section>
@@ -83,17 +72,17 @@ class Listing extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log(state);
 	return {
-    profileimage        : state.profilepicture.profilepicture,
-    profiledetail       : state.brokerdetail.profiledetail,
-    changeview          : state.profileactiveview.activeview,
+    changeview          : state.listingactiveview.activelistingview,
     currentUserDetails  : state.login.user,
 	}
 }
   
 const mapDispatchToProps = dispatch => {
 	return {
-		updateprofilePicture : bindActionCreators(updateprofilePicture , dispatch),
+    currentActiveView : bindActionCreators(currentActiveView , dispatch),
+    
 	}
 }
 
