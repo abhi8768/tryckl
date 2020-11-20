@@ -21,7 +21,8 @@ import profileactiveview     from './broker/profileactiveview';
 import profileupdate         from './broker/profileupdate';
 import listingactiveview     from './listing/listingactiveview';
 import mylisting             from './listing/mylisting';
-
+import listingstorage        from './listing/listingstorage';
+import listingcreate         from './listing/listingcreate';
 
 import { USER_LOGGED_OUT } from '../actions/constants';
 
@@ -45,7 +46,9 @@ const allReducers = {
   profileupdate,
   mastermls,
   listingactiveview,
-  mylisting
+  mylisting,
+  listingstorage,
+  listingcreate
 };
 
 const appReducer = combineReducers(allReducers);

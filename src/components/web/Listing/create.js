@@ -4,9 +4,10 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import Chip from '@material-ui/core/Chip';
 import {ToastsStore} from 'react-toasts';
+import moment from 'moment';
 
 import { fetchMasterData } from "../../../actions/web/masterAction";
-import { currentActiveView } from "../../../actions/web/listingAction";
+import { currentActiveView, listinginLocalStorage } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import MAP from './map_autocomplete';
 import Datepicker from './datepicker';
@@ -17,23 +18,73 @@ import MyCardPreview from './mycardpreview';
 class ListingCreate extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      keyword        : [],
-      currentview    : 'mylisting',
-      mls            : [],
-      mlsdetail      : [{mlsid : '', mlslink : ''}]
+   
+    if(sessionStorage.getItem('createlisting')){
+      let storage_createlisting = JSON.parse(sessionStorage.getItem('createlisting'));
+      this.state = {
+        keyword        : storage_createlisting.keyword,
+        mls            : storage_createlisting.mls,
+        mlsdetail      : storage_createlisting.mlsdetail,
+        type           : storage_createlisting.type, 
+        access_type    : storage_createlisting.access_type,
+        instruction    : storage_createlisting.instruction,
+        client_name    : storage_createlisting.client_name,
+        client_number  : storage_createlisting.client_number,
+        offer_amount   : storage_createlisting.offer_amount,
+        full_address   : storage_createlisting.full_address,
+        lat            : storage_createlisting.lat,
+        lng            : storage_createlisting.lng,
+        city           : storage_createlisting.city,
+        zipcode        : storage_createlisting.zipcode,
+        date_backend   : storage_createlisting.date_backend,
+        date_display   : storage_createlisting.date_display,
+        time_backend   : storage_createlisting.time_backend,
+        time_display   : storage_createlisting.time_display,
+        zoom           : 11,
+        center         : {
+          lat          :  50.00,
+          lng          :  70.00
+        }
+      }
+    }else{
+     
+      this.state = {
+        keyword        : [],
+        currentview    : 'mylisting',
+        mls            : [],
+        mlsdetail      : [{mls_id : '', mls_text : '', mls_link : ''}],
+        type           : '', 
+        access_type    : '',
+        instruction    : '',
+        client_name    : '',
+        client_number  : '',
+        offer_amount   : '',
+        full_address   : '',
+        lat            : '',
+        lng            : '',
+        city           : '',
+        zipcode        : '',
+        center         : null,
+        date_backend   : moment(new Date()).format('MM/DD/YYYY'),
+        date_display   : moment(new Date()).format('DD/MM/YYYY'),
+        time_backend   : moment(new Date().getTime()).format("HH:mm:ss"),
+        time_display   : moment(new Date().getTime()).format("HH:mm:ss")
+      }
     }
-    this.updatePicture = this.updatePicture.bind(this);
+    
     this.handleDelete  = this.handleDelete.bind(this);
     this.handleChange  = this.handleChange.bind(this);
     this.handleEnter   = this.handleEnter.bind(this);
     this.addRow        = this.addRow.bind(this);
     this.handleSubmit  = this.handleSubmit.bind(this);
+    this.setDate       = this.setDate.bind(this);
+    this.setTime       = this.setTime.bind(this);
+    this.setAddress    = this.setAddress.bind(this);
+    this.handleMls     = this.handleMls.bind(this);
   }
  
   componentDidMount(){ 
-    $$("#menu_profile").addClass('active');
+   
     let param = {
       type               : 'MLS',
       search_param       : null,
@@ -42,9 +93,7 @@ class ListingCreate extends Component {
     this.props.fetchMasterData(param);
   }
   
-  updatePicture(e){
-   // this.props.updateprofilePicture({ image : e.target.files[0] });
-  }
+  
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
     this.setState({
@@ -61,9 +110,59 @@ class ListingCreate extends Component {
       [e.target.name]: e.target.value,
     });
   }
+  setDate(value){
+    this.setState({
+      date_backend : moment(value).format('MM/DD/YYYY'),
+      date_display : value
+    })
+  }
+  setTime(value){
+    var dt = moment(value, ["h:mm A"]).format("HH:mm:ss");
+    this.setState({
+      time_backend : dt,
+      time_display : value
+    })
+  }
+  setAddress(value){
+    fetch("https://maps.googleapis.com/maps/api/geocode/json?address="+value.label+"&key=AIzaSyDkaV_9E9-b0FjMwak5UFwI0T1JtMrd_to")
+    .then(res => res.json())
+    .then(
+      (result) => {
+        this.setState({
+          full_address : result.results[0].formatted_address,
+         })
+        this.setState({
+          lat          : result.results[0].geometry.location.lat,
+        })
+        this.setState({
+          lng          : result.results[0].geometry.location.lng,
+         })
+        this.setState({
+           city         : result.results[0].address_components[3].long_name,
+         })
+        this.setState({
+          zipcode      : result.results[0].address_components[7].long_name,
+         
+        })
+        this.setState({
+          center      : {
+            lat       :  (Math.floor(result.results[0].geometry.location.lat)).toFixed(2),
+            lng       :  (Math.floor(result.results[0].geometry.location.lng)).toFixed(2)
+          }
+         
+        })
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+    
+  }
   handleSubmit(e){
     e.preventDefault(); 
-    this.props.currentActiveView('previewlisting');
+    //console.log(this.state);
+    sessionStorage.setItem('createlisting', JSON.stringify(this.state));
+    this.props.listinginLocalStorage('previewlisting');
   }
   handleEnter(e){
       var keywords = this.state.keyword;
@@ -82,7 +181,7 @@ class ListingCreate extends Component {
   addRow(){
    let rows = this.state.mlsdetail;
    if(this.state.mlsdetail.length < 5){
-      rows.push({mlsid : '', mlslink : ''});
+      rows.push({mls_id : '', mls_text : '', mls_link : ''});
       this.setState({
         mlsdetail : rows
       })
@@ -90,6 +189,22 @@ class ListingCreate extends Component {
      ToastsStore.error('Maximum option exit');
    }
      
+  }
+  handleMls(type,indexx){
+    /* console.log(vall,indexx);
+    console.log($$(`#selectmls_${indexx}`).val()); */
+    let rows = this.state.mlsdetail;
+    if(type == 'select'){
+        let mlsid    = $$(`#selectmls_${indexx}`).val();
+        let mlstext  = $$(`#selectmls_${indexx} option:selected`).text();
+        rows[indexx] = {mls_id : mlsid, mls_text : mlstext, mls_link : rows[indexx].mls_link}
+    }else{
+        let mlslink = $$(`#linkmls_${indexx}`).val();
+        rows[indexx] = {mls_id : rows[indexx].mls_id, mls_text : rows[indexx].mls_text, mls_link : mlslink}
+    }
+    this.setState({
+      mlsdetail : rows
+    });
   }
 
   render() {
@@ -106,7 +221,7 @@ class ListingCreate extends Component {
                        <div className="frm-wrapper text-left frm-wrapper-profile">
                          <form onSubmit={this.handleSubmit}>
                             <label>Type</label>
-                            <select name="" className="custom-select2">
+                            <select name="type" id="type" value={this.state.type} className="custom-select2" onChange={this.handleChange}>
                                 <option value="">Select</option>
                                 <option value="Showing">Showing</option>
                                 <option value="Open House">Open House</option>
@@ -120,16 +235,15 @@ class ListingCreate extends Component {
                             <input type="text" name="keyword" id="keyword" placeholder="e.g. Bristlecone Drive" onKeyDown={this.handleEnter}/>
                             <div className="sec-chip">
                                 { (this.state.keyword).map((sinsle_keyword,index) => {
-                                        return (
-                                            <Chip label={sinsle_keyword} className="chips" onDelete={this.handleDelete} key={index}/>
-                                        )
-                                   })
-                                
+                                    return (
+                                        <Chip label={sinsle_keyword} className="chips" onDelete={this.handleDelete} key={index}/>
+                                    )
+                                  })
                                 }
                             </div>
                             <label>PROPERTY ADDRESS</label>
                             <div>
-                              <MAP /> 
+                              <MAP setAddress={this.setAddress} /> 
                             </div>
                             <label>Select MLS (If multiple in your state)</label>
                             {
@@ -137,7 +251,7 @@ class ListingCreate extends Component {
                                 return(
                                   <div className="row" key={indexx}>
                                     <div className="col-lg-6"> 
-                                        <select name="" className="custom-select2">
+                                        <select name="mlsid" id={`selectmls_${indexx}`} className="custom-select2" onChange={()=>this.handleMls('select',indexx)}>
                                             <option value="">Select</option>
                                             { 
                                               (this.state.mls).map((item,index) => {
@@ -150,7 +264,7 @@ class ListingCreate extends Component {
                                         </select>
                                     </div>
                                     <div className="col-lg-6">
-                                        <input type="text" placeholder="Enter MLS Link" />
+                                        <input type="url" name="mlslink" id={`linkmls_${indexx}`} placeholder="Enter MLS Link" onChange={()=>this.handleMls('link',indexx)}/>
                                     </div>
                                   </div>
                                 )
@@ -160,32 +274,32 @@ class ListingCreate extends Component {
                             
                             <div className="add-mls"><a onClick={this.addRow}>MLS +</a></div>
                             <label>Date</label>
-                            <Datepicker />
+                            <Datepicker setDate={this.setDate}  defaultVal={moment().format('DD/MM/YYYY')}/>
 
                             <label>Time</label>
-                            <Timepicker />
+                            <Timepicker setTime={this.setTime}/>
                            {/*  <input type="text" placeholder="hr : min" /> */}
 
                             <label>Access type</label>
-                            <select name="" className="custom-select2">
+                            <select name="access_type" id="access_type" value={this.state.access_type} className="custom-select2" onChange={this.handleChange}>
                                 <option value="">Select</option>
-                                <option value="Electronic">Electronic (See notes)</option>
-                                <option value="Mechanical">Mechanical (See notes)</option>
+                                <option value="Electronic">Electronic </option>
+                                <option value="Mechanical">Mechanical </option>
                                 <option value="Other">Other</option>
                             </select>
 
                             <label>Instructions for agent</label>
-                            <input type="text" placeholder="Enter Instructions" />
+                            <input name="instruction" id="instruction" value={this.state.instruction} type="text" placeholder="Enter Instructions" onChange={this.handleChange}/>
 
                             <label>Client Name (optional)</label>
-                            <input type="text" placeholder="Enter client name" />
+                            <input name="client_name" id="client_name" value={this.state.client_name} type="text" placeholder="Enter client name" onChange={this.handleChange}/>
 
                             <label>Client number (optional)</label>
-                            <input type="password" placeholder="**********" />
+                            <input name="client_number" id="client_number" pattern="^[0-9]*$" value={this.state.client_number} type="text" placeholder="Enter Client number"  onChange={this.handleChange}/>
                             
                             <label>Offer Amount</label>
-                            <input type="text" placeholder="$  Enter amount" />
-                            <button type="submit">SAVE</button> 
+                            <input name="offer_amount" id="offer_amount" pattern="^[0-9]*$" value={this.state.offer_amount} type="text"  placeholder="$  Enter amount" onChange={this.handleChange}/>
+                            <button type="submit">PREVIEW</button> 
                             </form>    
                          </div>
                         </div>
@@ -205,14 +319,16 @@ const mapStateToProps = state => {
  	return {
     changeview          : state.profileactiveview.activeview,
     currentUserDetails  : state.login.user,
-    listmls             : state.mastermls.mastermls
+    listmls             : state.mastermls.mastermls,
+    storage             : state.listingstorage.listingstorage
 	}
 }
   
 const mapDispatchToProps = dispatch => {
 	return {
-    fetchMasterData : bindActionCreators(fetchMasterData , dispatch),
-    currentActiveView : bindActionCreators(currentActiveView , dispatch),
+    fetchMasterData       : bindActionCreators(fetchMasterData , dispatch),
+    currentActiveView     : bindActionCreators(currentActiveView , dispatch),
+    listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
 	}
 }
 

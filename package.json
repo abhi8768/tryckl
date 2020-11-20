@@ -1,5 +1,5 @@
 {
-  "name": "Baaldahab-Web-App-ReactJs-v16.10.2",
+  "name": "Tryckl-Web-App-ReactJs-v16.10.2",
   "version": "1.0.0",
   "description": "Create a React app from scratch using Webpack 4",
   "main": "./src/index.html",
@@ -49,6 +49,7 @@
     "date-fns": "^2.8.1",
     "express": "^4.17.1",
     "firebase": "^7.14.6",
+    "google-map-react": "^2.1.9",
     "html2canvas": "^1.0.0-rc.5",
     "ipify2": "^1.0.6",
     "jquery": "^3.5.1",

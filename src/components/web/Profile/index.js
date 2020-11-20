@@ -31,6 +31,8 @@ class Profile extends Component {
  
   componentDidMount(){ 
     $$("#menu_profile").addClass('active');
+    $$("#listing-header-icon").removeClass('active');
+    $$("#home-header-icon").removeClass('active');
   }
   
   updatePicture(e){

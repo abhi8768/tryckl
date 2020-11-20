@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {withRouter} from "react-router-dom";
+import {ToastsContainer, ToastsStore, ToastsContainerPosition} from 'react-toasts';
 
 import './HeaderUser.css';
 import iconPath from "../../../helpers/iconHelper";
@@ -47,13 +48,13 @@ class HeaderUser extends Component {
     let letterImage = this.state.name.charAt(0);
     return (
       <header className="topnavbar-wrapper">
-		   
+		   	<ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_RIGHT} lightBackground />
 		   <nav className="navbar topnavbar">
 			 
 			  <div className="navbar-header">
           		<Link className="navbar-brand" to="/dashboard">
 					<div className="brand-logo">
-						<img className="img-fluid" src="assets/img/logo.png" alt="App Logo" />
+						<img className="img-fluid" src="assets/img/logo2.png" alt="App Logo" />
 					</div>
 					<div className="brand-logo-collapsed">
 						<img className="img-fluid" src="assets/img/logo-single.png" alt="App Logo" />
@@ -77,10 +78,13 @@ class HeaderUser extends Component {
 					   
 					</Link>
 				</li>
-				 <li className="nav-item d-none d-md-block dropdown"><a className="nav-link" href="lock.html" title="Lock screen">
-					<em className="sp-flag"></em>
+				 <li className="nav-item d-none d-md-block dropdown" id="listing-header-icon">
+				 	<Link to="/create-listing" className="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
+						 <em className="sp-flag"></em>
+					</Link>
   
-					<span className="badge badge-danger custom-badge2">!</span></a></li>
+					{/* <span className="badge badge-danger custom-badge2">!</span> */}
+				  </li>
 				  <li className="nav-item d-none d-md-block dropdown">
 					<a className="nav-link" href="lock.html" title="Lock screen">
 					   <em className="sp-box"></em>

@@ -26,7 +26,9 @@ class Listing extends Component {
   }
  
   componentDidMount(){ 
-    $$("#menu_profile").addClass('active');
+    $$("#menu_profile").removeClass('active');
+    $$("#listing-header-icon").addClass('active');
+    $$("#home-header-icon").removeClass('active');
   }
   
   updatePicture(e){
@@ -72,8 +74,7 @@ class Listing extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
-	return {
+  return {
     changeview          : state.listingactiveview.activelistingview,
     currentUserDetails  : state.login.user,
 	}

@@ -6,7 +6,6 @@ import isEmpty from 'lodash/isEmpty';
 // handle exception here
 export const handleResponse = (response, currentAction, resData, routeUrl) => {
 
- 
   if (response.status === 200) {
     let res = response.data;
     return res;
