@@ -22,11 +22,19 @@ class RouteComponent extends Component {
           <PrivateRoute exact={true} path={pathList.brokerprofile.path} title={pageTitles.profile} component={routes.Profile}/>
           <PrivateRoute exact={true} path={pathList.createlist.path} title={pageTitles.createlist} component={routes.Listing}/>
           <PrivateRoute exact={true} path={pathList.listpreview.path} title={pageTitles.listpreview} component={routes.Listing}/>
+
+         
+          <PublicRoute exact={true} path="/about-us" title="About Us" component={routes.StaticPages}/>
+          <PublicRoute exact={true} path="/payment-policy" title="Payment Policy" component={routes.StaticPages}/>
+          <PublicRoute exact={true} path="/privacy-policy" title="Privacy Policy" component={routes.StaticPages}/>
+          <PublicRoute exact={true} path="/terms-n-condition" title="Terms And Condition" component={routes.StaticPages}/>
+          
           
           <PublicRoute exact={true} path={pathList.resetpassword.path} title={pageTitles.resetpassword} component={routes.ResetPassword}/>
-          <PublicRoute exact={true} path="/admin" title="admin - login" component={routes.AdminLogin}/>
+          {/* <PublicRoute exact={true} path="/admin" title="admin - login" component={routes.AdminLogin}/> */}
           <Redirect exact={true} from="/login" to="/" />
           <Route exact={true} title={pageTitles.notFound} component={routes.NotFoundPage} /> 
+
         </Switch>
       </main>
       

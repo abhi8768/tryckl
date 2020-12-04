@@ -92,7 +92,7 @@ class Menu extends Component {
           <li className="sick-hide">
             <a href={void(0)} title="Dashboard" onClick={this.logoutReq}>
               <div>
-                <em className="icon-power"></em>
+                <em className="icon-plus"></em>
                 <span data-localize="sidebar.nav.DASHBOARD">Log Out</span>
               </div>
             </a>

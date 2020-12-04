@@ -910,5 +910,37 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
     color: white;
     cursor: pointer;
    }
+   .static-pages p{ margin-bottom: 15px; }
+   .static-list li{    
+      color: #fff;
+      font-size: 14px !important;
+      font-family: 'Conv_GothamBook';
+    }
+
+
+
+
+
+
+
+   .static-wrapper .footer-container, .static-wrapper .section-container{ margin-left: 0; }
+   .static-wrapper .topnavbar .navbar-header{ box-shadow: none }
+
+   .static-wrapper .topnavbar .navbar-nav>.nav-item>.nav-link{ padding-bottom: 17px !important; font-size: 16px; font-family: 'Conv_GothamBook'; }
+
+
+.static-wrapper .custom-nav li{
+    background-color: #00ffff;
+    padding: 10px 20px;
+    color: #000 !important;
+    border-radius: 20px;
+    text-align: center; 
+}
+.static-wrapper .custom-nav li a{color: #000}
+.static-wrapper .custom-nav li a:hover{ text-decoration: none; }
+
+.static-wrapper .custom-nav li span {
+    margin-left: 10px;
+}
   
 

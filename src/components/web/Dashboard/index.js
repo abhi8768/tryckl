@@ -220,9 +220,9 @@ class Dashboard extends Component {
 								<div className="content-part-wrapper">
 									<h2 className="mid-heading">my listing <a href="">View All</a></h2>
 									{ 
-										  (list).map((item2) => {
+										  (list).map((item2,index) => {
 											return (
-												<div className="content-part-wrapper dark-part">
+												<div className="content-part-wrapper dark-part" key={`mylist${index}`}>
 													<h2 className="card-amount">$ {item2.offer_amount}</h2>
 													<p className="ohters-color">Due in 24 days</p>
 													<p className="ohters-color2">{item2.date}</p>

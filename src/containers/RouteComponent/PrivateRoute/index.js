@@ -4,7 +4,7 @@ import { Route ,Redirect } from 'react-router-dom';
 import { getJWTToken } from '../../../helpers/authHelper';
 import pageTitles from "../../../helpers/pageTitles";
 
-const PublicRoute = ({ component: Component, path , title }) => {
+const PrivateRoute = ({ component: Component, path , title }) => {
   document.title = (getJWTToken() !== null ? title : pageTitles.login);
   return (
     <Route
@@ -14,9 +14,9 @@ const PublicRoute = ({ component: Component, path , title }) => {
   );
 }
 
-PublicRoute.propTypes = {
+PrivateRoute.propTypes = {
   component: PropTypes.any,
   path: PropTypes.string,
   title: PropTypes.string,
 };
-export default PublicRoute;
+export default PrivateRoute;

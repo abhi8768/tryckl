@@ -5,10 +5,15 @@ import { getJWTToken } from '../../../helpers/authHelper';
 const PublicRoute = ({ component: Component, path , title }) => {
   document.title = title;
   return (
-    <Route
+   /*  <Route
       path={path}
       exact
       render={props => (getJWTToken() === null ? <Component {...props} /> : <Redirect to="/dashboard" />)}
+    /> */
+    <Route
+      path={path}
+      exact
+      render={props => <Component {...props} /> }
     />
   );
 }
