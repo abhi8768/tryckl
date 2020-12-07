@@ -6,6 +6,7 @@ import Chip from '@material-ui/core/Chip';
 import {ToastsStore} from 'react-toasts';
 import moment from 'moment';
 import GoogleMapReact from 'google-map-react';
+import Modal from "react-responsive-modal";
 
 import { saveMylisting, listinginLocalStorage } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
@@ -43,10 +44,13 @@ class ListingPreview extends Component {
       center         : {
         lat          :  50.00,
         lng          :  70.00
-      }
+      },
+      open           : false
     }
     this.createlisting = this.createlisting.bind(this);
-    this.backtocreate = this.backtocreate.bind(this);
+    this.backtocreate  = this.backtocreate.bind(this);
+    this.onOpenModal   = this.onOpenModal.bind(this);
+    this.onCloseModal  = this.onCloseModal.bind(this);
    
   }
  
@@ -58,9 +62,10 @@ class ListingPreview extends Component {
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
      if(nextProps.newlist){
         sessionStorage.removeItem("createlisting");
-        ToastsStore.success('Listing created successfully');
+       // this.onOpenModal();
+       /*  ToastsStore.success('Listing created successfully');
         this.props.listinginLocalStorage('mylisting');
-        this.props.history.push(`my-listing`);
+        this.props.history.push(`my-listing`); */
      }
   }
   
@@ -70,7 +75,14 @@ class ListingPreview extends Component {
   backtocreate(){
     this.props.listinginLocalStorage('createlisting');
   }
+  onOpenModal() {
+    this.setState({open: true});
+  };
 
+  onCloseModal() {
+    
+    this.setState({ open         : false});
+  };
 
   render() {
     
@@ -189,6 +201,8 @@ class ListingPreview extends Component {
               
                  <div className="col-lg-3">
                 </div>
+
+                
             </div>
         
       
