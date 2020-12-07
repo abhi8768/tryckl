@@ -23,6 +23,7 @@ import listingactiveview     from './listing/listingactiveview';
 import mylisting             from './listing/mylisting';
 import listingstorage        from './listing/listingstorage';
 import listingcreate         from './listing/listingcreate';
+import listingdetail         from './listing/listingdetail';
 
 import { USER_LOGGED_OUT } from '../actions/constants';
 
@@ -48,7 +49,8 @@ const allReducers = {
   listingactiveview,
   mylisting,
   listingstorage,
-  listingcreate
+  listingcreate,
+  listingdetail
 };
 
 const appReducer = combineReducers(allReducers);

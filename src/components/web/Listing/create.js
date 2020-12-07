@@ -59,11 +59,11 @@ class ListingCreate extends Component {
         client_name    : '',
         client_number  : '',
         offer_amount   : '',
-        full_address   : '',
-        lat            : '',
-        lng            : '',
-        city           : '',
-        zipcode        : '',
+        full_address   : '20 Barik Para Road, Behala, Kolkata 700034',
+        lat            : '22.5726',
+        lng            : '88.3639',
+        city           : 'Kolkata',
+        zipcode        : '700034',
         center         : null,
         date_backend   : moment(new Date()).format('MM/DD/YYYY'),
         date_display   : moment(new Date()).format('DD/MM/YYYY'),
@@ -163,6 +163,8 @@ class ListingCreate extends Component {
     //console.log(this.state);
     sessionStorage.setItem('createlisting', JSON.stringify(this.state));
     this.props.listinginLocalStorage('previewlisting');
+    this.props.history.push(`preview-listing`);
+   
   }
   handleEnter(e){
       var keywords = this.state.keyword;
@@ -215,7 +217,7 @@ class ListingCreate extends Component {
             <div className="col-lg-6">
                 <div className="content-part-wrapper profile-content-part-wrapper">
                   <div className="content-part-wrapper">
-                    <h2 className="mid-heading">LISTing</h2>
+                    <h2 className="mid-heading">Listing</h2>
                     <div className="content-part-wrapper profile-content-part-wrapper">
                      <div className="form-container2">
                        <div className="frm-wrapper text-left frm-wrapper-profile">
@@ -332,8 +334,8 @@ const mapDispatchToProps = dispatch => {
 	}
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListingCreate);
+)(ListingCreate));
 

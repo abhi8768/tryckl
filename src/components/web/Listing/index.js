@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 
-
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
 import { currentActiveView } from "../../../actions/web/listingAction";
@@ -12,15 +11,35 @@ import { currentActiveView } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import ListingCreate from "./create";
 import ListingPreview from "./preview";
-
+import MyListing from "./mylisting";
+import DetailListing from "./detail";
 
 class Listing extends Component {
   constructor(props) {
     super(props);
    // setPublicIP();
+
+   let curUrl = window.location.href;
+   let currentview = '';
+   let currentviewcomp = '';
+   if(curUrl.includes("create-listing") == true){
+    currentview = 'createlisting';
+    currentviewcomp = <ListingCreate />;
+   }else if(curUrl.includes("preview-listing") == true){
+    currentview = 'createlisting';
+    currentviewcomp = <ListingCreate />;
+   }else if(curUrl.includes("detail-listing") == true){
+    currentview = 'detaillisting';
+    currentviewcomp = <DetailListing />;
+   }else{
+    currentview = 'mylisting';
+    currentviewcomp = <MyListing />;
+   }
+  
     this.state = {
-      currentview    : 'mylisting',
-      
+      currentview      : currentview,
+      currentviewcomp  : currentviewcomp,
+        
     }
     this.updatePicture = this.updatePicture.bind(this);
   }
@@ -42,6 +61,29 @@ class Listing extends Component {
     this.setState({
       currentview : nextProps.changeview
     })
+    if(nextProps.changeview == 'mylisting'){
+      this.setState({
+        currentviewcomp : <MyListing />
+      })
+    }else if(nextProps.changeview == 'previewlisting'){
+      this.setState({
+        currentviewcomp : <ListingPreview />
+      })
+
+    }else if(nextProps.changeview == 'createlisting'){
+      this.setState({
+        currentviewcomp : <ListingCreate />
+      })
+
+    }else if(nextProps.changeview == 'detaillisting'){
+      this.setState({
+        currentviewcomp : <DetailListing />
+      })
+    }else{
+      this.setState({
+        currentviewcomp : <MyListing />
+      })
+    }
    
 	}
   
@@ -59,11 +101,7 @@ class Listing extends Component {
                      <div className="content-wrapper">
           
                         <div className="container gapfrm-top">
-                          {
-                            (this.state.currentview == 'previewlisting') ? 
-                            <ListingPreview />
-                            : <ListingCreate />
-                          }
+                          {this.state.currentviewcomp }
                             
                         </div>
                     </div>

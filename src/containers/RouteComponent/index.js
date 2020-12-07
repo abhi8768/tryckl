@@ -22,8 +22,9 @@ class RouteComponent extends Component {
           <PrivateRoute exact={true} path={pathList.brokerprofile.path} title={pageTitles.profile} component={routes.Profile}/>
           <PrivateRoute exact={true} path={pathList.createlist.path} title={pageTitles.createlist} component={routes.Listing}/>
           <PrivateRoute exact={true} path={pathList.listpreview.path} title={pageTitles.listpreview} component={routes.Listing}/>
+          <PrivateRoute exact={true} path={pathList.mylisting.path} title={pageTitles.mylisting} component={routes.Listing}/>
+          <PrivateRoute exact={true} path={pathList.detaillisting.path} title={pageTitles.detaillisting} component={routes.Listing}/>
 
-         
           <PublicRoute exact={true} path="/about-us" title="About Us" component={routes.StaticPages}/>
           <PublicRoute exact={true} path="/payment-policy" title="Payment Policy" component={routes.StaticPages}/>
           <PublicRoute exact={true} path="/privacy-policy" title="Privacy Policy" component={routes.StaticPages}/>

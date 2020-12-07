@@ -7,7 +7,9 @@ const pageTitles = {
   forgetuserid   : "Tryckl | Forget Userid",
   profile        : "Tryckl | Profile",
   createlist     : "Tryckl | Create List",
-  listpreview    : "Tryckl | Preview List"
+  listpreview    : "Tryckl | Preview List",
+  mylisting      : "Tryckl | My Listing",
+  detaillisting  : "Tryckl | Detail Listing"
   
 
 };

@@ -1,4 +1,4 @@
-import { LISTING_ACTIVE_VIEW, MY_LISTING, LISTING_STORAGE, SAVE_LISTING} from '../constants';
+import { LISTING_ACTIVE_VIEW, MY_LISTING, LISTING_STORAGE, SAVE_LISTING, DETAIL_LISTING} from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession } from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -37,9 +37,9 @@ import { handleResponse , loader } from '../utils';
     };
   };
 
-  export const requestMylisting = () => {
+  export const requestMylisting = (params) => {
     const param = JSON.stringify({
-      
+      flag : params.flag
     });
     const headers = 
     {
@@ -53,6 +53,36 @@ import { handleResponse , loader } from '../utils';
       .then(handleResponse)
       .then((res) => {
           dispatch(mylisting(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
+
+  export const detaillisting = (detaillisting) => {
+    return {
+      type: DETAIL_LISTING,
+      detaillisting,
+    };
+  };
+
+  export const requestDetaillisting = (params) => {
+    const param = JSON.stringify({
+      listing_id : params.listing_id
+    });
+    const headers = 
+    {
+      Authorization     : `Bearer ${getAuthHeader()}`,
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+     
+      postReq(`${apiURLPrefix}/listing/details`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+          dispatch(detaillisting(res));
       }).catch((err)=>{
         console.log(err)
       }) 
@@ -105,3 +135,6 @@ import { handleResponse , loader } from '../utils';
     } 
     
   };
+
+
+  

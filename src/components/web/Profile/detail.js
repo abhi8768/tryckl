@@ -119,7 +119,7 @@ class ProfileDetail extends Component {
                     <ul className="profile2-list">
                         {
                             (this.state.myGrouplist).map((my,index) => {
-                                let letterImage = my.group_name.charAt(0);
+                                let letterImage = my.group_name != null ? my.group_name.charAt(0) : '';
                                 return (
                                         <li key={`joined_${index}`}>
                                         <div className="row d-flex align-items-center">

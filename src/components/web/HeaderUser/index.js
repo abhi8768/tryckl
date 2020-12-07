@@ -79,7 +79,7 @@ class HeaderUser extends Component {
 					</Link>
 				</li>
 				 <li className="nav-item d-none d-md-block dropdown" id="listing-header-icon">
-				 	<Link to="/create-listing" className="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
+				 	<Link to="/my-listing" className="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
 						 <em className="sp-flag"></em>
 					</Link>
   

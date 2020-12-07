@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 
 
-import { requestMylisting } from "../../../actions/web/listingAction";
+//import { requestMylisting } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 
 
@@ -21,7 +21,7 @@ class MyCardPreview extends Component {
  
   componentDidMount(){ 
    
-    this.props.requestMylisting();
+   // this.props.requestMylisting();
   }
   
 
@@ -98,7 +98,7 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = dispatch => {
 	return {
-        requestMylisting : bindActionCreators(requestMylisting , dispatch),
+      //  requestMylisting : bindActionCreators(requestMylisting , dispatch),
     
 	}
 }

@@ -942,5 +942,46 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
 .static-wrapper .custom-nav li span {
     margin-left: 10px;
 }
+
+.custom-user-block-picture2 .other-color{ background: #00ffff; width: 150px !important; height: 150px; }
+.custom-user-block-picture2 .other-color .alpha img{ width: auto }
+.custom-user-block-picture2 .other-color .alpha{ font-size: 0 }
+.custom-drop{float: right;top: -9px;}
+.custom-drop>.btn-secondary.dropdown-toggle{background-color: #666666; box-shadow: none; color: #fff}
+    .custom-drop .dropdown-toggle:after{ margin-left: 40px; }
+    .custom-drop>.btn-secondary.dropdown-toggle:focus{ box-shadow: none !important }
+    .btn-secondary:not(:disabled):not(.disabled):active{background-color: #666; color: #fff}
+    .custom-drop .dropdown-menu{ background: #D1D1D1; border-color: #D1D1D1; border-radius: 0}
+     .custom-drop .dropdown-menu a{color: #626262}
+     .custom-drop .dropdown-menu a:hover{ background: none; color: #000 }
+
+
+
+
+
+
+
+
+
+
+
+
+.mylist-adjust .user-block{ padding-top: 0 }
+.mylist-adjust .ohters-color2{text-transform: capitalize; font-size: 16px !important;
+    font-family: 'Conv_GothamBook';}
+
+    .mylist-adjust .ohters-color3 {
+    text-transform: capitalize;
+    font-size: 16px !important;
+    font-family: 'Conv_GothamBook';
+    color: #00ffff;
+    margin-bottom: 0;
+}
+.mylist-adjust .ohters-color4 {
+    text-transform: capitalize;
+    font-size: 20px !important;
+    font-family: 'Conv_GothamMedium';
+    color: #fff; margin-bottom: 0;
+}
   
 

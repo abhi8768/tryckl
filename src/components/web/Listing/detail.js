@@ -7,101 +7,75 @@ import {ToastsStore} from 'react-toasts';
 import moment from 'moment';
 import GoogleMapReact from 'google-map-react';
 
-import { saveMylisting, listinginLocalStorage } from "../../../actions/web/listingAction";
+import { encrypt , decrypt , getParams } from "../../../helpers/CryptoJs";
+import { requestDetaillisting, listinginLocalStorage } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import  MyCardPreview  from "./mycardpreview";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-class ListingPreview extends Component {
+class ListingDetail extends Component {
   
   constructor(props) {
     super(props);
-
-    let storage_createlisting = JSON.parse(sessionStorage.getItem('createlisting'));
-   
     this.state = {
-      keyword        : storage_createlisting.keyword,
-      mls            : storage_createlisting.mls,
-      mlsdetail      : storage_createlisting.mlsdetail,
-      type           : storage_createlisting.type, 
-      access_type    : storage_createlisting.access_type,
-      instruction    : storage_createlisting.instruction,
-      client_name    : storage_createlisting.client_name,
-      client_number  : storage_createlisting.client_number,
-      offer_amount   : storage_createlisting.offer_amount,
-      full_address   : storage_createlisting.full_address,
-      lat            : storage_createlisting.lat,
-      lng            : storage_createlisting.lng,
-      city           : storage_createlisting.city,
-      zipcode        : storage_createlisting.zipcode,
-      date_backend   : storage_createlisting.date_backend,
-      date_display   : storage_createlisting.date_display,
-      time_backend   : storage_createlisting.time_backend,
-      time_display   : storage_createlisting.time_display,
-      zoom           : 11,
-      center         : {
-        lat          :  50.00,
-        lng          :  70.00
-      }
+      listingid   : (this.props.match.params != undefined) ? decrypt(this.props.match.params.id) : null,
+      detail      : {}
     }
-    this.createlisting = this.createlisting.bind(this);
-    this.backtocreate = this.backtocreate.bind(this);
+    
    
   }
  
   componentDidMount(){ 
-    
+    this.props.requestDetaillisting({listing_id:this.state.listingid});
   }
 
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
-     if(nextProps.newlist){
-        sessionStorage.removeItem("createlisting");
-        ToastsStore.success('Listing created successfully');
-        this.props.listinginLocalStorage('mylisting');
-        this.props.history.push(`my-listing`);
+     if(nextProps.detail){
+       this.setState({
+          detail : nextProps.detail
+       })
      }
   }
   
-  createlisting(){
-    this.props.saveMylisting(this.state);
-  }
-  backtocreate(){
-    this.props.listinginLocalStorage('createlisting');
-  }
+  
 
 
   render() {
-    
+    console.log(this.state);
+    let detail   = this.state.detail || {};
+    let mls      = this.state.detail.mlsdetails || [];
+    let keyword  = this.state.detail.keyword || [];
+
     return (
         <div className="row">
              <MyCardPreview />
-            <div className="col-lg-6">
+             <div className="col-lg-6">
                 <div className="content-part-wrapper profile-content-part-wrapper">
                   <div className="content-part-wrapper">
                     <h2 className="mid-heading">LISTing</h2>
                     <div className="content-part-wrapper profile-content-part-wrapper list-pre">
                 <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Type</p>
-              <p className="ohters-color2">{this.state.type}</p>
+              <p className="ohters-color2">{detail.type}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Keyword</p>
-            {/*   <p className="ohters-color2">Showing</p> */}
-                { (this.state.keyword).map((sinsle_keyword,index) => {
+           
+                { (keyword).map((sinsle_keyword,index) => {
                       return (
                           <Chip key={`chip${index}`} label={sinsle_keyword} className="chips" onDelete={this.handleDelete} key={index}/>
                       )
                   })
                                 
-                }
+                } 
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Property Address</p>
-              <p className="ohters-color2">{this.state.full_address}</p>
+              <p className="ohters-color2">{detail.property_address}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative custom-height">
@@ -109,7 +83,7 @@ class ListingPreview extends Component {
              
               {/* <img src="img/map.png" className="img-fluid position-absulute mt-3" /> */}
                 {
-                  (this.state.lat != '') ? 
+                  (detail.property_latitude != '') ? 
                   <div style={{ height: '100%', width: '100%' }}>
                     <GoogleMapReact
                       bootstrapURLKeys={{ key: 'AIzaSyDkaV_9E9-b0FjMwak5UFwI0T1JtMrd_to' }}
@@ -130,7 +104,7 @@ class ListingPreview extends Component {
 
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">MLS</p>
-               { (this.state.mlsdetail).map((sinsle_mls,index) => {
+               { (mls).map((sinsle_mls,index) => {
                       return (
                         <p key={`mls${index}`} className="ohters-color2 mt-3">{sinsle_mls.mls_text} 
                         <span className="float-right"> <a target="_blank" href={sinsle_mls.mls_link}><img src="/assets/img/www-img.png" /></a></span></p>
@@ -138,55 +112,51 @@ class ListingPreview extends Component {
                       )
                   })
                                 
-                }
+                } 
              
-              {/* <p className="ohters-color2 mt-3">Sample MLS 2 <span className="float-right"> <img src="img/www-img.png" /></span></p>
-               <div className="clearfix"></div>
-              <p className="ohters-color2  mt-3">Sample MLS 3 <span className="float-right"> <img src="img/www-img.png" /></span></p> */}
+             
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Date</p>
-            <p className="ohters-color2">{moment(this.state.date_backend).format("dddd / MMMM Do YYYY")}</p>
+            <p className="ohters-color2">{detail.listing_date}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Time</p>
-              <p className="ohters-color2">{moment(this.state.time_backend, "HH:mm").format("h:mm a")}</p>
+              <p className="ohters-color2">{detail.listing_time}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Access Type</p>
-              <p className="ohters-color2">{this.state.access_type}</p>
+              <p className="ohters-color2">{detail.access_type}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Instruction for Agent</p>
-              <p className="ohters-color2">{this.state.instruction}</p>
+              <p className="ohters-color2">{detail.agent_instruction}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Client Name</p>
-              <p className="ohters-color2">{this.state.client_name}</p>
+              <p className="ohters-color2">{detail.client_name}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Client Number</p>
-              <p className="ohters-color2">{this.state.client_number}</p>
+              <p className="ohters-color2">{detail.client_number}</p>
              
             </div>
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Offer Amount</p>
-              <p className="ohters-color2">$ {this.state.offer_amount}</p>
+              <p className="ohters-color2">$ {detail.offer_amount}</p>
              
             </div>
-            <button className="sv-btn" onClick={this.createlisting}>SUBMIT</button>
-            <button className="sv-btn" onClick={this.backtocreate}>BACK</button>
+         
               </div>
                       </div>   
                       </div>  
                     </div>
-              
                  <div className="col-lg-3">
                 </div>
             </div>
@@ -198,22 +168,22 @@ class ListingPreview extends Component {
 
 const mapStateToProps = state => {
   return {
-    changeview          : state.profileactiveview.activeview,
-    currentUserDetails  : state.login.user,
-    newlist             : state.listingcreate.savelisting
+        changeview          : state.profileactiveview.activeview,
+        currentUserDetails  : state.login.user,
+        detail              : state.listingdetail.detaillisting
        
 	}
 }
   
 const mapDispatchToProps = dispatch => {
 	return {
-    saveMylisting         : bindActionCreators(saveMylisting , dispatch),
-    listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
+        requestDetaillisting  : bindActionCreators(requestDetaillisting , dispatch),
+        listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
 	}
 }
 
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListingPreview));
+)(ListingDetail));
 

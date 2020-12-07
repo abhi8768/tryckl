@@ -11,6 +11,8 @@ const pathList = {
     brokerprofile     : {name : "profile",  path : "/profile/:id" },
     createlist        : {name : "createlist",  path : "/create-listing" },
     listpreview       : {name : "listpreview",  path : "/preview-listing" },
+    mylisting         : {name : "mylisting",  path : "/my-listing" },
+    detaillisting     : {name : "detaillisting",  path : "/detail-listing/:id" },
 };
 
 
