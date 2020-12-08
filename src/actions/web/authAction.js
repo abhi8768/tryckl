@@ -14,7 +14,7 @@ import { handleResponse , loader } from '../utils';
   };
 
   export const createLoginRequest = (params) => {
-
+    loader(true);
     const param = JSON.stringify({
       user_id		    : params.user_id,
       password 		  : params.password,
@@ -34,6 +34,7 @@ import { handleResponse , loader } from '../utils';
       .then(handleResponse)
       .then((res) => {
         dispatch(loginUser(res));
+        loader(false);
       }).catch((err)=>{
         console.log(err)
       }) 

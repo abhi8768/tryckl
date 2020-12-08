@@ -983,5 +983,11 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
     font-family: 'Conv_GothamMedium';
     color: #fff; margin-bottom: 0;
 }
+.styles_modal__gNwvD{
+  background: #666 !important;
+}
+.styles_modal__gNwvD .modal-content{ background: #666;border: none; text-align: center;}
+.styles_modal__gNwvD .modal-content h4{ font-size: 18px; color: #fff; font-family: 'Conv_GothamBook'; text-transform: uppercase; font-weight: normal; margin-bottom: 30px;}
+.styles_modal__gNwvD .modal-content h3{ font-size: 22px; color: #fff; font-family: 'Conv_GothamMedium';  margin-top: 30px;}
   
 

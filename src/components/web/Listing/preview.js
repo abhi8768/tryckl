@@ -76,12 +76,12 @@ class ListingPreview extends Component {
     this.props.listinginLocalStorage('createlisting');
   }
   onOpenModal() {
-    this.setState({open: true});
+    this.setState({open : true});
   };
 
   onCloseModal() {
     
-    this.setState({ open         : false});
+    this.setState({ open : false});
   };
 
   render() {

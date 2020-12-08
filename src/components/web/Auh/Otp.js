@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import {ToastsStore} from 'react-toasts';
+
+
 import { registrationVerificationRequest, resendOTPRequest } from "../../../actions/web/authAction";
 import "./login.css"
 
@@ -140,6 +142,7 @@ class Otp extends Component {
                             </div>
                         </form>
                     </div>
+                    
                 </div>
             
         );
