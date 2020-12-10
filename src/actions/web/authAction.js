@@ -5,8 +5,11 @@ import { handleResponse , loader } from '../utils';
 
 
   export const loginUser = (user) => {
-    setUserInSession(user.response);
-    setJWTToken(user.response._jwtToken);
+    if(user.status == true){
+      setUserInSession(user.response);
+      setJWTToken(user.response._jwtToken);
+    }
+    
     return {
       type: SET_CURRENT_USER,
       user,
@@ -33,8 +36,9 @@ import { handleResponse , loader } from '../utils';
       postReq(`${apiURLPrefix}/auth/login`, param , headers)
       .then(handleResponse)
       .then((res) => {
-        dispatch(loginUser(res));
         loader(false);
+        dispatch(loginUser(res));
+        
       }).catch((err)=>{
         console.log(err)
       }) 
@@ -92,7 +96,7 @@ import { handleResponse , loader } from '../utils';
   };
   
   export const createAccountRequest = (params) => {
-  
+      loader(true);
       const param = JSON.stringify({
         first_name                : params.first_name,
         last_name                 : params.last_name,
@@ -119,6 +123,7 @@ import { handleResponse , loader } from '../utils';
         postReq(`${apiURLPrefix}/auth/create_account`, param , headers)
         .then(handleResponse)
         .then((res) => {
+          loader(false);
           dispatch(registerUser(res));
         }).catch((err)=>{
           console.log(err)

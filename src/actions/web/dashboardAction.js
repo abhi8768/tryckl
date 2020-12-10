@@ -12,7 +12,7 @@ export const notificationList = (dashboard) => {
 };
 
 export const dashboardRequest = (params) => {
-
+    loader(true);
     const param = JSON.stringify({
     
     
@@ -28,6 +28,7 @@ export const dashboardRequest = (params) => {
       postReq(`${apiURLPrefix}/dashboard/details`, param , headers)
       .then(handleResponse)
       .then((res) => {
+        loader(false);
         dispatch(notificationList(res));
       }).catch((err)=>{
         console.log(err)

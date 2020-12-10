@@ -3,7 +3,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
-import {ToastsStore} from 'react-toasts';
+import {ToastsContainer, ToastsStore, ToastsContainerPosition} from 'react-toasts';
 
 import { fetchMasterData } from "../../../actions/web/masterAction";
 import { createAccountRequest } from "../../../actions/web/authAction";
@@ -145,14 +145,15 @@ class SignUp extends Component {
 
     onSubmit(e){
         e.preventDefault();
+       // this.success();
 
-        var options = {
+         var options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
         };
 
-        navigator.geolocation.getCurrentPosition(this.success, this.error, options);
+        navigator.geolocation.getCurrentPosition(this.success, this.error, options); 
     }
 
     handleChange(e) {
@@ -243,7 +244,7 @@ class SignUp extends Component {
                 <form onSubmit={this.onSubmit}>
                     <h1>Create Account</h1>
                                       
-                    <Scrollbars style={{ height: "40vh" }}
+                    <Scrollbars style={{ height: "65vh" }}
                         autoHide
                         autoHideTimeout={1000}
                         autoHideDuration={200} 
@@ -303,9 +304,10 @@ class SignUp extends Component {
                             </select>
 
                             
-                            <label className="container-check float-left"><span>i accept the terms and conditions</span>
+                            <label className="container-check float-left" style={{marginBottom:'5px'}}><span>i accept the terms and conditions</span>
                                 <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} 
-                                checked={(this.state.terms_n_condition==1)?'checked':''} />
+                                 checked={(this.state.terms_n_condition==1)?'checked':''}  />
+                                 {/* checked={(this.state.terms_n_condition==1)?'checked':''} */}
                                 <span className="checkmark"></span>
                             </label>
                         </div>

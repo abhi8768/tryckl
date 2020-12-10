@@ -22,9 +22,9 @@ class NotFound extends Component {
           </div>
         <div className="col-lg-12 text-center notfound_msg">
             
-            <div className="notfound_div">{languagelist.notf1}</div>
-            <div className="notfound_head">{languagelist.notf2}</div>
-            <button className="notfound_btn" onClick={this.backButton.bind(this)}>{languagelist.notf3}</button>
+            <div className="notfound_div">Error : 404 !</div>
+            <div className="notfound_head">Page Not Found</div>
+            <button className="notfound_btn" onClick={this.backButton.bind(this)}>Back</button>
         </div>
         </div>
         </div>

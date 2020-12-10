@@ -7,6 +7,7 @@ import {ToastsStore} from 'react-toasts';
 
 import {encrypt} from "../../../helpers/CryptoJs";
 import { requestMylisting, listinginLocalStorage } from "../../../actions/web/listingAction";
+import { getprofileDetails } from "../../../actions/web/brokerAction";
 import $$ from 'jquery';
 
 
@@ -15,8 +16,9 @@ class MyListing extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        myListing    : [],
-        opendropdown : ""
+        myListing         : [],
+        opendropdown      : "",
+        conneected_account: null
       }
       this.openDropdown     = this.openDropdown.bind(this);
       this.requestmylisting = this.requestmylisting.bind(this);
@@ -28,21 +30,35 @@ class MyListing extends Component {
  
   componentDidMount(){ 
     this.requestmylisting("");
+    this.props.getprofileDetails({brokers_is : this.props.currentUserDetails.user.brokers_id});
   }
   requestmylisting(type){
     this.props.requestMylisting({flag : type} );
   }
   linktocreate(){
-    this.props.listinginLocalStorage('createlisting');
-    this.props.history.push(`create-listing`);
+    //console.log(this.props.currentUserDetails.user.brokers_id,this.state.conneected_account);
+    if((this.state.conneected_account != '') && (this.state.conneected_account != null)){
+      this.props.listinginLocalStorage('createlisting');
+      this.props.history.push(`create-listing`);
+    }else{
+      this.props.history.push(`/connect-account`);
+    }
   }
   
   UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-    console.log(nextProps.mylisting.list);
+    //console.log(nextProps.profiledetail);
     this.setState({
         myListing    : nextProps.mylisting.list,
         opendropdown : ""
     })
+    if(nextProps.profiledetail){
+      //console.log(nextProps.profiledetail.payment_onboard_acc_id);
+      if((nextProps.profiledetail.payment_onboard_acc_id != '') || (nextProps.profiledetail.payment_onboard_acc_id != null)){
+        this.setState({
+          conneected_account : nextProps.profiledetail.payment_onboard_acc_id
+        })
+      }
+    }
   }
 
   openDropdown(){
@@ -195,14 +211,17 @@ class MyListing extends Component {
 
 const mapStateToProps = state => {
     return {
-        mylisting   : state.mylisting.mylisting,
+        mylisting           : state.mylisting.mylisting,
+        currentUserDetails  : state.login,
+        profiledetail       : state.brokerdetail.profiledetail,
     }
 }
  
 const mapDispatchToProps = dispatch => {
    return {
-    requestMylisting   : bindActionCreators(requestMylisting , dispatch),
-    listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch)
+      requestMylisting      : bindActionCreators(requestMylisting , dispatch),
+      listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
+      getprofileDetails     : bindActionCreators(getprofileDetails , dispatch),
    }
 }
 

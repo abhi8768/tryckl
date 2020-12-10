@@ -77,7 +77,8 @@ class Otp extends Component {
             if(nextProps.verifyotpdata.status == true){
                 //console.log('OTP verified');
                 ToastsStore.success(nextProps.verifyotpdata.message);
-                this.props.history.push(`/dashboard`);
+                this.props.history.push(`/connect-account`);
+                //this.props.history.push(`/dashboard`);
             }else{
                 ToastsStore.error(nextProps.verifyotpdata.message);
                 this.setState({

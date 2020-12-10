@@ -21,52 +21,60 @@ class ConnectAccount extends Component {
         }
         this.onOpenModal  = this.onOpenModal.bind(this);
         this.onCloseModal = this.onCloseModal.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.onSkip       = this.onSkip.bind(this);
             
     }
     onOpenModal() {
         this.setState({open: true});
     };
     onCloseModal() {
-    this.setState({ open         : false,
-                   
-                });
+    this.setState({ open : false  });
     };
+    onSkip(){
+      this.props.history.push(`/dashboard`);
+    }
 
     componentDidMount(){
-        
-      let elmButton = document.querySelector("#submit");
-
-      if (elmButton) {
-        elmButton.addEventListener(
-          "click",
-          e => {
-            elmButton.setAttribute("disabled", "disabled");
-            elmButton.textContent = "Opening...";
       
-            fetch("http://localhost:3000/api/v1/payment/payment", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-               brokers_id : 124
-             })
-            })
-              .then(response => response.json())
-              .then(data => { 
-                console.log(data);
-                if (data.url) {
-                  window.location = data.url;
-                } else {
-                  elmButton.removeAttribute("disabled");
-                  elmButton.textContent = "<Something went wrong>";
-                  console.log("data", data);
-                }
-              });
-          },
-          false
-        );
+      let userDetails = JSON.parse(localStorage.getItem('userDetails'));
+      console.log(userDetails.brokers_id);
+      if((userDetails.payment_onboard_acc_id != null) || (userDetails.payment_onboard_acc_id != '')){
+        let elmButton = document.querySelector("#submit");
+
+        if (elmButton) {
+          elmButton.addEventListener(
+            "click",
+            e => {
+              elmButton.setAttribute("disabled", "disabled");
+              elmButton.textContent = "Opening...";
+        
+              fetch("https://api.tryckl.com/api/v1/payment/payment", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                brokers_id : userDetails.brokers_id,
+                request_from : 'web_signup'
+              })
+              })
+                .then(response => response.json())
+                .then(data => { 
+                  console.log(data);
+                  if (data.url) {
+                    window.location = data.url;
+                  } else {
+                    elmButton.removeAttribute("disabled");
+                    elmButton.textContent = "<Something went wrong>";
+                    console.log("data", data);
+                  }
+                });
+            },
+            false
+          );
+        }
+      }else{
+        this.props.history.push(`/dashboard`);
       }
     }
     
@@ -95,11 +103,12 @@ class ConnectAccount extends Component {
             <div className="modal-content">
       
                 <div className="modal-body">
-                  <h4 class="text-center">Connect To Your Stripe Account</h4>
-                <img src="/assets/img/stripe.png" class="img-fluid" style={{width : '500px'}}/>
-                <h3 class="text-center">Signup Successfully</h3>
+                  <h4 className="text-center">Connect To Your Stripe Account</h4>
+                <img src="/assets/img/stripe.png" className="img-fluid" style={{width : '500px'}}/>
+                <h3 className="text-center">Signup Successfully</h3>
                 <div className="ver-frm-wrapper">
-                    <button id="submit">NEXT</button>
+                    <button id="submit">Connect</button>
+                    <button id="submit2" onClick={this.onSkip}>Skip</button>
                               
               </div>
                 </div>
@@ -117,7 +126,7 @@ class ConnectAccount extends Component {
       masterstatedata      : state.masterstate.masterstate,
       masterlicensedata    : state.masterlicense,
       registeruserdata     : state.signup,
-	}
+	  }
   }
   
   const mapDispatchToProps = dispatch => {

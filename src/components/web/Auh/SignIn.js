@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
-import {ToastsStore} from 'react-toasts';
+import {ToastsContainer, ToastsStore, ToastsContainerPosition} from 'react-toasts';
 import Modal from "react-responsive-modal";
 import {Link} from 'react-router-dom';
 
@@ -33,6 +33,7 @@ class SignIn extends Component {
            ToastsStore.success(nextProps.currentUserDetails.message);
            this.props.history.push(`/dashboard`);
         }else{
+            
             ToastsStore.error(nextProps.currentUserDetails.message);
         }
     }
@@ -46,6 +47,7 @@ class SignIn extends Component {
     render() {
         return (
             <div className="form-container sign-in-container">
+              {/*   <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_RIGHT} lightBackground /> */}
                 <form onSubmit={this.onSubmit}>
                     <h1>Sign in</h1>
                     <div className="frm-wrapper text-left">
@@ -64,8 +66,8 @@ class SignIn extends Component {
                         <button type="submit">LOGIN</button>
                         <div className="help-center">
                             <p>
-                                <a href="">Login Help </a>
-                                <a href="" className="float-right">Contact Us</a>
+                              {/*   <a href="">Login Help </a> */}
+                                <Link to="/contact-us" className="float-right">Contact Us</Link>{/* <a href="" className="float-right">Contact Us</a> */}
                             </p>
                         </div>
                     </div>

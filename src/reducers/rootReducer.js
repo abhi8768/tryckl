@@ -24,6 +24,7 @@ import mylisting             from './listing/mylisting';
 import listingstorage        from './listing/listingstorage';
 import listingcreate         from './listing/listingcreate';
 import listingdetail         from './listing/listingdetail';
+import contactus             from './contactus/contactus';
 
 import { USER_LOGGED_OUT } from '../actions/constants';
 
@@ -50,7 +51,8 @@ const allReducers = {
   mylisting,
   listingstorage,
   listingcreate,
-  listingdetail
+  listingdetail,
+  contactus
 };
 
 const appReducer = combineReducers(allReducers);

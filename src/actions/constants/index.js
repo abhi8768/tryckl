@@ -21,3 +21,4 @@ export const REGISTRATION_VERIFICATION      = 'REGISTRATION_VERIFICATION';
 export const RESEND_OTP                     = 'RESEND_OTP';
 export const LISTING_STORAGE                = 'LISTING_STORAGE';
 export const DETAIL_LISTING                 = 'DETAIL_LISTING';
+export const CONTACT_US             = 'CONTACT_US';
