@@ -1,9 +1,9 @@
 import React from 'react';
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete'; 
-import Geocode from "react-geocode";
+
 
 export default function Component (props){
-   
+  
     const [value, setValue] = React.useState(null);
     let address = ''; 
     const setValue2 = (add) =>{
@@ -18,7 +18,7 @@ export default function Component (props){
             selectProps={{
                 address,
                 onChange: setValue2,
-                placeholder: 'Choose Your Address',
+                placeholder: sessionStorage.getItem('createlisting') ? JSON.parse(sessionStorage.getItem('createlisting')).full_address : 'Choose a location',
                 
             }}
             />

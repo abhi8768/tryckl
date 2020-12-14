@@ -40,11 +40,7 @@ class ListingCreate extends Component {
         date_display   : storage_createlisting.date_display,
         time_backend   : storage_createlisting.time_backend,
         time_display   : storage_createlisting.time_display,
-        zoom           : 11,
-        center         : {
-          lat          :  50.00,
-          lng          :  70.00
-        }
+       
       }
     }else{
      
@@ -59,11 +55,11 @@ class ListingCreate extends Component {
         client_name    : '',
         client_number  : '',
         offer_amount   : '',
-        full_address   : '20 Barik Para Road, Behala, Kolkata 700034',
-        lat            : '22.5726',
-        lng            : '88.3639',
-        city           : 'Kolkata',
-        zipcode        : '700034',
+        full_address   : '',
+        lat            : '',
+        lng            : '',
+        city           : '',
+        zipcode        : '',
         center         : null,
         date_backend   : moment(new Date()).format('MM/DD/YYYY'),
         date_display   : moment(new Date()).format('DD/MM/YYYY'),

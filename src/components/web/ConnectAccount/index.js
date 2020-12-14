@@ -100,7 +100,7 @@ class ConnectAccount extends Component {
             
             <Modal open={this.state.open} onClose={this.onCloseModal} showCloseIcon={false} center id="payment-modal">
                 
-            <div className="modal-content">
+            {/* <div className="modal-content">
       
                 <div className="modal-body">
                   <h4 className="text-center">Connect To Your Stripe Account</h4>
@@ -111,9 +111,21 @@ class ConnectAccount extends Component {
                     <button id="submit2" onClick={this.onSkip}>Skip</button>
                               
               </div>
-                </div>
+                </div> */}
+                <div className="modal-body text-center">
+                    <h4>CONNECT ACCOUNT</h4>
+                    <div className="pop-mid-sec">
+                        <img src="/assets/img/stripe.png" className="img-fluid" />
+                    </div>
+                  
+                    <div className="ver-frm-wrapper">
+                        <button id="submit">CONNECT TO STRIPE</button>
+                        <p className="skip"><a href={void(0)} id="submit2" onClick={this.onSkip}>SKIP</a> FOR NOW</p>
+                                
+                    </div>
+                  </div>
               
-              </div>
+                
             </Modal>
           
         );

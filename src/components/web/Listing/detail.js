@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import Chip from '@material-ui/core/Chip';
 import {ToastsStore} from 'react-toasts';
 import moment from 'moment';
-import GoogleMapReact from 'google-map-react';
+import { withGoogleMap, GoogleMap, Marker  } from 'react-google-maps';
 
 import { encrypt , decrypt , getParams } from "../../../helpers/CryptoJs";
 import { requestDetaillisting, listinginLocalStorage } from "../../../actions/web/listingAction";
@@ -47,6 +47,14 @@ class ListingDetail extends Component {
     let detail   = this.state.detail || {};
     let mls      = this.state.detail.mlsdetails || [];
     let keyword  = this.state.detail.keyword || [];
+    const GoogleMapExample =withGoogleMap((props) =>
+      <GoogleMap
+        defaultZoom={15}
+        defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
+      >
+        {props.isMarkerShown && <Marker position={{ lat: this.state.lat, lng: this.state.lng }} />}
+      </GoogleMap>
+    );
 
     return (
         <div className="row">
@@ -85,17 +93,11 @@ class ListingDetail extends Component {
                 {
                   (detail.property_latitude != '') ? 
                   <div style={{ height: '100%', width: '100%' }}>
-                    <GoogleMapReact
-                      bootstrapURLKeys={{ key: 'AIzaSyDkaV_9E9-b0FjMwak5UFwI0T1JtMrd_to' }}
-                      defaultCenter={this.state.center}
-                      defaultZoom={this.state.zoom}
-                    >
-                      <AnyReactComponent
-                        lat={this.state.lat}
-                        lng={this.state.lng}
-                        text="My Marker"
-                      />
-                    </GoogleMapReact>
+                    <GoogleMapExample 
+                      isMarkerShown
+                      containerElement={<div style={{ height: `400px` }} />}
+                      mapElement={<div style={{ height: `100%` }} />}
+                    /> 
                   </div>
                   : null
                 }

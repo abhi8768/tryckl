@@ -5,14 +5,13 @@ import { withRouter } from "react-router-dom";
 import Chip from '@material-ui/core/Chip';
 import {ToastsStore} from 'react-toasts';
 import moment from 'moment';
-import GoogleMapReact from 'google-map-react';
-import Modal from "react-responsive-modal";
+import { withGoogleMap, GoogleMap, Marker  } from 'react-google-maps';
+
 
 import { saveMylisting, listinginLocalStorage } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import  MyCardPreview  from "./mycardpreview";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class ListingPreview extends Component {
   
@@ -40,12 +39,7 @@ class ListingPreview extends Component {
       date_display   : storage_createlisting.date_display,
       time_backend   : storage_createlisting.time_backend,
       time_display   : storage_createlisting.time_display,
-      zoom           : 11,
-      center         : {
-        lat          :  50.00,
-        lng          :  70.00
-      },
-      open           : false
+     
     }
     this.createlisting = this.createlisting.bind(this);
     this.backtocreate  = this.backtocreate.bind(this);
@@ -85,7 +79,24 @@ class ListingPreview extends Component {
   };
 
   render() {
-    
+   
+   /* const GoogleMapExample =withGoogleMap((props) =>
+    <GoogleMap
+      defaultZoom={15}
+      defaultCenter={{ lat: 22.498140, lng: 88.310837 }}
+    >
+      {props.isMarkerShown && <Marker position={{ lat: 22.498140, lng: 88.310837 }} />}
+    </GoogleMap>
+  ); */
+  const GoogleMapExample =withGoogleMap((props) =>
+    <GoogleMap
+      defaultZoom={15}
+      defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
+    >
+      {props.isMarkerShown && <Marker position={{ lat: this.state.lat, lng: this.state.lng }} />}
+    </GoogleMap>
+  );
+
     return (
         <div className="row">
              <MyCardPreview />
@@ -122,18 +133,12 @@ class ListingPreview extends Component {
               {/* <img src="img/map.png" className="img-fluid position-absulute mt-3" /> */}
                 {
                   (this.state.lat != '') ? 
-                  <div style={{ height: '100%', width: '100%' }}>
-                    <GoogleMapReact
-                      bootstrapURLKeys={{ key: 'AIzaSyDkaV_9E9-b0FjMwak5UFwI0T1JtMrd_to' }}
-                      defaultCenter={this.state.center}
-                      defaultZoom={this.state.zoom}
-                    >
-                      <AnyReactComponent
-                        lat={this.state.lat}
-                        lng={this.state.lng}
-                        text="My Marker"
-                      />
-                    </GoogleMapReact>
+                  <div>
+                    <GoogleMapExample 
+                      isMarkerShown
+                      containerElement={<div style={{ height: `400px` }} />}
+                      mapElement={<div style={{ height: `100%` }} />}
+                    /> 
                   </div>
                   : null
                 }

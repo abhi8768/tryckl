@@ -856,7 +856,7 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
       .right-posi{ position: absolute; right: 10px; top: 24px; }
       
       .position-absulute{ position: absolute; left: 0 }
-      .custom-height{ height: 160px; overflow: hidden }
+      .custom-height{ height: 400px; overflow: hidden }
       .sv-btn{border-radius: 5px;
           border: 1px solid #00ffff;
           background: #00ffff;
@@ -987,7 +987,13 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
   background: #666 !important;
 }
 .styles_modal__gNwvD .modal-content{ background: #666;border: none; text-align: center;}
-.styles_modal__gNwvD .modal-content h4{ font-size: 18px; color: #fff; font-family: 'Conv_GothamBook'; text-transform: uppercase; font-weight: normal; margin-bottom: 30px;}
+.styles_modal__gNwvD h4{ font-size: 18px; color: #fff; font-family: 'Conv_GothamBook'; text-transform: uppercase; font-weight: normal; margin-bottom: 30px;}
 .styles_modal__gNwvD .modal-content h3{ font-size: 22px; color: #fff; font-family: 'Conv_GothamMedium';  margin-top: 30px;}
+
+
+.styles_modal__gNwvD .pop-mid-sec{ padding: 100px 0 }
+.styles_modal__gNwvD .skip{ font-size: 18px; text-transform: uppercase; color: #fff;font-family: 'Conv_GothamBook'; }
+.styles_modal__gNwvD .skip a{ color: #00ffff }
+.styles_modal__gNwvD .skip a:hover{text-decoration: none;}
   
 
