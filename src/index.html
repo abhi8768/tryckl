@@ -46,10 +46,10 @@
 
 	<script>
 		let userDetails    = localStorage.getItem('userDetails');
-		console.log(userDetails);
+	
 		let userDetailsobj = JSON.parse(userDetails);
 		if(userDetailsobj.brokers_id !== undefined){
-			console.log(userDetails);
+			
 			$.ajax({ 
 				method: 'POST', 
 				url: 'https://api.tryckl.com/api/v1/auth/authenticate', 

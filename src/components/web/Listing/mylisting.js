@@ -36,11 +36,12 @@ class MyListing extends Component {
     this.props.requestMylisting({flag : type} );
   }
   linktocreate(){
-    //console.log(this.props.currentUserDetails.user.brokers_id,this.state.conneected_account);
+   
     if((this.state.conneected_account != '') && (this.state.conneected_account != null)){
       this.props.listinginLocalStorage('createlisting');
       this.props.history.push(`create-listing`);
     }else{
+      sessionStorage.setItem('connectfromlisting','1');
       this.props.history.push(`/connect-account`);
     }
   }

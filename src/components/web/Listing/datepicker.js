@@ -10,18 +10,21 @@ import {
 
 export default function MaterialUIPickers(props) {
   // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
  
+  let [selectedDate, setSelectedDate] = React.useState(new Date());
+  if(sessionStorage.getItem('createlisting')){
+      [selectedDate, setSelectedDate] = React.useState(JSON.parse(sessionStorage.getItem('createlisting')).date_display);
+  }
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    console.log(date);
     props.setDate(date);
   };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Grid container justify="space-around">
-        <KeyboardDatePicker
+        <KeyboardDatePicker 
+          disablePast
           disableToolbar
           variant="inline"
           format="dd/MM/yyyy"

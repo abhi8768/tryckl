@@ -17,7 +17,8 @@ class ConnectAccount extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            open : true
+            open         : true,
+           
         }
         this.onOpenModal  = this.onOpenModal.bind(this);
         this.onCloseModal = this.onCloseModal.bind(this);
@@ -25,13 +26,18 @@ class ConnectAccount extends Component {
             
     }
     onOpenModal() {
-        this.setState({open: true});
+      this.setState({open: true});
     };
     onCloseModal() {
-    this.setState({ open : false  });
+      this.setState({ open : false  });
     };
-    onSkip(){
-      this.props.history.push(`/dashboard`);
+
+    onSkip(type){
+      if(type == 'BACK'){
+        this.props.history.push(`/my-listing`);
+      }else{
+        this.props.history.push(`/dashboard`);
+      }
     }
 
     componentDidMount(){
@@ -54,9 +60,9 @@ class ConnectAccount extends Component {
                   "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
-                brokers_id : userDetails.brokers_id,
-                request_from : 'web_signup'
-              })
+                  brokers_id : userDetails.brokers_id,
+                  request_from : (sessionStorage.getItem('connectfromlisting') == '1') ? 'web_listing' : 'web_signup'
+                })
               })
                 .then(response => response.json())
                 .then(data => { 
@@ -100,18 +106,7 @@ class ConnectAccount extends Component {
             
             <Modal open={this.state.open} onClose={this.onCloseModal} showCloseIcon={false} center id="payment-modal">
                 
-            {/* <div className="modal-content">
-      
-                <div className="modal-body">
-                  <h4 className="text-center">Connect To Your Stripe Account</h4>
-                <img src="/assets/img/stripe.png" className="img-fluid" style={{width : '500px'}}/>
-                <h3 className="text-center">Signup Successfully</h3>
-                <div className="ver-frm-wrapper">
-                    <button id="submit">Connect</button>
-                    <button id="submit2" onClick={this.onSkip}>Skip</button>
-                              
-              </div>
-                </div> */}
+            
                 <div className="modal-body text-center">
                     <h4>CONNECT ACCOUNT</h4>
                     <div className="pop-mid-sec">
@@ -120,7 +115,13 @@ class ConnectAccount extends Component {
                   
                     <div className="ver-frm-wrapper">
                         <button id="submit">CONNECT TO STRIPE</button>
-                        <p className="skip"><a href={void(0)} id="submit2" onClick={this.onSkip}>SKIP</a> FOR NOW</p>
+                        {
+                          (sessionStorage.getItem('connectfromlisting') == '1')  ? 
+                          <p className="skip"><a href={void(0)} id="submit2" onClick={() => this.onSkip('BACK')}>BACK</a> FOR NOW</p> :
+                          <p className="skip"><a href={void(0)} id="submit2" onClick={() => this.onSkip('SKIP')}>SKIP</a> FOR NOW</p> 
+
+                        }
+                        
                                 
                     </div>
                   </div>

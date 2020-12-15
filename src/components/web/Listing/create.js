@@ -249,7 +249,7 @@ class ListingCreate extends Component {
                                 return(
                                   <div className="row" key={indexx}>
                                     <div className="col-lg-6"> 
-                                        <select name="mlsid" id={`selectmls_${indexx}`} className="custom-select2" onChange={()=>this.handleMls('select',indexx)}>
+                                        <select name="mlsid" id={`selectmls_${indexx}`} className="custom-select2" onChange={()=>this.handleMls('select',indexx)} value={mlssingle.mls_id}>
                                             <option value="">Select</option>
                                             { 
                                               (this.state.mls).map((item,index) => {
@@ -262,7 +262,7 @@ class ListingCreate extends Component {
                                         </select>
                                     </div>
                                     <div className="col-lg-6">
-                                        <input type="url" name="mlslink" id={`linkmls_${indexx}`} placeholder="Enter MLS Link" onChange={()=>this.handleMls('link',indexx)}/>
+                                        <input type="url" name="mlslink" id={`linkmls_${indexx}`} placeholder="Enter MLS Link" onChange={()=>this.handleMls('link',indexx)} value={mlssingle.mls_link}/>
                                     </div>
                                   </div>
                                 )

@@ -992,7 +992,7 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
 
 
 .styles_modal__gNwvD .pop-mid-sec{ padding: 100px 0 }
-.styles_modal__gNwvD .skip{ font-size: 18px; text-transform: uppercase; color: #fff;font-family: 'Conv_GothamBook'; }
+.styles_modal__gNwvD .skip{ font-size: 18px; text-transform: uppercase; color: #fff;font-family: 'Conv_GothamBook'; cursor: pointer;}
 .styles_modal__gNwvD .skip a{ color: #00ffff }
 .styles_modal__gNwvD .skip a:hover{text-decoration: none;}
   
