@@ -62,9 +62,9 @@ class ListingCreate extends Component {
         zipcode        : '',
         center         : null,
         date_backend   : moment(new Date()).format('MM/DD/YYYY'),
-        date_display   : moment(new Date()).format('DD/MM/YYYY'),
+        date_display   : new Date(),
         time_backend   : moment(new Date().getTime()).format("HH:mm:ss"),
-        time_display   : moment(new Date().getTime()).format("HH:mm:ss")
+        time_display   : new Date().getTime()
       }
     }
     
@@ -114,6 +114,7 @@ class ListingCreate extends Component {
   }
   setTime(value){
     var dt = moment(value, ["h:mm A"]).format("HH:mm:ss");
+    console.log(this.state.time_display,value);
     this.setState({
       time_backend : dt,
       time_display : value
@@ -157,9 +158,14 @@ class ListingCreate extends Component {
   handleSubmit(e){
     e.preventDefault(); 
     //console.log(this.state);
-    sessionStorage.setItem('createlisting', JSON.stringify(this.state));
-    this.props.listinginLocalStorage('previewlisting');
-    this.props.history.push(`preview-listing`);
+    if(this.state.offer_amount >= 50 ){
+      sessionStorage.setItem('createlisting', JSON.stringify(this.state));
+      this.props.listinginLocalStorage('previewlisting');
+      this.props.history.push(`preview-listing`);
+    }else{
+      ToastsStore.error('Amount cannot be less than 50');
+    }
+   
    
   }
   handleEnter(e){

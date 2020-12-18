@@ -48,10 +48,14 @@ class MyListing extends Component {
   
   UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
     //console.log(nextProps.profiledetail);
-    this.setState({
+    //console.log('nextProps.mylisting.list',nextProps.mylisting.list);
+    if(nextProps.mylisting.list){
+      this.setState({
         myListing    : nextProps.mylisting.list,
         opendropdown : ""
-    })
+      })
+    }
+    
     if(nextProps.profiledetail){
       //console.log(nextProps.profiledetail.payment_onboard_acc_id);
       if((nextProps.profiledetail.payment_onboard_acc_id != '') || (nextProps.profiledetail.payment_onboard_acc_id != null)){
@@ -76,7 +80,7 @@ class MyListing extends Component {
   }
 
   render() {
-     
+    console.log('this.state.myListing',this.state.myListing); 
     return (
         <div className="row">
             <div className="col-lg-3">
@@ -110,7 +114,7 @@ class MyListing extends Component {
                     </h2>
                 </div>
                 {
-                    this.state.myListing.length > 0 ? 
+                    (this.state.myListing).length > 0 ? 
                       (this.state.myListing).map((item,index) => {
                         let letterImage = item.accepted_by_name.charAt(0);
                         return(

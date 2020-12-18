@@ -5,14 +5,14 @@ import { withRouter } from "react-router-dom";
 import Chip from '@material-ui/core/Chip';
 import {ToastsStore} from 'react-toasts';
 import moment from 'moment';
-import { withGoogleMap, GoogleMap, Marker  } from 'react-google-maps';
+import { withScriptjs, withGoogleMap,GoogleMap, Marker  } from 'react-google-maps';
 
 import { encrypt , decrypt , getParams } from "../../../helpers/CryptoJs";
 import { requestDetaillisting, listinginLocalStorage } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import  MyCardPreview  from "./mycardpreview";
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+
 
 class ListingDetail extends Component {
   
@@ -43,19 +43,26 @@ class ListingDetail extends Component {
 
 
   render() {
-    console.log(this.state);
+   
     let detail   = this.state.detail || {};
+   
     let mls      = this.state.detail.mlsdetails || [];
     let keyword  = this.state.detail.keyword || [];
-    const GoogleMapExample =withGoogleMap((props) =>
+    let MapWithAMarker;
+   
+    if(detail.property_latitude !== undefined){
+     MapWithAMarker = withScriptjs(withGoogleMap(props =>
       <GoogleMap
         defaultZoom={15}
-        defaultCenter={{ lat: this.state.lat, lng: this.state.lng }}
+        defaultCenter={{ lat: Number(detail.property_latitude), lng: Number(detail.property_longitude) }}
       >
-        {props.isMarkerShown && <Marker position={{ lat: this.state.lat, lng: this.state.lng }} />}
+        <Marker
+          position={{ lat: Number(detail.property_latitude), lng: Number(detail.property_longitude) }}
+        />
       </GoogleMap>
-    );
-
+    ));
+    }
+    
     return (
         <div className="row">
              <MyCardPreview />
@@ -91,14 +98,13 @@ class ListingDetail extends Component {
              
               {/* <img src="img/map.png" className="img-fluid position-absulute mt-3" /> */}
                 {
-                  (detail.property_latitude != '') ? 
-                  <div style={{ height: '100%', width: '100%' }}>
-                    <GoogleMapExample 
-                      isMarkerShown
-                      containerElement={<div style={{ height: `400px` }} />}
-                      mapElement={<div style={{ height: `100%` }} />}
-                    /> 
-                  </div>
+                  (detail.property_latitude !== undefined) ? 
+                  <MapWithAMarker 
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkaV_9E9-b0FjMwak5UFwI0T1JtMrd_to&v=3.exp&libraries=geometry,drawing,places"
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div style={{ height: `400px` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                  />
                   : null
                 }
                 

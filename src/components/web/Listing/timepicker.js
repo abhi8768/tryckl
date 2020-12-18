@@ -12,12 +12,11 @@ export default function MaterialUIPickers(props) {
   // The first commit of Material-UI
   let [selectedDate, setSelectedDate] = React.useState(new Date().getTime());
   if(sessionStorage.getItem('createlisting')){
-   
      [selectedDate, setSelectedDate] = React.useState(JSON.parse(sessionStorage.getItem('createlisting')).time_display);
   }
   const handleDateChange = (date) => {
     props.setTime(date)
-    setSelectedDate(date);
+  
   };
 
   return (

@@ -46,10 +46,10 @@ export const getAuthHeader = () => {
 export const removeSessionData = () => {
     sessionStorage.removeItem('jwtToken');
     sessionStorage.removeItem('userDetails');
+    sessionStorage.removeItem("createlisting");
     sessionStorage.clear();
     localStorage.removeItem('userDetails');
     localStorage.removeItem('jwtToken');
-    localStorage.removeItem('userLanguage');
     localStorage.clear();
     location.href = '/';
 }

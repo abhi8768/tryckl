@@ -22,6 +22,7 @@ class Menu extends Component {
   }
 
   logoutReq(){
+   
     this.props.logoutRequest({user_id : this.props.currentUserDetails.brokers_id});
   }
 

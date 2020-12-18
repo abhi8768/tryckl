@@ -56,10 +56,11 @@ class ListingPreview extends Component {
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
      if(nextProps.newlist){
         sessionStorage.removeItem("createlisting");
+        
        // this.onOpenModal();
-       /*  ToastsStore.success('Listing created successfully');
+        ToastsStore.success('Listing created successfully');
         this.props.listinginLocalStorage('mylisting');
-        this.props.history.push(`my-listing`); */
+        this.props.history.push(`my-listing`);
      }
   }
   

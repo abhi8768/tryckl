@@ -218,15 +218,29 @@ class Dashboard extends Component {
 						</div>
 							<div className="col-lg-3">
 								<div className="content-part-wrapper">
-									<h2 className="mid-heading">my listing <a href="">View All</a></h2>
+									
+									<h2 className="mid-heading">my listing <Link to="/my-listing">View All</Link></h2>
 									{ 
 										  (list).map((item2,index) => {
 											return (
 												<div className="content-part-wrapper dark-part" key={`mylist${index}`}>
-													<h2 className="card-amount">$ {item2.offer_amount}</h2>
-													<p className="ohters-color">Due in 24 days</p>
+													{
+														(item2.listing_status == 'OVERDUE') ?
+															<img src="/assets/img/error.png" className="right-posi" />
+														
+														: null
+													}	
+													<h2 className="card-amount">$ {item2.offer_amount} 
+														
+													</h2>
+													{
+														(item2.listing_status != 'OVERDUE') ? 
+														<p className="ohters-color">Due in {item2.due_day} days</p> : null
+													}
 													<p className="ohters-color2">{item2.date}</p>
-													<p className="ohters-color2">{item2.time}</p>
+													<p className="ohters-color2">{item2.time}
+													
+													</p>
 												</div>
 											)  
 										  })

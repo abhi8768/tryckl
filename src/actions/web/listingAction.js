@@ -38,6 +38,7 @@ import { handleResponse , loader } from '../utils';
   };
 
   export const requestMylisting = (params) => {
+
     const param = JSON.stringify({
       flag : params.flag
     });
@@ -61,6 +62,7 @@ import { handleResponse , loader } from '../utils';
   };
 
   export const detaillisting = (detaillisting) => {
+    
     return {
       type: DETAIL_LISTING,
       detaillisting,
@@ -68,6 +70,7 @@ import { handleResponse , loader } from '../utils';
   };
 
   export const requestDetaillisting = (params) => {
+    loader(true);
     const param = JSON.stringify({
       listing_id : params.listing_id
     });
@@ -82,6 +85,7 @@ import { handleResponse , loader } from '../utils';
       postReq(`${apiURLPrefix}/listing/details`, param , headers)
       .then(handleResponse)
       .then((res) => {
+         loader(false);
           dispatch(detaillisting(res));
       }).catch((err)=>{
         console.log(err)
@@ -99,7 +103,7 @@ import { handleResponse , loader } from '../utils';
   };
 
   export const saveMylisting = (param) => {
-  
+    loader(true);
     let formData = new FormData();
     formData.append("keyword",JSON.stringify(param.keyword));
     formData.append("type", param.type);
@@ -128,6 +132,7 @@ import { handleResponse , loader } from '../utils';
       postReq(`${apiURLPrefix}/listing/create`, formData , headers)
       .then(handleResponse)
       .then((res) => {
+          loader(false);
           dispatch(savelisting(res));
       }).catch((err)=>{
         console.log(err)
