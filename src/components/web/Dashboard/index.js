@@ -222,6 +222,29 @@ class Dashboard extends Component {
 									<h2 className="mid-heading">my listing <Link to="/my-listing">View All</Link></h2>
 									{ 
 										  (list).map((item2,index) => {
+											
+											let due_status = '';
+											if(item2.due_day != ''){
+											  if(item2.due_day != "0"){
+												due_status = `Due in ${item2.due_day} days`;
+											  }else{
+												due_status = `Due today`;
+											  }
+											}else{
+											  if(item2.listing_status == "ACCEPTED"){
+												due_status = `IN PROGRESS`;
+											  }else if(item2.listing_status == "COMPLETED"){
+												if(item2.payment_status == "0"){
+												  due_status = `IN REVIEW`;
+												}else{
+												  due_status = `COMPLETED`;
+												}
+											  }else if(item2.listing_status == "OVERDUE"){
+												due_status = `OVERDUE`;
+											  }else{
+							
+											  }
+											}
 											return (
 												<div className="content-part-wrapper dark-part" key={`mylist${index}`}>
 													{
@@ -233,10 +256,8 @@ class Dashboard extends Component {
 													<h2 className="card-amount">$ {item2.offer_amount} 
 														
 													</h2>
-													{
-														(item2.listing_status != 'OVERDUE') ? 
-														<p className="ohters-color">Due in {item2.due_day} days</p> : null
-													}
+													<p className="ohters-color">{due_status}</p>
+													
 													<p className="ohters-color2">{item2.date}</p>
 													<p className="ohters-color2">{item2.time}
 													

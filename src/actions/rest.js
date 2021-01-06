@@ -3,9 +3,6 @@ const CONFIG = {
     'Accept':'application/json',
     'Content-Type':'application/json',
     'Cache-Control' : 'no-cache',
-    'Authorization' : `Basic ${btoa('baaldahab_api' + ':' + 'Baaldahab2O!8')}`,
-    'language' : 'en',
-    'Authentication' : `Bearer `
 };
 
 const checkUserStatus = () => {

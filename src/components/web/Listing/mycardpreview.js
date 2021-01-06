@@ -44,6 +44,28 @@ class MyCardPreview extends Component {
            
             <h2 className="mid-heading">my listing</h2> :
             { (mycardPreview).map((item,index) => {
+                let due_status = '';
+                if(item.due_day != ''){
+                  if(item.due_day != "0"){
+                    due_status = `Due in ${item.due_day} days`;
+                  }else{
+                    due_status = `Due today`;
+                  }
+                }else{
+                  if(item.listing_status == "ACCEPTED"){
+                    due_status = `IN PROGRESS`;
+                  }else if(item.listing_status == "COMPLETED"){
+                    if(item.payment_status == "0"){
+                      due_status = `IN REVIEW`;
+                    }else{
+                      due_status = `COMPLETED`;
+                    }
+                  }else if(item.listing_status == "OVERDUE"){
+                    due_status = `OVERDUE`;
+                  }else{
+
+                  }
+                }
               return(
                 (index < 3) ?
                 
@@ -53,11 +75,8 @@ class MyCardPreview extends Component {
                         : null
                       }
                       <h2 className="card-amount">$ {item.offer_amount}</h2>
-                      {(item.due_day != "") ? 
-                        <p className="ohters-color">Due in {item.due_day} days</p>
-                        : null
-                      }
-                      <p className="ohters-color2">{item.date}</p>
+                       <p className="ohters-color">{due_status}</p>
+                       <p className="ohters-color2">{item.date}</p>
                       <p className="ohters-color2">{item.time}</p>
                   </div>
                 

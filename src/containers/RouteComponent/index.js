@@ -33,6 +33,11 @@ class RouteComponent extends Component {
           <PublicRoute exact={true} path="/payment-policy" title="Payment Policy" component={routes.StaticPages}/>
           <PublicRoute exact={true} path="/privacy-policy" title="Privacy Policy" component={routes.StaticPages}/>
           <PublicRoute exact={true} path="/terms-n-condition" title="Terms And Condition" component={routes.StaticPages}/>
+
+          <PrivateRoute exact={true} path="/aboutus" title="About Us" component={routes.StaticPages}/>
+          <PrivateRoute exact={true} path="/paymentpolicy" title="Payment Policy" component={routes.StaticPages}/>
+          <PrivateRoute exact={true} path="/privacypolicy" title="Privacy Policy" component={routes.StaticPages}/>
+          <PrivateRoute exact={true} path="/termsncondition" title="Terms And Condition" component={routes.StaticPages}/>
           
           
           

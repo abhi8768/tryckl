@@ -67,14 +67,14 @@ class HeaderStatic extends Component {
 		  </ul>
 	
 	
-		   <ul className="navbar-nav flex-row custom-nav">
+{/* 		   <ul className="navbar-nav flex-row custom-nav">
 			<li className="nav-item hyperlink">
 			  <a href="/login" title="" data-toggle="collapse">
 				<div> <em className="icon-power"></em><span data-localize="sidebar.nav.DASHBOARD">Login</span></div>
 				</a>
 			</li>
 	
-		  </ul>
+		  </ul> */}
 		 
 		  <form className="navbar-form" role="search" action="http://themicon.co/theme/angle/v4.7.5/static-html/app/search.html">
 			<div className="form-group">

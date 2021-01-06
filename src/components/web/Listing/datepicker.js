@@ -31,7 +31,7 @@ export default function MaterialUIPickers(props) {
           margin="normal"
           id="date-picker-inline"
           label=""
-          minDate={props.defaultVal}
+         
           value={selectedDate}
           onChange={handleDateChange}
           KeyboardButtonProps={{

@@ -268,7 +268,7 @@ class ListingCreate extends Component {
                                         </select>
                                     </div>
                                     <div className="col-lg-6">
-                                        <input type="url" name="mlslink" id={`linkmls_${indexx}`} placeholder="Enter MLS Link" onChange={()=>this.handleMls('link',indexx)} value={mlssingle.mls_link}/>
+                                        <input type="text" name="mlslink" id={`linkmls_${indexx}`} placeholder="Enter MLS Link" onChange={()=>this.handleMls('link',indexx)} value={mlssingle.mls_link}/>
                                     </div>
                                   </div>
                                 )

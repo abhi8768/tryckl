@@ -45,6 +45,7 @@ class ListingPreview extends Component {
     this.backtocreate  = this.backtocreate.bind(this);
     this.onOpenModal   = this.onOpenModal.bind(this);
     this.onCloseModal  = this.onCloseModal.bind(this);
+    this.validURL      = this.validURL.bind(this);
    
   }
  
@@ -78,6 +79,14 @@ class ListingPreview extends Component {
     
     this.setState({ open : false});
   };
+
+  validURL(str) {
+    if(str.includes("http://") || str.includes("https://")){
+      return str;
+    }else {
+      return `https://${str}`;
+    }
+  }
 
   render() {
    
@@ -149,9 +158,10 @@ class ListingPreview extends Component {
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">MLS</p>
                { (this.state.mlsdetail).map((sinsle_mls,index) => {
+                      let rs = this.validURL(sinsle_mls.mls_link);
                       return (
                         <p key={`mls${index}`} className="ohters-color2 mt-3">{sinsle_mls.mls_text} 
-                        <span className="float-right"> <a target="_blank" href={sinsle_mls.mls_link}><img src="/assets/img/www-img.png" /></a></span></p>
+                        <span className="float-right"> <a target="_blank" href={rs}><img src="/assets/img/www-img.png" /></a></span></p>
                        
                       )
                   })

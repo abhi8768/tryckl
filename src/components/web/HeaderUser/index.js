@@ -85,18 +85,20 @@ class HeaderUser extends Component {
   
 					{/* <span className="badge badge-danger custom-badge2">!</span> */}
 				  </li>
-				  <li className="nav-item d-none d-md-block dropdown">
+				  {/* <li className="nav-item d-none d-md-block dropdown">
 					<a className="nav-link" href="lock.html" title="Lock screen">
 					   <em className="sp-box"></em>
-					   <span className="badge badge-danger custom-badge">22</span></a></li>
-				   <li className="nav-item d-none d-md-block dropdown"><a className="nav-link" href="#" data-search-open="" title="Lock screen">
-					<em className="sp-search"></em></a></li>
+					   <span className="badge badge-danger custom-badge">22</span></a>
+				  </li>
+				  <li className="nav-item d-none d-md-block dropdown"><a className="nav-link" href="#" data-search-open="" title="Lock screen">
+					<em className="sp-search"></em></a>
+				  </li> */}
 			  </ul>
 			  <ul className="navbar-nav flex-row custom-nav">
 				  <li className="nav-item"> 
 					  <div className="top-p-pic-name">
 					   <p className="top-name">{this.state.name}</p>
-					   <p className="top-under">$ 19.75</p>
+					   {/* <p className="top-under">$ 19.75</p> */}
 					  </div>
 				  </li>
 				

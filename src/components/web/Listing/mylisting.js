@@ -117,6 +117,29 @@ class MyListing extends Component {
                     (this.state.myListing).length > 0 ? 
                       (this.state.myListing).map((item,index) => {
                         let letterImage = item.accepted_by_name.charAt(0);
+                        let due_status = '';
+                        if(item.due_day != ''){
+                          if(item.due_day != "0"){
+                            due_status = `Due in ${item.due_day} days`;
+                          }else{
+                            due_status = `Due today`;
+                          }
+                        }else{
+                          if(item.listing_status == "ACCEPTED"){
+                            due_status = `IN PROGRESS`;
+                          }else if(item.listing_status == "COMPLETED"){
+                            if(item.payment_status == "0"){
+                              due_status = `IN REVIEW`;
+                            }else{
+                              due_status = `COMPLETED`;
+                            }
+                          }else if(item.listing_status == "OVERDUE"){
+                            due_status = `OVERDUE`;
+                          }else{
+
+                          }
+                        }
+                        
                         return(
                             <div className="content-part-wrapper profile-content-part-wrapper list-pre" key={`row${index}`} onClick={()=>this.gotoDetail(item.listing_id)}>
                             <div className="content-part-wrapper dark-part position-relative mylist-adjust">
@@ -128,12 +151,8 @@ class MyListing extends Component {
                                     </div>
                                     <div className="col-sm-4 text-right">
                                         <h2 className="card-amount">$ {item.offer_amount}</h2>
-                                        {
-                                            (item.due_day != '') ?
-                                            <p className="ohters-color3">Due in {item.due_day} days</p>
-                                            : <p className="ohters-color3">Due day over</p>
-                                        }
-                                        
+                                        <p className="ohters-color3">{due_status}</p>
+                                                                               
                                     </div>
                                 </div>
                                 <div className="row d-flex align-items-center">

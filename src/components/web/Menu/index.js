@@ -11,14 +11,20 @@ class Menu extends Component {
     super(props);
    
     this.state = {
+      collapse : 'collapse'
     }
     this.logoutReq = this.logoutReq.bind(this);
+    this.openChildMenu = this.openChildMenu.bind(this);
    	
   }
  
   componentDidMount () { 
-   
-   
+  }
+
+  openChildMenu(){
+    this.setState({
+      collapse : (this.state.collapse == 'collapse')  ? '' : 'collapse'
+    })
   }
 
   logoutReq(){
@@ -51,33 +57,34 @@ class Menu extends Component {
             </Link>
          {/*  </a> */}
         </li>
-         <li className="" ><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+        {/* <li className="" ><a href="#dashboard" title="Dashboard" data-toggle="collapse">
            <em className="age"></em><span data-localize="sidebar.nav.DASHBOARD">Agents & Groups</span>
          </a>
-        </li>
-         <li className=""><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+        </li> */}
+       {/*  <li className=""><a href="#dashboard" title="Dashboard" data-toggle="collapse">
            <em className="try"></em><span data-localize="sidebar.nav.DASHBOARD">Trycklitics</span>
          </a>
-        </li>
-        <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+        </li> */}
+       {/*  <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
            <em className="set"></em><span data-localize="sidebar.nav.DASHBOARD">Settings</span>
          </a>
-        </li>
-        <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+        </li> */}
+       {/*  <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
            <em className="cont"></em><span data-localize="sidebar.nav.DASHBOARD">Contact Us</span>
          </a>
-        </li>
-          <li className=" "><a href="#dashboard" title="Dashboard" data-toggle="collapse">
+        </li> */}
+          <li className=" "><a href={void(0)} title="Dashboard" data-toggle="collapse" onClick={this.openChildMenu}>
             <em className="com"></em><span data-localize="sidebar.nav.DASHBOARD">Company</span>
              <em className="icon-arrow-down not-show" style={{position: 'absolute', right: '10px', top: '18px'}}></em>
            
             </a>
-            <ul className="sidebar-nav sidebar-subnav collapse" id="dashboard">
+            <ul className={`sidebar-nav sidebar-subnav ${this.state.collapse}`} id="dashboard">
              <li className="sidebar-subnav-header">Dashboard</li>
-             <li className=" "><a href="dashboard.html" title="Dashboard v1"><em className="ter"></em><span className="adj">Terms & Conditions</span></a></li>
-             <li className=" "><a href="dashboard_v2.html" title="Dashboard v2"><em className="pol"></em><span className="adj">Privacy Policy</span></a></li>
-             <li className=""><a href="dashboard_v3.html" title="Dashboard v3"><em className="pay"></em><span className="adj">Payment Policy</span></a></li>
-             <li className=""><a href="dashboard_v3.html" title="Dashboard v3"><em className="abt"></em><span className="adj">About Us</span></a></li>
+             <li className=" "><a href="/aboutus" title="Dashboard v1"><em className="abt"></em><span className="adj">About US</span></a></li>
+             <li className=" "><a href="termsncondition" title="Dashboard v1"><em className="ter"></em><span className="adj">Terms & Conditions</span></a></li>
+             <li className=" "><a href="privacypolicy" title="Dashboard v2"><em className="pol"></em><span className="adj">Privacy Policy</span></a></li>
+             <li className=""><a href="/paymentpolicy" title="Dashboard v3"><em className="pay"></em><span className="adj">Payment Policy</span></a></li>
+            
             </ul>
          </li>
          <li className="hide-shik">

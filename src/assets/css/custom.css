@@ -430,7 +430,8 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
     .topnavbar .navbar-header .brand-logo{ padding: 10px !important; }
     .topnavbar .navbar-nav>.nav-item.show>.nav-link:focus, .topnavbar .navbar-nav>.nav-item.show>.nav-link:hover, .topnavbar .navbar-nav>.nav-item>.nav-link:focus, .topnavbar .navbar-nav>.nav-item>.nav-link:hover{color:#00ffff !important;}
     .sidebar-subnav{ background-color: #666666 }
-    .sidebar-nav>li:last-child{ margin-top: 100px;}
+    .sidebar-nav>li:last-child{ /* margin-top: 100px; */}
+    .sick-hide{ margin-top: 100px !important; }
     .sidebar-nav>li:last-child div{ background-color: #00ffff; padding:10px 20px; color: #000 !important; border-radius: 20px; text-align: center }
     .sidebar-nav>li:last-child div span{ margin-left: 10px; }
 
@@ -454,7 +455,7 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
 .top-name{font-family: 'Conv_GothamMedium'; font-size: 18px;}
 .top-under{font-family: 'Conv_GothamBook'; font-size: 14px;}
 
-.top-p-pic-name{ text-align: right; margin-right: 15px; }
+.top-p-pic-name{ text-align: right; margin-right: 15px; margin-top : 10px; }
 
 .sidebar-nav>li.active{    border-left-color: #00ffff;}
 .position-custom li.active a{ border-bottom: 2px solid #00ffff }
