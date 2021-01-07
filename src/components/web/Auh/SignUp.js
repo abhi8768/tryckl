@@ -29,7 +29,11 @@ class SignUp extends Component {
             brokerage        : '',
             latitude         : '',
             longitude        : '',
+            age              : 0,
+            licensed_agent   : 0,
+            authorized_in_usa: 0,
             terms_n_condition: 0,
+            terms_stripe     : 0,
             inactive_btn     : true,
             brokers_id       : this.props.brokers_id,
         }
@@ -202,7 +206,72 @@ class SignUp extends Component {
                     this.activeSubmitBtn();
                 });
             } 
+        }else if(e.target.name == 'age'){
+            if(this.state.age===1)
+            {
+                this.setState({
+                    [e.target.name]: 0,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            }   
+            else{
+                this.setState({
+                    [e.target.name]: 1,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            } 
+        }else if(e.target.name == 'licensed_agent'){
+            if(this.state.licensed_agent===1)
+            {
+                this.setState({
+                    [e.target.name]: 0,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            }   
+            else{
+                this.setState({
+                    [e.target.name]: 1,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            } 
+        }else if(e.target.name == 'authorized_in_usa'){
+            if(this.state.authorized_in_usa===1)
+            {
+                this.setState({
+                    [e.target.name]: 0,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            }   
+            else{
+                this.setState({
+                    [e.target.name]: 1,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            } 
+        }else if(e.target.name == 'terms_stripe'){
+            if(this.state.terms_stripe===1)
+            {
+                this.setState({
+                    [e.target.name]: 0,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            }   
+            else{
+                this.setState({
+                    [e.target.name]: 1,
+                },function(){
+                    this.activeSubmitBtn();
+                });
+            } 
         }else{
+            
             this.setState({
                 [e.target.name]: e.target.value,
             },function(){
@@ -224,7 +293,11 @@ class SignUp extends Component {
             && (this.state.license_number != '')
             && (this.state.license_state != '')
             && (this.state.brokerage != '')
-            && (this.state.terms_n_condition != 0)){
+            && (this.state.terms_n_condition != 0)
+            && (this.state.age != 0)
+            && (this.state.licensed_agent != 0)
+            && (this.state.authorized_in_usa != 0)
+            && (this.state.terms_stripe != 0)){
                 //console.log('HEllo');
                 this.setState({
                     inactive_btn : false
@@ -244,7 +317,7 @@ class SignUp extends Component {
                 <form onSubmit={this.onSubmit}>
                     <h1>Create Account</h1>
                                       
-                    <Scrollbars style={{ height: "65vh" }}
+                    <Scrollbars style={{ height: "52vh" }}
                         autoHide
                         autoHideTimeout={1000}
                         autoHideDuration={200} 
@@ -303,13 +376,36 @@ class SignUp extends Component {
                                 }
                             </select>
 
-                            
-                            <label className="container-check float-left" style={{marginBottom:'5px'}}><span>i accept the terms and conditions</span>
-                                <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} 
-                                 checked={(this.state.terms_n_condition==1)?'checked':''}  />
-                                 {/* checked={(this.state.terms_n_condition==1)?'checked':''} */}
+
+                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>I am 18 years of age or older</span>
+                                <input type="checkbox" name="age" id="age" onChange={this.handleChange} 
+                                 checked={(this.state.age==1)?'checked':''}  />
+                                 <span className="checkmark"></span>
+                            </label>
+
+                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>I am an active licensed real estate agent</span>
+                                <input type="checkbox" name="licensed_agent" id="licensed_agent" onChange={this.handleChange} 
+                                 checked={(this.state.licensed_agent==1)?'checked':''}  />
+                                 <span className="checkmark"></span>
+                            </label>
+
+                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>I am authorized to work in the United States</span>
+                                <input type="checkbox" name="authorized_in_usa" id="authorized_in_usa" onChange={this.handleChange} 
+                                 checked={(this.state.authorized_in_usa==1)?'checked':''}  />
                                 <span className="checkmark"></span>
                             </label>
+
+                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>i agreed to the Tryckl, LLC  terms and conditions</span>
+                                <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} 
+                                 checked={(this.state.terms_n_condition==1)?'checked':''}  />
+                                 <span className="checkmark"></span>
+                            </label>
+                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>i agreed to the Stripe Terms of Service</span>
+                                <input type="checkbox" name="terms_stripe" id="terms_stripe" onChange={this.handleChange} 
+                                 checked={(this.state.terms_stripe==1)?'checked':''}  />
+                                 <span className="checkmark"></span>
+                            </label>
+
                         </div>
                     </Scrollbars>
                     <div className="frm-wrapper">

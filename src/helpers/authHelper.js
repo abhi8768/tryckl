@@ -1,5 +1,5 @@
 import ipify from 'ipify2';
-import authenticationBasicKey from '../../config/auth.config';
+/* import authenticationBasicKey from '../../config/auth.config'; */
 import { getlanguage } from "./changelanguage";
 
 export const getJWTToken = () => {
@@ -27,10 +27,10 @@ export const getPublicIP = () => {
     return (public_ip !== null ? public_ip : null)
 }
 
-export const getAuthKey = () => {
+/* export const getAuthKey = () => {
    
     return (btoa(authenticationBasicKey.user + ':' + authenticationBasicKey.password));
-}
+} */
 
 export const getAuthHeader = () => {
     

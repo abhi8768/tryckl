@@ -18,16 +18,16 @@ cryptoKey = {
     production: 
         {
           type : 'HMAC-SHA512',
-          message : 'Baaldahab@2019ProdNov#1!!!',
-          password : 'wellcometobaaldahab',
+          message : 'Tryckl2021@JAN#1!!!',
+          password : 'wellcometotryckl',
           hex : '88983dda21cefad60e6b08a358bbcf0c4fe324f12d565723318e60b7db2151c93a167be0a3f5e7c10a9225e5d86a72fe661922a8451b24daa6684ed5b252b4c7',
           Base64: 'iJg92iHO+tYOawijWLvPDE/jJPEtVlcjMY5gt9shUck6Fnvgo/XnwQqSJeXYanL+ZhkiqEUbJNqmaE7VslK0xw=='
         }
     ,
     development: {
         type : 'HMAC-SHA512',
-        message : 'Baaldahab@2019DevNov#1!!!',
-        password : 'wellcometobaaldahab',
+        message : 'Tryckl2021@JAN#1!!!',
+        password : 'wellcometotryckl',
         hex : 'a93c4ee98403ba75508137624243e8b2c17cd171125c2fa7a6cab98937542e96a1dac85a2925a64542effa4c410874859757b79049f60d1ef9ba352ea98d37c8',
         Base64: 'qTxO6YQDunVQgTdiQkPossF80XESXC+npsq5iTdULpah2shaKSWmRULv+kxBCHSFl1e3kEn2DR75ujUuqY03yA=='
       }
