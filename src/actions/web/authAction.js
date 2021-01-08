@@ -5,9 +5,14 @@ import { handleResponse , loader } from '../utils';
 
 
   export const loginUser = (user) => {
-    if(user.status == true){
+    if((user.status == true) && (user.response.status == '1')){
       setUserInSession(user.response);
       setJWTToken(user.response._jwtToken);
+    }
+    if((user.status == true) && (user.response.status == '0')){
+      localStorage.setItem('userNotverifiedDetails', JSON.stringify(user.response));
+      localStorage.setItem('userNotverified', '1');
+     
     }
     
     return {

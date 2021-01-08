@@ -97,8 +97,14 @@ class ListingCreate extends Component {
     })
   }
   
-  handleDelete(){
-
+  handleDelete(index){
+    let key = this.state.keyword;
+      
+      key.splice(index, 1);
+      this.setState({
+        keyword: key
+      });
+         
   }
 
   handleChange(e) {
@@ -114,7 +120,7 @@ class ListingCreate extends Component {
   }
   setTime(value){
     var dt = moment(value, ["h:mm A"]).format("HH:mm:ss");
-    console.log(this.state.time_display,value);
+    //console.log(this.state.time_display,value);
     this.setState({
       time_backend : dt,
       time_display : value
@@ -240,7 +246,7 @@ class ListingCreate extends Component {
                             <div className="sec-chip">
                                 { (this.state.keyword).map((sinsle_keyword,index) => {
                                     return (
-                                        <Chip label={sinsle_keyword} className="chips" onDelete={this.handleDelete} key={index}/>
+                                        <Chip label={sinsle_keyword} className="chips" onDelete={()=>this.handleDelete(index)} key={index}/>
                                     )
                                   })
                                 }

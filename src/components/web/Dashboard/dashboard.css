@@ -1,0 +1,7 @@
+.a_tag{
+width: 185px;
+/* word-wrap: break-word; */
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+}

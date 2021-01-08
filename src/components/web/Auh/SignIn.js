@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom';
 
 import { createLoginRequest } from "../../../actions/web/authAction";
 import { setPublicIP } from "../../../helpers/authHelper";
+import $$ from 'jquery';
 
 class SignIn extends Component {
 
@@ -29,9 +30,19 @@ class SignIn extends Component {
     
     UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
         if(nextProps.currentUserDetails.status == true){
-           // 
-           ToastsStore.success(nextProps.currentUserDetails.message);
-           this.props.history.push(`/dashboard`);
+          if(nextProps.currentUserDetails.user.status == 1){
+            ToastsStore.success(nextProps.currentUserDetails.message);
+            this.props.history.push(`/dashboard`);
+          }else{
+            this.setState({
+              user_id     : '',
+              password    : '',
+            });
+            ToastsStore.error('Your Account is not verified');
+            //this.props.history.push(`/`);
+            //$$("#container").addClass('right-panel-active');
+            this.props.updateuserNotverified();
+          }
         }else{
             
             ToastsStore.error(nextProps.currentUserDetails.message);
@@ -76,18 +87,16 @@ class SignIn extends Component {
         );
     }
 }
- const mapStateToProps = state => {
-	return {
-	  currentUserDetails  : state.login,
-	 
-	}
+  const mapStateToProps = state => {
+    return {
+      currentUserDetails  : state.login,
+    }
   }
   
   const mapDispatchToProps = dispatch => {
-	return {
-	  createLoginRequest       : bindActionCreators(createLoginRequest , dispatch),
-	  
-	}
+    return {
+      createLoginRequest  : bindActionCreators(createLoginRequest , dispatch),
+    }
   }
 export default withRouter(connect(
     mapStateToProps,

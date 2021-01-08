@@ -10,6 +10,8 @@ import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
 import { dashboardRequest } from "../../../actions/web/dashboardAction";
 import $$ from 'jquery';
+import "./dashboard.css";
+
 
 
 class Dashboard extends Component {
@@ -99,7 +101,7 @@ class Dashboard extends Component {
 												{profile.street_name},
 												{profile.city},
 												<a href="">{profile.phone}</a>
-												<a href="">{profile.email}</a>
+												<a href="" className="a_tag">{profile.email}</a>
 												{profile.license_issuing_state_code} Lic. #{profile.license_no}
 											</p>
 

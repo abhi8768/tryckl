@@ -36,6 +36,7 @@ class SignUp extends Component {
             terms_stripe     : 0,
             inactive_btn     : true,
             brokers_id       : this.props.brokers_id,
+            userNotverified  : this.props.userNotverified
         }
         this.onSubmit       = this.onSubmit.bind(this);
         this.handleChange   = this.handleChange.bind(this);
@@ -43,19 +44,23 @@ class SignUp extends Component {
     }
 
     componentDidMount(){
-        
-        this.setState({
-            first_name       : (localStorage.getItem('first_name')===null || localStorage.getItem('first_name')=== undefined)?'':localStorage.getItem('first_name'),
-            last_name        : (localStorage.getItem('last_name')===null || localStorage.getItem('last_name')=== undefined)?'':localStorage.getItem('last_name'),
-            user_id          : (localStorage.getItem('mobile_no')===null || localStorage.getItem('mobile_no')=== undefined)?'':localStorage.getItem('mobile_no'),
-            email            : (localStorage.getItem('email_id')===null || localStorage.getItem('email_id')=== undefined)?'':localStorage.getItem('email_id'),
-            license_number   : (localStorage.getItem('license_number')===null || localStorage.getItem('license_number')=== undefined)?'':localStorage.getItem('license_number'),
-            license_number_id: (localStorage.getItem('license_number_id')===null || localStorage.getItem('license_number_id')=== undefined)?'':localStorage.getItem('license_number_id'),
-            license_state    : (localStorage.getItem('license_issuing_state_id')===null || localStorage.getItem('license_issuing_state_id')=== undefined)?'':localStorage.getItem('license_issuing_state_id'),
-            brokerage        : (localStorage.getItem('brokerage_id')===null || localStorage.getItem('brokerage_id')=== undefined)?'':localStorage.getItem('brokerage_id'),
-            terms_n_condition: (localStorage.getItem('terms_n_condition')===null || localStorage.getItem('terms_n_condition')=== undefined)?'':localStorage.getItem('terms_n_condition'),
+            this.setState({
+                first_name       : (localStorage.getItem('first_name')===null || localStorage.getItem('first_name')=== undefined)?'':localStorage.getItem('first_name'),
+                last_name        : (localStorage.getItem('last_name')===null || localStorage.getItem('last_name')=== undefined)?'':localStorage.getItem('last_name'),
+                user_id          : (localStorage.getItem('mobile_no')===null || localStorage.getItem('mobile_no')=== undefined)?'':localStorage.getItem('mobile_no'),
+                email            : (localStorage.getItem('email_id')===null || localStorage.getItem('email_id')=== undefined)?'':localStorage.getItem('email_id'),
+                license_number   : (localStorage.getItem('license_number')===null || localStorage.getItem('license_number')=== undefined)?'':localStorage.getItem('license_number'),
+                license_number_id: (localStorage.getItem('license_number_id')===null || localStorage.getItem('license_number_id')=== undefined)?'':localStorage.getItem('license_number_id'),
+                license_state    : (localStorage.getItem('license_issuing_state_id')===null || localStorage.getItem('license_issuing_state_id')=== undefined)?'':localStorage.getItem('license_issuing_state_id'),
+                brokerage        : (localStorage.getItem('brokerage_id')===null || localStorage.getItem('brokerage_id')=== undefined)?'':localStorage.getItem('brokerage_id'),
+                age              : (localStorage.getItem('age')===null || localStorage.getItem('age')=== undefined)? 0 :localStorage.getItem('age'),
+                licensed_agent   : (localStorage.getItem('licensed_agent')===null || localStorage.getItem('licensed_agent')=== undefined)? 0 :localStorage.getItem('licensed_agent'),
+                authorized_in_usa: (localStorage.getItem('authorized_in_usa')===null || localStorage.getItem('authorized_in_usa')=== undefined)? 0 :localStorage.getItem('authorized_in_usa'),
+                terms_n_condition: (localStorage.getItem('terms_n_condition')===null || localStorage.getItem('terms_n_condition')=== undefined)? 0 :localStorage.getItem('terms_n_condition'),
+                terms_stripe     : (localStorage.getItem('terms_stripe')===null || localStorage.getItem('terms_stripe')=== undefined)? 0 :localStorage.getItem('terms_stripe'),
 
-        });
+            });
+        
 
         let param1 = {
             type               : 'STATE',
@@ -73,7 +78,27 @@ class SignUp extends Component {
     }
     
     UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
-        //console.log('@@ ',nextProps.registeruserdata.status);
+        if(localStorage.getItem('userNotverified') == '1'){
+            let userNotverifiedDetails = JSON.parse(localStorage.getItem('userNotverifiedDetails'));
+            //console.log(userNotverifiedDetails);
+            this.setState({
+                first_name       : userNotverifiedDetails.first_name,
+                last_name        : userNotverifiedDetails.last_name,
+                user_id          : userNotverifiedDetails.phone,
+                email            : userNotverifiedDetails.email,
+                license_number   : userNotverifiedDetails.license_no,
+                license_number_id: userNotverifiedDetails.license_number_id,
+                license_state    : userNotverifiedDetails.license_issue_stateid,
+                brokerage        : userNotverifiedDetails.brokerage_id,
+                age              : 1,
+                licensed_agent   : 1,
+                authorized_in_usa: 1,
+                terms_n_condition: 1,
+                terms_stripe     : 1,
+                brokers_id       : userNotverifiedDetails.brokers_id
+
+            });
+        }
         if(nextProps.masterlicensedata != this.props.masterlicensedata && nextProps.masterlicensedata.status == false){
             ToastsStore.error(nextProps.masterlicensedata.message);
             this.setState({
@@ -126,7 +151,7 @@ class SignUp extends Component {
             longitude                 : crd.longitude,
             brokers_id                : this.state.brokers_id
         }
-        console.log(param);
+       // console.log(param);
         localStorage.setItem('first_name', this.state.first_name);
         localStorage.setItem('last_name', this.state.last_name);
         localStorage.setItem('mobile_no', this.state.user_id);
@@ -135,8 +160,14 @@ class SignUp extends Component {
         localStorage.setItem('license_number_id', this.state.license_number_id);
         localStorage.setItem('license_issuing_state_id', this.state.license_state);
         localStorage.setItem('brokerage_id', this.state.brokerage);
+        localStorage.setItem('age', this.state.age);
+        localStorage.setItem('licensed_agent', this.state.licensed_agent);
+        localStorage.setItem('authorized_in_usa', this.state.authorized_in_usa);
         localStorage.setItem('terms_n_condition', this.state.terms_n_condition);
+        localStorage.setItem('terms_stripe', this.state.terms_stripe);
 
+        localStorage.removeItem('userNotverifiedDetails');
+        localStorage.removeItem('userNotverified');
         this.props.createAccountRequest(param);
     }
       
@@ -145,8 +176,6 @@ class SignUp extends Component {
         ToastsStore.error('Please allow your browser geolocation. ');
     }
       
-      
-
     onSubmit(e){
         e.preventDefault();
        // this.success();
@@ -312,6 +341,7 @@ class SignUp extends Component {
     }
 
     render() {
+        //console.log('@@4444 ');
         return (
             <div className="form-container sign-up-container reg-frm">
                 <form onSubmit={this.onSubmit}>

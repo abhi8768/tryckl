@@ -49,7 +49,7 @@ class ForgetPassword extends Component {
 		<div className="wrapper">
 				<ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_RIGHT} lightBackground />
 				<div className="text-center marigin-needed">
-					<a href="#">
+					<a href={void(0)}>
 						<img className="block-center rounded" src="assets/img/login-logo.png" alt="Image" />
 					</a>
 					<p>WELCOME to TRYCKL</p>
