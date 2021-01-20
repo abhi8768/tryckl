@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
+/* import ReactStars from "react-rating-stars-component"; */
 import StarRatings from 'react-star-ratings';
 
 
