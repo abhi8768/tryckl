@@ -29,17 +29,17 @@ class RouteComponent extends Component {
           <PrivateRoute exact={true} path="/connect-account" title="Connect Account" component={routes.ConnectAccount}/>
 
 
-          <PublicRoute exact={true} path="/about-us" title="About Us" component={routes.StaticPages}/>
-          <PublicRoute exact={true} path="/payment-policy" title="Payment Policy" component={routes.StaticPages}/>
-          <PublicRoute exact={true} path="/privacy-policy" title="Privacy Policy" component={routes.StaticPages}/>
-          <PublicRoute exact={true} path="/terms-n-condition" title="Terms And Condition" component={routes.StaticPages}/>
+          <PrivateRoute exact={true} path="/about-us" title="About Us" component={routes.StaticPages}/>
+          <PrivateRoute exact={true} path="/payment-policy" title="Payment Policy" component={routes.StaticPages}/>
+          <PrivateRoute exact={true} path="/privacy-policy" title="Privacy Policy" component={routes.StaticPages}/>
+          <PrivateRoute exact={true} path="/terms-n-condition" title="Terms And Condition" component={routes.StaticPages}/>
 
-          <PrivateRoute exact={true} path="/aboutus" title="About Us" component={routes.StaticPages}/>
+         {/*  <PrivateRoute exact={true} path="/aboutus" title="About Us" component={routes.StaticPages}/>
           <PrivateRoute exact={true} path="/paymentpolicy" title="Payment Policy" component={routes.StaticPages}/>
           <PrivateRoute exact={true} path="/privacypolicy" title="Privacy Policy" component={routes.StaticPages}/>
           <PrivateRoute exact={true} path="/termsncondition" title="Terms And Condition" component={routes.StaticPages}/>
           
-          
+           */}
           
           <PublicRoute exact={true} path={pathList.resetpassword.path} title={pageTitles.resetpassword} component={routes.ResetPassword}/>
           {/* <PublicRoute exact={true} path="/admin" title="admin - login" component={routes.AdminLogin}/> */}

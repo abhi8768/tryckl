@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {withRouter} from "react-router-dom";
 import {ToastsContainer, ToastsStore, ToastsContainerPosition} from 'react-toasts';
+import { listinginLocalStorage } from "../../../actions/web/listingAction";
 
 import './HeaderUser.css';
 import iconPath from "../../../helpers/iconHelper";
@@ -18,7 +19,8 @@ class HeaderUser extends Component {
 	  user_image : '',
 	  name		 : ''
 	};
-	this.menuCollanse = this.menuCollanse.bind(this);
+	this.menuCollanse    = this.menuCollanse.bind(this);
+	this.linktomylisting = this.linktomylisting.bind(this);
   }
 	componentDidMount(){
 		
@@ -43,6 +45,13 @@ class HeaderUser extends Component {
 			$$('body').addClass("aside-collapsed");
 		}
 	}
+	linktomylisting(){
+   
+	
+		  this.props.listinginLocalStorage('mylisting');
+		  this.props.history.push(`my-listing`);
+		
+	  }
 	
   render() {
     let letterImage = this.state.name.charAt(0);
@@ -54,10 +63,10 @@ class HeaderUser extends Component {
 			  <div className="navbar-header">
           		<Link className="navbar-brand" to="/dashboard">
 					<div className="brand-logo">
-						<img className="img-fluid" src="assets/img/logo2.png" alt="App Logo" />
+						<img className="img-fluid" src="/assets/img/logo2.png" alt="App Logo2" />
 					</div>
 					<div className="brand-logo-collapsed">
-						<img className="img-fluid" src="assets/img/logo-single.png" alt="App Logo" />
+						<img className="img-fluid" src="/assets/img/logo-single.png" alt="App Logo" />
 					</div>
 				</Link>
          	 </div>
@@ -65,10 +74,10 @@ class HeaderUser extends Component {
 			  <ul className="navbar-nav mr-auto flex-row position-custom">
 				 <li className="nav-item no-border">
 				   <a className="nav-link d-none d-md-block d-lg-block d-xl-block" href={void(0)} onClick={this.menuCollanse} data-trigger-resize="" data-toggle-state="aside-collapsed">
-					   <em className="" ><img className="img-fluid sand" src="assets/img/nav-nenu-ico.png" /></em></a>
+					   <em className="" ><img className="img-fluid sand" src="/assets/img/nav-nenu-ico.png" /></em></a>
   
 					   <a className="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
-					   <em className=""><img className="img-fluid" src="assets/img/nav-nenu-ico.png" /></em>
+					   <em className=""><img className="img-fluid" src="/assets/img/nav-nenu-ico.png" /></em>
 					</a>
 				 </li>
 				 <li className="nav-item d-none d-md-block dropdown" id="home-header-icon">
@@ -79,9 +88,9 @@ class HeaderUser extends Component {
 					</Link>
 				</li>
 				 <li className="nav-item d-none d-md-block dropdown" id="listing-header-icon">
-				 	<Link to="/my-listing" className="nav-link" id="user-block-toggle" href="#user-block" data-toggle="collapse">
+				 	<a onClick={this.linktomylisting} className="nav-link" id="user-block-toggle" href={void(0)} data-toggle="collapse">
 						 <em className="sp-flag"></em>
-					</Link>
+					</a>
   
 					{/* <span className="badge badge-danger custom-badge2">!</span> */}
 				  </li>
@@ -137,7 +146,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-   
+    listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
 
   }
 }

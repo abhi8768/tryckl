@@ -6,7 +6,7 @@ import ReactStars from "react-rating-stars-component";
 
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
-import { currentActiveView } from "../../../actions/web/listingAction";
+import { changeView } from "../../../actions/web/listingAction";
 
 import $$ from 'jquery';
 import ListingCreate from "./create";
@@ -57,25 +57,25 @@ class Listing extends Component {
   }
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-    console.log(nextProps.changeview);
+    console.log(nextProps.nowchangeview);
     this.setState({
-      currentview : nextProps.changeview
+      currentview : nextProps.nowchangeview
     })
     if(nextProps.changeview == 'mylisting'){
       this.setState({
         currentviewcomp : <MyListing />
       })
-    }else if(nextProps.changeview == 'previewlisting'){
+    }else if(nextProps.nowchangeview == 'previewlisting'){
       this.setState({
         currentviewcomp : <ListingPreview />
       })
 
-    }else if(nextProps.changeview == 'createlisting'){
+    }else if(nextProps.nowchangeview == 'createlisting'){
       this.setState({
         currentviewcomp : <ListingCreate />
       })
 
-    }else if(nextProps.changeview == 'detaillisting'){
+    }else if(nextProps.nowchangeview == 'detaillisting'){
       this.setState({
         currentviewcomp : <DetailListing />
       })
@@ -113,14 +113,14 @@ class Listing extends Component {
 
 const mapStateToProps = state => {
   return {
-    changeview          : state.listingactiveview.activelistingview,
+    nowchangeview       : state.listingactiveview.activelistingview,
     currentUserDetails  : state.login.user,
 	}
 }
   
 const mapDispatchToProps = dispatch => {
 	return {
-    currentActiveView : bindActionCreators(currentActiveView , dispatch),
+    changeView : bindActionCreators(changeView , dispatch),
     
 	}
 }

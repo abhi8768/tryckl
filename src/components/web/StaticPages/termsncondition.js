@@ -1,12 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { withRouter } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
-
-import { currentActiveView } from "../../../actions/web/listingAction";
-
-import $$ from 'jquery';
 
 
 
@@ -211,22 +205,6 @@ class TermsNCondition extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    changeview          : state.listingactiveview.activelistingview,
-    currentUserDetails  : state.login.user,
-	}
-}
-  
-const mapDispatchToProps = dispatch => {
-	return {
-    currentActiveView : bindActionCreators(currentActiveView , dispatch),
-    
-	}
-}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TermsNCondition);
+export default (TermsNCondition);
 

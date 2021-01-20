@@ -23,7 +23,6 @@ import { handleResponse , loader } from '../utils';
     }; 
   };
   export const listinginLocalStorage = (params) => {
-
     return (dispatch,getState) => {
        // dispatch(liststorage(params));
         dispatch(currentActiveView(params));

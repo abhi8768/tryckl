@@ -80,10 +80,10 @@ class Menu extends Component {
             </a>
             <ul className={`sidebar-nav sidebar-subnav ${this.state.collapse}`} id="dashboard">
              <li className="sidebar-subnav-header">Dashboard</li>
-             <li className=" "><a href="/aboutus" title="Dashboard v1"><em className="abt"></em><span className="adj">About US</span></a></li>
-             <li className=" "><a href="termsncondition" title="Dashboard v1"><em className="ter"></em><span className="adj">Terms & Conditions</span></a></li>
-             <li className=" "><a href="privacypolicy" title="Dashboard v2"><em className="pol"></em><span className="adj">Privacy Policy</span></a></li>
-             <li className=""><a href="/paymentpolicy" title="Dashboard v3"><em className="pay"></em><span className="adj">Payment Policy</span></a></li>
+             <li className=" "><a href="/about-us" title="Dashboard v1"><em className="abt"></em><span className="adj">About US</span></a></li>
+             <li className=" "><a href="terms-n-condition" title="Dashboard v1"><em className="ter"></em><span className="adj">Terms & Conditions</span></a></li>
+             <li className=" "><a href="privacy-policy" title="Dashboard v2"><em className="pol"></em><span className="adj">Privacy Policy</span></a></li>
+             <li className=""><a href="/payment-policy" title="Dashboard v3"><em className="pay"></em><span className="adj">Payment Policy</span></a></li>
             
             </ul>
          </li>

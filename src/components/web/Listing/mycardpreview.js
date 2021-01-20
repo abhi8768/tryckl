@@ -26,7 +26,7 @@ class MyCardPreview extends Component {
 
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-   
+     
   }
   
 
@@ -34,12 +34,13 @@ class MyCardPreview extends Component {
   
   render() {
   
-    let mycardPreview = this.props.mylisting.list;
+    let mycardPreview = this.props.mylisting.list != undefined ? this.props.mylisting.list : [];
+    
     return (
       
         <div className="col-lg-3">
         {
-             ((mycardPreview).length > 0) ? 
+            ((mycardPreview).length > 0) ? 
                  <div className="content-part-wrapper">
            
             <h2 className="mid-heading">my listing</h2> :

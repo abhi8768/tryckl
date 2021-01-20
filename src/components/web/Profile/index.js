@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import StarRatings from 'react-star-ratings';
 
 
 import HeaderUser from '../HeaderUser';
@@ -64,7 +65,7 @@ class Profile extends Component {
 
   render() {
     let letterImage = this.state.name.charAt(0);
-  
+   
     return (
 		<div className="wrapper">
 			<HeaderUser />
@@ -109,13 +110,13 @@ class Profile extends Component {
                                             </div>
                                         </div>
                                     </div>
-               
+                                    
                                     <div className="content-part-wrapper text-center">
                                     <h2 className="mid-heading">RATING</h2>
-                                        <div style={{marginLeft: '50px'}}>  
-                                             
-                                              <ReactStars
-                                                value={this.state.rating}
+                                        <div style={{marginLeft: '15px'}}>  
+                                            
+                                             {/*  <ReactStars
+                                                value={rating}
                                                 size={20}
                                                 count= {5}
                                                 color= "#00FFFF"
@@ -126,6 +127,15 @@ class Profile extends Component {
                                                 emptyIcon = {<i className="far fa-star" />}
                                                 halfIcon= {<i className="fa fa-star-half-alt" />}
                                                 filledIcon= {<i className="fa fa-star" />}
+                                              /> */}
+                                              <StarRatings
+                                                rating={this.state.rating}
+                                                starRatedColor="#00FFFF"
+                                              /*   changeRating={this.changeRating} */
+                                                numberOfStars={5}
+                                                name='rating'
+                                                starDimension="20px"
+                                                starSpacing="2px"
                                               />
                                               
                                         </div>   

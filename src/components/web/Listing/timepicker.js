@@ -15,9 +15,11 @@ export default function MaterialUIPickers(props) {
      [selectedDate, setSelectedDate] = React.useState(JSON.parse(sessionStorage.getItem('createlisting')).time_display);
   }
   const handleDateChange = (date) => {
-    props.setTime(date)
+    props.setTime(date);
+    setSelectedDate(date);
   
   };
+ 
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>

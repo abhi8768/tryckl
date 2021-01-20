@@ -18,6 +18,7 @@ class MyListing extends Component {
       this.state = {
         myListing         : [],
         opendropdown      : "",
+        dropdownValue     : "Open",
         conneected_account: null
       }
       this.openDropdown     = this.openDropdown.bind(this);
@@ -33,6 +34,7 @@ class MyListing extends Component {
     this.props.getprofileDetails({brokers_is : this.props.currentUserDetails.user.brokers_id});
   }
   requestmylisting(type){
+    this.setState({dropdownValue : type == '' ? "OPEN" : type});
     this.props.requestMylisting({flag : type} );
   }
   linktocreate(){
@@ -80,7 +82,7 @@ class MyListing extends Component {
   }
 
   render() {
-    console.log('this.state.myListing',this.state.myListing); 
+   
     return (
         <div className="row">
             <div className="col-lg-3">
@@ -102,7 +104,7 @@ class MyListing extends Component {
 
                         <div className="dropdown show custom-drop">
                             <a className="btn btn-secondary dropdown-toggle" href={void(0)} role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.openDropdown}>
-                                <img className="" src="/assets/img/drop-icon.png" /> Open
+                                <img className="" src="/assets/img/drop-icon.png" /> {this.state.dropdownValue}
                             </a>
 
                             <div className={`dropdown-menu ${this.state.opendropdown}`} aria-labelledby="dropdownMenuLink">

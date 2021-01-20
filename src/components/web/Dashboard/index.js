@@ -100,8 +100,8 @@ class Dashboard extends Component {
 											<p className="user-address">{profile.brokerage_name}
 												{profile.street_name},
 												{profile.city},
-												<a href="">{profile.phone}</a>
-												<a href="" className="a_tag">{profile.email}</a>
+												<a href={`skype: ${profile.phone}`}>{profile.phone}</a>
+												<a href={`mailto: ${profile.email}`} className="a_tag">{profile.email}</a>
 												{profile.license_issuing_state_code} Lic. #{profile.license_no}
 											</p>
 
@@ -249,14 +249,14 @@ class Dashboard extends Component {
 											}
 											return (
 												<div className="content-part-wrapper dark-part" key={`mylist${index}`}>
+													
+													<h2 className="card-amount">$ {item2.offer_amount} 
 													{
 														(item2.listing_status == 'OVERDUE') ?
-															<img src="/assets/img/error.png" className="right-posi" />
+															<img src="/assets/img/error.png" className="right-position" />
 														
 														: null
 													}	
-													<h2 className="card-amount">$ {item2.offer_amount} 
-														
 													</h2>
 													<p className="ohters-color">{due_status}</p>
 													

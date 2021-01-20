@@ -62,8 +62,8 @@ class ProfileDetail extends Component {
                         <p>{this.state.details.brokerage_office_name}</p>
                         <p>{this.state.details.street_name}</p>
                         <p>{this.state.details.city}, {this.state.details.state_code} {this.state.details.zipcode}</p>
-                        <p><a href="">{this.state.details.phone}</a></p>
-                        <p><a href="">{this.state.details.email}</a></p>
+                        <p><a href={`skype: ${this.state.details.phone}`}>{this.state.details.phone}</a></p>
+                        <p><a href={`mailto: ${this.state.details.email}`}>{this.state.details.email}</a></p>
                         <p>{this.state.details.state_code} {this.state.details.license_no}</p>
                     </div>
                 </div>

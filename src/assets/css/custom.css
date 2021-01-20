@@ -855,6 +855,7 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
       }
       
       .right-posi{ position: absolute; right: 10px; top: 24px; }
+      .right-position{ margin-left: 80px;}
       
       .position-absulute{ position: absolute; left: 0 }
       .custom-height{ height: 400px; overflow: hidden }
@@ -996,5 +997,8 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
 .styles_modal__gNwvD .skip{ font-size: 18px; text-transform: uppercase; color: #fff;font-family: 'Conv_GothamBook'; cursor: pointer;}
 .styles_modal__gNwvD .skip a{ color: #00ffff }
 .styles_modal__gNwvD .skip a:hover{text-decoration: none;}
+.MuiIconButton-root:hover{
+  background-color: #00FFFF !important; 
+}
   
 
