@@ -10,6 +10,7 @@ import {encrypt} from "../../../helpers/CryptoJs";
 import HeaderUser from '../HeaderUser';
 import Menu from '../Menu';
 import { dashboardRequest } from "../../../actions/web/dashboardAction";
+import { listinginLocalStorage } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import "./dashboard.css";
 
@@ -25,6 +26,7 @@ class Dashboard extends Component {
 		listing	     : [],
 		rating       : 0
 	}
+	this.gotoDetail = this.gotoDetail.bind(this);
 
   }
  
@@ -43,7 +45,10 @@ class Dashboard extends Component {
 		})
 	}
   
- 
+	gotoDetail(listing_id){
+		this.props.listinginLocalStorage(`detaillisting/${listing_id}`);
+		this.props.history.push(`detail-listing/${encrypt(listing_id)}`);
+	}
 
    render() {
 	let profile = this.state.profilesec || {};
@@ -242,7 +247,7 @@ class Dashboard extends Component {
 											  }
 											}
 											return (
-												<div className="content-part-wrapper dark-part" key={`mylist${index}`}>
+												<div className="content-part-wrapper dark-part" key={`mylist${index}`} onClick={()=>this.gotoDetail(item2.listing_id)}>
 													
 													<h2 className="card-amount">$ {item2.offer_amount} 
 													{
@@ -311,13 +316,14 @@ const mapStateToProps = state => {
   
   const mapDispatchToProps = dispatch => {
 	return {
-		dashboardRequest : bindActionCreators(dashboardRequest , dispatch),
+		dashboardRequest      : bindActionCreators(dashboardRequest , dispatch),
+		listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
 	  
 	}
   }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Dashboard);
+)(Dashboard));
 

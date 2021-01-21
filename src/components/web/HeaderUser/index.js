@@ -49,7 +49,7 @@ class HeaderUser extends Component {
    
 	
 		  this.props.listinginLocalStorage('mylisting');
-		  this.props.history.push(`my-listing`);
+		  this.props.history.push(`/my-listing`);
 		
 	  }
 	

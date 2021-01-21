@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
-
+import {encrypt} from "../../../helpers/CryptoJs";
 
 //import { requestMylisting } from "../../../actions/web/listingAction";
+import { requestMylisting, listinginLocalStorage } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 
 
@@ -13,28 +14,44 @@ class MyCardPreview extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        mycardpreview  : []
+        mycardpreview  : [],
+        myListing      : []
     }
+    this.gotoDetail       = this.gotoDetail.bind(this);
+    this.requestmylisting = this.requestmylisting.bind(this);
    
   }
  
   componentDidMount(){ 
-    //console.log(this.props.mylisting.list);
+    this.requestmylisting("");
    
   }
   
 
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
+    if(nextProps.mylisting.list){
+      this.setState({
+        myListing    : nextProps.mylisting.list
+       
+      })
+    }
      
   }
-  
 
+  requestmylisting(type){
+    this.props.requestMylisting({flag : type} );
+  }
+  
+  gotoDetail(listing_id){
+    this.props.listinginLocalStorage(`detaillisting/${listing_id}`);
+    this.props.history.push(`/detail-listing/${encrypt(listing_id)}`);
+  }
 
   
   render() {
   
-    let mycardPreview = this.props.mylisting.list != undefined ? this.props.mylisting.list : [];
+    let mycardPreview = this.state.myListing;
     
     return (
       
@@ -70,7 +87,7 @@ class MyCardPreview extends Component {
               return(
                 (index < 3) ?
                 
-                  <div className="content-part-wrapper dark-part position-relative" key={`preview_${index}`}>
+                  <div className="content-part-wrapper dark-part position-relative" key={`preview_${index}`} onClick={()=>this.gotoDetail(item.listing_id)}>
                       {(item.due_day != "") ? 
                          <img src="/assets/img/error.png" className="right-posi" />
                         : null
@@ -104,13 +121,14 @@ const mapStateToProps = state => {
   
 const mapDispatchToProps = dispatch => {
 	return {
-      //  requestMylisting : bindActionCreators(requestMylisting , dispatch),
+    listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
+    requestMylisting      : bindActionCreators(requestMylisting , dispatch),
     
 	}
 }
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(MyCardPreview);
+)(MyCardPreview));
 

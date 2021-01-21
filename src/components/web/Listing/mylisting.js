@@ -74,7 +74,7 @@ class MyListing extends Component {
     })
   }
   gotoDetail(listing_id){
-    this.props.listinginLocalStorage('detaillisting');
+    this.props.listinginLocalStorage(`detaillisting/${listing_id}`);
     this.props.history.push(`detail-listing/${encrypt(listing_id)}`);
   }
   gotoProfile(brokers_id){

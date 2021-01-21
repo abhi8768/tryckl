@@ -57,7 +57,7 @@ class Listing extends Component {
   }
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-    console.log(nextProps.nowchangeview);
+    //console.log(nextProps.nowchangeview);
     this.setState({
       currentview : nextProps.nowchangeview
     })
@@ -75,7 +75,7 @@ class Listing extends Component {
         currentviewcomp : <ListingCreate />
       })
 
-    }else if(nextProps.nowchangeview == 'detaillisting'){
+    }else if(nextProps.nowchangeview.includes('detaillisting') == true){
       this.setState({
         currentviewcomp : <DetailListing />
       })

@@ -37,6 +37,16 @@ class ListingDetail extends Component {
           detail : nextProps.detail
        })
      }
+
+    if((nextProps.nowchangeview.includes('detaillisting') == true) && (nextProps.nowchangeview != this.props.nowchangeview)){
+      console.log(nextProps.nowchangeview,nextProps.nowchangeview.length);
+      let id = (nextProps.nowchangeview.substr(14, nextProps.nowchangeview.length - 14));
+      this.setState({
+        listingid : id 
+      }, function(){
+        this.props.requestDetaillisting({listing_id:this.state.listingid});
+      }) 
+    }
   }
   
   
@@ -185,7 +195,8 @@ const mapStateToProps = state => {
   return {
         changeview          : state.profileactiveview.activeview,
         currentUserDetails  : state.login.user,
-        detail              : state.listingdetail.detaillisting
+        detail              : state.listingdetail.detaillisting,
+        nowchangeview       : state.listingactiveview.activelistingview,
        
 	}
 }
