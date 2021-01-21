@@ -29,10 +29,10 @@ class RouteComponent extends Component {
           <PrivateRoute exact={true} path="/connect-account" title="Connect Account" component={routes.ConnectAccount}/>
 
 
-          <PrivateRoute exact={true} path="/about-us" title="About Us" component={routes.StaticPages}/>
-          <PrivateRoute exact={true} path="/payment-policy" title="Payment Policy" component={routes.StaticPages}/>
-          <PrivateRoute exact={true} path="/privacy-policy" title="Privacy Policy" component={routes.StaticPages}/>
-          <PrivateRoute exact={true} path="/terms-n-condition" title="Terms And Condition" component={routes.StaticPages}/>
+          <Route exact={true} path="/about-us" title="About Us" component={routes.StaticPages}/>
+          <Route exact={true} path="/payment-policy" title="Payment Policy" component={routes.StaticPages}/>
+          <Route exact={true} path="/privacy-policy" title="Privacy Policy" component={routes.StaticPages}/>
+          <Route exact={true} path="/terms-n-condition" title="Terms And Condition" component={routes.StaticPages}/>
 
          {/*  <PrivateRoute exact={true} path="/aboutus" title="About Us" component={routes.StaticPages}/>
           <PrivateRoute exact={true} path="/paymentpolicy" title="Payment Policy" component={routes.StaticPages}/>
