@@ -92,10 +92,11 @@ class MyCardPreview extends Component {
                          <img src="/assets/img/error.png" className="right-posi" />
                         : null
                       }
-                      <h2 className="card-amount">$ {item.offer_amount}</h2>
+                      <h2 className="card-amount">{item.type == 'Open House' ? 'leads' : `$ ${item.offer_amount}`}</h2>
                        <p className="ohters-color">{due_status}</p>
+                       <p className="ohters-color2">{item.type}</p>
                        <p className="ohters-color2">{item.date}</p>
-                      <p className="ohters-color2">{item.time}</p>
+                       <p className="ohters-color2">{item.time}</p>
                   </div>
                 
                 : null )

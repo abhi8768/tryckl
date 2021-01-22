@@ -425,12 +425,12 @@ class SignUp extends Component {
                                 <span className="checkmark"></span>
                             </label>
 
-                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>i agreed to the Tryckl, LLC  terms and conditions</span>
+                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>i agree to the Tryckl, LLC  <a href="/terms-n-condition" className="signup_link">terms and conditions</a></span>
                                 <input type="checkbox" name="terms_n_condition" id="terms_n_condition" onChange={this.handleChange} 
                                  checked={(this.state.terms_n_condition==1)?'checked':''}  />
                                  <span className="checkmark"></span>
                             </label>
-                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>i agreed to the Stripe Terms of Service</span>
+                            <label className="container-check float-left" style={{marginBottom:'30px'}}><span>i agree to the Stripe <a href="https://stripe.com/connect-account/legal" className="signup_link">Terms of Service</a></span>
                                 <input type="checkbox" name="terms_stripe" id="terms_stripe" onChange={this.handleChange} 
                                  checked={(this.state.terms_stripe==1)?'checked':''}  />
                                  <span className="checkmark"></span>

@@ -249,7 +249,7 @@ class Dashboard extends Component {
 											return (
 												<div className="content-part-wrapper dark-part" key={`mylist${index}`} onClick={()=>this.gotoDetail(item2.listing_id)}>
 													
-													<h2 className="card-amount">$ {item2.offer_amount} 
+													<h2 className="card-amount">{item2.type == 'Open House' ? 'leads' : `$ ${item2.offer_amount}`} 
 													{
 														(item2.listing_status == 'OVERDUE') ?
 															<img src="/assets/img/error.png" className="right-position" />
@@ -258,7 +258,7 @@ class Dashboard extends Component {
 													}	
 													</h2>
 													<p className="ohters-color">{due_status}</p>
-													
+													<p className="ohters-color2">{item2.type}</p>
 													<p className="ohters-color2">{item2.date}</p>
 													<p className="ohters-color2">{item2.time}
 													

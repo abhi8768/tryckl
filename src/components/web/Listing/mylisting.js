@@ -152,7 +152,7 @@ class MyListing extends Component {
                             
                                     </div>
                                     <div className="col-sm-4 text-right">
-                                        <h2 className="card-amount">$ {item.offer_amount}</h2>
+                                        <h2 className="card-amount">{item.type == 'Open House' ? 'leads' : `$ ${item.offer_amount}`}</h2>
                                         <p className="ohters-color3">{due_status}</p>
                                                                                
                                     </div>

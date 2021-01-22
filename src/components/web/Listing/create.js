@@ -166,8 +166,8 @@ class ListingCreate extends Component {
     
     if($$("#date-picker-inline-helper-text").html() != undefined){
       ToastsStore.error('Dateformat is not ok');
-    }else if(this.state.offer_amount <= 50 ){
-      ToastsStore.error('Amount cannot be less than 50');
+    }else if(this.state.offer_amount <= 10 ){
+      ToastsStore.error('Amount cannot be less than 10');
     
     }else{
        sessionStorage.setItem('createlisting', JSON.stringify(this.state));

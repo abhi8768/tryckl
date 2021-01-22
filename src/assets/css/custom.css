@@ -855,7 +855,7 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
       }
       
       .right-posi{ position: absolute; right: 10px; top: 24px; }
-      .right-position{ margin-left: 80px;}
+      .right-position{ margin-left: 72px;}
       
       .position-absulute{ position: absolute; left: 0 }
       .custom-height{ height: 400px; overflow: hidden }
@@ -1003,5 +1003,14 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
 .MuiInput-underline:after{
   border-bottom: none !important;
 }
+.signup_link{
+  color: #00CECE;
+  display: contents !important;
+}
+.signup_link:hover {
+  color: #00CECE;
+  text-decoration: underline;
+}
+
   
 
