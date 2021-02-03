@@ -1000,6 +1000,15 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
 .MuiIconButton-root:hover{
   background-color: #00FFFF !important; 
 }
+.switch-button .MuiIconButton-root:hover{
+  background-color: rgba(0, 0, 0, 0.08) !important;
+}
+.MuiSwitch-colorPrimary.Mui-checked {
+  color: #00FFFF !important; 
+}
+.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+  background-color: #00FFFF !important; 
+}
 .MuiInput-underline:after{
   border-bottom: none !important;
 }
@@ -1012,5 +1021,13 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
   text-decoration: underline;
 }
 
+.user-name a {
+  color : #000 !important
+}
+
+.user-name a:hover {
+  color : #000 !important;
+  text-decoration: none !important;
+}
   
 

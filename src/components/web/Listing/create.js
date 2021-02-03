@@ -13,6 +13,7 @@ import MAP from './map_autocomplete';
 import Datepicker from './datepicker';
 import Timepicker from './timepicker';
 import MyCardPreview from './mycardpreview';
+import CustomizedSwitches from "./switch";
 
 
 class ListingCreate extends Component {
@@ -22,25 +23,27 @@ class ListingCreate extends Component {
     if(sessionStorage.getItem('createlisting')){
       let storage_createlisting = JSON.parse(sessionStorage.getItem('createlisting'));
       this.state = {
-        keyword        : storage_createlisting.keyword,
-        mls            : storage_createlisting.mls,
-        mlsdetail      : storage_createlisting.mlsdetail,
-        type           : storage_createlisting.type, 
-        access_type    : storage_createlisting.access_type,
-        instruction    : storage_createlisting.instruction,
-        client_name    : storage_createlisting.client_name,
-        client_number  : storage_createlisting.client_number,
-        offer_amount   : storage_createlisting.offer_amount,
-        full_address   : storage_createlisting.full_address,
-        lat            : storage_createlisting.lat,
-        lng            : storage_createlisting.lng,
-        city           : storage_createlisting.city,
-        zipcode        : storage_createlisting.zipcode,
-        date_backend   : storage_createlisting.date_backend,
-        date_display   : storage_createlisting.date_display,
-        time_backend   : storage_createlisting.time_backend,
-        time_display   : storage_createlisting.time_display,
-       
+        keyword              : storage_createlisting.keyword,
+        mls                  : storage_createlisting.mls,
+        mlsdetail            : storage_createlisting.mlsdetail,
+        type                 : storage_createlisting.type, 
+        access_type          : storage_createlisting.access_type,
+        instruction          : storage_createlisting.instruction,
+        client_name          : storage_createlisting.client_name,
+        client_number        : storage_createlisting.client_number,
+        offer_amount         : storage_createlisting.offer_amount,
+        full_address         : storage_createlisting.full_address,
+        lat                  : storage_createlisting.lat,
+        lng                  : storage_createlisting.lng,
+        city                 : storage_createlisting.city,
+        zipcode              : storage_createlisting.zipcode,
+        date_backend         : storage_createlisting.date_backend,
+        date_display         : storage_createlisting.date_display,
+        time_backend         : storage_createlisting.time_backend,
+        time_display         : storage_createlisting.time_display,
+        switch_is_hidden     : storage_createlisting.switch_is_hidden,
+        readonly_offeramount : storage_createlisting.readonly_offeramount, 
+        switch_value         : storage_createlisting.switch_value
       }
     }else{
      
@@ -63,8 +66,11 @@ class ListingCreate extends Component {
         center         : null,
         date_backend   : moment(new Date()).format('MM/DD/YYYY'),
         date_display   : new Date(),
-        time_backend   : moment(new Date().getTime()).format("HH:mm:ss"),
-        time_display   : new Date().getTime()
+        time_backend         : moment(new Date().getTime()).format("HH:mm:ss"),
+        time_display         : new Date().getTime(),
+        switch_is_hidden     : true,
+        readonly_offeramount : false,
+        switch_value         : false 
       }
     }
     
@@ -77,6 +83,7 @@ class ListingCreate extends Component {
     this.setTime       = this.setTime.bind(this);
     this.setAddress    = this.setAddress.bind(this);
     this.handleMls     = this.handleMls.bind(this);
+    this.changeSwitch  = this.changeSwitch.bind(this);
   }
  
   componentDidMount(){ 
@@ -111,6 +118,34 @@ class ListingCreate extends Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
+    if((e.target.name == 'type') && (e.target.value == 'Open House')){
+      this.setState({
+        switch_is_hidden: false,
+        offer_amount    : 0,
+        readonly_offeramount : true
+      });
+    }else if((e.target.name == 'type') && (e.target.value != 'Open House')){
+      this.setState({
+        switch_is_hidden: true,
+        offer_amount    : '',
+        readonly_offeramount : false
+      });
+    }
+  }
+  changeSwitch(curVal){
+    if(curVal == true){
+      this.setState({
+        offer_amount    : '',
+        readonly_offeramount : false,
+        switch_value : true
+      });
+    }else{
+      this.setState({
+        offer_amount    : 0,
+        readonly_offeramount : true,
+        switch_value : false
+      });
+    }
   }
   setDate(value){
     this.setState({
@@ -166,9 +201,10 @@ class ListingCreate extends Component {
     
     if($$("#date-picker-inline-helper-text").html() != undefined){
       ToastsStore.error('Dateformat is not ok');
-    }else if(this.state.offer_amount <= 10 ){
+    }else if((this.state.offer_amount <= 10 ) && (this.state.switch_is_hidden == true)){
       ToastsStore.error('Amount cannot be less than 10');
-    
+    }else if((this.state.offer_amount <= 10 ) && (this.state.switch_is_hidden == false)  && (this.state.switch_value == true)){
+      ToastsStore.error('Amount cannot be less than 10');
     }else{
        sessionStorage.setItem('createlisting', JSON.stringify(this.state));
        this.props.listinginLocalStorage('previewlisting');
@@ -311,7 +347,13 @@ class ListingCreate extends Component {
                             <input name="client_number" id="client_number" pattern="^[0-9]*$" value={this.state.client_number} type="text" placeholder="Enter Client number"  onChange={this.handleChange}/>
                             
                             <label>Offer Amount</label>
-                            <input name="offer_amount" id="offer_amount" pattern="^[0-9]*$" value={this.state.offer_amount} type="text"  placeholder="$  Enter amount" onChange={this.handleChange}/>
+                            {
+                              (this.state.switch_is_hidden == false) ? 
+                              <div style={{float:'right', height : '10px'}} className="switch-button"><CustomizedSwitches changeSwitch={this.changeSwitch} switch_value={this.state.switch_value}/></div> 
+                              : null
+                            }
+                            
+                            <input name="offer_amount" id="offer_amount" pattern="^[0-9]*$" value={this.state.offer_amount} type="text"  placeholder="$  Enter amount" onChange={this.handleChange} readOnly={this.state.readonly_offeramount}/>
                             <button type="submit">PREVIEW</button> 
                             </form>    
                          </div>
