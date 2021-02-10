@@ -98,7 +98,7 @@ class MyListing extends Component {
                   </div>
             </div>
             <div className="col-lg-6">
-                <div className="content-part-wrapper">
+                <div className="content-part-wrapper" style={{paddingBottom: '9px'}}>
               
                     <h2 className="mid-heading">LISTings
 

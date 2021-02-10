@@ -106,7 +106,6 @@ class ListingCreate extends Component {
   
   handleDelete(index){
     let key = this.state.keyword;
-      
       key.splice(index, 1);
       this.setState({
         keyword: key
