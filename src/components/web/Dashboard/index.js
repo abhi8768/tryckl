@@ -220,7 +220,7 @@ class Dashboard extends Component {
 							<div className="col-lg-3">
 								<div className="content-part-wrapper">
 									
-									<h2 className="mid-heading">my listing <Link to="/my-listing">View All</Link></h2>
+									<h2 className="mid-heading">my listings <Link to="/my-listing">View All</Link></h2>
 									{ 
 										  (list).map((item2,index) => {
 											
@@ -259,10 +259,15 @@ class Dashboard extends Component {
 													</h2>
 													<p className="ohters-color">{due_status}</p>
 													<p className="ohters-color2">{item2.type}</p>
-													<p className="ohters-color2">{item2.date}</p>
-													<p className="ohters-color2">{item2.time}
-													
-													</p>
+													{
+														(item2.keyword != '') ? 
+														<p className="ohters-color2">{item2.keyword}</p>
+														: null
+													}
+                       
+													<p className="ohters-color2">{item2.date} &nbsp; {item2.time}</p>
+																								
+												
 												</div>
 											)  
 										  })

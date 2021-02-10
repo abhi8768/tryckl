@@ -60,7 +60,7 @@ class MyCardPreview extends Component {
             ((mycardPreview).length > 0) ? 
                  <div className="content-part-wrapper">
            
-            <h2 className="mid-heading">my listing</h2> :
+            <h2 className="mid-heading">my listings</h2> :
             { (mycardPreview).map((item,index) => {
                 let due_status = '';
                 if(item.due_day != ''){
@@ -95,8 +95,14 @@ class MyCardPreview extends Component {
                       <h2 className="card-amount">{item.type == 'Open House' ? 'leads' : `$ ${item.offer_amount}`}</h2>
                        <p className="ohters-color">{due_status}</p>
                        <p className="ohters-color2">{item.type}</p>
-                       <p className="ohters-color2">{item.date}</p>
-                       <p className="ohters-color2">{item.time}</p>
+                       {
+                         (item.keyword != '') ? 
+                         <p className="ohters-color2">{item.keyword}</p>
+                         : null
+                       }
+                       
+                       <p className="ohters-color2">{item.date} &nbsp; {item.time}</p>
+                       
                   </div>
                 
                 : null )

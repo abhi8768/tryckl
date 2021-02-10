@@ -100,7 +100,7 @@ class MyListing extends Component {
             <div className="col-lg-6">
                 <div className="content-part-wrapper">
               
-                    <h2 className="mid-heading">LISTing
+                    <h2 className="mid-heading">LISTings
 
                         <div className="dropdown show custom-drop">
                             <a className="btn btn-secondary dropdown-toggle" href={void(0)} role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.openDropdown}>
