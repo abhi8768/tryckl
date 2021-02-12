@@ -9,13 +9,13 @@ import { handleResponse , loader } from '../utils';
     if((user.status == true) && (user.response.status == '1')){
       setUserInSession(user.response);
       setJWTToken(user.response._jwtToken);
-      localStorage.setItem('login_rememberme', user.login_rememberme);
+    /*   localStorage.setItem('login_rememberme', user.login_rememberme);
       localStorage.setItem('login', 'true');
       if(user.login_rememberme == 'checked'){
         localStorage.setItem('login_username', user.login_username);
         localStorage.setItem('login_password', user.login_password);
         
-      }
+      } */
     }
     if((user.status == true) && (user.response.status == '0')){
       localStorage.setItem('userNotverifiedDetails', JSON.stringify(user.response));
