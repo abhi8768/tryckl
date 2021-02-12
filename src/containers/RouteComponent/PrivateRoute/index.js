@@ -9,7 +9,7 @@ const PrivateRoute = ({ component: Component, path , title }) => {
   return (
     <Route
       path={path}
-      render={props => (getJWTToken() !== null ? <Component {...props} /> : <Redirect to="/" />)}
+      render={props => ((getJWTToken() !== null)  ? <Component {...props} /> : <Redirect to="/" />)}
     />
   );
 }

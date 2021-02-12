@@ -128,7 +128,7 @@ class HeaderUser extends Component {
 							
 						  </div></li>
 			  </ul>
-			  <form className="navbar-form" role="search" action="http://themicon.co/theme/angle/v4.7.5/static-html/app/search.html">
+			  <form className="navbar-form" role="search" action="https://themicon.co/theme/angle/v4.7.5/static-html/app/search.html">
 				 <div className="form-group"><input className="form-control" type="text" placeholder="Type and hit enter ..." />
 					<div className="fas fa-times navbar-form-close" data-search-dismiss=""></div>
 				 </div><button className="d-none" type="submit">Submit</button>

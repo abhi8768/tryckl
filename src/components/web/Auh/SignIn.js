@@ -16,12 +16,14 @@ class SignIn extends Component {
         super(props);
        // setPublicIP();
         this.state = {
-            user_id     : '',
-            password    : '',
+          user_name         : '',
+            login_password  : '',
+            remember_me     : 'checked'
         }
         setPublicIP();
-        this.onSubmit  = this.onSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        this.onSubmit       = this.onSubmit.bind(this);
+        this.handleChange   = this.handleChange.bind(this);
+        this.handleRemember = this.handleRemember.bind(this);
     }
     onSubmit(e){
         e.preventDefault();
@@ -35,12 +37,10 @@ class SignIn extends Component {
             this.props.history.push(`/dashboard`);
           }else{
             this.setState({
-              user_id     : '',
+              user_name   : '',
               password    : '',
             });
             ToastsStore.error('Your Account is not verified');
-            //this.props.history.push(`/`);
-            //$$("#container").addClass('right-panel-active');
             this.props.updateuserNotverified();
           }
         }else{
@@ -55,6 +55,12 @@ class SignIn extends Component {
         });
     }
 
+    handleRemember(){
+      this.setState({
+        remember_me : this.state.remember_me == 'checked' ? '' : 'checked'
+      })
+    }
+
     render() {
         return (
             <div className="form-container sign-in-container">
@@ -63,13 +69,13 @@ class SignIn extends Component {
                     <h1>Sign in</h1>
                     <div className="frm-wrapper text-left">
                         <label>User ID</label>
-                        <input type="text" name="user_id" id="user_id" onChange={this.handleChange} required  placeholder="Enter registered mobile no." />
+                        <input type="text" name="user_name" id="user_name" onChange={this.handleChange} required  placeholder="Enter registered mobile no." />
                         <Link to="/forget-userid" className="forg">Forgot User ID?</Link>
                         
                         <label>Password</label>
-                        <input type="password" name="password" id="password" onChange={this.handleChange} required  placeholder="Enter valid password " />
+                        <input type="password" name="login_password" id="login_password" onChange={this.handleChange} required  placeholder="Enter valid password " />
                         <label className="container-check float-left"><span>Remember me</span>
-                            <input type="checkbox" checked="checked"/>
+                            <input type="checkbox" checked={this.state.remember_me} onChange={this.handleRemember} name="remember_me" value="remember_me"/>
                             <span className="checkmark"></span>
                         </label>
                         

@@ -39,7 +39,6 @@ class ListingDetail extends Component {
      }
 
     if((nextProps.nowchangeview.includes('detaillisting') == true) && (nextProps.nowchangeview != this.props.nowchangeview)){
-      console.log(nextProps.nowchangeview,nextProps.nowchangeview.length);
       let id = (nextProps.nowchangeview.substr(14, nextProps.nowchangeview.length - 14));
       this.setState({
         listingid : id 
@@ -61,8 +60,7 @@ class ListingDetail extends Component {
   render() {
    
     let detail   = this.state.detail || {};
-   
-    let mls      = this.state.detail.mlsdetails || [];
+    let mls      = detail.mls_details || [];
     let keyword  = this.state.detail.keyword || [];
     let MapWithAMarker;
    
@@ -131,7 +129,7 @@ class ListingDetail extends Component {
                { (mls).map((sinsle_mls,index) => {
                     let rs = this.validURL(sinsle_mls.mls_link);
                       return (
-                        <p key={`mls${index}`} className="ohters-color2 mt-3">{sinsle_mls.mls_text} 
+                        <p key={`mls${index}`} className="ohters-color2 mt-3">{sinsle_mls.mls_name} 
                         <span className="float-right"> <a target="_blank" href={rs}><img src="/assets/img/www-img.png" /></a></span></p>
                        
                       )

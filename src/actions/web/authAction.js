@@ -5,9 +5,17 @@ import { handleResponse , loader } from '../utils';
 
 
   export const loginUser = (user) => {
+   
     if((user.status == true) && (user.response.status == '1')){
       setUserInSession(user.response);
       setJWTToken(user.response._jwtToken);
+      localStorage.setItem('login_rememberme', user.login_rememberme);
+      localStorage.setItem('login', 'true');
+      if(user.login_rememberme == 'checked'){
+        localStorage.setItem('login_username', user.login_username);
+        localStorage.setItem('login_password', user.login_password);
+        
+      }
     }
     if((user.status == true) && (user.response.status == '0')){
       localStorage.setItem('userNotverifiedDetails', JSON.stringify(user.response));
@@ -23,9 +31,10 @@ import { handleResponse , loader } from '../utils';
 
   export const createLoginRequest = (params) => {
     loader(true);
+       
     const param = JSON.stringify({
-      user_id		    : params.user_id,
-      password 		  : params.password,
+      user_id		    : params.user_name,
+      password 		  : params.login_password,
       device_type   : "WEB",
       device_id     : getPublicIP()
     
@@ -41,6 +50,10 @@ import { handleResponse , loader } from '../utils';
       postReq(`${apiURLPrefix}/auth/login`, param , headers)
       .then(handleResponse)
       .then((res) => {
+        res.login_username = params.user_name;
+        res.login_password = params.login_password;
+        res.login_rememberme = params.remember_me;
+       
         loader(false);
         dispatch(loginUser(res));
         

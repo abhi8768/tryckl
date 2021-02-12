@@ -50,7 +50,8 @@ export const removeSessionData = () => {
     sessionStorage.clear();
     localStorage.removeItem('userDetails');
     localStorage.removeItem('jwtToken');
-    localStorage.clear();
+    localStorage.removeItem('login_rememberme');
+    //localStorage.clear();
     location.href = '/';
 }
 

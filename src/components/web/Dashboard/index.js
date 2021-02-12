@@ -31,7 +31,7 @@ class Dashboard extends Component {
   }
  
     componentDidMount(){
-		
+		//localStorage.removeItem('login');
 		$$("#home-header-icon").addClass('active');
 		this.props.dashboardRequest();
 	}
