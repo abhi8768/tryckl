@@ -150,7 +150,11 @@ module.exports = (env , argv) => {
                 { from: './src/assets/fonts', to: 'assets/fonts/' },
                 { from: './src/assets/img', to: 'assets/img/' },
                 { from: './src/assets/js', to: 'assets/js/' },
-                { from: './src/assets/vendor', to: 'assets/vendors/' }
+                { from: './src/assets/vendor', to: 'assets/vendors/' },
+                { from: './src/landing_assets/css', to: 'landing_assets/css' },
+                { from: './src/landing_assets/webfonts', to: 'landing_assets/webfonts/' },
+                { from: './src/landing_assets/img', to: 'landing_assets/img/' },
+                { from: './src/landing_assets/js', to: 'landing_assets/js/' },
             ]),
         ],
         performance: isProd && {

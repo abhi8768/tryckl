@@ -13,7 +13,9 @@ class RouteComponent extends Component {
       <main>
         <Preloader/>
         <Switch>
-          <PublicRoute exact={true} path={pathList.home.path} title={pageTitles.login} component={routes.Auth}/>
+         {/*  <PublicRoute exact={true} path={pathList.home.path} title={pageTitles.login} component={routes.Auth}/> */}
+         <PublicRoute exact={true} path={pathList.home.path} title={pageTitles.home} component={routes.LandingPage}/> 
+          <PublicRoute exact={true} path={pathList.login.path} title={pageTitles.login} component={routes.Auth}/>
           <PublicRoute exact={true} path={pathList.forgetuserid.path} title={pageTitles.forgetuserid} component={routes.ForgetUserid}/>
           <PublicRoute exact={true} path={pathList.forgetpassword.path} title={pageTitles.forgetpassword} component={routes.ForgetPassword}/>
           <PublicRoute exact={true} path="/contact-us" title="Contact Us" component={routes.ContactUs}/>
@@ -43,7 +45,7 @@ class RouteComponent extends Component {
           
           <PublicRoute exact={true} path={pathList.resetpassword.path} title={pageTitles.resetpassword} component={routes.ResetPassword}/>
           {/* <PublicRoute exact={true} path="/admin" title="admin - login" component={routes.AdminLogin}/> */}
-          <Redirect exact={true} from="/login" to="/" />
+         {/*  <Redirect exact={true} from="/agent-login" to="/" /> */}
           <Route exact={true} title={pageTitles.notFound} component={routes.NotFoundPage} /> 
 
         </Switch>

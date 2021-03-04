@@ -9,6 +9,7 @@ import ContactUs from "../containers/web/ContactUs";
 import Listing from "../containers/web/Listing";
 import StaticPages from "../containers/web/StaticPages";
 import ConnectAccount from "../containers/web/ConnectAccount";
+import LandingPage from "../containers/web/LandingPage";
 
 import AdminLogin from "../containers/admin/Login";
 
@@ -28,7 +29,8 @@ const allContainers = {
     Listing         : Listing,
     StaticPages     : StaticPages,
     ConnectAccount  : ConnectAccount,
-    ContactUs       : ContactUs
+    ContactUs       : ContactUs,
+    LandingPage     : LandingPage
   
 };
 
