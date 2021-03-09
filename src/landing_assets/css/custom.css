@@ -112,3 +112,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
     #demo2 p{ text-align: justify; }
     #scroll .navbar-nav li{ text-align: right;}
   }
+
+  .aft-logo{
+    height : 100px;
+    width  : 100px;
+    margin-bottom : 15px 
+  }
