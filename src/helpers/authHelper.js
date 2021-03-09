@@ -52,7 +52,7 @@ export const removeSessionData = () => {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('login_rememberme');
     //localStorage.clear();
-    location.href = '/';
+    location.href = '/agent-login';
 }
 
 export const getUserFromSession = () => {

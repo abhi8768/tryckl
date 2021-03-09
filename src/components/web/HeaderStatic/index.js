@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {withRouter} from "react-router-dom";
+import { getJWTToken } from '../../../helpers/authHelper';
 import {ToastsContainer, ToastsStore, ToastsContainerPosition} from 'react-toasts';
 
 import './HeaderStatic.css';
@@ -37,7 +38,9 @@ class HeaderStatic extends Component {
         
 		<nav className="navbar topnavbar"> 
    
-		  <div className="navbar-header"><a className="navbar-brand" href="/">
+		  <div className="navbar-header">
+			
+			<a className="navbar-brand" href={getJWTToken() !== null ? "/agent-login" : "/"}>
 			<div className="brand-logo"><img className="img-fluid" src="assets/img/logo2.png" alt="App Logo" /></div>
 			<div className="brand-logo-collapsed"><img className="img-fluid" src="assets/img/logo-single.png" alt="App Logo" /></div>
 			</a></div>
@@ -76,13 +79,13 @@ class HeaderStatic extends Component {
 	
 		  </ul> */}
 		 
-		  <form className="navbar-form" role="search" action="https://themicon.co/theme/angle/v4.7.5/static-html/app/search.html">
+		  {/* <form className="navbar-form" role="search" action="https://themicon.co/theme/angle/v4.7.5/static-html/app/search.html">
 			<div className="form-group">
 			  <input className="form-control" type="text" placeholder="Type and hit enter ..." />
 			  <div className="fas fa-times navbar-form-close" data-search-dismiss=""></div>
 			</div>
 			<button className="d-none" type="submit">Submit</button>
-		  </form>
+		  </form> */}
 		 
 		</nav>
 	   
