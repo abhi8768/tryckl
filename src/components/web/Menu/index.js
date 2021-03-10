@@ -11,7 +11,8 @@ class Menu extends Component {
     super(props);
    
     this.state = {
-      collapse : 'collapse'
+      collapse : 'collapse',
+      icon     :  'icon-arrow-down'
     }
     this.logoutReq = this.logoutReq.bind(this);
     this.openChildMenu = this.openChildMenu.bind(this);
@@ -23,7 +24,8 @@ class Menu extends Component {
 
   openChildMenu(){
     this.setState({
-      collapse : (this.state.collapse == 'collapse')  ? '' : 'collapse'
+      collapse : (this.state.collapse == 'collapse')  ? '' : 'collapse',
+      icon     : (this.state.icon == 'icon-arrow-down') ? 'icon-arrow-up' : 'icon-arrow-down'
     })
   }
 
@@ -75,7 +77,7 @@ class Menu extends Component {
         </li> */}
           <li className=" "><a href={void(0)} title="Dashboard" data-toggle="collapse" onClick={this.openChildMenu}>
             <em className="com"></em><span data-localize="sidebar.nav.DASHBOARD">Company</span>
-             <em className="icon-arrow-down not-show" style={{position: 'absolute', right: '10px', top: '18px'}}></em>
+             <em className={`${this.state.icon} not-show`} style={{position: 'absolute', right: '10px', top: '18px'}}></em>
            
             </a>
             <ul className={`sidebar-nav sidebar-subnav ${this.state.collapse}`} id="dashboard">

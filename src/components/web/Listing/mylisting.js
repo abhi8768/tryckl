@@ -78,7 +78,7 @@ class MyListing extends Component {
     this.props.history.push(`detail-listing/${encrypt(listing_id)}`);
   }
   gotoProfile(brokers_id){
-    this.props.history.push(`profile/${encrypt(brokers_id)}`);
+    this.props.history.push(`/profile/${encrypt(brokers_id)}`);
   }
 
   render() {
@@ -205,7 +205,7 @@ class MyListing extends Component {
                                                     </div>
                                                 </div>
                                                 <div className="profile2-list-txt ohters-color2">Accepted by:<br/>
-                                                    <p className="ohters-color4" onClick={()=>gotoProfile(item.accepted_by)}>{item.accepted_by_name}</p>
+                                                    <p className="ohters-color4" onClick={()=>this.gotoProfile(item.accepted_by)}>{item.accepted_by_name}</p>
                                                 </div>
                                             </div>
                                             : null

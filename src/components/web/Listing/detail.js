@@ -22,7 +22,8 @@ class ListingDetail extends Component {
       listingid   : (this.props.match.params != undefined) ? decrypt(this.props.match.params.id) : null,
       detail      : {}
     }
-    this.validURL = this.validURL.bind(this);
+    this.validURL     = this.validURL.bind(this);
+    this.gotoProfile  = this.gotoProfile.bind(this);
    
   }
  
@@ -56,12 +57,17 @@ class ListingDetail extends Component {
       return `https://${str}`;
     }
   }
+  gotoProfile(brokers_id){
+    this.props.history.push(`/profile/${encrypt(brokers_id)}`);
+  }
 
   render() {
    
     let detail   = this.state.detail || {};
     let mls      = detail.mls_details || [];
     let keyword  = this.state.detail.keyword || [];
+    console.log('A',detail.accepted_by_name);
+    let letterImage = ((detail.accepted_by_name != "") &&  (detail.accepted_by_name !== undefined)) ? detail.accepted_by_name.charAt(0) : "";
     let MapWithAMarker;
    
     if(detail.property_latitude !== undefined){
@@ -90,18 +96,23 @@ class ListingDetail extends Component {
               <p className="ohters-color2">{detail.type}</p>
              
             </div>
-              <div className="content-part-wrapper dark-part position-relative">
-              <p className="ohters-color">Keyword</p>
-           
-                { (keyword).map((sinsle_keyword,index) => {
-                      return (
-                          <Chip key={`chip${index}`} label={sinsle_keyword} className="chips" onDelete={this.handleDelete} key={index}/>
-                      )
-                  })
-                                
-                } 
-             
-            </div>
+            {
+              (keyword.length > 0) ?  
+                <div className="content-part-wrapper dark-part position-relative">
+                  <p className="ohters-color">Keyword</p>
+              
+                    { (keyword).map((sinsle_keyword,index) => {
+                          return (
+                              <Chip key={`chip${index}`} label={sinsle_keyword} className="chips" onDelete={this.handleDelete} key={index}/>
+                          )
+                      })
+                                    
+                    } 
+                
+                </div> 
+              : null
+            }
+              
               <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Property Address</p>
               <p className="ohters-color2">{detail.property_address}</p>
@@ -155,26 +166,59 @@ class ListingDetail extends Component {
               <p className="ohters-color2">{detail.access_type}</p>
              
             </div>
+            {
+              (detail.agent_instruction != "") ? 
               <div className="content-part-wrapper dark-part position-relative">
-              <p className="ohters-color">Instruction for Agent</p>
-              <p className="ohters-color2">{detail.agent_instruction}</p>
-             
-            </div>
+                <p className="ohters-color">Instruction for Agent</p>
+                <p className="ohters-color2">{detail.agent_instruction}</p>
+              </div> : null
+            }
+
+            {
+              (detail.client_name != "") ? 
               <div className="content-part-wrapper dark-part position-relative">
-              <p className="ohters-color">Client Name</p>
-              <p className="ohters-color2">{detail.client_name}</p>
-             
-            </div>
+                <p className="ohters-color">Client Name</p>
+                <p className="ohters-color2">{detail.client_name}</p>
+              
+              </div> : null
+            }
+            {
+              (detail.client_number != "") ? 
               <div className="content-part-wrapper dark-part position-relative">
-              <p className="ohters-color">Client Number</p>
-              <p className="ohters-color2">{detail.client_number}</p>
-             
-            </div>
-              <div className="content-part-wrapper dark-part position-relative">
+                <p className="ohters-color">Client Number</p>
+                <p className="ohters-color2">{detail.client_number}</p>
+              
+              </div> : null
+            }
+              
+              
+              
+            <div className="content-part-wrapper dark-part position-relative">
               <p className="ohters-color">Offer Amount</p>
               <p className="ohters-color2">$ {detail.offer_amount}</p>
              
             </div>
+            {
+              ((detail.listing_status == "ACCEPTED") && (detail.listing_status == "COMPLETED")) ? 
+                <div className="content-part-wrapper dark-part position-relative">
+                  <p className="ohters-color">Accepted by</p>
+                  <div className="item user-block  d-flex align-items-center">
+                                  
+                    <div className="">
+                        <div className="user-block-status">
+                            {    (detail.accepted_by_profile_photo != '') ?
+                                    <img className="rounded-circle" src={detail.accepted_by_profile_photo} alt="Avatar" style={{width : '40px', height : "40px"}} />
+                                :   <div className="small-profile-alpha text-center">{letterImage}</div>
+                            }
+                        </div>
+                    </div>
+                    <div className="profile2-list-txt ohters-color2">
+                        <p className="ohters-color2" onClick={()=>this.gotoProfile(detail.card_owner_id)}>{detail.accepted_by_name}</p>
+                    </div>
+                  </div>
+                </div>
+                : null
+            }
          
               </div>
                       </div>   

@@ -352,7 +352,7 @@ class ListingCreate extends Component {
                               : null
                             }
                             
-                            <input name="offer_amount" id="offer_amount" pattern="^[0-9]*$" value={this.state.offer_amount} type="text"  placeholder="$  Enter amount" onChange={this.handleChange} readOnly={this.state.readonly_offeramount}/>
+                            <input name="offer_amount" id="offer_amount" pattern="^[0-9]*$" maxlength= "8" value={this.state.offer_amount} type="text"  placeholder="$  Enter amount" onChange={this.handleChange} readOnly={this.state.readonly_offeramount}/>
                             <button type="submit">PREVIEW</button> 
                             </form>    
                          </div>

@@ -24,6 +24,7 @@ class ProfileCompletion extends Component {
       license_number_id       : '',
       license_state           : '',
       brokerage               : '',
+      other_brokerage_name    : '',
       brokerage_office_name   : '',
       brokerage_street_name   : '',
       brokerage_city_name     : '',
@@ -79,7 +80,7 @@ class ProfileCompletion extends Component {
 
     onSubmit(e){
         e.preventDefault();
-        console.log(this.state);
+       // console.log(this.state);
         this.props.updateprofileDetails(this.state);
     }
 
@@ -103,7 +104,8 @@ class ProfileCompletion extends Component {
             master_brokerage        : nextProps.masterbrokeragedata,
             first_name              : nextProps.profiledetail.first_name,
             last_name               : nextProps.profiledetail.last_name,
-            broker_id               : nextProps.profiledetail.brokers_id,
+            //broker_id               : nextProps.profiledetail.brokers_id,
+            other_brokerage_name    : nextProps.profiledetail.other_brokerage_name,
             user_id                 : nextProps.profiledetail.phone,
             email                   : nextProps.profiledetail.email,
             license_number          : nextProps.profiledetail.license_no,
@@ -131,8 +133,8 @@ class ProfileCompletion extends Component {
                             <div className="content-part-wrapper">
                             <h2 className="mid-heading">EDIT PROFILE 
                             <span className="edit-user">
-                                <a href={void(0)} onClick={this.gotoEdit}>
-                                    <em className="fa-2x mr-2 far fa-user"></em>
+                                <a href={void(0)} onClick={this.gotoEdit} style={{cursor : 'pointer' }}> Detail
+                                    
                                 </a>
                             </span>
                             </h2>
@@ -169,8 +171,9 @@ class ProfileCompletion extends Component {
                                         </select>
 
                                     <h4 className="profile-frm-mid-heading">BROKERAGE DETAILS</h4>
-                                    <label>BROKERAGE</label>
-                                        <select className="custom-select2" name="brokerage" id="brokerage"  value={this.state.brokerage} onChange={this.handleChange} required>
+                                    <label>BROKERAGE NAME</label>
+                                        <input type="text" placeholder="Enter Brokerage" name="other_brokerage_name" id="other_brokerage_name" value={this.state.other_brokerage_name} onChange={this.handleChange} required/>
+                                        {/* <select className="custom-select2" name="brokerage" id="brokerage"  value={this.state.brokerage} onChange={this.handleChange} required>
                                         {   (this.state.master_brokerage.length > 0) ?
                                                                         
                                             (this.state.master_brokerage).map((listitem,index) => {
@@ -180,7 +183,7 @@ class ProfileCompletion extends Component {
                                             })
                                             : null
                                         }
-                                        </select>
+                                        </select> */}
                                     <label>Brokerage Office Name</label>
                                     <input type="text" placeholder="Enter Brokerage Office Name" name="brokerage_office_name" id="brokerage_office_name" value={this.state.brokerage_office_name} onChange={this.handleChange} required/>
 

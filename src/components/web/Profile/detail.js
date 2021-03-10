@@ -50,7 +50,7 @@ class ProfileDetail extends Component {
                 <span className="edit-user">
                     {
                         (this.state.isOwn == true) ? 
-                          <a href={void(0)} onClick={this.gotoEdit}><em className="fa-2x mr-2 fas fa-edit"></em> </a>
+                          <a href={void(0)} onClick={this.gotoEdit} style={{cursor : 'pointer' }}>Edit</a>
                         : null
                     }
                     

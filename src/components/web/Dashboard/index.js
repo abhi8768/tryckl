@@ -75,7 +75,7 @@ class Dashboard extends Component {
 												{
 													(profile.profile_photo != '') ? 
 													<img className="img-thumbnail rounded-circle dashboard-thumbnail" src={profile.profile_photo} alt={profile.first_name} />
-													: <img className="img-thumbnail rounded-circle" src={"assets/img/user/02.jpg"} alt="Avatar" />
+													: <div className="small-profile-alpha text-center">{profile.first_name.charAt(0)}</div>
 												}
 											</div>
 

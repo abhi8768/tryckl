@@ -18,6 +18,7 @@ import $$ from 'jquery';
 class Profile extends Component {
   constructor(props) {
     super(props);
+    
    // setPublicIP();
     this.state = {
       profilepicture : '',
