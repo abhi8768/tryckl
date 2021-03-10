@@ -199,7 +199,7 @@ class ListingDetail extends Component {
              
             </div>
             {
-              ((detail.listing_status == "ACCEPTED") && (detail.listing_status == "COMPLETED")) ? 
+              ((detail.listing_status == "ACCEPTED") || (detail.listing_status == "COMPLETED")) ? 
                 <div className="content-part-wrapper dark-part position-relative">
                   <p className="ohters-color">Accepted by</p>
                   <div className="item user-block  d-flex align-items-center">
