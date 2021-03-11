@@ -40,11 +40,11 @@ body{ background: #434343; font-family: 'Open Sans', sans-serif; }
     #scroll .other-position1{         position: absolute;
     top: 0;
     left: -60px; }
-    #scroll #demo{background:url(../../landing_assets//img/slider-bg.png)no-repeat left #f6f6f6; min-height: 635px; padding-top: 40px;}
+    #scroll #demo{/* background:url(../../landing_assets//img/slider-bg.png)no-repeat left #f6f6f6; */ height: 700px;} 
     #scroll .carousel-control-prev-icon{background:url(../../landing_assets//img/left-arrow.png) no-repeat}
     #scroll .carousel-control-next-icon{background:url(../../landing_assets//img/right-arrow.png) no-repeat}
     #scroll .carousel-control-next-icon, .carousel-control-prev-icon{ width: 26px; height: 48px; }
-    #scroll .carousel-item .row{ margin-top: 150px; }
+    /* #scroll .carousel-item .row{ margin-top: 150px; } */
     #scroll .carousel-indicators li{background-color: #434343; width: 4px; height: 4px; border-radius: 100%}
     #scroll .carousel-indicators .active{background-color: #01ffff; width: 6px; height: 6px;}
 
@@ -84,8 +84,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
 
 
  #scroll .navbar-light .navbar-nav .nav-link{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 16px; color: #3b3b3b; margin-left: 15px;}
- #demo h3{ text-align: right; font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 70px; letter-spacing: -2px  }
- #demo p{ font-family: 'Open Sans', sans-serif; font-size: 18px; margin: 50px 0; text-align: right;  }
+ #demo h3{ text-align: right; font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 70px; letter-spacing: -2px; color:#fff  }
+ #demo p{ font-family: 'Open Sans', sans-serif; font-size: 18px; margin: 50px 0; text-align: right; color:#fff  }
  #demo2 img{ margin-bottom: 20px; }
  #demo2 p{font-size: 18px;  font-family: 'Open Sans', sans-serif; }
 
@@ -117,4 +117,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
     height : 100px;
     width  : 100px;
     margin-bottom : 15px 
+  }
+  .slider-one{
+    background:url(../../landing_assets/img/Avenue_for_Experience_New.jpg)no-repeat center; background-size: cover;
+     height:700px; padding: 50px 0;
+  }
+
+  .slider-two{
+    background:url(../../landing_assets/img/Opportunity_to_Grow.PNG)no-repeat center; background-size: cover;
+    height:700px;  padding: 50px 0
+  }
+
+  .slider-three{
+    background:url(../../landing_assets/img/Potential_to_Become.jpg)no-repeat center; background-size: cover;
+    height:700px; padding: 50px 0
   }
