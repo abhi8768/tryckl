@@ -6,7 +6,7 @@
 body{ background: #434343; font-family: 'Open Sans', sans-serif; }
 
 #scroll .mod{background: #434343; color: #fff}
-#scroll .first-fold{ min-height: 1100px; background:url(../../assets/img/first-fold-right-bg.png)no-repeat right #fff; padding: 100px 0; /* margin: 100px 0; */  }
+#scroll .first-fold{ min-height: 1100px; background:url(../../landing_assets/img/first-fold-right-bg.png)no-repeat right #fff; padding: 100px 0; /* margin: 100px 0; */  }
 
 #scroll .secend-fold{ padding-top:  100px; background: #f6f6f6}
 
@@ -41,8 +41,8 @@ body{ background: #434343; font-family: 'Open Sans', sans-serif; }
     top: 0;
     left: -60px; }
     #scroll #demo{/* background:url(../../landing_assets//img/slider-bg.png)no-repeat left #f6f6f6; */ height: 700px;} 
-    #scroll .carousel-control-prev-icon{background:url(../../landing_assets//img/left-arrow.png) no-repeat}
-    #scroll .carousel-control-next-icon{background:url(../../landing_assets//img/right-arrow.png) no-repeat}
+    #scroll .carousel-control-prev-icon{background:url(../../landing_assets/img/arrow_left_new.png) no-repeat}
+    #scroll .carousel-control-next-icon{background:url(../../landing_assets/img/arrow_right_new.png) no-repeat}
     #scroll .carousel-control-next-icon, .carousel-control-prev-icon{ width: 26px; height: 48px; }
     /* #scroll .carousel-item .row{ margin-top: 150px; } */
     #scroll .carousel-indicators li{background-color: #434343; width: 4px; height: 4px; border-radius: 100%}
@@ -120,15 +120,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
   }
   .slider-one{
     background:url(../../landing_assets/img/Avenue_for_Experience_New.jpg)no-repeat center; background-size: cover;
-     height:700px; padding: 50px 0;
+      padding: 200px 0;
   }
 
   .slider-two{
     background:url(../../landing_assets/img/Opportunity_to_Grow.PNG)no-repeat center; background-size: cover;
-    height:700px;  padding: 50px 0
+      padding: 200px 0
   }
 
   .slider-three{
     background:url(../../landing_assets/img/Potential_to_Become.jpg)no-repeat center; background-size: cover;
-    height:700px; padding: 50px 0
+     padding: 200px 0
   }
