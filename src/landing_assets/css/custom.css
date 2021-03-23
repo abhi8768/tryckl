@@ -1,16 +1,16 @@
-#scroll h1{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 70px; letter-spacing: -2px}
-#scroll .first-fold p{ font-size: 18px; margin: 50px 0; }
-#scroll .secend-fold p{ font-size: 18px; margin: 50px 0; }
-#scroll .third-fold p{ font-size: 18px; margin: 50px 0; }
-#scroll .three-in-fold p{ font-size: 18px; margin: 50px 0; } 
+#new-design h1{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 70px; letter-spacing: -2px}
+#new-design .first-fold p{ font-size: 18px; margin: 50px 0; }
+#new-design .secend-fold p{ font-size: 18px; margin: 50px 0; }
+#new-design .third-fold p{ font-size: 18px; margin: 50px 0; }
+#new-design .three-in-fold p{ font-size: 18px; margin: 50px 0; } 
 body{ background: #434343; font-family: 'Open Sans', sans-serif; }
 
-#scroll .mod{background: #434343; color: #fff}
-#scroll .first-fold{ min-height: 1100px; background:url(../../landing_assets/img/first-fold-right-bg.png)no-repeat right #fff; padding: 100px 0; /* margin: 100px 0; */  }
+#new-design .mod{background: #434343; color: #fff}
+#new-design .first-fold{ min-height: 1100px; background:url(../../landing_assets/img/first-fold-right-bg.png)no-repeat right #fff; padding: 100px 0; /* margin: 100px 0; */  }
 
-#scroll .secend-fold{ padding-top:  100px; background: #f6f6f6}
+#new-design .secend-fold{ padding-top:  100px; background: #f6f6f6}
 
-#scroll .ani1{
+#new-design .ani1{
         -webkit-animation: action 1.2s infinite  alternate;
         animation: action 1.2s infinite  alternate;
     }
@@ -36,17 +36,17 @@ body{ background: #434343; font-family: 'Open Sans', sans-serif; }
         0% { transform: translateY(0); }
         100% { transform: translateY(-10px); }
     }
-    #scroll .other-position{     position: absolute; top: -90px; right: -100px; }
-    #scroll .other-position1{         position: absolute;
+    #new-design .other-position{     position: absolute; top: -90px; right: -100px; }
+    #new-design .other-position1{         position: absolute;
     top: 0;
     left: -60px; }
-    #scroll #demo{/* background:url(../../landing_assets//img/slider-bg.png)no-repeat left #f6f6f6; */ height: 700px;} 
-    #scroll .carousel-control-prev-icon{background:url(../../landing_assets/img/arrow_left_new.png) no-repeat}
-    #scroll .carousel-control-next-icon{background:url(../../landing_assets/img/arrow_right_new.png) no-repeat}
-    #scroll .carousel-control-next-icon, .carousel-control-prev-icon{ width: 26px; height: 48px; }
+    #new-design #demo{/* background:url(../../landing_assets//img/slider-bg.png)no-repeat left #f6f6f6; */ height: 700px;} 
+    #new-design .carousel-control-prev-icon{background:url(../../landing_assets/img/arrow_left_new.png) no-repeat}
+    #new-design .carousel-control-next-icon{background:url(../../landing_assets/img/arrow_right_new.png) no-repeat}
+    #new-design .carousel-control-next-icon, .carousel-control-prev-icon{ width: 26px; height: 48px; }
     /* #scroll .carousel-item .row{ margin-top: 150px; } */
-    #scroll .carousel-indicators li{background-color: #434343; width: 4px; height: 4px; border-radius: 100%}
-    #scroll .carousel-indicators .active{background-color: #01ffff; width: 6px; height: 6px;}
+    #new-design .carousel-indicators li{background-color: #434343; width: 4px; height: 4px; border-radius: 100%}
+    #new-design .carousel-indicators .active{background-color: #01ffff; width: 6px; height: 6px;}
 
 
     #demo2{background:url(../../landing_assets//img/sc-slider-dark-bg.png)no-repeat left #fff; min-height: 660px;}
@@ -55,25 +55,25 @@ body{ background: #434343; font-family: 'Open Sans', sans-serif; }
     #demo2 .carousel-control-prev-icon{background:url(../../landing_assets//img/left-arrow2.png) no-repeat}
     #demo2 .carousel-control-next-icon{background:url(../../landing_assets//img/right-arrow2.png) no-repeat}
 
-    #scroll .three-in-fold{padding:100px 0; background-color: #f6f6f6; }
-    #scroll .navbar-nav li:last-child a{/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00ffff+0,00ffcc+100 */
+    #new-design .three-in-fold{padding:100px 0; background-color: #f6f6f6; }
+    #new-design .navbar-nav li:last-child a{/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00ffff+0,00ffcc+100 */
 background: #00ffff; /* Old browsers */
 background: -moz-linear-gradient(left,  #00ffff 0%, #00ffcc 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(left,  #00ffff 0%,#00ffcc 100%); /* Chrome10-25,Safari5.1-6 */
 background: linear-gradient(to right,  #00ffff 0%,#00ffcc 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', endColorstr='#00ffcc',GradientType=1 ); /* IE6-9 */
  border-radius: 40px;  padding-left: 15px !important; padding-right: 15px !important; }
- #scroll .third-fold .container{background:url(../../landing_assets//img/cut-bg.png)no-repeat right bottom; min-height: 635px; background-position: 59% 29px;}
- #scroll .third-fold { padding-top: 50px; background-color: #fff; }
- #scroll .footer{ padding: 100px 0; background-color: #fff  }
- #scroll .footer ul li{ list-style: none; margin-bottom: 10px; }
- #scroll .footer ul li a{ color: #3b3b3b }
- #scroll .footer h4{ margin-bottom: 20px;font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 18px;  }
- #scroll .footer p{ margin-top: 40px; color: #3b3b3b }
- #scroll .wrapper-mod{ background: red }
- #scroll .mod:focus{ border: none; outline: none }
+ #new-design .third-fold .container{background:url(../../landing_assets//img/cut-bg.png)no-repeat right bottom; min-height: 635px; background-position: 59% 29px;}
+ #new-design .third-fold { padding-top: 50px; background-color: #fff; }
+ #new-design .footer{ padding: 100px 0; background-color: #fff  }
+ #new-design .footer ul li{ list-style: none; margin-bottom: 10px; }
+ #new-design .footer ul li a{ color: #3b3b3b }
+ #new-design .footer h4{ margin-bottom: 20px;font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 18px;  }
+ #new-design .footer p{ margin-top: 40px; color: #3b3b3b }
+ #new-design .wrapper-mod{ background: red }
+ #new-design .mod:focus{ border: none; outline: none }
 
- #scroll .read-more{/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00ffff+0,00ffcc+100 */
+ #new-design .read-more{/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00ffff+0,00ffcc+100 */
 background: #00ffff; /* Old browsers */
 background: -moz-linear-gradient(left,  #00ffff 0%, #00ffcc 100%); /* FF3.6-15 */
 background: -webkit-linear-gradient(left,  #00ffff 0%,#00ffcc 100%); /* Chrome10-25,Safari5.1-6 */
@@ -83,7 +83,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
  .read-more:hover{ text-decoration: none; }
 
 
- #scroll .navbar-light .navbar-nav .nav-link{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 16px; color: #3b3b3b; margin-left: 15px;}
+ #new-design .navbar-light .navbar-nav .nav-link{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 16px; color: #3b3b3b; margin-left: 15px;}
  #demo h3{ text-align: right; font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 70px; letter-spacing: -2px; color:#fff  }
  #demo p{ font-family: 'Open Sans', sans-serif; font-size: 18px; margin: 50px 0; text-align: right; color:#fff  }
  #demo2 img{ margin-bottom: 20px; }
@@ -91,26 +91,31 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
 
 
     @media only screen and (min-width:320px) and (max-width: 500px) {
-    #scroll .navbar-toggler{ position: absolute; right: 0; top: 10px; }
-    #scroll .navbar-brand img{ width: 80% }
-    #scroll .ani1{ display: none }
-    #scroll .ani12{ display: none }
-    #scroll .first-fold h1{ font-size: 30px; }
-    #scroll .first-fold p{ font-size: 15px }
-    #scroll .first-fold a img{ margin-bottom: 10px; }
-    #scroll .first-fold{ min-height: 700px; background-size: cover}
+    #new-design .navbar-toggler{ position: absolute; right: 0; top: 10px; }
+    #new-design .navbar-brand img{ width: 80% }
+    #new-design .ani1{ display: none }
+    #new-design .ani12{ display: none }
+    #new-design .first-fold h1{ font-size: 30px; }
+    #new-design .first-fold p{ font-size: 15px }
+    #new-design .first-fold a img{ margin-bottom: 10px; }
+    #new-design .first-fold{ min-height: 700px; background-size: cover}
     #demo .carousel-item img{ width: 100% }
     #demo h3{ font-size: 40px; text-align: center; margin-top: 40px; }
-    #scroll .third-fold h1{ font-size: 40px; }
-    #scroll #reviews h3{ font-size: 40px !important; line-height: 40px !important }
-    #scroll #feature h3{ font-size: 40px !important; line-height: 40px !important }
-    #scroll #learn h3{ font-size: 40px !important; line-height: 40px !important }
-    #scroll #community  h3{ font-size: 40px !important; line-height: 40px !important }
-    #scroll #improve h3{ font-size: 40px !important; line-height: 40px !important }
-    #scroll .three-in-fold h1{font-size: 40px;}
-    #scroll .three-in-fold .img-fluid{ margin-top: 20px; }
+    #new-design .third-fold h1{ font-size: 40px; }
+    #new-design #reviews h3{ font-size: 40px !important; line-height: 40px !important }
+    #new-design #feature h3{ font-size: 40px !important; line-height: 40px !important }
+    #new-design #learn h3{ font-size: 40px !important; line-height: 40px !important }
+    #new-design #community  h3{ font-size: 40px !important; line-height: 40px !important }
+    #new-design #improve h3{ font-size: 40px !important; line-height: 40px !important }
+    #new-design .three-in-fold h1{font-size: 40px;}
+    #new-design .three-in-fold .img-fluid{ margin-top: 20px; }
     #demo2 p{ text-align: justify; }
-    #scroll .navbar-nav li{ text-align: right;}
+    #new-design .navbar-nav li{ text-align: right;}
+
+      /*-----------------------------------------------  how it works css ----------------------------------------*/
+      .how-mob{ width: 100% }
+      .how-it-works .col-lg-6{ padding-left: 15px !important; padding-right: 15px !important; }
+      .blue-rounded{ width: 100% }
   }
 
   .aft-logo{
@@ -132,3 +137,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
     background:url(../../landing_assets/img/Potential_to_Become.jpg)no-repeat center; background-size: cover;
      padding: 200px 0
   }
+
+
+
+
+
+
+/*-----------------------------------------------  how it works css ----------------------------------------*/
+#new-design .how-it-works{ background: #fff; padding: 0 !important; }
+/* .blue-rounded{ width:270px; background: #ddfefe; border-radius: 100%; text-align: center; height: 270px; margin: 0 auto; } */
+#new-design .blue-rounded img{ margin-top: 77px; }
+
+#new-design .how-it-works h4{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 30px; color: #3b3b3b ;  min-height: 72px; margin:60px 0 30px 0 ;}
+#new-design .how-it-works .col-lg-6{ margin-bottom: 150px;    padding-left: 50px;  padding-right: 50px;}
+#new-design .how-it-works p{ margin-bottom: 0; font-size: 18px; color: #3b3b3b }

@@ -10,7 +10,18 @@ const renderApp = Component => {
 
     if (window.location.pathname === '/') {
         document.getElementById("root").style.display = "none";
+        document.getElementById("new-design").style.display = "block";
+
+        document.getElementById("scroll1").style.display = "none";
         document.getElementById("scroll").style.display = "block";
+       
+    }else if (window.location.pathname === '/features') {
+        document.getElementById("root").style.display = "none";
+        document.getElementById("new-design").style.display = "block";
+
+        document.getElementById("scroll").style.display = "none";
+        document.getElementById("scroll1").style.display = "block";
+       
     }else{
         
         var sheet = document.getElementById('landing_bootstrap');
@@ -21,7 +32,7 @@ const renderApp = Component => {
         sheet2.disabled = true;
         sheet2.parentNode.removeChild(sheet2);
 
-        document.getElementById("scroll").style.display = "none";
+        document.getElementById("new-design").style.display = "none";
         document.getElementById("root").style.display = "block";
         ReactDOM.render(
             <Provider store={store}>
