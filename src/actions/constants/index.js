@@ -22,3 +22,6 @@ export const RESEND_OTP                     = 'RESEND_OTP';
 export const LISTING_STORAGE                = 'LISTING_STORAGE';
 export const DETAIL_LISTING                 = 'DETAIL_LISTING';
 export const CONTACT_US             = 'CONTACT_US';
+export const STATUS_LISTING_CANCEL  = 'STATUS_LISTING_CANCEL';
+export const NOPAY_LISTING_CANCEL   = 'NOPAY_LISTING_CANCEL';
+export const WITHPAY_LISTING_CANCEL = 'WITHPAY_LISTING_CANCEL';

@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from 'react-router-dom';
 import RouteComponent from './containers/RouteComponent';
+import { AppCard } from "./AppCard";
+import {
+    CardElement,
+    injectStripe,
+    StripeProvider,
+    Elements,
+  } from 'react-stripe-elements';
 import store from './store'; 
 
 
@@ -34,6 +41,7 @@ const renderApp = Component => {
 
         document.getElementById("new-design").style.display = "none";
         document.getElementById("root").style.display = "block";
+        
         ReactDOM.render(
             <Provider store={store}>
                 <Router>
@@ -42,6 +50,7 @@ const renderApp = Component => {
             </Provider>,
             document.getElementById('root')
         );
+       
     }
     
 };

@@ -60,14 +60,14 @@
 						</ul>
 						<ul class="navbar-nav float-right">
 							<li class="nav-item active">
-							<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+							<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
 							<a class="nav-link" href="/about-us">About Us</a>
 							</li>
 						
 							<li class="nav-item">
-							<a class="nav-link" href="/features">Features</a>
+							<a class="nav-link" href="/how-it-works">How it Works</a>
 							</li>
 							<li class="nav-item">
 							<a class="nav-link" href="/privacy-policy">Privacy</a>
@@ -281,7 +281,7 @@
 		</section>
 		</div>
 		<div class="three-in-fold" data-scroll-section>
-		<div class="container">
+		<div class="container" id="three-in-fold">
 			<div class="row">
 			<div class="col-lg-4 m-auto">
 				<h1 class="">REthink <br/>your strategy</h1>
@@ -439,9 +439,9 @@
 				<div class="col-lg-3">
 					<h4>Navigate</h4>
 					<ul>
-					<li><a href="">Home</a></li>
-					<li><a href="/features">Features</a></li>
-					<li><a href="">Services</a></li>
+					<li><a href="/">Home</a></li>
+					<li><a href="/how-it-works">How it Works</a></li>
+					<li id="scrolltop" ><a onclick=scrolltop()>Services</a></li>
 					<li><a href="">Testimonials</a></li>
 					</ul>
 				</div>
@@ -477,7 +477,8 @@
 	<script type="text/javascript" src="/landing_assets/js/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="/landing_assets/js/bootstrap.js"></script>
     <script src="/landing_assets/js/locomotive-scroll.min.js"></script>
-    <script src="/landing_assets/js/lettering.min.js"></script>
+	<script src="/landing_assets/js/lettering.min.js"></script>
+	<script src="https://js.stripe.com/v3/"></script>
 	<script>
 		let userDetails    = localStorage.getItem('userDetails');
 	
@@ -546,6 +547,12 @@
     
    
   });
+  function scrolltop(){
+	const scroll2 = new LocomotiveScroll();
+	const target = document.querySelector('#three-in-fold');
+
+	scroll2.scrollTo(target,-100);
+  }
 	</script>
 
     <!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->

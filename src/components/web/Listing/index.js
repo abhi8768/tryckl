@@ -22,6 +22,7 @@ class Listing extends Component {
    let curUrl = window.location.href;
    let currentview = '';
    let currentviewcomp = '';
+   
    if(curUrl.includes("create-listing") == true){
     currentview = 'createlisting';
     currentviewcomp = <ListingCreate />;
@@ -31,6 +32,9 @@ class Listing extends Component {
    }else if(curUrl.includes("detail-listing") == true){
     currentview = 'detaillisting';
     currentviewcomp = <DetailListing />;
+   }else if(curUrl.includes("my-listing") == true){
+    currentview = 'mylisting';
+    currentviewcomp = <MyListing />;
    }else{
     currentview = 'mylisting';
     currentviewcomp = <MyListing />;

@@ -1,4 +1,4 @@
-import { LISTING_ACTIVE_VIEW, MY_LISTING, LISTING_STORAGE, SAVE_LISTING, DETAIL_LISTING} from '../constants';
+import { LISTING_ACTIVE_VIEW, MY_LISTING, LISTING_STORAGE, SAVE_LISTING, DETAIL_LISTING, STATUS_LISTING_CANCEL, NOPAY_LISTING_CANCEL, WITHPAY_LISTING_CANCEL } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession } from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -139,6 +139,110 @@ import { handleResponse , loader } from '../utils';
     } 
     
   };
+
+  /* Cancel Listing Status Check*/
+  export const listingStatusForCancel = (statuslistingcancel) => {
+    
+    return {
+      type: STATUS_LISTING_CANCEL,
+      statuslistingcancel,
+    };
+  };
+
+  export const checkListingStatusForCancel = (params) => {
+   
+    const param = JSON.stringify({
+      listing_id : params.listing_id
+    });
+    const headers = {
+      Authorization     : `Bearer ${getAuthHeader()}`,
+      'content-type'    : 'application/json'
+    }
+
+    return (dispatch, getState) => {
+      postReq(`${apiURLPrefix}/listing/checkListingStatusForCancel`, param , headers)
+      .then(handleResponse)
+      .then((res) => {
+         dispatch(listingStatusForCancel(res));
+      }).catch((err)=>{
+        console.log(err)
+      }) 
+    } 
+    
+  };
+
+
+    /* Cancel Listing without Payment*/
+
+
+    export const cancellistingWithoutpay = (nopaycancellisting) => {
+    
+      return {
+        type: NOPAY_LISTING_CANCEL,
+        nopaycancellisting,
+      };
+    };
+  
+    export const nopayCancellisting = (params) => {
+     
+      const param = JSON.stringify({
+        listing_id : params.listing_id
+      });
+      const headers = {
+        Authorization     : `Bearer ${getAuthHeader()}`,
+        'content-type'    : 'application/json'
+      }
+  
+      return (dispatch, getState) => {
+        postReq(`${apiURLPrefix}/listing/cancel_listing`, param , headers)
+        .then(handleResponse)
+        .then((res) => {
+           dispatch(cancellistingWithoutpay(res));
+        }).catch((err)=>{
+          console.log(err)
+        }) 
+      } 
+      
+    };
+
+
+
+    /* Cancel Listing with Payment*/
+
+
+    export const cancellistingWithpay = (withpaycancellisting) => {
+    
+      return {
+        type: WITHPAY_LISTING_CANCEL,
+        withpaycancellisting,
+      };
+    };
+  
+    export const withpayCancellisting = (params) => {
+      loader(true);
+      const param = JSON.stringify({
+        listing_id     : params.listing_id,
+        amount         : params.amount,
+        stripe_res     : JSON.stringify(params.stripe_res),
+        payment_reason :'LISTING_CANCEL'
+      });
+      const headers = {
+        Authorization     : `Bearer ${getAuthHeader()}`,
+        'content-type'    : 'application/json'
+      }
+  
+      return (dispatch, getState) => {
+        postReq(`${apiURLPrefix}/payment/updatePaymentStatus`, param , headers)
+        .then(handleResponse)
+        .then((res) => {
+           loader(false);
+           dispatch(cancellistingWithpay(res));
+        }).catch((err)=>{
+          console.log(err)
+        }) 
+      } 
+      
+    };
 
 
   

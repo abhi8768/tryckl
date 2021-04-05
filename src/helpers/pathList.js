@@ -2,7 +2,7 @@
 /* This Section for Route Page */
 const pathList = {
     home              : {name : "home", path : "/" },
-    features          : {name : "home", path : "/features" },
+    howitworks          : {name : "home", path : "/how-it-works" },
     login             : {name : "login", path : "/agent-login" },
     forgetuserid      : {name : "login", path : "/forget-userid" },
     dashboard         : {name : "dashboard", path : "/dashboard" },

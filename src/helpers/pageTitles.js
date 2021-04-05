@@ -1,6 +1,6 @@
 const pageTitles = {
   home           : "Tryckl | Home",
-  home           : "Tryckl | How it Works",
+  howitworks     : "Tryckl | How it Works",
   login          : "Tryckl | Login",
   dashboard      : "Tryckl | Dashboard",
   forgetpassword : "Tryckl | Forget password",

@@ -24,6 +24,9 @@ import mylisting             from './listing/mylisting';
 import listingstorage        from './listing/listingstorage';
 import listingcreate         from './listing/listingcreate';
 import listingdetail         from './listing/listingdetail';
+import listingcancelstatus   from './listing/listingcancelstatus';
+import cacellistingwithoutpay from './listing/cacellistingwithoutpay';
+import cacellistingwithpay    from './listing/cacellistingwithpay';
 import contactus             from './contactus/contactus';
 
 import { USER_LOGGED_OUT } from '../actions/constants';
@@ -52,6 +55,9 @@ const allReducers = {
   listingstorage,
   listingcreate,
   listingdetail,
+  listingcancelstatus,
+  cacellistingwithoutpay,
+  cacellistingwithpay,
   contactus
 };
 

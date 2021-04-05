@@ -60,6 +60,7 @@ class ContactUs extends Component {
 						<img className="block-center rounded" src="assets/img/login-logo.png" alt="Image" />
 					</a>
 					<p>WELCOME to TRYCKL</p>
+					
 				</div>
 		
 				<div className="container">

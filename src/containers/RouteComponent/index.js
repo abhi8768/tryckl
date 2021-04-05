@@ -15,7 +15,7 @@ class RouteComponent extends Component {
         <Switch>
          {/*  <PublicRoute exact={true} path={pathList.home.path} title={pageTitles.login} component={routes.Auth}/> */}
           <PublicRoute exact={true} path={pathList.home.path} title={pageTitles.home} component={routes.LandingPage}/> 
-          <PublicRoute exact={true} path={pathList.features.path} title={pageTitles.home} component={routes.LandingPage}/> 
+          <PublicRoute exact={true} path={pathList.howitworks.path} title={pageTitles.howitworks} component={routes.LandingPage}/> 
           <PublicRoute exact={true} path={pathList.login.path} title={pageTitles.login} component={routes.Auth}/>
           <PublicRoute exact={true} path={pathList.forgetuserid.path} title={pageTitles.forgetuserid} component={routes.ForgetUserid}/>
           <PublicRoute exact={true} path={pathList.forgetpassword.path} title={pageTitles.forgetpassword} component={routes.ForgetPassword}/>
