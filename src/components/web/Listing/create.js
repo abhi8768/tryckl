@@ -200,9 +200,17 @@ class ListingCreate extends Component {
     
     if($$("#date-picker-inline-helper-text").html() != undefined){
       ToastsStore.error('Dateformat is not ok');
-    }else if((this.state.offer_amount <= 10 ) && (this.state.switch_is_hidden == true)){
+    }else if(this.state.type == ''){
+      ToastsStore.error('Type is mandatory');
+    }else if(this.state.mlsdetail[0].mls_id == ''){
+      ToastsStore.error('MLS is mandatory');
+    }else if(this.state.access_type == ''){
+      ToastsStore.error('Access Type is mandatory');
+    }else if(this.state.mlsdetail[0].mls_id == ''){
+      ToastsStore.error('MLS is mandatory');
+    }else if((this.state.offer_amount < 10 ) && (this.state.switch_is_hidden == true)){
       ToastsStore.error('Amount cannot be less than 10');
-    }else if((this.state.offer_amount <= 10 ) && (this.state.switch_is_hidden == false)  && (this.state.switch_value == true)){
+    }else if((this.state.offer_amount < 10 ) && (this.state.switch_is_hidden == false)  && (this.state.switch_value == true)){
       ToastsStore.error('Amount cannot be less than 10');
     }else{
        sessionStorage.setItem('createlisting', JSON.stringify(this.state));
@@ -352,7 +360,7 @@ class ListingCreate extends Component {
                               : null
                             }
                             
-                            <input name="offer_amount" id="offer_amount" pattern="^[0-9]*$" maxlength= "8" value={this.state.offer_amount} type="text"  placeholder="$  Enter amount" onChange={this.handleChange} readOnly={this.state.readonly_offeramount}/>
+                            <input name="offer_amount" id="offer_amount"  pattern="[0-9]+"  maxlength= "8" value={this.state.offer_amount} type="text"  onInput={this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')} placeholder="$  Enter amount" onChange={this.handleChange} readOnly={this.state.readonly_offeramount}/>
                             <button type="submit">PREVIEW</button> 
                             </form>    
                          </div>

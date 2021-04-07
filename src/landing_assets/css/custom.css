@@ -1,4 +1,4 @@
-#new-design h1{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 70px; letter-spacing: -2px}
+#new-design h1{font-family: 'Comfortaa', cursive; /* font-weight: bold !important;  */font-size: 67px; letter-spacing: -2px}
 #new-design .first-fold p{ font-size: 18px; margin: 50px 0; }
 #new-design .secend-fold p{ font-size: 18px; margin: 50px 0; }
 #new-design .third-fold p{ font-size: 18px; margin: 50px 0; }
@@ -40,7 +40,7 @@ body{ background: #434343; font-family: 'Open Sans', sans-serif; }
     #new-design .other-position1{         position: absolute;
     top: 0;
     left: -60px; }
-    #new-design #demo{/* background:url(../../landing_assets//img/slider-bg.png)no-repeat left #f6f6f6; */ height: 700px;} 
+    #new-design #demo{/* background:url(../../landing_assets//img/slider-bg.png)no-repeat left #f6f6f6; */ height: 639px;} 
     #new-design .carousel-control-prev-icon{background:url(../../landing_assets/img/arrow_left_new.png) no-repeat}
     #new-design .carousel-control-next-icon{background:url(../../landing_assets/img/arrow_right_new.png) no-repeat}
     #new-design .carousel-control-next-icon, .carousel-control-prev-icon{ width: 26px; height: 48px; }
@@ -84,8 +84,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
 
 
  #new-design .navbar-light .navbar-nav .nav-link{font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 16px; color: #3b3b3b; margin-left: 15px;}
- #demo h3{ text-align: right; font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 70px; letter-spacing: -2px; color:#fff  }
- #demo p{ font-family: 'Open Sans', sans-serif; font-size: 18px; margin: 50px 0; text-align: right; color:#fff  }
+ #demo h3{ /* text-align: right;  */font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 60px; letter-spacing: -2px; color:#fff; background: #00FEFE; display: inline; padding: 10px; }
+ #demo p{ font-family: 'Open Sans', sans-serif; font-size: 18px; margin: 50px 0; /* text-align: right;  */color:#fff  }
  #demo2 img{ margin-bottom: 20px; }
  #demo2 p{font-size: 18px;  font-family: 'Open Sans', sans-serif; }
 

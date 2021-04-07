@@ -100,6 +100,7 @@ class ListingDetail extends Component {
       document.getElementById("paymentform").reset();
       this.onClose();
       document.getElementById("cancel-listing").style.visibility = "hidden";
+      ToastsStore.success('Listing cancelled successfully');
     }
   }
   
@@ -137,11 +138,11 @@ class ListingDetail extends Component {
   }
 
     paymentIntemt(){
-        paymentIntentData.account = this.state.detail.card_owner_payment_onboard_acc_id;//"acct_1I9op8Qfo3fkSpab";
+        paymentIntentData.account = "acct_1I9op8Qfo3fkSpab";//this.state.detail.card_owner_payment_onboard_acc_id;//"acct_1I9op8Qfo3fkSpab";
         paymentIntentData.listing_id = this.state.listingid;
         paymentIntentData.amount = this.state.detail.offer_amount;
        
-
+      /*http://localhost:3000/api/v1/*/
       fetch(`${apiURLPrefix}/payment/payment_intent`, {
           method: "POST",
           headers: {

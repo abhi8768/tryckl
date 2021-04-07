@@ -22,7 +22,8 @@ const renderApp = Component => {
         document.getElementById("scroll1").style.display = "none";
         document.getElementById("scroll").style.display = "block";
        
-    }else if (window.location.pathname === '/features') {
+    }else if(window.location.pathname === '/how-it-works') {
+        console.log(123);
         document.getElementById("root").style.display = "none";
         document.getElementById("new-design").style.display = "block";
 
