@@ -84,6 +84,7 @@ class ListingCreate extends Component {
     this.setAddress    = this.setAddress.bind(this);
     this.handleMls     = this.handleMls.bind(this);
     this.changeSwitch  = this.changeSwitch.bind(this);
+    this.validateInput = this.validateInput.bind(this);
   }
  
   componentDidMount(){ 
@@ -114,21 +115,31 @@ class ListingCreate extends Component {
   }
 
   handleChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-    if((e.target.name == 'type') && (e.target.value == 'Open House')){
+    if(e.target.name == 'offer_amount'){
+      let offer_amount = e.target.value;
+      if (!Number(offer_amount)) {
+          return;
+      }
       this.setState({
-        switch_is_hidden: false,
-        offer_amount    : 0,
-        readonly_offeramount : true
+          [e.target.name]: offer_amount
       });
-    }else if((e.target.name == 'type') && (e.target.value != 'Open House')){
+    }else{
       this.setState({
-        switch_is_hidden: true,
-        offer_amount    : '',
-        readonly_offeramount : false
+        [e.target.name]: e.target.value,
       });
+      if((e.target.name == 'type') && (e.target.value == 'Open House')){
+        this.setState({
+          switch_is_hidden: false,
+          offer_amount    : 0,
+          readonly_offeramount : true
+        });
+      }else if((e.target.name == 'type') && (e.target.value != 'Open House')){
+        this.setState({
+          switch_is_hidden: true,
+          offer_amount    : '',
+          readonly_offeramount : false
+        });
+      }
     }
   }
   changeSwitch(curVal){
@@ -194,6 +205,23 @@ class ListingCreate extends Component {
       }
     )
     
+  }
+  validateInput(evt){
+    var theEvent = evt || window.event;
+
+    // Handle paste
+    if (theEvent.type === 'paste') {
+        key = event.clipboardData.getData('text/plain');
+    } else {
+    // Handle key press
+        var key = theEvent.keyCode || theEvent.which;
+        key = String.fromCharCode(key);
+    }
+    var regex = /[0-9]|\./;
+    if( !regex.test(key) ) {
+      theEvent.returnValue = false;
+      if(theEvent.preventDefault) theEvent.preventDefault();
+    }
   }
   handleSubmit(e){
     e.preventDefault(); 
@@ -360,7 +388,7 @@ class ListingCreate extends Component {
                               : null
                             }
                             
-                            <input name="offer_amount" id="offer_amount"  pattern="[0-9]+"  maxlength= "8" value={this.state.offer_amount} type="text"  onInput={this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1')} placeholder="$  Enter amount" onChange={this.handleChange} readOnly={this.state.readonly_offeramount}/>
+                            <input name="offer_amount" id="offer_amount" pattern="[0-9]+" maxLength="8" value={this.state.offer_amount} type="text" placeholder="$  Enter amount" onChange={this.handleChange} readOnly={this.state.readonly_offeramount}/>
                             <button type="submit">PREVIEW</button> 
                             </form>    
                          </div>
