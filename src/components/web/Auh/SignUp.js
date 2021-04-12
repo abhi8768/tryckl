@@ -110,7 +110,7 @@ class SignUp extends Component {
             });
         }
         else if(nextProps.masterlicensedata != this.props.masterlicensedata && nextProps.masterlicensedata.status == true){
-            console.log('id :: ', nextProps.masterlicensedata.masterlicense[0].id);
+            //console.log('id :: ', nextProps.masterlicensedata.masterlicense[0].id);
             this.setState({
                 license_number_id   : nextProps.masterlicensedata.masterlicense[0].id
             });
@@ -120,7 +120,7 @@ class SignUp extends Component {
 
         }
         else if(nextProps.registeruserdata != this.props.registeruserdata && nextProps.registeruserdata.status === true){
-            console.log('Sign up complete');
+            
             let otp_data = nextProps.registeruserdata.registeruser;
             otp_data.user_id = this.state.user_id;
             otp_data.email_id = this.state.email;

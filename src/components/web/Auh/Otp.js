@@ -77,6 +77,21 @@ class Otp extends Component {
             if(nextProps.verifyotpdata.status == true){
                 //console.log('OTP verified');
                 ToastsStore.success(nextProps.verifyotpdata.message);
+
+                localStorage.removeItem('first_name');
+                localStorage.removeItem('last_name');
+                localStorage.removeItem('mobile_no');
+                localStorage.removeItem('email_id');
+                localStorage.removeItem('license_number');
+                localStorage.removeItem('license_number_id');
+                localStorage.removeItem('license_issuing_state_id');
+                localStorage.removeItem('brokerage_id');
+                localStorage.removeItem('other_brokerage_name');
+                localStorage.removeItem('age');
+                localStorage.removeItem('licensed_agent');
+                localStorage.removeItem('authorized_in_usa');
+                localStorage.removeItem('terms_n_condition');
+                localStorage.removeItem('terms_stripe')
                 this.props.history.push(`/connect-account`);
                 //this.props.history.push(`/dashboard`);
             }else{

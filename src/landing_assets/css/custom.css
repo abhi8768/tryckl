@@ -111,11 +111,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
     #new-design .three-in-fold .img-fluid{ margin-top: 20px; }
     #demo2 p{ text-align: justify; }
     #new-design .navbar-nav li{ text-align: right;}
+    #new-design #demo{overflow: hidden;} 
+
 
       /*-----------------------------------------------  how it works css ----------------------------------------*/
       .how-mob{ width: 100% }
       .how-it-works .col-lg-6{ padding-left: 15px !important; padding-right: 15px !important; }
       .blue-rounded{ width: 100% }
+      .read-more-br{display: none;}
   }
 
   .aft-logo{
@@ -125,17 +128,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
   }
   .slider-one{
     background:url(../../landing_assets/img/Avenue_for_Experience_New.jpg)no-repeat center; background-size: cover;
-      padding: 200px 0;
+      padding: 220px 0;
   }
 
   .slider-two{
     background:url(../../landing_assets/img/Opportunity_to_Grow.PNG)no-repeat center; background-size: cover;
-      padding: 200px 0
+      padding: 220px 0
   }
 
   .slider-three{
     background:url(../../landing_assets/img/Potential_to_Become.jpg)no-repeat center; background-size: cover;
-     padding: 200px 0
+     padding: 220px 0
   }
 
 

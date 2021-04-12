@@ -188,13 +188,18 @@ class ListingDetail extends Component {
       <div className="col-lg-6">
          <div className="content-part-wrapper profile-content-part-wrapper">
            <div className="content-part-wrapper">
-             <h2 className="mid-heading">LISTing</h2>
+             <h2 className="mid-heading">LISTing Details</h2>
              <div className="content-part-wrapper profile-content-part-wrapper list-pre">
+          <div className="content-part-wrapper dark-part position-relative">
+            <p className="ohters-color">Card Number</p>
+            <p className="ohters-color2">{detail.card_no}</p>
+            
+          </div>     
          <div className="content-part-wrapper dark-part position-relative">
-       <p className="ohters-color">Type</p>
-       <p className="ohters-color2">{detail.type}</p>
-      
-     </div>
+            <p className="ohters-color">Type</p>
+            <p className="ohters-color2">{detail.type}</p>
+            
+          </div>
      {
        (keyword.length > 0) ?  
          <div className="content-part-wrapper dark-part position-relative">

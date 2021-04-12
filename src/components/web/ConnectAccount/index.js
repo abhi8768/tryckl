@@ -43,7 +43,6 @@ class ConnectAccount extends Component {
     componentDidMount(){
       
       let userDetails = JSON.parse(localStorage.getItem('userDetails'));
-      console.log(userDetails.brokers_id);
       if((userDetails.payment_onboard_acc_id != null) || (userDetails.payment_onboard_acc_id != '')){
         let elmButton = document.querySelector("#submit");
 

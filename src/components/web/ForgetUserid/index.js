@@ -73,7 +73,7 @@ class ForgetUserid extends Component {
 
 									<div className="ver-frm-wrapper">
 										<button type="submit">Email my user id</button>
-										<Link to="/login" className="forg custom-back-link">Back to login</Link>
+										<Link to="/agent-login" className="forg custom-back-link">Back to login</Link>
 										
 									</div>
 									</form>

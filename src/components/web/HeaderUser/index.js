@@ -23,20 +23,27 @@ class HeaderUser extends Component {
 	this.linktomylisting = this.linktomylisting.bind(this);
   }
 	componentDidMount(){
-		
+		let userDetails = JSON.parse(localStorage.getItem('userDetails'));
 		this.setState({
 			user_image : (this.props.currentUserDetails.profile_photo != null) ? this.props.currentUserDetails.profile_photo : '',
-			name		 : `${this.props.currentUserDetails.first_name} ${this.props.currentUserDetails.last_name}`
+			name	   : `${userDetails.first_name} ${userDetails.last_name}`
 		})
 	}
 
   	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-    
+        console.log(nextProps.currentUserDetails);
 		if(nextProps.profileimage != this.props.profileimage){
 			this.setState({
 				user_image : nextProps.profileimage.profile_photo
+				
 			})
 		}
+		/* if(nextProps.currentUserDetails != this.props.currentUserDetails){
+			this.setState({
+				name		: `${nextProps.currentUserDetails.first_name} ${nextProps.currentUserDetails.last_name}`
+			})
+		} */
+		currentUserDetails
 	}
 	menuCollanse(){
 		if($$("body").hasClass( "aside-collapsed" )){
@@ -142,7 +149,7 @@ class HeaderUser extends Component {
 const mapStateToProps = state => {
   return {
 			 currentUserDetails  : state.login.user,
-			 profileimage  : state.profilepicture.profilepicture,
+			 profileimage        : state.profilepicture.profilepicture,
         }
 }
 const mapDispatchToProps = dispatch => {

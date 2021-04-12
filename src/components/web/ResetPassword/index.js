@@ -85,7 +85,7 @@ class ResetPassword extends Component {
 										</div>
 										<div className="ver-frm-wrapper need-mar-top-ver">
 											<button type="submit">RESET PASSWORD</button>
-											<Link to="/login" className="forg custom-back-link">Back to login</Link>
+											<Link to="/agent-login" className="forg custom-back-link">Back to login</Link>
 											
 										</div>
 									</form>

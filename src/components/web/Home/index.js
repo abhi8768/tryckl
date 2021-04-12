@@ -15,7 +15,7 @@ class Home extends Component {
 
     loginButton() {
       //console.log( this.props.history);
-      this.props.history.push(`/login`);
+      this.props.history.push(`/agent-login`);
     }
     render() {
       

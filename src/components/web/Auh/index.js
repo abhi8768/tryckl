@@ -53,7 +53,6 @@ class Auth extends Component {
 	}
 
 	openOtpBox(obj){
-		console.log('OTP Data : ',obj);
 		this.setState({
 			otpActive		: true,
 			otpData			: obj

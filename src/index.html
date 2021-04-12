@@ -63,7 +63,7 @@
 							<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
 							</li>
 							<li class="nav-item">
-							<a class="nav-link" href="/about-us">About Us</a>
+							<a class="nav-link" href="/about-us" >About Us</a>
 							</li>
 						
 							<li class="nav-item">
@@ -125,7 +125,7 @@
 			<div class="carousel-item active">
 				<div class="row slider-one">
 					<div class="container">
-						<div class="row">
+						<div class="">
 								
 						
 						<div class="col-lg-12">
@@ -140,7 +140,7 @@
 			<div class="carousel-item">
 				<div class="row slider-two">
 						<div class="container">
-							<div class="row">
+							<div class="">
 									<div class="col-lg-12 text-right" >
 										<h3 class="">Opportunity for Growth</h3>
 										<p class=""><b>Increase Income, close more deals and recruit <br/> top agents.</b></p>
@@ -154,7 +154,7 @@
 			<div class="carousel-item">
 				<div class="row slider-three">
 						<div class="container">
-							<div class="row">
+							<div class="">
 									
 					
 					<div class="col-lg-12">
@@ -187,7 +187,7 @@
 					know the right technology will highlight an agents value, produce consistent income, and pave
 					the way for efficient growth. <br/> <br/>That’s the ‘why’ behind Tryckl.</p>
 				
-				<img src="/landing_assets/img/aft2.png" class="img-fluid aft-logo"/><br/>
+				<img src="/landing_assets/img/aft2.png" class="img-fluid aft-logo"/><br class="read-more-br"/>
 				<a href="/about-us" class="read-more">Read More</a>
 				</div> 
 				<div class="col-lg-6 text-center">
@@ -548,6 +548,9 @@
 	const target = document.querySelector('#three-in-fold');
 
 	scroll2.scrollTo(target,-100);
+  }
+  function gotoAbout(){
+	$('.third-fold')[0].scrollIntoView(true);
   }
 	</script>
 
