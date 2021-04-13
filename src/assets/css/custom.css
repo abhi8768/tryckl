@@ -1030,4 +1030,15 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
   text-decoration: none !important;
 }
   
+@media only screen and (min-width:320px) and (max-width: 500px) {
+
+  .position-custom li{ position: static !important;}
+  .custom-nav {
+    margin-right: 10px !important;
+    }
+    .headeruser-name{ display: none;}
+    .aside-collapsed .wrapper .aside-container, .aside-collapsed .wrapper .aside-container .aside-inner{ margin-left: 0 !important;}
+
+}
+
 

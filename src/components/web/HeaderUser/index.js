@@ -31,7 +31,7 @@ class HeaderUser extends Component {
 	}
 
   	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-        console.log(nextProps.currentUserDetails);
+        //console.log(nextProps.currentUserDetails);
 		if(nextProps.profileimage != this.props.profileimage){
 			this.setState({
 				user_image : nextProps.profileimage.profile_photo
@@ -43,7 +43,7 @@ class HeaderUser extends Component {
 				name		: `${nextProps.currentUserDetails.first_name} ${nextProps.currentUserDetails.last_name}`
 			})
 		} */
-		currentUserDetails
+		
 	}
 	menuCollanse(){
 		if($$("body").hasClass( "aside-collapsed" )){
@@ -84,7 +84,7 @@ class HeaderUser extends Component {
 				   <a className="nav-link d-none d-md-block d-lg-block d-xl-block" href={void(0)} onClick={this.menuCollanse} data-trigger-resize="" data-toggle-state="aside-collapsed">
 					   <em className="" ><img className="img-fluid sand" src="/assets/img/nav-nenu-ico.png" /></em></a>
   
-					   <a className="nav-link sidebar-toggle d-md-none" href="#" data-toggle-state="aside-toggled" data-no-persist="true">
+					   <a className="nav-link sidebar-toggle d-md-none" href={void(0)} onClick={this.menuCollanse}  data-toggle-state="aside-toggled" data-no-persist="true">
 					   <em className=""><img className="img-fluid" src="/assets/img/nav-nenu-ico.png" /></em>
 					</a>
 				 </li>
@@ -112,7 +112,7 @@ class HeaderUser extends Component {
 				  </li> */}
 			  </ul>
 			  <ul className="navbar-nav flex-row custom-nav">
-				  <li className="nav-item"> 
+				  <li className="nav-item headeruser-name"> 
 					  <div className="top-p-pic-name">
 					   <p className="top-name">{this.state.name}</p>
 					   {/* <p className="top-under">$ 19.75</p> */}
