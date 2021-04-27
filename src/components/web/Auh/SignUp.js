@@ -118,6 +118,21 @@ class SignUp extends Component {
         else if(nextProps.registeruserdata != this.props.registeruserdata && nextProps.registeruserdata.status === false){
             ToastsStore.error(nextProps.registeruserdata.message);
 
+            localStorage.removeItem('first_name');
+            localStorage.removeItem('last_name');
+            localStorage.removeItem('mobile_no');
+            localStorage.removeItem('email_id');
+            localStorage.removeItem('license_number');
+            localStorage.removeItem('license_number_id');
+            localStorage.removeItem('license_issuing_state_id');
+            localStorage.removeItem('brokerage_id');
+            localStorage.removeItem('other_brokerage_name');
+            localStorage.removeItem('age');
+            localStorage.removeItem('licensed_agent');
+            localStorage.removeItem('authorized_in_usa');
+            localStorage.removeItem('terms_n_condition');
+            localStorage.removeItem('terms_stripe');
+
         }
         else if(nextProps.registeruserdata != this.props.registeruserdata && nextProps.registeruserdata.status === true){
             
@@ -213,7 +228,7 @@ class SignUp extends Component {
         }
 
         if(e.target.name == 'license_number'){
-            if(e.target.value.length > 7){
+            if(e.target.value.length > 3){
                 let param = {
                     type               : 'LICENSE',
                     search_param       : e.target.value,
@@ -316,7 +331,7 @@ class SignUp extends Component {
     }
 
     activeSubmitBtn(){
-        //console.log(this.state.terms_n_condition);
+       // console.log(this.state);
         if((this.state.first_name != '') 
             && (this.state.last_name != '') 
             && (this.state.password != '') 
