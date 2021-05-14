@@ -230,6 +230,8 @@ class ListingCreate extends Component {
       ToastsStore.error('Dateformat is not ok');
     }else if(this.state.type == ''){
       ToastsStore.error('Type is mandatory');
+    }else if(this.state.full_address == ''){
+      ToastsStore.error('Property address is mandatory');
     }else if(this.state.mlsdetail[0].mls_id == ''){
       ToastsStore.error('MLS is mandatory');
     }else if(this.state.access_type == ''){

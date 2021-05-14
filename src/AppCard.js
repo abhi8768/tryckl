@@ -73,7 +73,7 @@ export class CardDemo extends Component {
       uniqueId="myUniqueId"
       script="https://js.stripe.com/v3/"
       loader="Loading..."
-    ><StripeProvider apiKey="pk_test_51HQ39DH4WRu13wRH4uQwT2TdgcIufd8wv5wTnLiqwsIqKLQzdhLODen8r6qH5YbPorSHfocDa1I7doXdjaKYJKLH00AOZ5zpOF">
+    ><StripeProvider apiKey="pk_live_51HQ39DH4WRu13wRHP226zaRc1x5IxxZ34HJFgBe0cnvknQIeF1FprsNezacdl2jF8hGKtV63k3P5UlgNAbsyjbAx006IaHnfQ2">
             
       <Elements>
         <CardForm  />

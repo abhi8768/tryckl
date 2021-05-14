@@ -90,7 +90,7 @@ const CheckoutForm = (props) => {
    
   );
 };
-const stripePromise = loadStripe("pk_test_51HQ39DH4WRu13wRH4uQwT2TdgcIufd8wv5wTnLiqwsIqKLQzdhLODen8r6qH5YbPorSHfocDa1I7doXdjaKYJKLH00AOZ5zpOF");
+const stripePromise = loadStripe("pk_live_51HQ39DH4WRu13wRHP226zaRc1x5IxxZ34HJFgBe0cnvknQIeF1FprsNezacdl2jF8hGKtV63k3P5UlgNAbsyjbAx006IaHnfQ2");
 
 const Card = (props) => {
   return (
