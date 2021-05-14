@@ -598,6 +598,10 @@
   function gotoAbout(){
 	$('.third-fold')[0].scrollIntoView(true);
   }
+
+  $("#exampleModal").on('hidden.bs.modal', function (e) {
+    $("#exampleModal iframe").attr("src", $("#exampleModal iframe").attr("src"));
+  });
 	</script>
 
     <!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->
