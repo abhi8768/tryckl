@@ -12,7 +12,7 @@ import  Card  from "../Listing/AppCard";
 
 
 import { encrypt , decrypt , getParams } from "../../../helpers/CryptoJs";
-import { requestDetaillisting, listinginLocalStorage, checkListingStatusForCancel, nopayCancellisting, withpayCancellisting } from "../../../actions/web/listingAction";
+import { requestDetaillisting, listinginLocalStorage, checkListingStatusForCancel, nopayCancellisting, withpayCancellisting, paymentmethodListing } from "../../../actions/web/listingAction";
 import $$ from 'jquery';
 import  MyCardPreview  from "./mycardpreview";
 
@@ -49,14 +49,17 @@ class ListingDetail extends Component {
 
   componentDidMount(){ 
     this.props.requestDetaillisting({listing_id:this.state.listingid});
+    this.props.paymentmethodListing();
   }
 
   checkcancelStatus(){
-    this.props.checkListingStatusForCancel({listing_id:this.state.listingid});
+    this.onOpen();
+    //this.props.checkListingStatusForCancel({listing_id:this.state.listingid});
   }
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
      //console.log('cancel',nextProps.nopaycancel,this.props.nopaycancel);
+     console.log('paymentmethod',nextProps.paymentmethod);
      if(nextProps.detail){
        this.setState({
           detail : nextProps.detail
@@ -129,11 +132,18 @@ class ListingDetail extends Component {
       this.paymentIntemt();
     })
   }
-  paymentforcancellation(stripeRes){
+  paymentforcancellation(cvvnumber,cardnumber,expirymonth,expiryyear){
     this.props.withpayCancellisting(
-      {listing_id:this.state.listingid,
-      amount:this.state.detail.offer_amount,
-      stripe_res:stripeRes}
+      { account : this.state.detail.card_owner_payment_onboard_acc_id,
+        payment_method : '',
+        card_number : cardnumber,
+        exp_month : expirymonth,
+        exp_year : expiryyear,
+        cvc : cvvnumber,
+        listing_id:this.state.listingid,
+        amount:this.state.detail.offer_amount,
+      //stripe_res:stripeRes
+     }
     );
   }
 
@@ -361,7 +371,8 @@ const mapStateToProps = state => {
         nowchangeview       : state.listingactiveview.activelistingview,
         cancelStatus        : state.listingcancelstatus.statuslistingcancel,
         nopaycancel         : state.cacellistingwithoutpay.nopaycancellisting,  
-        withpaycancel       : state.cacellistingwithpay.withpaycancellisting    
+        withpaycancel       : state.cacellistingwithpay.withpaycancellisting,
+        paymentmethod       : state.paymentmethodlist.paymentmethodlist
 	}
 }
   
@@ -372,9 +383,9 @@ const mapDispatchToProps = dispatch => {
         checkListingStatusForCancel : bindActionCreators(checkListingStatusForCancel , dispatch),
         nopayCancellisting    : bindActionCreators(nopayCancellisting , dispatch),
         withpayCancellisting  : bindActionCreators(withpayCancellisting , dispatch),
-	}
+        paymentmethodListing  : bindActionCreators(paymentmethodListing , dispatch)
+  }       
 }
-
 export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps

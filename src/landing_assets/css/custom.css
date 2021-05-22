@@ -1,7 +1,7 @@
 #new-design h1{font-family: 'Comfortaa', cursive; /* font-weight: bold !important;  */font-size: 67px; letter-spacing: -2px}
 #new-design .first-fold p{ font-size: 18px; margin: 50px 0; }
 #new-design .secend-fold p{ font-size: 18px; margin: 50px 0; }
-#new-design .third-fold p{ font-size: 18px; margin: 50px 0; }
+#new-design .third-fold p{ font-size: 18px; margin: 50px 0; margin-bottom: 15px;}
 #new-design .three-in-fold p{ font-size: 18px; margin: 50px 0; } 
 body{ background: #434343; font-family: 'Open Sans', sans-serif; }
 
@@ -128,7 +128,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
   .aft-logo{
     height : 100px;
     width  : 100px;
-    margin-bottom : 15px 
+    margin-bottom : 15px;
+    display: block;
   }
   .slider-one{
     background:url(../../landing_assets/img/Avenue_for_Experience_New.jpg)no-repeat center; background-size: cover;
@@ -182,3 +183,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
     font-size: 18px;
     margin:0;
    }
+.carousel-control-prev{
+  display: none;
+}
+
+.carousel-control-next{
+  display: none;
+}

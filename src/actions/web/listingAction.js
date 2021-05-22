@@ -1,4 +1,4 @@
-import { LISTING_ACTIVE_VIEW, MY_LISTING, LISTING_STORAGE, SAVE_LISTING, DETAIL_LISTING, STATUS_LISTING_CANCEL, NOPAY_LISTING_CANCEL, WITHPAY_LISTING_CANCEL } from '../constants';
+import { LISTING_ACTIVE_VIEW, MY_LISTING, LISTING_STORAGE, SAVE_LISTING, DETAIL_LISTING, STATUS_LISTING_CANCEL, NOPAY_LISTING_CANCEL, WITHPAY_LISTING_CANCEL, PAYMENT_METHOD_LIST } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession } from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -219,7 +219,7 @@ import { handleResponse , loader } from '../utils';
     };
   
     export const withpayCancellisting = (params) => {
-      loader(true);
+     /*  loader(true);
       const param = JSON.stringify({
         listing_id     : params.listing_id,
         amount         : params.amount,
@@ -240,9 +240,67 @@ import { handleResponse , loader } from '../utils';
         }).catch((err)=>{
           console.log(err)
         }) 
+      }  */
+
+
+      loader(true);
+      const param = JSON.stringify({
+        items: [{ id: 'photo-subscription'}],
+	      currency: "usd",
+	      account: "acct_1HrHayQng9VjHuX3",
+	      payment_method : "",
+        card_number: "4242424242424242", 
+        exp_month: 12,
+        exp_year: 2021,
+        cvc: "314",
+        listing_id     : params.listing_id,
+        amount         : params.amount,
+        payment_reason :'LISTING_CANCEL'
+      });
+      const headers = {
+        Authorization     : `Bearer ${getAuthHeader()}`,
+        'content-type'    : 'application/json'
+      }
+  
+      return (dispatch, getState) => {
+        postReq(`${apiURLPrefix}/payment/payment_with_stripe`, param , headers)
+        .then(handleResponse)
+        .then((res) => {
+           loader(false);
+           dispatch(cancellistingWithpay(res));
+        }).catch((err)=>{
+          console.log(err)
+        }) 
       } 
       
     };
 
+
+    export const paymentMethod = (paymentmethodlist) => {
+    
+      return {
+        type: PAYMENT_METHOD_LIST,
+        paymentmethodlist,
+      };
+    };
+  
+    export const paymentmethodListing = () => {
+      const param = null;
+      const headers = {
+        Authorization     : `Bearer ${getAuthHeader()}`,
+        'content-type'    : 'application/json'
+      }
+  
+      return (dispatch, getState) => {
+        postReq(`${apiURLPrefix}/payment/payment_card_list`, param , headers)
+        .then(handleResponse)
+        .then((res) => {
+           dispatch(paymentMethod(res));
+        }).catch((err)=>{
+          console.log(err)
+        }) 
+      } 
+      
+    };
 
   

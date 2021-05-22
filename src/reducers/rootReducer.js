@@ -27,6 +27,7 @@ import listingdetail         from './listing/listingdetail';
 import listingcancelstatus   from './listing/listingcancelstatus';
 import cacellistingwithoutpay from './listing/cacellistingwithoutpay';
 import cacellistingwithpay    from './listing/cacellistingwithpay';
+import paymentmethodlist    from './listing/paymentmethodlist';
 import contactus             from './contactus/contactus';
 
 import { USER_LOGGED_OUT } from '../actions/constants';
@@ -58,6 +59,7 @@ const allReducers = {
   listingcancelstatus,
   cacellistingwithoutpay,
   cacellistingwithpay,
+  paymentmethodlist,
   contactus
 };
 

@@ -323,7 +323,8 @@
 		<div id="demo2" class="carousel slide" data-ride="carousel" data-scroll-section>
 		
 			<!-- Indicators -->
-			<ul class="carousel-indicators">
+			<ul class="">
+			<!-- <ul class="carousel-indicators"> -->
 			<li data-target="#demo" data-slide-to="0" class="active"></li>
 			<!-- <li data-target="#demo" data-slide-to="1"></li>
 			<li data-target="#demo" data-slide-to="2"></li> -->
@@ -521,6 +522,7 @@
     <script src="/landing_assets/js/locomotive-scroll.min.js"></script>
 	<script src="/landing_assets/js/lettering.min.js"></script>
 	<script src="https://js.stripe.com/v3/"></script>
+	
 	<script>
 		let userDetails    = localStorage.getItem('userDetails');
 	
@@ -589,12 +591,12 @@
     
    
   });
-  function scrolltop(){
+  /* function scrolltop(){
 	const scroll2 = new LocomotiveScroll();
 	const target = document.querySelector('#three-in-fold');
 
 	scroll2.scrollTo(target,-100);
-  }
+  } */
   function gotoAbout(){
 	$('.third-fold')[0].scrollIntoView(true);
   }
@@ -603,6 +605,13 @@
     $("#exampleModal iframe").attr("src", $("#exampleModal iframe").attr("src"));
   });
 	</script>
-
+<!-- <script>
+const stripe = Stripe('pk_test_51HQ39DH4WRu13wRH4uQwT2TdgcIufd8wv5wTnLiqwsIqKLQzdhLODen8r6qH5YbPorSHfocDa1I7doXdjaKYJKLH00AOZ5zpOF');
+const elements = stripe.elements();
+const cardNumberElement = elements.create('cardNumber');
+cardNumberElement.mount('#card-element');
+var cardElementss = elements.getElement('cardNumber');
+console.log(cardElementss);
+</script> -->
     <!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->
     </html>

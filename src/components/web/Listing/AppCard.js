@@ -1,8 +1,11 @@
 import React from 'react';
+import $ from "jquery";
 import {CardElement, Elements, useStripe, useElements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {ToastsStore} from 'react-toasts';
-const style = {
+import { GetCardType, checkCreditCard } from "../../.../../../helpers/cardHelper";
+
+/* const style = {
   base: {
     color: '#232e35',
     fontFamily: '"Podkova", "Courier New", serif',
@@ -15,12 +18,61 @@ const style = {
     color: '#cf3100',
     iconColor: '#cf3100'
   }
-};
-const CheckoutForm = (props) => {
-  const stripe = useStripe();
-  const elements = useElements();
+}; */
 
+
+
+
+const Card = (props) => {
+
+  const manageCvv = () =>{
+    
+    let cvv = $('#cvv_number').val();
+    localStorage.setItem('cvv_number',cvv);
+
+    if(cvv.length == 1){
+      $('#cvv_number').val('*');
+      localStorage.setItem('cvv_number','');
+    }else if(cvv.length == 2){
+      $('#cvv_number').val('**');
+      localStorage.setItem('cvv_number','');
+    }else{
+      $('#cvv_number').val('***');
+     
+    }
+    
+  }
+
+  const manageCard = () =>{
+    let card_number = $('#card_number').val();
+    let cardType = GetCardType(card_number);
+    localStorage.setItem('card_number','');
+
+    if (checkCreditCard (card_number,cardType)) {
+      localStorage.setItem('card_number',card_number);
+      $("#card_number").css("color", "black");
+     
+    }else{
+      localStorage.setItem('card_number','');
+      $("#card_number").css("color", "red");
+    };
+  }
   const handleSubmit = async (event) => {
+    event.preventDefault();
+    let cvv_number  = localStorage.getItem('cvv_number');
+    let card_number = localStorage.getItem('card_number');
+    let exp_month   =  $("select#expiry_month option").filter(":selected").val();
+    let exp_year    =  $("select#expiry_year option").filter(":selected").val();
+    if((cvv_number != '') && (card_number != '') && (exp_month != 0) && (exp_year != 0)){
+      console.log(cvv_number,card_number,exp_month,exp_year);
+    }
+    
+    //props.forCancellation(result);
+  }
+/*   const stripe = useStripe();
+  const elements = useElements(); */
+
+/*   const handleSubmit = async (event) => {
     // Block native form submission.
     event.preventDefault();
 
@@ -29,12 +81,12 @@ const CheckoutForm = (props) => {
       // form submission until Stripe.js has loaded.
       return;
     }
+   
 
-    // Get a reference to a mounted CardElement. Elements knows how
-    // to find your CardElement because there can only ever be one of
-    // each type of element.
     const cardElement = elements.getElement(CardElement);
-    //console.log(cardElement);
+    console.log(cardElement); 
+
+  
     let  paymentIntentClientSecret = localStorage.getItem('paymentIntentClientSecret');
     stripe
     .confirmCardPayment(paymentIntentClientSecret, {
@@ -67,30 +119,86 @@ const CheckoutForm = (props) => {
       props.forCancellation(result);
       var paymentIntent = result.paymentIntent;
       var paymentIntentJson = JSON.stringify(paymentIntent, null, 2);
-  
-     /*  document.querySelector(".sr-payment-form").classList.add("hidden");
-      document.querySelector("pre").textContent = paymentIntentJson;
-  
-      document.querySelector(".sr-result").classList.remove("hidden");
-      setTimeout(function() {
-        document.querySelector(".sr-result").classList.add("expand");
-      }, 200); */
-  
       //changeLoadingState(false);
     });
-  };
-
+  }; */
+  var minn = new Date().getFullYear();
+  var maxx = minn + 20;
+  var year = [];
+  for(var i= minn; i<=maxx; i++){
+    year.push(i);
+  }
   return (
     <div>
       <form id="paymentform">
-        <CardElement options={style}/>
-        <button className="sv-btn" onClick={handleSubmit} disabled={!stripe}>Pay</button>
+         {/* <CardNumberElement options={style}/>   */}
+        
+        <div className="row">
+          <div className="col-lg-12">
+                  <input 
+                    className="form-control"
+                    placeholder="Credit Card Number"
+                    name="card_number"
+                    id="card_number" 
+                    onBlur={manageCard}
+                  />
+          </div>        
+        </div>
+        <div className="row">
+          <div className="col-lg-6">
+            <select className="form-control" name="expiry_month" id="expiry_month">
+              <option value="0">Expiry Month</option>
+              <option value="01">January</option>
+              <option value="02">February</option>
+              <option value="03">March</option>
+              <option value="04">April</option>
+              <option value="05">May</option>
+              <option value="06">June</option>
+              <option value="07">July</option>
+              <option value="08">August</option>
+              <option value="09">September</option>
+              <option value="10">October</option>
+              <option value="11">November</option>
+              <option value="12">December</option>
+
+            </select>
+          </div>
+          <div className="col-lg-6">
+            <select className="form-control" name="expiry_year" id="expiry_year">
+              <option value="0">Expiry Year</option>
+              {
+                year.map((limit,index) => {
+                  return ( <option value={limit} key={`limit_${index}`}>{limit}</option>
+                          )
+                })
+              }
+            
+            </select>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-12">
+                 <input 
+                    className="form-control"
+                    placeholder="CVV"
+                    name="cvv_number"
+                    id="cvv_number" 
+                    onKeyUp={manageCvv} 
+                    maxLength="3"
+                  />
+          </div>
+        </div>
+        <button className="sv-btn" onClick={handleSubmit} >Pay</button>
       </form>
     </div>  
    
   );
 };
-const stripePromise = loadStripe("pk_live_51HQ39DH4WRu13wRHP226zaRc1x5IxxZ34HJFgBe0cnvknQIeF1FprsNezacdl2jF8hGKtV63k3P5UlgNAbsyjbAx006IaHnfQ2");
+/*
+pk_live_51HQ39DH4WRu13wRHP226zaRc1x5IxxZ34HJFgBe0cnvknQIeF1FprsNezacdl2jF8hGKtV63k3P5UlgNAbsyjbAx006IaHnfQ2
+pk_test_51HQ39DH4WRu13wRH4uQwT2TdgcIufd8wv5wTnLiqwsIqKLQzdhLODen8r6qH5YbPorSHfocDa1I7doXdjaKYJKLH00AOZ5zpOF
+*/
+/*  const stripePromise = loadStripe("pk_test_51HQ39DH4WRu13wRH4uQwT2TdgcIufd8wv5wTnLiqwsIqKLQzdhLODen8r6qH5YbPorSHfocDa1I7doXdjaKYJKLH00AOZ5zpOF");
 
 const Card = (props) => {
   return (
@@ -98,5 +206,5 @@ const Card = (props) => {
       <CheckoutForm forCancellation={props.forCancellation}/>
     </Elements>
   );
-};
+};  */
 export default Card;
