@@ -37,6 +37,8 @@ class ListingDetail extends Component {
       listingid   : (this.props.match.params != undefined) ? decrypt(this.props.match.params.id) : null,
       detail      : {},
       modal       : false,
+      saved_payment_method : '',
+      saved_card_details   : {}
     }
     this.validURL      = this.validURL.bind(this);
     this.gotoProfile   = this.gotoProfile.bind(this);
@@ -53,13 +55,13 @@ class ListingDetail extends Component {
   }
 
   checkcancelStatus(){
-    this.onOpen();
-    //this.props.checkListingStatusForCancel({listing_id:this.state.listingid});
+    //this.onOpen();
+    this.props.checkListingStatusForCancel({listing_id:this.state.listingid});
   }
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
      //console.log('cancel',nextProps.nopaycancel,this.props.nopaycancel);
-     console.log('paymentmethod',nextProps.paymentmethod);
+     //console.log('paymentmethod',nextProps.paymentmethod.list);
      if(nextProps.detail){
        this.setState({
           detail : nextProps.detail
@@ -73,7 +75,7 @@ class ListingDetail extends Component {
       }, function(){
         this.props.requestDetaillisting({listing_id:this.state.listingid});
       }) 
-    }else if(nextProps.cancelStatus != this.props.cancelStatus){
+    }else if(nextProps.cancelStatus  != this.props.cancelStatus){
 
       let cancelRes    = nextProps.cancelStatus.response;
       let cancelMsg    = nextProps.cancelStatus.status_msg;
@@ -93,7 +95,7 @@ class ListingDetail extends Component {
         ToastsStore.error(cancelMsg);
       }
       
-    }else if(nextProps.nopaycancel != this.props.nopaycancel){
+    }else if(nextProps.nopaycancel   != this.props.nopaycancel){
       //console.log(420);
       this.props.history.push(`/my-listing`);
       ToastsStore.success('Cancel Card Successfully');
@@ -104,6 +106,13 @@ class ListingDetail extends Component {
       this.onClose();
       document.getElementById("cancel-listing").style.visibility = "hidden";
       ToastsStore.success('Listing cancelled successfully');
+    }else if(nextProps.paymentmethod != this.props.paymentmethod){
+      if(nextProps.paymentmethod.list.length > 0){
+        this.setState({
+          saved_payment_method : nextProps.paymentmethod.list[0].id,
+          saved_card_details   : nextProps.paymentmethod.list[0].card
+        })
+      } 
     }
   }
   
@@ -134,14 +143,14 @@ class ListingDetail extends Component {
   }
   paymentforcancellation(cvvnumber,cardnumber,expirymonth,expiryyear){
     this.props.withpayCancellisting(
-      { account : this.state.detail.card_owner_payment_onboard_acc_id,
-        payment_method : '',
-        card_number : cardnumber,
-        exp_month : expirymonth,
-        exp_year : expiryyear,
-        cvc : cvvnumber,
-        listing_id:this.state.listingid,
-        amount:this.state.detail.offer_amount,
+      { account        : this.state.detail.card_owner_payment_onboard_acc_id,
+        payment_method : this.state.saved_payment_method,
+        card_number    : cardnumber,
+        exp_month      : expirymonth,
+        exp_year       : expiryyear,
+        cvv            : cvvnumber,
+        listing_id     : this.state.listingid,
+        amount         : this.state.detail.offer_amount,
       //stripe_res:stripeRes
      }
     );
@@ -352,7 +361,10 @@ class ListingDetail extends Component {
             <div className="modal-header2">
             </div>
             <div className="modal-body" style={customStyles}>
-              <Card forCancellation={this.paymentforcancellation}/>
+              <Card forCancellation = {this.paymentforcancellation} 
+                    savedPaymentmethod = {this.state.saved_payment_method} 
+                    savedCarddetails = {this.state.saved_card_details} 
+              />
             </div>
            
           </Modal>

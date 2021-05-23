@@ -31,17 +31,17 @@ const Card = (props) => {
     localStorage.setItem('cvv_number',cvv);
 
     if(cvv.length == 1){
-      $('#cvv_number').val('*');
+     // $('#cvv_number').val('*');
       localStorage.setItem('cvv_number','');
     }else if(cvv.length == 2){
-      $('#cvv_number').val('**');
+      //$('#cvv_number').val('**');
       localStorage.setItem('cvv_number','');
     }else{
-      $('#cvv_number').val('***');
+     // $('#cvv_number').val('***');
      
     }
-    
   }
+
 
   const manageCard = () =>{
     let card_number = $('#card_number').val();
@@ -63,9 +63,15 @@ const Card = (props) => {
     let card_number = localStorage.getItem('card_number');
     let exp_month   =  $("select#expiry_month option").filter(":selected").val();
     let exp_year    =  $("select#expiry_year option").filter(":selected").val();
-    if((cvv_number != '') && (card_number != '') && (exp_month != 0) && (exp_year != 0)){
-      console.log(cvv_number,card_number,exp_month,exp_year);
+    if(props.savedPaymentmethod != ''){
+      props.forCancellation('','','','');
+    }else{
+      if((cvv_number != '') && (card_number != '') && (exp_month != '0') && (exp_year != '0')){
+        console.log(cvv_number,card_number,exp_month,exp_year);
+        props.forCancellation(cvv_number,card_number,exp_month,exp_year);
+      }
     }
+   
     
     //props.forCancellation(result);
   }
@@ -132,63 +138,78 @@ const Card = (props) => {
     <div>
       <form id="paymentform">
          {/* <CardNumberElement options={style}/>   */}
-        
-        <div className="row">
-          <div className="col-lg-12">
-                  <input 
-                    className="form-control"
-                    placeholder="Credit Card Number"
-                    name="card_number"
-                    id="card_number" 
-                    onBlur={manageCard}
-                  />
-          </div>        
-        </div>
-        <div className="row">
-          <div className="col-lg-6">
-            <select className="form-control" name="expiry_month" id="expiry_month">
-              <option value="0">Expiry Month</option>
-              <option value="01">January</option>
-              <option value="02">February</option>
-              <option value="03">March</option>
-              <option value="04">April</option>
-              <option value="05">May</option>
-              <option value="06">June</option>
-              <option value="07">July</option>
-              <option value="08">August</option>
-              <option value="09">September</option>
-              <option value="10">October</option>
-              <option value="11">November</option>
-              <option value="12">December</option>
+        {
+          (props.savedPaymentmethod != '') ? 
+          <div class="saved_card">
+                <div className="content-part-wrapper dark-part position-relative">
+                  <p className="ohters-color">Credit Card Number</p>
+                  <p className="ohters-color2">****{props.savedCarddetails.last4}</p>
+                  
+                </div>
+          </div>
 
-            </select>
-          </div>
-          <div className="col-lg-6">
-            <select className="form-control" name="expiry_year" id="expiry_year">
-              <option value="0">Expiry Year</option>
-              {
-                year.map((limit,index) => {
-                  return ( <option value={limit} key={`limit_${index}`}>{limit}</option>
-                          )
-                })
-              }
-            
-            </select>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-lg-12">
-                 <input 
-                    className="form-control"
-                    placeholder="CVV"
-                    name="cvv_number"
-                    id="cvv_number" 
-                    onKeyUp={manageCvv} 
-                    maxLength="3"
-                  />
-          </div>
-        </div>
-        <button className="sv-btn" onClick={handleSubmit} >Pay</button>
+          : <div class="new_card form-container2">
+              <div className="row">
+                <div className="col-lg-12">
+                        <input 
+                          className="form-control"
+                          placeholder="Credit Card Number"
+                          name="card_number"
+                          id="card_number" 
+                          onBlur={manageCard}
+                        />
+                </div>        
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <select className="custom-select2" name="expiry_month" id="expiry_month">
+                    <option value="0">Expiry Month</option>
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+
+                  </select>
+                </div>
+                <div className="col-lg-6">
+                  <select className="custom-select2" name="expiry_year" id="expiry_year">
+                    <option value="0">Expiry Year</option>
+                    {
+                      year.map((limit,index) => {
+                        return ( <option value={limit} key={`limit_${index}`}>{limit}</option>
+                                )
+                      })
+                    }
+                  
+                  </select>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-12">
+                      <input 
+                          className="form-control"
+                          placeholder="CVV"
+                          name="cvv_number"
+                          id="cvv_number" 
+                          onKeyUp={manageCvv} 
+                          
+                          maxLength="3"
+                        />
+                        
+                </div>
+              </div>
+        
+            </div>
+        }
+          <button className="sv-btn" onClick={handleSubmit} >Pay</button>
       </form>
     </div>  
    

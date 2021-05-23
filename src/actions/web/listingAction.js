@@ -245,17 +245,17 @@ import { handleResponse , loader } from '../utils';
 
       loader(true);
       const param = JSON.stringify({
-        items: [{ id: 'photo-subscription'}],
-	      currency: "usd",
-	      account: "acct_1HrHayQng9VjHuX3",
-	      payment_method : "",
-        card_number: "4242424242424242", 
-        exp_month: 12,
-        exp_year: 2021,
-        cvc: "314",
-        listing_id     : params.listing_id,
-        amount         : params.amount,
-        payment_reason :'LISTING_CANCEL'
+        items           : [{ id: 'photo-subscription'}],
+	      currency        : "usd",
+	      account         : params.account,
+	      payment_method  : params.payment_method,
+        card_number     : params.card_number,//"4242424242424242", 
+        exp_month       : params.exp_month,
+        exp_year        : params.exp_year,
+        cvc             : params.cvv,
+        listing_id      : params.listing_id,
+        amount          : params.amount,
+        payment_reason  :'LISTING_CANCEL'
       });
       const headers = {
         Authorization     : `Bearer ${getAuthHeader()}`,
