@@ -30,18 +30,20 @@ const Card = (props) => {
     let cvv = $('#cvv_number').val();
     localStorage.setItem('cvv_number',cvv);
 
-    if(cvv.length == 1){
-     // $('#cvv_number').val('*');
+   
+    /* f(cvv.length == 0){
       localStorage.setItem('cvv_number','');
+      $('#dummy').html('Enter CVV'); 
+    }else if(cvv.length == 1){
+     $('#dummy').html('*'); 
+     localStorage.setItem('cvv_number','');
     }else if(cvv.length == 2){
-      //$('#cvv_number').val('**');
+      $('#dummy').html('**'); 
       localStorage.setItem('cvv_number','');
     }else{
-     // $('#cvv_number').val('***');
-     
-    }
+      $('#dummy').html('***'); 
+    } */
   }
-
 
   const manageCard = () =>{
     let card_number = $('#card_number').val();
@@ -140,7 +142,7 @@ const Card = (props) => {
          {/* <CardNumberElement options={style}/>   */}
         {
           (props.savedPaymentmethod != '') ? 
-          <div class="saved_card">
+          <div className="saved_card">
                 <div className="content-part-wrapper dark-part position-relative">
                   <p className="ohters-color">Credit Card Number</p>
                   <p className="ohters-color2">****{props.savedCarddetails.last4}</p>
@@ -148,7 +150,7 @@ const Card = (props) => {
                 </div>
           </div>
 
-          : <div class="new_card form-container2">
+          : <div className="new_card form-container2">
               <div className="row">
                 <div className="col-lg-12">
                         <input 
@@ -156,7 +158,8 @@ const Card = (props) => {
                           placeholder="Credit Card Number"
                           name="card_number"
                           id="card_number" 
-                          onBlur={manageCard}
+                          onBlur={manageCard} 
+                          autocomplete="off"
                         />
                 </div>        
               </div>
@@ -193,20 +196,21 @@ const Card = (props) => {
                 </div>
               </div>
               <div className="row">
-                <div className="col-lg-12">
+                <div className="col-lg-12" id="cvv">
                       <input 
                           className="form-control"
-                          placeholder="CVV"
+                          placeholder="Enter CVV"
                           name="cvv_number"
                           id="cvv_number" 
                           onKeyUp={manageCvv} 
-                          
                           maxLength="3"
+                          type="text" 
+                          autocomplete="off"
                         />
+                        {/* <span id="dummy">Enter CVV</span>        */}                 
                         
                 </div>
               </div>
-        
             </div>
         }
           <button className="sv-btn" onClick={handleSubmit} >Pay</button>

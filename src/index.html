@@ -469,7 +469,7 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/how-it-works">How it Works</a></li>
 					<!-- <li id="scrolltop" ><a onclick=scrolltop()>Services</a></li> -->
-					<li><a href="">Testimonials</a></li>
+					<li><a href="javascript:void(0)" onclick="gotoTestimonial();">Testimonials</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-3">
@@ -599,6 +599,10 @@
   } */
   function gotoAbout(){
 	$('.third-fold')[0].scrollIntoView(true);
+  }
+
+  function gotoTestimonial(){
+	$('#demo2')[0].scrollIntoView(true);
   }
 
   $("#exampleModal").on('hidden.bs.modal', function (e) {

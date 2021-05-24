@@ -1040,5 +1040,16 @@ box-shadow:  6px -7px 20px -1px rgba(0,0,0,0.36); }
     .aside-collapsed .wrapper .aside-container, .aside-collapsed .wrapper .aside-container .aside-inner{ margin-left: 0 !important;}
 
 }
+/* 
+#cvv {
+  position: relative;
+}
+#cvv_number {
+  color: transparent;
+}
+#dummy {
+  position: absolute;
+  top: 7px;
+} */
 
 

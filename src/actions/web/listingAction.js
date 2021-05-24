@@ -255,7 +255,7 @@ import { handleResponse , loader } from '../utils';
         cvc             : params.cvv,
         listing_id      : params.listing_id,
         amount          : params.amount,
-        payment_reason  :'LISTING_CANCEL'
+        flag            :'LISTING_CANCEL'
       });
       const headers = {
         Authorization     : `Bearer ${getAuthHeader()}`,

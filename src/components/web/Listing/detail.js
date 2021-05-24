@@ -61,7 +61,7 @@ class ListingDetail extends Component {
 
 	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
      //console.log('cancel',nextProps.nopaycancel,this.props.nopaycancel);
-     //console.log('paymentmethod',nextProps.paymentmethod.list);
+     console.log('paymentmethod',nextProps.paymentmethod.list);
      if(nextProps.detail){
        this.setState({
           detail : nextProps.detail
@@ -138,7 +138,7 @@ class ListingDetail extends Component {
     this.setState({
       modal    : true
     },function(){
-      this.paymentIntemt();
+     // this.paymentIntemt();
     })
   }
   paymentforcancellation(cvvnumber,cardnumber,expirymonth,expiryyear){
