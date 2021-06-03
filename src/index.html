@@ -524,6 +524,8 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	
 	<script>
+
+		$('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
 		let userDetails    = localStorage.getItem('userDetails');
 	
 		let userDetailsobj = JSON.parse(userDetails);
@@ -572,10 +574,11 @@
       lerp: .08
     });  */
   }
-  if ( $("#scroll").css('display') == 'block')
+  window.onload = init;
+  /* if ( $("#scroll").css('display') == 'block')
   {
   		window.onload = init;
-  }
+  } */
   $(document).ready(function() {
     // DEFER IMAGE LOAD
     var imgDefer = document.getElementsByTagName('img');
@@ -587,9 +590,6 @@
     // STYLE INDIVIDUAL LINES & LETTERS
     $(".button").lettering('words');
     $(".animate-title, .animate-text").lettering('lines');
-
-    
-   
   });
   /* function scrolltop(){
 	const scroll2 = new LocomotiveScroll();

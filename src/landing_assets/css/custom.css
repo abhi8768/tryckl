@@ -70,7 +70,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffff', end
  #new-design .footer ul li a{ color: #3b3b3b }
  #new-design .footer h4{ margin-bottom: 20px;font-family: 'Comfortaa', cursive; font-weight: bold !important; font-size: 18px;  }
  #new-design .footer p{ margin-top: 40px; color: #3b3b3b }
- #new-design .wrapper-mod{ background: red }
+ /*#new-design .wrapper-mod{  background: red} */ 
  #new-design .mod:focus{ border: none; outline: none }
 
  #new-design .read-more{/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00ffff+0,00ffcc+100 */
