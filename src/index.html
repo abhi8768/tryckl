@@ -101,7 +101,8 @@
 			market.
 			</p>
 			<p> Welcome to the new way to REpresent! Welcome to Tryckl. </p>
-		<a href="" class="mr-3"><img src="/landing_assets/img/app-store-btn.png" class=""></a><a href=""><img src="/landing_assets/img/google-play-btn.png" class=""></a>
+				<a href="https://apps.apple.com/us/app/tryckl/id1561380058" class="mr-3"><img src="/landing_assets/img/app-store-btn.png" class=""></a>
+				<a href="https://play.google.com/store/apps/details?id=com.appsbee.tryckl"><img src="/landing_assets/img/google-play-btn.png" class=""></a>
 				</div>
 				<div class="col-lg-6">
 					<img src="/landing_assets/img/first-fold-img-1.png" class="ani1 other-position1">
@@ -469,7 +470,7 @@
 					<li><a href="/">Home</a></li>
 					<li><a href="/how-it-works">How it Works</a></li>
 					<!-- <li id="scrolltop" ><a onclick=scrolltop()>Services</a></li> -->
-					<li><a href="javascript:void(0)" onclick="gotoTestimonial();">Testimonials</a></li>
+					<!-- 	<li><a href="javascript:void(0)" onclick="gotoTestimonial();">Testimonials</a></li> -->
 					</ul>
 				</div>
 				<div class="col-lg-3">
@@ -485,8 +486,8 @@
 				<div class="col-lg-3">
 					<h4>Downloads</h4>
 					<ul>
-					<li><a href=""> <img src="/landing_assets/img/footer-app-store.png" class=""></a></li>
-					<li><a href=""> <img src="/landing_assets/img/footer-google-play.png" class=""></a></li>
+					<li><a href="https://apps.apple.com/us/app/tryckl/id1561380058"> <img src="/landing_assets/img/footer-app-store.png" class=""></a></li>
+					<li><a href="https://play.google.com/store/apps/details?id=com.appsbee.tryckl"> <img src="/landing_assets/img/footer-google-play.png" class=""></a></li>
 					
 					</ul>
 				</div>
@@ -524,6 +525,8 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	
 	<script>
+
+		$('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
 		let userDetails    = localStorage.getItem('userDetails');
 	
 		let userDetailsobj = JSON.parse(userDetails);
@@ -572,10 +575,11 @@
       lerp: .08
     });  */
   }
-  if ( $("#scroll").css('display') == 'block')
+  window.onload = init;
+  /* if ( $("#scroll").css('display') == 'block')
   {
   		window.onload = init;
-  }
+  } */
   $(document).ready(function() {
     // DEFER IMAGE LOAD
     var imgDefer = document.getElementsByTagName('img');
@@ -587,9 +591,6 @@
     // STYLE INDIVIDUAL LINES & LETTERS
     $(".button").lettering('words');
     $(".animate-title, .animate-text").lettering('lines');
-
-    
-   
   });
   /* function scrolltop(){
 	const scroll2 = new LocomotiveScroll();
