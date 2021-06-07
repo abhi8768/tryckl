@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from 'react-router-dom';
 import RouteComponent from './containers/RouteComponent';
-import { AppCard } from "./AppCard";
-import {
+
+/* import {
     CardElement,
     injectStripe,
     StripeProvider,
     Elements,
-  } from 'react-stripe-elements';
+  } from 'react-stripe-elements'; */
 import store from './store'; 
 
 
