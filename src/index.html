@@ -49,7 +49,7 @@
 				<div class="container" data-scroll-section>
 				
 					<nav class="navbar navbar-expand-lg navbar-light">
-						<a class="navbar-brand" href="#">  <img src="/landing_assets/img/logo.png" class=""></a>
+						<a class="navbar-brand" href="/">  <img src="/landing_assets/img/logo.png" class=""></a>
 						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 						</button>
@@ -404,7 +404,8 @@
 		
 		<p>Do what you’re already doing - <br>
 		only faster, easier and more efficiently!</p>
-		<a href="" class="mr-3"><img src="/landing_assets/img/app-store-btn.png" class=""></a><a href=""><img src="landing_assets/img/google-play-btn.png" class=""></a>
+		<a href="https://apps.apple.com/us/app/tryckl/id1561380058" class="mr-3"><img src="/landing_assets/img/app-store-btn.png" class=""></a>
+		<a href="https://play.google.com/store/apps/details?id=com.tryckl.com"><img src="landing_assets/img/google-play-btn.png" class=""></a>
 				</div>
 				<div class="col-lg-6 text-center">
 					<img src="/landing_assets/img/works-mobile.png" class="how-mob">
@@ -525,8 +526,8 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	
 	<script>
-
-		$('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
+	
+		//$('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
 		let userDetails    = localStorage.getItem('userDetails');
 	
 		let userDetailsobj = JSON.parse(userDetails);
@@ -575,11 +576,17 @@
       lerp: .08
     });  */
   }
-  window.onload = init;
-  /* if ( $("#scroll").css('display') == 'block')
-  {
-  		window.onload = init;
-  } */
+ // window.onload = init;
+ 	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+	if(isMobile === false){
+		if (( $("#scroll").css('display') == 'block')  || ( $("#scroll1").css('display') == 'block'))
+		{     $('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
+				window.onload = init;
+		} 
+	}
+	
+
+
   $(document).ready(function() {
     // DEFER IMAGE LOAD
     var imgDefer = document.getElementsByTagName('img');
