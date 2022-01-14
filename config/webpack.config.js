@@ -11,8 +11,8 @@ buildDirectory = path.join(__dirname, '../dist'),
 WebpackMd5HashObj = new WebpackMd5Hash(),
 CleanWebpackPluginObj = new CleanWebpackPlugin(),
 apiURLPrefix = {
-    production: JSON.stringify('https://api.tryckl.com/api/v1'),
-    development: JSON.stringify('https://api.tryckl.com/api/v1')
+    production: JSON.stringify('https://api.tryckl.com/api/v1'),//https://api.tryckl.com/api/v1
+    development: JSON.stringify('https://api.tryckl.com/api/v1') //https://stagingapi.tryckl.com/api/v1
 },
 cryptoKey = {
     production: 
