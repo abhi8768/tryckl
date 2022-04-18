@@ -3,7 +3,7 @@
 const pathList = {
     home              : {name : "home", path : "/" },
     howitworks          : {name : "home", path : "/how-it-works" },
-    login             : {name : "login", path : "/agent-login" },
+    //login             : {name : "login", path : "/agent-login" }, -- Disabled for production only
     forgetuserid      : {name : "login", path : "/forget-userid" },
     dashboard         : {name : "dashboard", path : "/dashboard" },
     dashboard_success : {name : "dashboard_success", path : "/dashboard/:success" },

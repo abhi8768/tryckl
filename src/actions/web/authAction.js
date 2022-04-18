@@ -114,6 +114,7 @@ import { handleResponse , loader } from '../utils';
   };
   
   export const createAccountRequest = (params) => {
+    debugger;
       loader(true);
       const param = JSON.stringify({
         first_name                : params.first_name,
@@ -124,7 +125,8 @@ import { handleResponse , loader } from '../utils';
         password                  : params.password,
         license_issuing_state_id  : params.license_issuing_state_id,
         brokerage_id              : params.brokerage_id,
-        other_brokerage_name              : params.other_brokerage_name,
+        other_brokerage_name      : params.other_brokerage_name,
+        user_type                 : params.user_type,
         latitude                  : params.latitude,
         longitude                 : params.longitude,
         brokers_id                : params.brokers_id
@@ -134,7 +136,8 @@ import { handleResponse , loader } from '../utils';
       const headers = 
       {
          Authorization     : `Bearer ${getAuthHeader()}`,
-        'content-type'    : 'application/json'
+        'content-type'    : 'application/json',
+        'Access-Control-Allow-Origin': '*'
       }
   
       return (dispatch, getState) => {

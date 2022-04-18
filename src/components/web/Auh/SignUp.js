@@ -28,6 +28,7 @@ class SignUp extends Component {
             license_state    : '',
             brokerage        : '',
             other_brokerage_name : '',
+            user_type        : 'personal',
             latitude         : '',
             longitude        : '',
             age              : 0,
@@ -55,6 +56,7 @@ class SignUp extends Component {
                 license_state    : (localStorage.getItem('license_issuing_state_id')===null || localStorage.getItem('license_issuing_state_id')=== undefined)?'':localStorage.getItem('license_issuing_state_id'),
                 brokerage        : (localStorage.getItem('brokerage_id')===null || localStorage.getItem('brokerage_id')=== undefined)?'':localStorage.getItem('brokerage_id'),
                 other_brokerage_name : (localStorage.getItem('other_brokerage_name')===null || localStorage.getItem('other_brokerage_name')=== undefined)?'':localStorage.getItem('other_brokerage_name'),
+                user_type : (localStorage.getItem('user_type')===null || localStorage.getItem('user_type')=== undefined)?'personal':localStorage.getItem('user_type'),
                 age              : (localStorage.getItem('age')===null || localStorage.getItem('age')=== undefined)? 0 :localStorage.getItem('age'),
                 licensed_agent   : (localStorage.getItem('licensed_agent')===null || localStorage.getItem('licensed_agent')=== undefined)? 0 :localStorage.getItem('licensed_agent'),
                 authorized_in_usa: (localStorage.getItem('authorized_in_usa')===null || localStorage.getItem('authorized_in_usa')=== undefined)? 0 :localStorage.getItem('authorized_in_usa'),
@@ -93,6 +95,7 @@ class SignUp extends Component {
                 license_state    : userNotverifiedDetails.license_issue_stateid,
                 brokerage        : userNotverifiedDetails.brokerage_id,
                 other_brokerage_name : userNotverifiedDetails.other_brokerage_name,
+                user_type        : userNotverifiedDetails.user_type,
                 age              : 1,
                 licensed_agent   : 1,
                 authorized_in_usa: 1,
@@ -127,6 +130,7 @@ class SignUp extends Component {
             localStorage.removeItem('license_issuing_state_id');
             localStorage.removeItem('brokerage_id');
             localStorage.removeItem('other_brokerage_name');
+            localStorage.removeItem('user_type');
             localStorage.removeItem('age');
             localStorage.removeItem('licensed_agent');
             localStorage.removeItem('authorized_in_usa');
@@ -166,6 +170,7 @@ class SignUp extends Component {
             license_issuing_state_id  : this.state.license_state,
            // brokerage_id              : this.state.brokerage,
             other_brokerage_name      : this.state.other_brokerage_name,
+            user_type                 : this.state.user_type,
             latitude                  : crd.latitude,
             longitude                 : crd.longitude,
             brokers_id                : this.state.brokers_id
@@ -180,6 +185,7 @@ class SignUp extends Component {
         localStorage.setItem('license_issuing_state_id', this.state.license_state);
         localStorage.setItem('brokerage_id', this.state.brokerage);
         localStorage.setItem('other_brokerage_name', this.state.other_brokerage_name);
+        localStorage.setItem('user_type', this.state.user_type);
         localStorage.setItem('age', this.state.age);
         localStorage.setItem('licensed_agent', this.state.licensed_agent);
         localStorage.setItem('authorized_in_usa', this.state.authorized_in_usa);
@@ -240,6 +246,7 @@ class SignUp extends Component {
         }
 
         if(e.target.name == 'terms_n_condition'){
+           
             if(this.state.terms_n_condition===1)
             {
                 this.setState({
@@ -330,8 +337,8 @@ class SignUp extends Component {
         
     }
 
-    activeSubmitBtn(){
-       // console.log(this.state);
+    activeSubmitBtn(){ debugger;
+       //console.log(this.state);
         if((this.state.first_name != '') 
             && (this.state.last_name != '') 
             && (this.state.password != '') 
@@ -339,15 +346,16 @@ class SignUp extends Component {
             && (this.state.confirm_password == this.state.password) 
             && (this.state.user_id != '') 
             && (this.state.email != '')
-            && (this.state.license_number != '')
+            && (this.state.license_number_id != '')
             && (this.state.license_state != '')
             && (this.state.other_brokerage_name != '')
+            && (this.state.user_type != '')
             && (this.state.terms_n_condition != 0)
             && (this.state.age != 0)
             && (this.state.licensed_agent != 0)
             && (this.state.authorized_in_usa != 0)
             && (this.state.terms_stripe != 0)){
-                //console.log('HEllo');
+             //  console.log('HEllo');
                 this.setState({
                     inactive_btn : false
                 })
@@ -357,7 +365,7 @@ class SignUp extends Component {
                 })
             }
 
-            //console.log('==>> ', this.state.inactive_btn);
+           // console.log('==>> ', this.state.inactive_btn);
     }
 
     render() {
@@ -365,7 +373,7 @@ class SignUp extends Component {
         return (
             <div className="form-container sign-up-container reg-frm">
                 <form onSubmit={this.onSubmit}>
-                    <h1>Create Account</h1>
+                    <h1>Create Account</h1> 
                                       
                     <Scrollbars style={{ height: "52vh" }}
                         autoHide
@@ -396,7 +404,7 @@ class SignUp extends Component {
 
                             {/* pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" */}
                             <label>Real estate license #</label>
-                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number" id="license_number"  onChange={this.handleChange} value={this.state.first_name} required value={this.state.license_number}/>
+                            <input type="text" placeholder="Enter Real Estate Lincense number" name="license_number_id" id="license_number_id" value={this.state.license_number_id}  onChange={this.handleChange} required />
 
                             <label>Real estate lic issuing state</label>
                             <select className="custom-select" value={this.state.license_state} name="license_state" id="license_state" onChange={this.handleChange} required>
@@ -414,6 +422,9 @@ class SignUp extends Component {
                                 
                             <label>Brokerage</label>
                             <input type="text" placeholder="Enter Brokerage" name="other_brokerage_name" id="other_brokerage_name"  onChange={this.handleChange} value={this.state.other_brokerage_name} required value={this.state.other_brokerage_name}/>
+                            <label>User Type</label>
+                            <input type="text" disabled placeholder="Enter User Type" name="user_type" id="user_type"   value={this.state.user_type} required />
+                            
                             {/* <select className="custom-select" value={this.state.brokerage} name="brokerage" id="brokerage" onChange={this.handleChange} required>
                                 
                                 {   (this.state.master_brokerage.length > 0) ?

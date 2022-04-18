@@ -10,7 +10,7 @@ import { fetchMasterData } from "../../../actions/web/masterAction";
 import { createAccountRequest } from "../../../actions/web/authAction";
 
 import { TrendingUpTwoTone } from '@material-ui/icons';
-
+import {usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess,} from 'react-plaid-link';
 
 class ConnectAccount extends Component {
 
