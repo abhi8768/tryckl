@@ -76,9 +76,9 @@
 							<a class="nav-link" href="#">Download</a>
 							</li> -->
 							<!-- Disabled for Production Only -->
-							<!-- <li class="nav-item">
+							<li class="nav-item">
 							<a class="nav-link" href="/agent-login">Login / Register</a>
-							</li> -->
+							</li>
 						</ul>
 						
 						</div>
@@ -528,17 +528,16 @@
 	<script src="https://js.stripe.com/v3/"></script>
 	
 	<script>
-	
 		//$('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
 		let userDetails    = localStorage.getItem('userDetails');
 	
 		let userDetailsobj = JSON.parse(userDetails);
 		//console.log(userDetailsobj);
 		if(userDetailsobj !== null){
-			
+		
 			$.ajax({ 
 				method: 'POST', 
-				url: 'https://api.tryckl.com/api/v1/auth/authenticate', 
+				url: `${apiURLPrefix}/auth/authenticate`, 
 				data: JSON.stringify({ 'brokers_id': userDetailsobj.brokers_id}),
 				dataType: 'json',
 				contentType: 'application/json',
@@ -551,6 +550,24 @@
 					//localStorage.setItem('jwtToken', res.response._jwtToken);
 				}
        		});
+
+			   $.ajax({ 
+				method: 'GET', 
+				url: `${apiURLPrefix}/plaid/create_link_token`, 
+				dataType: 'json',
+				contentType: 'application/json',
+				headers: {
+				Authorization     : 'Bearer ' + localStorage.getItem('jwtToken'),
+				'Content-Type':'application/json'
+				},
+				success: function (res) { 
+					console.log('mycode',res);	
+					localStorage.setItem('link_token', res.response.link_token);
+					//localStorage.setItem('jwtToken', res.response._jwtToken);
+				}
+       		});
+
+			   
 		}
 		
 
