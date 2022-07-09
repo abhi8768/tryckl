@@ -88,6 +88,8 @@ class Otp extends Component {
                 localStorage.removeItem('brokerage_id');
                 localStorage.removeItem('other_brokerage_name');
                 localStorage.removeItem('age');
+                localStorage.removeItem('ssn');
+                localStorage.removeItem('date_of_birth');
                 localStorage.removeItem('licensed_agent');
                 localStorage.removeItem('authorized_in_usa');
                 localStorage.removeItem('terms_n_condition');

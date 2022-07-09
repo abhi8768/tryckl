@@ -32,6 +32,8 @@ class SignUp extends Component {
             latitude         : '',
             longitude        : '',
             age              : 0,
+            ssn              : '',
+            dateOfBirth      : '',
             licensed_agent   : 0,
             authorized_in_usa: 0,
             terms_n_condition: 0,
@@ -58,6 +60,8 @@ class SignUp extends Component {
                 other_brokerage_name : (localStorage.getItem('other_brokerage_name')===null || localStorage.getItem('other_brokerage_name')=== undefined)?'':localStorage.getItem('other_brokerage_name'),
                 user_type : (localStorage.getItem('user_type')===null || localStorage.getItem('user_type')=== undefined)?'personal':localStorage.getItem('user_type'),
                 age              : (localStorage.getItem('age')===null || localStorage.getItem('age')=== undefined)? 0 :localStorage.getItem('age'),
+                ssn              : (localStorage.getItem('ssn')===null || localStorage.getItem('ssn')=== undefined)? '' :localStorage.getItem('ssn'),
+                dateOfBirth      : (localStorage.getItem('date_of_birth')===null || localStorage.getItem('date_of_birth')=== undefined)? '' :localStorage.getItem('date_of_birth'),
                 licensed_agent   : (localStorage.getItem('licensed_agent')===null || localStorage.getItem('licensed_agent')=== undefined)? 0 :localStorage.getItem('licensed_agent'),
                 authorized_in_usa: (localStorage.getItem('authorized_in_usa')===null || localStorage.getItem('authorized_in_usa')=== undefined)? 0 :localStorage.getItem('authorized_in_usa'),
                 terms_n_condition: (localStorage.getItem('terms_n_condition')===null || localStorage.getItem('terms_n_condition')=== undefined)? 0 :localStorage.getItem('terms_n_condition'),
@@ -187,6 +191,8 @@ class SignUp extends Component {
         localStorage.setItem('other_brokerage_name', this.state.other_brokerage_name);
         localStorage.setItem('user_type', this.state.user_type);
         localStorage.setItem('age', this.state.age);
+        localStorage.setItem('ssn', this.state.ssn);
+        localStorage.setItem('date_of_birth', this.state.dateOfBirth);
         localStorage.setItem('licensed_agent', this.state.licensed_agent);
         localStorage.setItem('authorized_in_usa', this.state.authorized_in_usa);
         localStorage.setItem('terms_n_condition', this.state.terms_n_condition);
