@@ -9,16 +9,17 @@ import {
   changeView,
 } from "../../../actions/web/brokerAction";
 import { fetchMasterData } from "../../../actions/web/masterAction";
-import Datepicker from "./datepicker"; 
+import Datepicker from "./datepicker";
+// import { ToastsStore } from "react-toasts";
 
 class ProfileCompletion extends Component {
   constructor(props) {
     super(props);
     // setPublicIP();
     // let [selectedDate, setSelectedDate] = React.useState(new Date());
-    this.state = {       
+    this.state = {
       dob: new Date(),
-      // brokerage_dob:new Date(),     
+      // brokerage_dob:new Date(),
       master_state: [],
       master_brokerage: [],
       first_name: "",
@@ -41,6 +42,7 @@ class ProfileCompletion extends Component {
     this.gotoEdit = this.gotoEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.handleDate = this.handleDate.bind(this);
   }
 
   componentDidMount() {
@@ -83,8 +85,24 @@ class ProfileCompletion extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    // console.log(this.state);
-    this.props.updateprofileDetails(this.state);
+    console.log(this.state);
+    if (this.state.ssn && this.state.ssn.length < 3) {
+      ToastsStore.error("SSN cannot be less than 4");
+    } else {
+      this.props.updateprofileDetails(this.state);
+    }
+  }
+
+  handleDate(date) {
+    console.log(date, "dob1");
+    this.setState(
+      {
+        dob: date,
+      },
+      () => {
+        console.log(this.state, "dob");
+      }
+    );
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
@@ -128,11 +146,10 @@ class ProfileCompletion extends Component {
         ssn: nextProps.profiledetail.ssn,
       });
     }
-    
   }
 
   render() {
-
+    // console.log(this.state, "dob");
     return (
       <div className="col-lg-6">
         <div className="content-part-wrapper">
@@ -285,21 +302,32 @@ class ProfileCompletion extends Component {
                     placeholder="Enter SSN"
                     name="ssn"
                     id="ssn"
-                    value={(this.state.ssn)?this.state.ssn : this.state.ssn = JSON.parse(localStorage.getItem('userDetails')).ssn}
-                    onChange={this.handleChange} 
+                    value={
+                      this.state.ssn
+                        ? this.state.ssn
+                        : (this.state.ssn = JSON.parse(
+                            localStorage.getItem("userDetails")
+                          ).ssn)
+                    }
+                    maxLength={4}
+                    onChange={this.handleChange}
                     //disabled={this.state.ssn != ""?true:false}
-                    disabled={(JSON.parse(sessionStorage.getItem('userDetails')).ssn) ? true : false}
+                    disabled={
+                      JSON.parse(sessionStorage.getItem("userDetails")).ssn
+                        ? true
+                        : false
+                    }
                     required
                   />
-                  
+
                   <label>DOB</label>
                   <Datepicker
-                    onChange={this.state.dob}
+                    onChangeDate={this.handleDate}
                     defaultVal={moment().format("YYYY-MM-DD")}
-                    required                                                            
-                   />                                                        
-                   {/* <Datepicker setDate={this.setDate}  defaultVal={moment().format('YYYY-MM-DD')} required/> */}
-                    
+                    required
+                  />
+                  {/* <Datepicker setDate={this.setDate}  defaultVal={moment().format('YYYY-MM-DD')} required/> */}
+
                   <div className="row">
                     <div className="col-lg-6">
                       <label>State</label>
@@ -339,7 +367,9 @@ class ProfileCompletion extends Component {
                     </div>
                   </div>
 
-                  <button type="submit" className='saveBtn'>SAVE</button>
+                  <button type="submit" className="saveBtn">
+                    SAVE
+                  </button>
                 </form>
               </div>
             </div>

@@ -51,6 +51,7 @@
     "cryptr": "^6.0.2",
     "date-fns": "^2.8.1",
     "express": "^4.17.1",
+    "formik": "^2.2.9",
     "ipify2": "^1.0.6",
     "jquery": "^3.5.1",
     "lodash": "^4.17.15",
@@ -84,6 +85,7 @@
     "redux-thunk": "^2.3.0",
     "stripe": "^8.141.0",
     "styled-components": "^5.0.1",
-    "validator": "^12.1.0"
+    "validator": "^12.1.0",
+    "yup": "^0.32.11"
   }
 }
