@@ -48,7 +48,7 @@ class MyListing extends Component {
       this.props.history.push(`create-listing`);
     } else {
       sessionStorage.setItem("connectfromlisting", "1");
-      this.props.history.push(`/connect-account`);
+      this.props.history.push(`/profile`, { profileEdit: true });
     }
   }
 
@@ -100,6 +100,7 @@ class MyListing extends Component {
   }
 
   render() {
+    console.log(this.props, "props");
     return (
       <div className="row">
         <div className="col-lg-3">
@@ -316,6 +317,7 @@ const mapStateToProps = (state) => {
     mylisting: state.mylisting.mylisting,
     currentUserDetails: state.login,
     profiledetail: state.brokerdetail.profiledetail,
+    dasboarddetail: state.dashboarddetail.dashboard,
   };
 };
 

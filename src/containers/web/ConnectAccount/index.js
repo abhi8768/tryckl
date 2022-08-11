@@ -1,37 +1,31 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import ConnectAccountContainer from "../../../components/web/ConnectAccount";
 
 class ConnectAccount extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
   }
-  componentDidMount() {
-  
-    
-  }
+  componentDidMount() {}
   render() {
-   
     return (
-     <ConnectAccountContainer />
-     
+      <ConnectAccountContainer
+        history={this.props.history}
+        location={this.props.location}
+        match={this.props.match}
+      />
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     //stateNames: state.signup
-  }
-}
+  };
+};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    
-  }
-}
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ConnectAccount);
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectAccount);

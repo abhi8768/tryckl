@@ -13,6 +13,8 @@ import { fetchMasterData } from "../../../actions/web/masterAction";
 import { createAccountRequest } from "../../../actions/web/authAction";
 import "./login.css";
 import { TrendingUpTwoTone } from "@material-ui/icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 class SignUp extends Component {
   constructor(props) {
@@ -59,6 +61,8 @@ class SignUp extends Component {
       licensed_agent_error: "",
       authorized_in_usa_error: "",
       terms_stripe_error: "",
+      showPassword: false,
+      showConfirmPassword: false,
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -588,32 +592,66 @@ class SignUp extends Component {
               />
               <p className="text-danger">{this.state.last_name_error}</p>
               <label>Password </label>
-              <input
-                type="password"
-                // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                placeholder="Enter valid password "
-                name="password"
-                id="password"
-                value={this.state.password}
-                onChange={this.handleChange}
-                required
-              />
-              <i className="fa fa-info" aria-hidden="true"></i>
-              <i className="fa fa-eye"></i>
+              <div className="input-group-password">
+                <input
+                  type={this.state.showPassword ? "text" : "password"}
+                  // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                  placeholder="Enter valid password "
+                  name="password"
+                  id="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className="input-group-addon">
+                  <a
+                    onClick={() => {
+                      this.setState({
+                        showPassword: !this.state.showPassword,
+                      });
+                    }}
+                    className="icon-black pointer"
+                  >
+                    {this.state.showPassword ? (
+                      <FontAwesomeIcon icon={faEye} />
+                    ) : (
+                      <FontAwesomeIcon icon={faEyeSlash} />
+                    )}
+                  </a>
+                </div>
+              </div>
 
-              <br />
               <p className="text-danger">{this.state.password_error}</p>
               <label>CONFIRM PASSWORD</label>
-              <input
-                type="password"
-                // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
-                placeholder="Retype your password"
-                name="confirm_password"
-                id="confirm_password"
-                value={this.state.confirm_password}
-                onChange={this.handleChange}
-                required
-              />
+              <div className="input-group-password">
+                <input
+                  type={this.state.showConfirmPassword ? "text" : "password"}
+                  // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                  placeholder="Retype your password"
+                  name="confirm_password"
+                  id="confirm_password"
+                  value={this.state.confirm_password}
+                  onChange={this.handleChange}
+                  required
+                />
+                <div className="input-group-addon">
+                  <a
+                    onClick={() => {
+                      this.setState({
+                        showConfirmPassword: !this.state.showConfirmPassword,
+                      });
+                    }}
+                    className="icon-black pointer"
+                  >
+                    {this.state.showConfirmPassword ? (
+                      <FontAwesomeIcon icon={faEye} />
+                    ) : (
+                      <FontAwesomeIcon icon={faEyeSlash} />
+                    )}
+                  </a>
+                </div>
+              </div>
+
               <p className="text-danger">{this.state.confirm_password_error}</p>
               <label>MOBILE NO. (USER ID)</label>
               <input

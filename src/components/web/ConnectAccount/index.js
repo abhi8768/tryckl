@@ -1,39 +1,41 @@
-import React, { Component } from 'react';
-import { Scrollbars } from 'react-custom-scrollbars';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from "react";
+import { Scrollbars } from "react-custom-scrollbars";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { ToastsStore } from 'react-toasts';
+import { ToastsStore } from "react-toasts";
 import Modal from "react-responsive-modal";
 
 import { fetchMasterData } from "../../../actions/web/masterAction";
 import { createAccountRequest } from "../../../actions/web/authAction";
 
-import { TrendingUpTwoTone } from '@material-ui/icons';
-import { usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess, } from 'react-plaid-link';
-import { PlaidLink } from 'react-plaid-link'
+import { TrendingUpTwoTone } from "@material-ui/icons";
+import {
+  usePlaidLink,
+  PlaidLinkOptions,
+  PlaidLinkOnSuccess,
+} from "react-plaid-link";
+import { PlaidLink } from "react-plaid-link";
 class ConnectAccount extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       open: true,
       linkToken: "",
-    }
+    };
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.onSkip = this.onSkip.bind(this);
-
   }
   onOpenModal() {
     this.setState({ open: true });
-  };
+  }
   onCloseModal() {
     this.setState({ open: false });
-  };
+  }
 
   onSkip(type) {
-    if (type == 'BACK') {
+    if (type == "BACK") {
       this.props.history.push(`/my-listing`);
     } else {
       this.props.history.push(`/dashboard`);
@@ -41,31 +43,37 @@ class ConnectAccount extends Component {
   }
 
   componentDidMount() {
-    this.setState({ linkToken: localStorage.getItem('link_token') });
+    this.setState({ linkToken: localStorage.getItem("link_token") });
 
-    let userDetails = JSON.parse(localStorage.getItem('userDetails'));
-    if ((userDetails.payment_onboard_acc_id != null) || (userDetails.payment_onboard_acc_id != '')) {
+    let userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    if (
+      userDetails.payment_onboard_acc_id != null ||
+      userDetails.payment_onboard_acc_id != ""
+    ) {
       let elmButton = document.querySelector("#submit");
 
       if (elmButton) {
         elmButton.addEventListener(
           "click",
-          e => {
+          (e) => {
             elmButton.setAttribute("disabled", "disabled");
             elmButton.textContent = "Opening...";
 
             fetch("https://api.tryckl.com/api/v1/payment/payment", {
               method: "POST",
               headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
               },
               body: JSON.stringify({
                 brokers_id: userDetails.brokers_id,
-                request_from: (sessionStorage.getItem('connectfromlisting') == '1') ? 'web_listing' : 'web_signup'
-              })
+                request_from:
+                  sessionStorage.getItem("connectfromlisting") == "1"
+                    ? "web_listing"
+                    : "web_signup",
+              }),
             })
-              .then(response => response.json())
-              .then(data => {
+              .then((response) => response.json())
+              .then((data) => {
                 console.log(data);
                 if (data.url) {
                   window.location = data.url;
@@ -84,21 +92,9 @@ class ConnectAccount extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {}
 
-
-  }
-
-
-
-
-
-
-
-
-  handleChange(e) {
-
-  }
+  handleChange(e) {}
 
   // handleOnSuccess(token, metadata) {
   //   // send token to client server
@@ -114,17 +110,18 @@ class ConnectAccount extends Component {
     fetch(`${apiURLPrefix}/plaid/exchange_public_token`, {
       method: "POST",
       headers: {
-        Authorization: 'Bearer ' + localStorage.getItem('jwtToken'),
-        "Content-Type": "application/json"
+        Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         public_token: public_token,
-        account_id: metadata.account_id
-      })
+        account_id: metadata.account_id,
+      }),
     })
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         //console.log('mydata1', data.response); //debugger red point
+        this.props.history.push(`/profile`, { profileEdit: true });
         window.location = "/dashboard";
         // if(data.status_code === 200)
         // {
@@ -135,19 +132,23 @@ class ConnectAccount extends Component {
     // send token to client server
   }
 
-  updateDwollaCustomer(data) {
-
-  }
+  updateDwollaCustomer(data) {}
   render() {
-    const { linkToken } = this.state
+    const { linkToken } = this.state;
     // const {linkToken} = localStorage.getItem('link_token');
-    const { linktoken } = (localStorage.getItem('link_token'))? localStorage.getItem('link_token') : '';
-    const link_token = (linktoken)?linktoken.toString() : '';
+    const { linktoken } = localStorage.getItem("link_token")
+      ? localStorage.getItem("link_token")
+      : "";
+    const link_token = linktoken ? linktoken.toString() : "";
+    console.log(this.props, "connect props");
     return (
-
-      <Modal open={this.state.open} onClose={this.onCloseModal} showCloseIcon={false} center id="payment-modal">
-
-
+      <Modal
+        open={this.state.open}
+        onClose={this.onCloseModal}
+        showCloseIcon={false}
+        center
+        id="payment-modal"
+      >
         <div className="modal-body text-center">
           <h4>CONNECT ACCOUNT</h4>
           <div className="pop-mid-sec">
@@ -157,20 +158,16 @@ class ConnectAccount extends Component {
           <div className="ver-frm-wrapper">
             {link_token}
 
-
-
-            { link_token !== 'undefined' ?
-                <PlaidLink
-                  token={localStorage.getItem('link_token')}
-                  env="sandbox"
-                  onSuccess={this.handleOnSuccess}
-                  onExit={this.handleOnExit}>
-                  Connect To Plaid
-                </PlaidLink>
-                : null
-            }
-
-
+            {link_token !== "undefined" ? (
+              <PlaidLink
+                token={localStorage.getItem("link_token")}
+                env="sandbox"
+                onSuccess={this.handleOnSuccess}
+                onExit={this.handleOnExit}
+              >
+                Connect To Plaid
+              </PlaidLink>
+            ) : null}
 
             {/* <button id="submit">CONNECT TO STRIPE</button>
                         {
@@ -180,33 +177,28 @@ class ConnectAccount extends Component {
 
                         }
                          */}
-
           </div>
         </div>
-
-
       </Modal>
-
     );
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     masterbrokeragedata: state.masterbrokerage.masterbrokerage,
     masterstatedata: state.masterstate.masterstate,
     masterlicensedata: state.masterlicense,
     registeruserdata: state.signup,
-  }
-}
+  };
+};
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     fetchMasterData: bindActionCreators(fetchMasterData, dispatch),
     createAccountRequest: bindActionCreators(createAccountRequest, dispatch),
-  }
-}
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ConnectAccount));
+  };
+};
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(ConnectAccount)
+);
