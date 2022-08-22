@@ -10,7 +10,7 @@ import Listing from "../containers/web/Listing";
 import StaticPages from "../containers/web/StaticPages";
 import ConnectAccount from "../containers/web/ConnectAccount";
 import LandingPage from "../containers/web/LandingPage";
-
+import SearchComponent from "../containers/web/Search";
 import AdminLogin from "../containers/admin/Login";
 
 import components from "../components";
@@ -27,6 +27,7 @@ const allContainers = {
     Profile         : Profile,
     AdminLogin      : AdminLogin,
     Listing         : Listing,
+    Search : SearchComponent,
     StaticPages     : StaticPages,
     ConnectAccount  : ConnectAccount,
     ContactUs       : ContactUs,

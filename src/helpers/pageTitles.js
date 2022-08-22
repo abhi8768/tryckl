@@ -10,7 +10,8 @@ const pageTitles = {
   createlist     : "Tryckl | Create List",
   listpreview    : "Tryckl | Preview List",
   mylisting      : "Tryckl | My Listing",
-  detaillisting  : "Tryckl | Detail Listing"
+  detaillisting  : "Tryckl | Detail Listing",
+  search  : "Tryckl | Search"
   
 
 };

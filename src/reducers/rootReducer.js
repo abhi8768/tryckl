@@ -29,6 +29,7 @@ import cacellistingwithoutpay from './listing/cacellistingwithoutpay';
 import cacellistingwithpay    from './listing/cacellistingwithpay';
 import paymentmethodlist    from './listing/paymentmethodlist';
 import contactus             from './contactus/contactus';
+import searchdetails from "./listing/searchdetails";
 
 import { USER_LOGGED_OUT } from '../actions/constants';
 
@@ -60,7 +61,8 @@ const allReducers = {
   cacellistingwithoutpay,
   cacellistingwithpay,
   paymentmethodlist,
-  contactus
+  contactus,
+  searchdetails,
 };
 
 const appReducer = combineReducers(allReducers);

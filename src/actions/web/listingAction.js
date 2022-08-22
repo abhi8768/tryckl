@@ -1,4 +1,4 @@
-import { LISTING_ACTIVE_VIEW, MY_LISTING, LISTING_STORAGE, SAVE_LISTING, DETAIL_LISTING, STATUS_LISTING_CANCEL, NOPAY_LISTING_CANCEL, WITHPAY_LISTING_CANCEL, PAYMENT_METHOD_LIST } from '../constants';
+import { LISTING_ACTIVE_VIEW, MY_LISTING,SEARCH_OFFER_LIST, LISTING_STORAGE, SAVE_LISTING, DETAIL_LISTING, STATUS_LISTING_CANCEL, NOPAY_LISTING_CANCEL, WITHPAY_LISTING_CANCEL, PAYMENT_METHOD_LIST } from '../constants';
 import { getPublicIP, getAuthHeader , setJWTToken, setUserInSession } from "../../helpers/authHelper";
 import { getReq , putReq, postReq} from '../rest';
 import { handleResponse , loader } from '../utils';
@@ -303,4 +303,33 @@ import { handleResponse , loader } from '../utils';
       
     };
 
+    export const setOfferList = (offerlist) => {
+      return {
+        type: SEARCH_OFFER_LIST,
+        offerlist,
+      };
+    };
+
+      export const requestOfferlisting = (params) => {
+        const headers = {
+          Authorization: `Bearer ${getAuthHeader()}`,
+          "content-type": "application/json",
+        };
+
+        return (dispatch, getState) => {
+          const param = JSON.stringify({
+            brokers_id: params,
+            flag: "Open",
+          });
+
+          postReq(`${apiURLPrefix}/card/list`, param, headers)
+            .then(handleResponse)
+            .then((res) => {
+              dispatch(setOfferList(res));
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        };
+      };
   

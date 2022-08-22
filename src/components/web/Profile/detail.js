@@ -43,117 +43,140 @@ class ProfileDetail extends Component {
    render() {
         
     return (
-		
-        <div className="col-lg-6">
-            <div className="content-part-wrapper">
-                <h2 className="mid-heading">{this.state.details.first_name} {this.state.details.last_name}
-                <span className="edit-user">
-                    {
-                        (this.state.isOwn == true) ? 
-                          <a href={void(0)} onClick={this.gotoEdit} style={{cursor : 'pointer' }}>Edit</a>
-                        : null
-                    }
-                    
-                </span>
-                </h2>
-                <div className="content-part-wrapper profile-content-part-wrapper">
-                    <div className="user-address custom-profile2-address">
-                        <p>{this.state.details.brokerage_name}</p>
-                        <p>{this.state.details.brokerage_office_name}</p>
-                        <p>{this.state.details.street_name}</p>
-                        <p>{this.state.details.city}, {this.state.details.state_code} {this.state.details.zipcode}</p>
-                        <p><a href={`skype: ${this.state.details.phone}`}>{this.state.details.phone}</a></p>
-                        <p><a href={`mailto: ${this.state.details.email}`}>{this.state.details.email}</a></p>
-                        <p>{this.state.details.state_code} {this.state.details.license_no}</p>
-                    </div>
-                </div>
-        
+      <div className="col-lg-6">
+        <div className="content-part-wrapper">
+          <h2 className="mid-heading">
+            {this.state.details.first_name} {this.state.details.last_name}
+            <span className="edit-user">
+              {this.state.isOwn == true ? (
+                <a
+                  href={void 0}
+                  onClick={this.gotoEdit}
+                  style={{ cursor: "pointer" }}
+                >
+                  Edit
+                </a>
+              ) : null}
+            </span>
+          </h2>
+          <div className="content-part-wrapper profile-content-part-wrapper">
+            <div className="user-address custom-profile2-address">
+              <p>{this.state.details.brokerage_name}</p>
+              <p>{this.state.details.brokerage_office_name}</p>
+              <p>{this.state.details.street_name}</p>
+              <p>
+                {this.state.details.city}, {this.state.details.state_code}{" "}
+                {this.state.details.zipcode}
+              </p>
+              <p>
+                <a href={`skype: ${this.state.details.phone}`}>
+                  {this.state.details.phone}
+                </a>
+              </p>
+              <p>
+                <a href={`mailto: ${this.state.details.email}`}>
+                  {this.state.details.email}
+                </a>
+              </p>
+              <p>
+                {this.state.details.state_code} {this.state.details.license_no}
+              </p>
+              {this.state.details.dwolla_balance && (
+                <p>{this.state.details.dwolla_balance}</p>
+              )}
             </div>
-            <h4 className="white-mid-heading">Groups</h4>
-                <div className="content-part-wrapper">
-                    <h2 className="mid-heading-other">Joined</h2>
-                   {/*  <div className="add-part">
+          </div>
+        </div>
+        <h4 className="white-mid-heading">Groups</h4>
+        <div className="content-part-wrapper">
+          <h2 className="mid-heading-other">Joined</h2>
+          {/*  <div className="add-part">
                         <a href=""><img src="assets/img/color-plus.png" /> New Invitation</a>
                     </div> */}
-                    <ul className="profile2-list">
-                        {
-                           (this.state.joinedGrouplist).map((joined,index) => {
-                                let letterImage = joined.group_name.charAt(0);
-                                return (
-                                    <li key={`joined_${index}`}>
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-lg-10">
-                                            <div className="item user-block  d-flex align-items-center">
-                                        
-                                        <div className="user-block-picture">
-                                            <div className="user-block-status">
-                                                
-                                                {   (joined.group_photo != '') ?
-                                                        <img className="rounded-circle" src={joined.group_photo} alt="Avatar" style={{width : '60px', height : "60px"}} />
-                                                        : <div className="small-profile-alpha text-center">{letterImage}</div>
-                                                }
-                                                
-                                            </div>
-                                        </div>
-                                        <div className="profile2-list-txt">{joined.group_name}</div>
-                                        
-                                        </div>
-                                            </div>
-                                            <div className="col-lg-2 text-right">
-                                           {/*  <div className="profile2-list-txt-del"><a href=""><em className="fa-2x mr-2 far fa-trash-alt"></em></a></div> */}
-                                            </div>
-
-                                        </div>
-                                    </li>
-                    
-                                )
-                            })
-                        }
-                    </ul>
-                </div>
-            <div className="content-part-wrapper">
-                <h2 className="mid-heading-other">My Group</h2>
-                {/* <div className="add-part">
+          <ul className="profile2-list">
+            {this.state.joinedGrouplist.map((joined, index) => {
+              let letterImage = joined.group_name.charAt(0);
+              return (
+                <li key={`joined_${index}`}>
+                  <div className="row d-flex align-items-center">
+                    <div className="col-lg-10">
+                      <div className="item user-block  d-flex align-items-center">
+                        <div className="user-block-picture">
+                          <div className="user-block-status">
+                            {joined.group_photo != "" ? (
+                              <img
+                                className="rounded-circle"
+                                src={joined.group_photo}
+                                alt="Avatar"
+                                style={{ width: "60px", height: "60px" }}
+                              />
+                            ) : (
+                              <div className="small-profile-alpha text-center">
+                                {letterImage}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="profile2-list-txt">
+                          {joined.group_name}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-2 text-right">
+                      {/*  <div className="profile2-list-txt-del"><a href=""><em className="fa-2x mr-2 far fa-trash-alt"></em></a></div> */}
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+        <div className="content-part-wrapper">
+          <h2 className="mid-heading-other">My Group</h2>
+          {/* <div className="add-part">
                     <a href=""><img src="assets/img/white-plus.png" /> Create New Group</a>
                 </div> */}
-                    <ul className="profile2-list">
-                        {
-                            (this.state.myGrouplist).map((my,index) => {
-                                let letterImage = my.group_name != null ? my.group_name.charAt(0) : '';
-                                return (
-                                        <li key={`joined_${index}`}>
-                                        <div className="row d-flex align-items-center">
-                                            <div className="col-lg-10">
-                                            <div className="item user-block  d-flex align-items-center">
-                                        
-                                                <div className="user-block-picture">
-                                                    <div className="user-block-status">
-                                                        {   (my.group_photo != '') ?
-                                                            <img className="rounded-circle" src={my.group_photo} alt="Avatar" style={{width : '60px', height : "60px"}} />
-                                                            : <div className="small-profile-alpha text-center">{letterImage}</div>
-                                                        }
-                                                    </div>
-                                                </div>
-                                                <div className="profile2-list-txt">{my.group_name} </div>
-                                        
-                                            </div>
-                                            </div>
-                                            <div className="col-lg-2 text-right">
-                                      {/*       <div className="profile2-list-txt-del"><a href=""><em className="fa-2x mr-2 far fa-trash-alt"></em></a></div> */}
-                                            </div>
-
-                                            </div>
-                                        </li>
-                                )
-                            })
-                        }
-                    </ul>
-        
-        
-            </div>
+          <ul className="profile2-list">
+            {this.state.myGrouplist.map((my, index) => {
+              let letterImage =
+                my.group_name != null ? my.group_name.charAt(0) : "";
+              return (
+                <li key={`joined_${index}`}>
+                  <div className="row d-flex align-items-center">
+                    <div className="col-lg-10">
+                      <div className="item user-block  d-flex align-items-center">
+                        <div className="user-block-picture">
+                          <div className="user-block-status">
+                            {my.group_photo != "" ? (
+                              <img
+                                className="rounded-circle"
+                                src={my.group_photo}
+                                alt="Avatar"
+                                style={{ width: "60px", height: "60px" }}
+                              />
+                            ) : (
+                              <div className="small-profile-alpha text-center">
+                                {letterImage}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="profile2-list-txt">
+                          {my.group_name}{" "}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="col-lg-2 text-right">
+                      {/*       <div className="profile2-list-txt-del"><a href=""><em className="fa-2x mr-2 far fa-trash-alt"></em></a></div> */}
+                    </div>
+                  </div>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-    
-	 );
+      </div>
+    );
   }
 }
 
