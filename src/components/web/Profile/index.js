@@ -44,7 +44,7 @@ class Profile extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      if (this.props.location.state) {
+      if (this.props.match.params.section) {
         ToastsStore.error(
           "Please Verify Your Account By Updating Your Account To Create List"
         );
@@ -74,7 +74,7 @@ class Profile extends Component {
 
   render() {
     let letterImage = this.state.name.charAt(0);
-    console.log(this.props.location.state, "stateprops");
+    console.log(this.props.match.params.section, "stateprops");
     return (
       <div className="wrapper">
         <HeaderUser />

@@ -152,11 +152,12 @@ class HeaderUser extends Component {
 
               {/* <span className="badge badge-danger custom-badge2">!</span> */}
             </li>
-            {/* <li className="nav-item d-none d-md-block dropdown">
-					<a className="nav-link" href="lock.html" title="Lock screen">
-					   <em className="sp-box"></em>
-					   <span className="badge badge-danger custom-badge">22</span></a>
-				  </li> */}
+            <li className="nav-item d-none d-md-block dropdown">
+              <Link to="/mycards" className="nav-link" title="Lock screen">
+                <em className="sp-box"></em>
+                <span className="badge badge-danger custom-badge">0</span>
+              </Link>
+            </li>
             <li
               className="nav-item d-none d-md-block dropdown"
               id="search-header-icon"

@@ -12,27 +12,26 @@ import ConnectAccount from "../containers/web/ConnectAccount";
 import LandingPage from "../containers/web/LandingPage";
 import SearchComponent from "../containers/web/Search";
 import AdminLogin from "../containers/admin/Login";
-
+import MyCardsComponent from "../containers/web/MyCards";
 import components from "../components";
 
 /* List of all container classes */
 const allContainers = {
-   
-    Home            : Home,
-    Auth            : Auth,
-    Dashboard       : Dashboard,
-    ForgetPassword  : ForgetPassword,
-    ResetPassword   : ResetPassword,
-    ForgetUserid    : ForgetUserid,
-    Profile         : Profile,
-    AdminLogin      : AdminLogin,
-    Listing         : Listing,
-    Search : SearchComponent,
-    StaticPages     : StaticPages,
-    ConnectAccount  : ConnectAccount,
-    ContactUs       : ContactUs,
-    LandingPage     : LandingPage
-  
+  Home: Home,
+  Auth: Auth,
+  Dashboard: Dashboard,
+  ForgetPassword: ForgetPassword,
+  ResetPassword: ResetPassword,
+  ForgetUserid: ForgetUserid,
+  Profile: Profile,
+  AdminLogin: AdminLogin,
+  Listing: Listing,
+  Search: SearchComponent,
+  Mycards: MyCardsComponent,
+  StaticPages: StaticPages,
+  ConnectAccount: ConnectAccount,
+  ContactUs: ContactUs,
+  LandingPage: LandingPage,
 };
 
 /* List of all component classes */

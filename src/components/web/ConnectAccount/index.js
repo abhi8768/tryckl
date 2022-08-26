@@ -26,6 +26,7 @@ class ConnectAccount extends Component {
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.onSkip = this.onSkip.bind(this);
+    this.checkout = this.checkout.bind(this);
   }
   onOpenModal() {
     this.setState({ open: true });
@@ -92,7 +93,9 @@ class ConnectAccount extends Component {
     }
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {}
+  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+    console.log(nextProps, "connect props");
+  }
 
   handleChange(e) {}
 
@@ -120,9 +123,11 @@ class ConnectAccount extends Component {
     })
       .then((response) => response.json())
       .then((data) => {
-        //console.log('mydata1', data.response); //debugger red point
-        this.props.history.push(`/profile`, { profileEdit: true });
-        window.location = "/dashboard";
+        // console.log('mydata1', data.response); //debugger red point
+        console.log(this.props, "propsss");
+        // checkout();
+        // this.props.history.push(`/profile`, { profileEdit: true });
+        window.location = "/profile/edit";
         // if(data.status_code === 200)
         // {
         //   window.location = "/dashboard";
@@ -130,6 +135,11 @@ class ConnectAccount extends Component {
       });
 
     // send token to client server
+  }
+
+  checkout() {
+    console.log(this.props,"props")
+    // this.props.history.push(`/profile`, { profileEdit: true });
   }
 
   updateDwollaCustomer(data) {}

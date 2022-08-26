@@ -18,11 +18,12 @@ class Listing extends Component {
     
   }
   render() {
-   
     return (
-     
-       <ListingContainer />
-     
+      <ListingContainer
+        history={this.props.history}
+        location={this.props.location}
+        match={this.props.match}
+      />
     );
   }
 }

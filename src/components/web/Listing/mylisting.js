@@ -18,7 +18,7 @@ class MyListing extends Component {
     super(props);
     this.state = {
       myListing: [],
-      opendropdown: "",
+      opendropdown: false,
       dropdownValue: "Open",
       conneected_account: null,
     };
@@ -48,7 +48,7 @@ class MyListing extends Component {
       this.props.history.push(`create-listing`);
     } else {
       sessionStorage.setItem("connectfromlisting", "1");
-      this.props.history.push(`/profile`, { profileEdit: true });
+      this.props.history.push(`/profile/edit`);
     }
   }
 
@@ -58,7 +58,7 @@ class MyListing extends Component {
     if (nextProps.mylisting.list) {
       this.setState({
         myListing: nextProps.mylisting.list,
-        opendropdown: "",
+        opendropdown: false,
       });
     }
 
@@ -88,7 +88,7 @@ class MyListing extends Component {
 
   openDropdown() {
     this.setState({
-      opendropdown: this.state.opendropdown == "" ? "show" : "",
+      opendropdown: !this.state.opendropdown,
     });
   }
   gotoDetail(listing_id) {
@@ -100,7 +100,7 @@ class MyListing extends Component {
   }
 
   render() {
-    console.log(this.props, "props");
+    console.log(this.props, this.state.opendropdown, "props");
     return (
       <div className="row">
         <div className="col-lg-3">
@@ -134,37 +134,39 @@ class MyListing extends Component {
               <div className="dropdown show custom-drop">
                 <a
                   className="btn btn-secondary dropdown-toggle"
-                  href={void 0}
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
+                  // href={void 0}
+                  // role="button"
+                  // id="dropdownMenuLink"
+                  // data-toggle="dropdown"
+                  // aria-haspopup="true"
+                  // aria-expanded="false"
                   onClick={this.openDropdown}
                 >
                   <img className="" src="/assets/img/drop-icon.png" />{" "}
                   {this.state.dropdownValue}
                 </a>
 
-                <div
-                  className={`dropdown-menu ${this.state.opendropdown}`}
-                  aria-labelledby="dropdownMenuLink"
-                >
-                  <a
-                    className="dropdown-item"
-                    href={void 0}
-                    onClick={() => this.requestmylisting("")}
+                {this.state.opendropdown && (
+                  <div
+                    className={`dropdown-menu`}
+                    // aria-labelledby="dropdownMenuLink"
                   >
-                    Open
-                  </a>
-                  <a
-                    className="dropdown-item"
-                    href={void 0}
-                    onClick={() => this.requestmylisting("Complete")}
-                  >
-                    Complete
-                  </a>
-                </div>
+                    <a
+                      className="dropdown-item"
+                      href={void 0}
+                      onClick={() => this.requestmylisting("")}
+                    >
+                      Open
+                    </a>
+                    <a
+                      className="dropdown-item"
+                      href={void 0}
+                      onClick={() => this.requestmylisting("Complete")}
+                    >
+                      Complete
+                    </a>
+                  </div>
+                )}
               </div>
             </h2>
           </div>

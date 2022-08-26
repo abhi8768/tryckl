@@ -31,7 +31,9 @@ class Listing extends Component {
     currentviewcomp = <ListingCreate />;
    }else if(curUrl.includes("detail-listing") == true){
     currentview = 'detaillisting';
-    currentviewcomp = <DetailListing />;
+    currentviewcomp = <DetailListing history={this.props.history}
+        location={this.props.location}
+        match={this.props.match}/>;
    }else if(curUrl.includes("my-listing") == true){
     currentview = 'mylisting';
     currentviewcomp = <MyListing />;
@@ -81,8 +83,14 @@ class Listing extends Component {
 
     }else if(nextProps.nowchangeview.includes('detaillisting') == true){
       this.setState({
-        currentviewcomp : <DetailListing />
-      })
+        currentviewcomp: (
+          <DetailListing
+            history={this.props.history}
+            location={this.props.location}
+            match={this.props.match}
+          />
+        ),
+      });
     }else{
       this.setState({
         currentviewcomp : <MyListing />
@@ -94,7 +102,6 @@ class Listing extends Component {
  
 
   render() {
-      
     return (
 		<div className="wrapper">
 			<HeaderUser />

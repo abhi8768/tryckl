@@ -6,17 +6,18 @@ import ReactStars from "react-rating-stars-component";
 
 import HeaderUser from "../HeaderUser";
 import Menu from "../Menu";
-import { changeView } from "../../../actions/web/listingAction";
 import {
+  changeView,
   requestOfferlisting,
   listinginLocalStorage,
+  requestMyCardlisting,
 } from "../../../actions/web/listingAction";
 import { encrypt } from "../../../helpers/CryptoJs";
 import $$ from "jquery";
 import { getAuthHeader } from "../../../helpers/authHelper";
 import { handleResponse } from "../../../actions/utils";
 
-class Searching extends Component {
+class MyCards extends Component {
   constructor(props) {
     super(props);
     // setPublicIP();
@@ -25,7 +26,7 @@ class Searching extends Component {
   }
 
   componentDidMount() {
-    this.props.requestOfferlisting(this.props.brokerId);
+    this.props.requestMyCardlisting();
   }
 
   gotoDetail(listing_id) {
@@ -34,7 +35,7 @@ class Searching extends Component {
   }
 
   render() {
-    console.log(this.props.offerDetails.offerlist, "props");
+    console.log(this.props, "props");
     return (
       <div className="wrapper">
         <HeaderUser />
@@ -50,7 +51,7 @@ class Searching extends Component {
                     style={{ paddingBottom: "9px" }}
                   >
                     <h2 className="mid-heading">
-                      OFFERS
+                      My Card
                       <div className="dropdown show custom-drop">
                         <a
                           className="btn btn-secondary dropdown-toggle"
@@ -64,14 +65,14 @@ class Searching extends Component {
                         >
                           <img className="" src="/assets/img/drop-icon.png" />{" "}
                           {/* {this.state.dropdownValue} */}
-                          Advance Search
+                          Open
                         </a>
                       </div>
                     </h2>
                   </div>
-                  {this.props.offerDetails.offerlist &&
-                  this.props.offerDetails.offerlist.length !== 0 ? (
-                    this.props.offerDetails.offerlist.map((val, index) => (
+                  {this.props.mycardlist.cardlist &&
+                  this.props.mycardlist.cardlist.length !== 0 ? (
+                    this.props.mycardlist.cardlist.map((val, index) => (
                       <div
                         className="content-part-wrapper profile-content-part-wrapper list-pre"
                         onClick={() => this.gotoDetail(val.listing_id)}
@@ -198,15 +199,16 @@ const mapStateToProps = (state) => {
     nowchangeview: state.listingactiveview.activelistingview,
     currentUserDetails: state.login.user,
     offerDetails: state.searchdetails,
+    mycardlist: state.mycardlist,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    requestOfferlisting: bindActionCreators(requestOfferlisting, dispatch),
+    requestMyCardlisting: bindActionCreators(requestMyCardlisting, dispatch),
     listinginLocalStorage: bindActionCreators(listinginLocalStorage, dispatch),
     changeView: bindActionCreators(changeView, dispatch),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Searching);
+export default connect(mapStateToProps, mapDispatchToProps)(MyCards);

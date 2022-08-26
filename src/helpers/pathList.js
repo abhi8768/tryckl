@@ -10,13 +10,14 @@ const pathList = {
   dashboard_success: { name: "dashboard_success", path: "/dashboard/:success" },
   forgetpassword: { name: "forget-password", path: "/forget-password" },
   resetpassword: { name: "reset-password", path: "/reset-password/:id" },
-  profile: { name: "profile", path: "/profile" },
+  profile: { name: "profile", path: "/profile/:section?" },
   brokerprofile: { name: "profile", path: "/profile/:id" },
   createlist: { name: "createlist", path: "/create-listing" },
   listpreview: { name: "listpreview", path: "/preview-listing" },
   mylisting: { name: "mylisting", path: "/my-listing" },
   search: { name: "search", path: "/search" },
-  detaillisting: { name: "detaillisting", path: "/detail-listing/:id" },
+  mycards: { name: "mycards", path: "/mycards" },
+  detaillisting: { name: "detaillisting", path: "/detail-listing/:id/:offer?" },
 };
 
 
