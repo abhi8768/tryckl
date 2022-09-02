@@ -59,6 +59,12 @@ class RouteComponent extends Component {
           />
           <PrivateRoute
             exact={true}
+            path={pathList.paymentcheckout.path}
+            title={pageTitles.paymentcheckout}
+            component={routes.PaymentCheckout}
+          />
+          <PrivateRoute
+            exact={true}
             path={pathList.dashboard.path}
             title={pageTitles.dashboard}
             component={routes.Dashboard}

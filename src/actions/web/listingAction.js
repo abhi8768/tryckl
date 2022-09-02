@@ -14,6 +14,11 @@ import {
   RETURN_LISTING_SUCCESS,
   CLEAR_RETURN_LISTING_SUCCESS,
   SET_MYCARD_LIST,
+  PAYMENT_REQUEST_SUCCESS,
+  CLEAR_PAYMENT_REQUEST_SUCCESS,
+  SET_COMPLETE_CARD_DETAILS,
+  DWOLLA_FUND_TRANSFER_SUCCESS,
+  CLEAR_DWOLLA_FUND_TRANSFER_SUCCESS,
 } from "../constants";
 import {
   getPublicIP,
@@ -460,6 +465,117 @@ export const requestMyCardlisting = () => {
       .then((res) => {
         console.log(res, "res1");
         dispatch(setMyCardList(res));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+
+export const paymentrequestSuccess = () => {
+  return {
+    type: PAYMENT_REQUEST_SUCCESS,
+  };
+};
+
+export const clearpaymentrequestSuccess = () => {
+  return {
+    type: CLEAR_PAYMENT_REQUEST_SUCCESS,
+  };
+};
+
+export const paymentrequest = (param) => {
+  let formData = new FormData();
+  formData.append("listing_id", param.listing_id);
+  formData.append("agent_instruction", param.agent_instruction);
+  formData.append("latitude", param.latitude);
+  formData.append("longitude", param.longitude);
+  formData.append("address", param.address);
+  formData.append("image", param.image);
+  const headers = {
+    Authorization: `Bearer ${getAuthHeader()}`,
+    "content-type": "application/json",
+  };
+  return (dispatch, getState) => {
+   postReq(`${apiURLPrefix}/card/complete`, formData, headers)
+     .then(handleResponse)
+     .then((res) => {
+      if (res.status_code === 200) {
+        dispatch(paymentrequestSuccess());
+      } 
+     })
+     .catch((err) => {
+       console.log(err);
+     });
+ };
+};
+
+export const setCompleteCardDetails = (carddetails) => {
+  return {
+    type: SET_COMPLETE_CARD_DETAILS,
+    carddetails,
+  };
+};
+
+export const getCompleteCarddetails = (listId) => {
+  const headers = {
+    Authorization: `Bearer ${getAuthHeader()}`,
+    "content-type": "application/json",
+  };
+
+  return (dispatch, getState) => {
+    const param = JSON.stringify({
+      listing_id: listId.listing_id,
+    });
+
+    postReq(`${apiURLPrefix}/listing/get_complete_details`, param, headers)
+      .then(handleResponse)
+      .then((res) => {
+        console.log(res, "res1");
+        if (res.status_code===200){
+          dispatch(setCompleteCardDetails(res.response));
+        } 
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+};
+
+
+
+export const dwollafundSuccess = () => {
+  return {
+    type: DWOLLA_FUND_TRANSFER_SUCCESS,
+  };
+};
+
+export const cleardwollafundSuccess = () => {
+  return {
+    type: CLEAR_DWOLLA_FUND_TRANSFER_SUCCESS,
+  };
+};
+
+export const agentfundtransfer = (params) => {
+  const headers = {
+    Authorization: `Bearer ${getAuthHeader()}`,
+    "content-type": "application/json",
+  };
+
+  return (dispatch, getState) => {
+    const param = JSON.stringify({
+      flag: "",
+      listing_id: params.listing_id,
+      receiver_id: params.receiver_id,
+    });
+
+    postReq(`${apiURLPrefix}/dwolla/transfer_fund`, param, headers)
+      .then(handleResponse)
+      .then((res) => {
+        if (res.status_code === 200) {
+          dispatch(dwollafundSuccess());
+        }
       })
       .catch((err) => {
         console.log(err);

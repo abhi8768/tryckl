@@ -14,7 +14,7 @@ import {
 } from "react-google-maps";
 import Card from "../Listing/AppCard";
 /* import Stripe from 'stripe'; */
-
+import "./listing.css"
 import { encrypt, decrypt, getParams } from "../../../helpers/CryptoJs";
 import {
   requestDetaillisting,
@@ -269,14 +269,18 @@ class ListingDetail extends Component {
 
     return (
       <div className="row">
-        <MyCardPreview />
+        {this.props.match.params.offer === undefined && <MyCardPreview />}
         <div className="col-lg-6">
           <div className="content-part-wrapper profile-content-part-wrapper">
             <div className="content-part-wrapper">
-              <h2 className="mid-heading">LISTing Details</h2>
+              <h2 className="mid-heading">Listing Details</h2>
               <div className="content-part-wrapper profile-content-part-wrapper list-pre">
                 <div className="content-part-wrapper dark-part position-relative">
-                  <p className="ohters-color">Card Number</p>
+                  <div className="card-number-div">
+                    <p className="ohters-color">Card Number</p>
+                    <p className="ohters-color">$ {detail.card_owner_amount}</p>
+                  </div>
+
                   <p className="ohters-color2">{detail.card_no}</p>
                 </div>
                 <div className="content-part-wrapper dark-part position-relative">
@@ -428,7 +432,8 @@ class ListingDetail extends Component {
                     </button>
                   )}
                 {detail.listing_status === "ACCEPTED" &&
-                  this.props.match.params.offer !== undefined && (
+                  this.props.match.params.offer !== undefined &&
+                  detail.due_day !== "" && (
                     <button
                       className="sv-btn"
                       id="cancel-listing"
@@ -439,7 +444,38 @@ class ListingDetail extends Component {
                       Return Card
                     </button>
                   )}
-                
+                {detail.listing_status === "ACCEPTED" &&
+                  detail.listing_status != "COMPLETED" &&
+                  this.props.match.params.offer !== undefined &&
+                  detail.due_day === "" && (
+                    <button
+                      className="sv-btn"
+                      id="cancel-listing"
+                      onClick={() => {
+                        this.props.history.push(
+                          `/paymentcheckout/${this.props.match.params.id}/requestpayment`
+                        );
+                      }}
+                    >
+                      Get Paid
+                    </button>
+                  )}
+                {detail.listing_status === "COMPLETED" &&
+                  detail.payment_status === "Unpaid" &&
+                  this.props.match.params.offer === undefined &&
+                  detail.due_day === "" && (
+                    <button
+                      className="sv-btn"
+                      id="cancel-listing"
+                      onClick={() => {
+                        this.props.history.push(
+                          `/paymentcheckout/${this.props.match.params.id}/makepayment`
+                        );
+                      }}
+                    >
+                      Next
+                    </button>
+                  )}
               </div>
             </div>
           </div>

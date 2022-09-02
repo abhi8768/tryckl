@@ -1,0 +1,4 @@
+.card-number-div{
+    display: flex;
+    justify-content: space-between;
+}

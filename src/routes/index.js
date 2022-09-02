@@ -14,6 +14,7 @@ import SearchComponent from "../containers/web/Search";
 import AdminLogin from "../containers/admin/Login";
 import MyCardsComponent from "../containers/web/MyCards";
 import components from "../components";
+import PaymentCheckout from "../components/web/PaymentCheckout";
 
 /* List of all container classes */
 const allContainers = {
@@ -31,6 +32,7 @@ const allContainers = {
   StaticPages: StaticPages,
   ConnectAccount: ConnectAccount,
   ContactUs: ContactUs,
+  PaymentCheckout: PaymentCheckout,
   LandingPage: LandingPage,
 };
 

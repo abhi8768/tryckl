@@ -18,6 +18,10 @@ const pathList = {
   search: { name: "search", path: "/search" },
   mycards: { name: "mycards", path: "/mycards" },
   detaillisting: { name: "detaillisting", path: "/detail-listing/:id/:offer?" },
+  paymentcheckout: {
+    name: "paymentcheckout",
+    path: "/paymentcheckout/:id/:section",
+  },
 };
 
 

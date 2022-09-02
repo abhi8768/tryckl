@@ -31,8 +31,10 @@ import paymentmethodlist from "./listing/paymentmethodlist";
 import contactus from "./contactus/contactus";
 import searchdetails from "./listing/searchdetails";
 import mycardlist from "./listing/mycardlist";
-
+import paymentrequest from "./listing/paymentrequest";
 import { USER_LOGGED_OUT } from "../actions/constants";
+import completecarddetails from "./listing/completecarddetails";
+import paymenttransfer from "./listing/paymenttransfer";
 
 const allReducers = {
   signup,
@@ -65,6 +67,9 @@ const allReducers = {
   contactus,
   searchdetails,
   mycardlist,
+  paymentrequest,
+  completecarddetails,
+  paymenttransfer
 };
 
 const appReducer = combineReducers(allReducers);

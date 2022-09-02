@@ -13,6 +13,7 @@ const pageTitles = {
   detaillisting: "Tryckl | Detail Listing",
   search: "Tryckl | Search",
   mycards: "Tryckl | My Cards",
+  paymentcheckout: "Tryckl | Payment Checkout",
 };
 
 export default pageTitles;
