@@ -1,9 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { withRouter } from "react-router-dom";
-import ReactStars from "react-rating-stars-component";
-
+import DialogTitle from "@material-ui/core/DialogTitle";
+import {
+  Dialog,
+  Grid,
+  InputLabel,
+  MenuItem,
+  Select,
+  FormControl,
+} from "@material-ui/core";
 import HeaderUser from "../HeaderUser";
 import Menu from "../Menu";
 import { changeView } from "../../../actions/web/listingAction";
@@ -12,16 +18,16 @@ import {
   listinginLocalStorage,
 } from "../../../actions/web/listingAction";
 import { encrypt } from "../../../helpers/CryptoJs";
-import $$ from "jquery";
-import { getAuthHeader } from "../../../helpers/authHelper";
-import { handleResponse } from "../../../actions/utils";
 
 class Searching extends Component {
   constructor(props) {
     super(props);
-    // setPublicIP();
-    // this.fetchoffers = this.fetchoffers(this);
+    this.state = {
+      open: false,
+    };
     this.gotoDetail = this.gotoDetail.bind(this);
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   componentDidMount() {
@@ -32,7 +38,16 @@ class Searching extends Component {
     this.props.listinginLocalStorage(`detaillisting/${listing_id}/true`);
     this.props.history.push(`detail-listing/${encrypt(listing_id)}/true`);
   }
-
+  handleOpen() {
+    this.setState({
+      open: true,
+    });
+  }
+  handleClose() {
+    this.setState({
+      open: false,
+    });
+  }
   render() {
     console.log(this.props.offerDetails.offerlist, "props");
     return (
@@ -60,7 +75,7 @@ class Searching extends Component {
                           data-toggle="dropdown"
                           aria-haspopup="true"
                           aria-expanded="false"
-                          // onClick={this.openDropdown}
+                          onClick={() => this.handleOpen()}
                         >
                           <img className="" src="/assets/img/drop-icon.png" />{" "}
                           {/* {this.state.dropdownValue} */}
@@ -188,6 +203,172 @@ class Searching extends Component {
             </div>
           </div>
         </section>
+        <Dialog
+          onClose={() => this.handleClose()}
+          open={this.state.open}
+          maxWidth="xl"
+        >
+          <DialogTitle id="simple-dialog-title">Advanced Search</DialogTitle>
+          <div>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <FormControl>
+                  <InputLabel
+                    shrink
+                    id="demo-simple-select-placeholder-label-label"
+                  >
+                    CARD #
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                    fullWidth
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl>
+                  <InputLabel
+                    shrink
+                    id="demo-simple-select-placeholder-label-label"
+                  >
+                    TYPE
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl>
+                  <InputLabel
+                    shrink
+                    id="demo-simple-select-placeholder-label-label"
+                  >
+                    KEYWORD
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl>
+                  <InputLabel
+                    shrink
+                    id="demo-simple-select-placeholder-label-label"
+                  >
+                    LISTING AGENT
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <FormControl>
+                  <InputLabel
+                    shrink
+                    id="demo-simple-select-placeholder-label-label"
+                  >
+                    CITY
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={6}>
+                <FormControl>
+                  <InputLabel
+                    shrink
+                    id="demo-simple-select-placeholder-label-label"
+                  >
+                    ZIP CODE
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl>
+                  <InputLabel
+                    shrink
+                    id="demo-simple-select-placeholder-label-label"
+                  >
+                    ACCESS TYPE
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-placeholder-label-label"
+                    id="demo-simple-select-placeholder-label"
+                    displayEmpty
+                  >
+                    <MenuItem value="">
+                      <em>None</em>
+                    </MenuItem>
+                    <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem>
+                  </Select>
+                </FormControl>
+              </Grid>
+            </Grid>
+          </div>
+        </Dialog>
       </div>
     );
   }

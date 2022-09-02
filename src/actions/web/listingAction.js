@@ -321,7 +321,7 @@ export const requestOfferlisting = (params) => {
   return (dispatch, getState) => {
     const param = JSON.stringify({
       brokers_id: params,
-      flag: "Showing",
+      flag: "open",
     });
 
     postReq(`${apiURLPrefix}/card/list`, param, headers)
@@ -428,6 +428,7 @@ export const returncard = (id) => {
       .then(handleResponse)
       .then((res) => {
         if (res.status_code === 200) {
+          dispatch(returnListSuccess());
         }
       })
       .catch((err) => {

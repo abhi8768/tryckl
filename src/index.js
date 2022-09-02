@@ -15,22 +15,22 @@ import store from './store';
 
 const renderApp = Component => {
 
-    if (window.location.pathname === '/') {
-        document.getElementById("root").style.display = "none";
-        document.getElementById("new-design").style.display = "block";
+    // if (window.location.pathname === '/') {
+    //     document.getElementById("root").style.display = "none";
+    //     document.getElementById("new-design").style.display = "block";
 
-        document.getElementById("scroll1").style.display = "none";
-        document.getElementById("scroll").style.display = "block";
+    //     document.getElementById("scroll1").style.display = "none";
+    //     document.getElementById("scroll").style.display = "block";
        
-    }else if(window.location.pathname === '/how-it-works') {
-        console.log(123);
-        document.getElementById("root").style.display = "none";
-        document.getElementById("new-design").style.display = "block";
+    // }else if(window.location.pathname === '/how-it-works') {
+    //     console.log(123);
+    //     document.getElementById("root").style.display = "none";
+    //     document.getElementById("new-design").style.display = "block";
 
-        document.getElementById("scroll").style.display = "none";
-        document.getElementById("scroll1").style.display = "block";
+    //     document.getElementById("scroll").style.display = "none";
+    //     document.getElementById("scroll1").style.display = "block";
        
-    }else{
+    // }else{
         
         var sheet = document.getElementById('landing_bootstrap');
         sheet.disabled = true;
@@ -52,7 +52,7 @@ const renderApp = Component => {
             document.getElementById('root')
         );
        
-    }
+    // }
     
 };
 renderApp(RouteComponent);

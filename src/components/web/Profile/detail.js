@@ -81,9 +81,9 @@ class ProfileDetail extends Component {
               <p>
                 {this.state.details.state_code} {this.state.details.license_no}
               </p>
-              {this.state.details.dwolla_balance && (
+              {/* {this.state.details.dwolla_balance && (
                 <p>{this.state.details.dwolla_balance}</p>
-              )}
+              )} */}
             </div>
           </div>
         </div>

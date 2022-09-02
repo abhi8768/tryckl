@@ -91,5 +91,9 @@ text-align: center;
 .language_section select{
     background: #d0a807; 
 }
-
+.header_position{
+   position: fixed;
+    overflow: hidden;
+    width: 100%;
+}
 

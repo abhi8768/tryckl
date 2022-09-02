@@ -12,6 +12,7 @@ import { updateprofilePicture } from "../../../actions/web/brokerAction";
 import ProfileDetail from "./detail";
 import ProfileCompletion from "./completion";
 import $$ from "jquery";
+import './profile.css'
 
 class Profile extends Component {
   constructor(props) {
@@ -129,7 +130,14 @@ class Profile extends Component {
                       </div>
                     </div>
                   </div>
-
+                  <div className="content-part-wrapper text-center">
+                    <h2 className="mid-heading">DWOLLA BALANCE</h2>
+                    <div style={{ marginLeft: "15px" }}>
+                      <p className="balance-css">
+                        {this.props.profiledetail.dwolla_balance}
+                      </p>
+                    </div>
+                  </div>
                   <div className="content-part-wrapper text-center">
                     <h2 className="mid-heading">RATING</h2>
                     <div style={{ marginLeft: "15px" }}>

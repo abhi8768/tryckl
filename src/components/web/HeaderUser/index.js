@@ -64,15 +64,15 @@ class HeaderUser extends Component {
   render() {
     let letterImage = this.state.name.charAt(0);
     return (
-      <header className="topnavbar-wrapper">
+      <header className="topnavbar-wrapper ">
         <ToastsContainer
           store={ToastsStore}
           position={ToastsContainerPosition.TOP_RIGHT}
           lightBackground
         />
-        <nav className="navbar topnavbar">
+        <nav className="navbar topnavbar header_position">
           <div className="navbar-header">
-            <Link className="navbar-brand" to="/dashboard">
+            <Link className="navbar-brand" to="/">
               <div className="brand-logo">
                 <img
                   className="img-fluid"

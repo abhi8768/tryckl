@@ -97,6 +97,7 @@ class ListingDetail extends Component {
       prevProps.returnlistflag !== nextProps.returnlistflag &&
       nextProps.returnlistflag === true
     ) {
+      console.log("Cardreturn")
       ToastsStore.success("Card Returned Successfully");
       nextProps.clearreturnListSuccess();
       nextProps.history.push("/mycards");
