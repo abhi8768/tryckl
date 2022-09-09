@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import {
-  Dialog,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  FormControl,
-} from "@material-ui/core";
+
 import HeaderUser from "../HeaderUser";
 import Menu from "../Menu";
 import { changeView } from "../../../actions/web/listingAction";
@@ -18,6 +10,10 @@ import {
   listinginLocalStorage,
 } from "../../../actions/web/listingAction";
 import { encrypt } from "../../../helpers/CryptoJs";
+// import "react-responsive-modal/styles.css";
+// import { Modal } from "react-responsive-modal";
+import "./search.css"
+import SearchFilter from "./SearchFilter";
 
 class Searching extends Component {
   constructor(props) {
@@ -49,7 +45,7 @@ class Searching extends Component {
     });
   }
   render() {
-    console.log(this.props.offerDetails.offerlist, "props");
+    console.log(this.state, "props");
     return (
       <div className="wrapper">
         <HeaderUser />
@@ -71,8 +67,8 @@ class Searching extends Component {
                           className="btn btn-secondary dropdown-toggle"
                           href={void 0}
                           role="button"
-                          id="dropdownMenuLink"
-                          data-toggle="dropdown"
+                          // id="dropdownMenuLink"
+                          // data-toggle="dropdown"
                           aria-haspopup="true"
                           aria-expanded="false"
                           onClick={() => this.handleOpen()}
@@ -203,172 +199,8 @@ class Searching extends Component {
             </div>
           </div>
         </section>
-        <Dialog
-          onClose={() => this.handleClose()}
-          open={this.state.open}
-          maxWidth="xl"
-        >
-          <DialogTitle id="simple-dialog-title">Advanced Search</DialogTitle>
-          <div>
-            <Grid container spacing={3}>
-              <Grid item xs={12}>
-                <FormControl>
-                  <InputLabel
-                    shrink
-                    id="demo-simple-select-placeholder-label-label"
-                  >
-                    CARD #
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    displayEmpty
-                    fullWidth
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl>
-                  <InputLabel
-                    shrink
-                    id="demo-simple-select-placeholder-label-label"
-                  >
-                    TYPE
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    displayEmpty
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl>
-                  <InputLabel
-                    shrink
-                    id="demo-simple-select-placeholder-label-label"
-                  >
-                    KEYWORD
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    displayEmpty
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl>
-                  <InputLabel
-                    shrink
-                    id="demo-simple-select-placeholder-label-label"
-                  >
-                    LISTING AGENT
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    displayEmpty
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
-                <FormControl>
-                  <InputLabel
-                    shrink
-                    id="demo-simple-select-placeholder-label-label"
-                  >
-                    CITY
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    displayEmpty
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={6}>
-                <FormControl>
-                  <InputLabel
-                    shrink
-                    id="demo-simple-select-placeholder-label-label"
-                  >
-                    ZIP CODE
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    displayEmpty
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-              <Grid item xs={12}>
-                <FormControl>
-                  <InputLabel
-                    shrink
-                    id="demo-simple-select-placeholder-label-label"
-                  >
-                    ACCESS TYPE
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-placeholder-label-label"
-                    id="demo-simple-select-placeholder-label"
-                    displayEmpty
-                  >
-                    <MenuItem value="">
-                      <em>None</em>
-                    </MenuItem>
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
-          </div>
-        </Dialog>
+
+        {this.state.open && <SearchFilter handleClose={this.handleClose} />}
       </div>
     );
   }

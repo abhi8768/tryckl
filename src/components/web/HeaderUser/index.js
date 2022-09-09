@@ -1,66 +1,68 @@
-import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {bindActionCreators} from 'redux';
-import {withRouter} from "react-router-dom";
-import {ToastsContainer, ToastsStore, ToastsContainerPosition} from 'react-toasts';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { bindActionCreators } from "redux";
+import { withRouter } from "react-router-dom";
+import {
+  ToastsContainer,
+  ToastsStore,
+  ToastsContainerPosition,
+} from "react-toasts";
 import { listinginLocalStorage } from "../../../actions/web/listingAction";
 
-import './HeaderUser.css';
+import "./HeaderUser.css";
 import iconPath from "../../../helpers/iconHelper";
-import $$ from 'jquery';
-
+import $$ from "jquery";
+import { getJWTToken } from "../../../helpers/authHelper";
 
 class HeaderUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-	  user_image : '',
-	  name		 : ''
-	};
-	this.menuCollanse    = this.menuCollanse.bind(this);
-	this.linktomylisting = this.linktomylisting.bind(this);
+      user_image: "",
+      name: "",
+    };
+    this.menuCollanse = this.menuCollanse.bind(this);
+    this.linktomylisting = this.linktomylisting.bind(this);
   }
-	componentDidMount(){
-		let userDetails = JSON.parse(localStorage.getItem('userDetails'));
-		this.setState({
-			user_image : (this.props.currentUserDetails.profile_photo != null) ? this.props.currentUserDetails.profile_photo : '',
-			name	   : `${userDetails.first_name} ${userDetails.last_name}`
-		})
-	}
+  componentDidMount() {
+    let userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    this.setState({
+      user_image:
+        this.props.currentUserDetails.profile_photo != null
+          ? this.props.currentUserDetails.profile_photo
+          : "",
+      name: `${userDetails.first_name} ${userDetails.last_name}`,
+    });
+  }
 
-  	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-        //console.log(nextProps.currentUserDetails);
-		if(nextProps.profileimage != this.props.profileimage){
-			this.setState({
-				user_image : nextProps.profileimage.profile_photo
-				
-			})
-		}
-		/* if(nextProps.currentUserDetails != this.props.currentUserDetails){
+  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+    //console.log(nextProps.currentUserDetails);
+    if (nextProps.profileimage != this.props.profileimage) {
+      this.setState({
+        user_image: nextProps.profileimage.profile_photo,
+      });
+    }
+    /* if(nextProps.currentUserDetails != this.props.currentUserDetails){
 			this.setState({
 				name		: `${nextProps.currentUserDetails.first_name} ${nextProps.currentUserDetails.last_name}`
 			})
 		} */
-		
-	}
-	menuCollanse(){
-		if($$("body").hasClass( "aside-collapsed" )){
-			$$('body').removeClass("aside-collapsed");
-		}else{
-			$$('body').addClass("aside-collapsed");
-		}
-	}
-	linktomylisting(){
-   
-	
-		  this.props.listinginLocalStorage('mylisting');
-		  this.props.history.push(`/my-listing`);
-		  location.reload();
-		
-	  }
-	
+  }
+  menuCollanse() {
+    if ($$("body").hasClass("aside-collapsed")) {
+      $$("body").removeClass("aside-collapsed");
+    } else {
+      $$("body").addClass("aside-collapsed");
+    }
+  }
+  linktomylisting() {
+    this.props.listinginLocalStorage("mylisting");
+    this.props.history.push(`/my-listing`);
+    location.reload();
+  }
+
   render() {
     let letterImage = this.state.name.charAt(0);
     return (
@@ -72,7 +74,7 @@ class HeaderUser extends Component {
         />
         <nav className="navbar topnavbar header_position">
           <div className="navbar-header">
-            <Link className="navbar-brand" to="/">
+            <a className="navbar-brand" href="/">
               <div className="brand-logo">
                 <img
                   className="img-fluid"
@@ -87,7 +89,7 @@ class HeaderUser extends Component {
                   alt="App Logo"
                 />
               </div>
-            </Link>
+            </a>
           </div>
 
           <ul className="navbar-nav mr-auto flex-row position-custom">
@@ -212,18 +214,19 @@ class HeaderUser extends Component {
         </nav>
       </header>
     );
-  };
-}
-const mapStateToProps = state => {
-  return {
-			 currentUserDetails  : state.login.user,
-			 profileimage        : state.profilepicture.profilepicture,
-        }
-}
-const mapDispatchToProps = dispatch => {
-  return {
-    listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
-
   }
 }
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HeaderUser));
+const mapStateToProps = (state) => {
+  return {
+    currentUserDetails: state.login.user,
+    profileimage: state.profilepicture.profilepicture,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    listinginLocalStorage: bindActionCreators(listinginLocalStorage, dispatch),
+  };
+};
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(HeaderUser)
+);

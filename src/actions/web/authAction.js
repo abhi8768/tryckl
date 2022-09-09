@@ -190,7 +190,14 @@ export const resendOTPRequest = (params) => {
 };
 
 export const logoutUser = (logoutUser) => {
-  removeSessionData();
+   sessionStorage.removeItem("jwtToken");
+   sessionStorage.removeItem("userDetails");
+   sessionStorage.removeItem("createlisting");
+   sessionStorage.clear();
+   localStorage.removeItem("userDetails");
+   localStorage.removeItem("jwtToken");
+   localStorage.removeItem("login_rememberme");
+   location.href = "/agent-login";
   return {
     type: LOGOUT_USER,
     logoutUser,

@@ -51,7 +51,6 @@ export const removeSessionData = () => {
     localStorage.removeItem('userDetails');
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('login_rememberme');
-    //localStorage.clear();
     location.href = '/agent-login';
 }
 

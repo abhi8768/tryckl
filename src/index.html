@@ -1,357 +1,510 @@
 <!DOCTYPE html>
 <html lang="en">
   <!-- =============== BOOTSTRAP STYLES ===============-->
-<!-- 
+  <!-- 
  -->
- 			<link rel="stylesheet" href="/assets/css/bootstrap.css" id="bscss">
-			<link rel="stylesheet" href="/assets/css/app2.css" id="maincss">
-			<link rel="stylesheet" href="/assets/css/custom.css">
-			<link rel="stylesheet"  type="text/css" href="/assets/css/simple-line-icons.css">
-			<!-- <link rel="stylesheet"  type="text/css" href="/assets/css/fontawesome.css"> -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.css" id="bscss" />
+  <link rel="stylesheet" href="/assets/css/app2.css" id="maincss" />
+  <link rel="stylesheet" href="/assets/css/custom.css" />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="/assets/css/simple-line-icons.css"
+  />
+  <!-- <link rel="stylesheet"  type="text/css" href="/assets/css/fontawesome.css"> -->
 
-<!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->
-<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width">
-		<title>Tryckl</title>
-		<meta name="description" content="Tryckl" />
-		<meta name="keywords" content="Tryckl website, Tryckl Admin" />
-		<meta name="author" content="hencework"/>
-		
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="favicon.ico">
-		<link rel="icon" href="favicon.ico" type="image/x-icon">
+  <!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,width=device-width"
+    />
+    <title>Tryckl</title>
+    <meta name="description" content="Tryckl" />
+    <meta name="keywords" content="Tryckl website, Tryckl Admin" />
+    <meta name="author" content="hencework" />
 
-			
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body class="">
+    <div id="root" style="display: none"></div>
 
-			
-			
-		
-	</head>
-	<body class="">
-	<div id="root" style="display: none;">
-		
-	</div>
+    <!-- START LANDING PAGE -->
+    <div id="new-design" data-scroll-container style="display: none">
+      <link
+        href="/landing_assets/css/bootstrap.min.css"
+        rel="stylesheet"
+        type="text/css"
+        media="all"
+        id="landing_bootstrap"
+      />
+      <link
+        href="/landing_assets/css/custom.css"
+        rel="stylesheet"
+        type="text/css"
+        media="all"
+        id="landing_custom"
+      />
+      <link
+        rel="stylesheet"
+        href="/landing_assets/css/mobile5e1f.css"
+        media="screen"
+        type="text/css"
+      />
+      <link
+        rel="stylesheet"
+        href="/landing_assets/css/desktop.css"
+        media="only screen and (min-width: 1020px)"
+        type="text/css"
+      />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+      <link rel="preconnect" href="https://fonts.gstatic.com" />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet"
+      />
 
-	<!-- START LANDING PAGE -->
-	<div id="new-design"  data-scroll-container style="display: none;">
-			<link href="/landing_assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" id="landing_bootstrap"/> 
-			<link href="/landing_assets/css/custom.css" rel="stylesheet" type="text/css" media="all" id="landing_custom"/> 
-			<link rel="stylesheet" href="/landing_assets/css/mobile5e1f.css" media="screen" type="text/css" />
-			<link rel="stylesheet" href="/landing_assets/css/desktop.css" media="only screen and (min-width: 1020px)" type="text/css" />
-			<link rel="preconnect" href="https://fonts.gstatic.com">
-			<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-			<link rel="preconnect" href="https://fonts.gstatic.com">
-			<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-	
-			<div class="container-fluid bg-white pb-5">
-	  
-				<div class="container" data-scroll-section>
-				
-					<nav class="navbar navbar-expand-lg navbar-light">
-						<a class="navbar-brand" href="/">  <img src="/landing_assets/img/logo.png" class=""></a>
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-						</button>
-					
-						<div class="collapse navbar-collapse" id="navbarSupportedContent">
-						<ul class="navbar-nav mr-auto">
-							<li></li>
-						</ul>
-						<ul class="navbar-nav float-right">
-							<li class="nav-item active">
-							<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-							</li>
-							<li class="nav-item">
-							<a class="nav-link" href="/about-us" >About Us</a>
-							</li>
-						
-							<li class="nav-item">
-							<a class="nav-link" href="/how-it-works">How it Works</a>
-							</li>
-							<!-- <li class="nav-item">
+      <div class="container-fluid bg-white pb-5">
+        <div class="container" data-scroll-section>
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">
+              <img src="/landing_assets/img/logo.png" class=""
+            /></a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li></li>
+              </ul>
+              <ul class="navbar-nav float-right">
+                <li class="nav-item active">
+                  <a class="nav-link" href="/"
+                    >Home <span class="sr-only">(current)</span></a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/about-us">About Us</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="/how-it-works">How it Works</a>
+                </li>
+                <!-- <li class="nav-item">
 							<a class="nav-link" href="/privacy-policy">Privacy</a>
 							</li> -->
-							<!-- <li class="nav-item">
+                <!-- <li class="nav-item">
 							<a class="nav-link" href="#">Download</a>
 							</li> -->
-							<!-- Disabled for Production Only -->
-							<li class="nav-item">
-							<a class="nav-link" href="/agent-login">Login / Register</a>
-							</li>
-						</ul>
-						
-						</div>
-					</nav>
-				</div>
-			</div>
-	<div id="scroll" style="display: none;">
-		
-		
-		
-		<div class="first-fold" data-scroll-section>
-			<div class="container">
-				<div class="row">
-				<div class="col-lg-6 m-auto">
-					<h1>Welcome <br>
-						to the new <br> 
-						efficiency-driven<br>
-						<b>Agent Experience</b></h1>
-			<p>Tryckl takes the necessary, yet time consuming, day to day items that create revenue and scales
-			them in a convenient platform, leveraging the collective efforts of all real estate agents in your
-			market.
-			</p>
-			<p> Welcome to the new way to REpresent! Welcome to Tryckl. </p>
-				<a href="https://apps.apple.com/us/app/tryckl/id1561380058" class="mr-3"><img src="/landing_assets/img/app-store-btn.png" class=""></a>
-				<a href="https://play.google.com/store/apps/details?id=com.tryckl.com"><img src="/landing_assets/img/google-play-btn.png" class=""></a>
-				</div>
-				<div class="col-lg-6">
-					<img src="/landing_assets/img/first-fold-img-1.png" class="ani1 other-position1">
-					<img src="/landing_assets/img/first-fold-img-2.png" class="ani12 other-position">
-				</div>
-				</div>
-			</div>
-		</div>
+                <!-- Disabled for Production Only -->
+                <li class="dropdown-homepage">
+                  <a
+                    class="nav-link dropbtn"
+                    onmouseover="myFunction()"
+                    id="loginreg"
+                    >Login / Register</a
+                  >
+                  <div id="myDropdown" class="dropdown-homepage-content">
+                    <a onclick="myFunctiondashboard()">My Dashboard</a>
+                    <a onclick="myFunctionlogout()">Logout</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div id="scroll" style="display: none">
+        <div class="first-fold" data-scroll-section>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 m-auto">
+                <h1>
+                  Welcome <br />
+                  to the new <br />
+                  efficiency-driven<br />
+                  <b>Agent Experience</b>
+                </h1>
+                <p>
+                  Tryckl takes the necessary, yet time consuming, day to day
+                  items that create revenue and scales them in a convenient
+                  platform, leveraging the collective efforts of all real estate
+                  agents in your market.
+                </p>
+                <p>Welcome to the new way to REpresent! Welcome to Tryckl.</p>
+                <a
+                  href="https://apps.apple.com/us/app/tryckl/id1561380058"
+                  class="mr-3"
+                  ><img src="/landing_assets/img/app-store-btn.png" class=""
+                /></a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.tryckl.com"
+                  ><img src="/landing_assets/img/google-play-btn.png" class=""
+                /></a>
+              </div>
+              <div class="col-lg-6">
+                <img
+                  src="/landing_assets/img/first-fold-img-1.png"
+                  class="ani1 other-position1"
+                />
+                <img
+                  src="/landing_assets/img/first-fold-img-2.png"
+                  class="ani12 other-position"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-		
-		<div id="demo3" class="carousel slide" data-ride="carousel" data-scroll-section>
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="row">
-					<div class="col-lg-2 m-auto">
-						&nbsp;
-					</div>
-					<div class="col-lg-10 m-auto">
-						<div class="col-lg-12 mar-bot">
-						<h3 class="">One platform, <br>
-					army of agents,<br> endless opportunities.</h3>
-					<p>- Increase income, close more deals and recruit top agents</p>
-					<p>- Accelerate training and get exposure to the top teams, agents    and clients.</p>
-					<p>- Take control of your time and increase efficiency</p>
-					</div>
-					</div>
-					</div>
-				</div>  
-				<div class="col-lg-6 video-bg">
-					<div class="video-icon2 text-center">
-						<a class="popup wow fadeInUp"data-toggle="modal" data-target="#exampleModal" href=""><img src="/landing_assets/img/video-icon.png"></a>
-					</div>
-				
-				
-				
-				</div>
-			</div>
-		</div>
-	
-		<div id="demo" class="carousel slide" data-ride="carousel" data-scroll-section>
+        <div
+          id="demo3"
+          class="carousel slide"
+          data-ride="carousel"
+          data-scroll-section
+        >
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="row">
+                <div class="col-lg-2 m-auto">&nbsp;</div>
+                <div class="col-lg-10 m-auto">
+                  <div class="col-lg-12 mar-bot">
+                    <h3 class="">
+                      One platform, <br />
+                      army of agents,<br />
+                      endless opportunities.
+                    </h3>
+                    <p>
+                      - Increase income, close more deals and recruit top agents
+                    </p>
+                    <p>
+                      - Accelerate training and get exposure to the top teams,
+                      agents and clients.
+                    </p>
+                    <p>- Take control of your time and increase efficiency</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 video-bg">
+              <div class="video-icon2 text-center">
+                <a
+                  class="popup wow fadeInUp"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                  href=""
+                  ><img src="/landing_assets/img/video-icon.png"
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-			<!-- Indicators -->
-			<ul class="carousel-indicators">
-			<li data-target="#demo" data-slide-to="0" class="active"></li>
-			<li data-target="#demo" data-slide-to="1"></li>
-			<li data-target="#demo" data-slide-to="2"></li>
-			</ul>
-		
-			<!-- The slideshow -->
-			<div class="carousel-inner">
-			<div class="carousel-item active">
-				<div class="row slider-one">
-					<div class="container">
-						<div class="">
-								
-						
-						<div class="col-lg-12">
-								<h3 class="">Avenue for Experience</h3>
-								<p class=""><b>Acelerate training and get exposure to the <br/>  top teams, agents and clients</b></p>
-						</div> 
-						
-					</div>
-				</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="row slider-two">
-						<div class="container">
-							<div class="">
-									<div class="col-lg-12 text-right" >
-										<h3 class="">Opportunity for Growth</h3>
-										<p class=""><b>Increase Income, close more deals and recruit <br/> top agents.</b></p>
-									</div> 
-					
-					
-				</div>
-					</div>
-				</div>
-			</div>
-			<div class="carousel-item">
-				<div class="row slider-three">
-						<div class="container">
-							<div class="">
-									
-					
-					<div class="col-lg-12">
-							<h3 class="">Potential to Become</h3>
-							<p class=""><b>Make your RE career a realty. Own your time  <br/> and your future. Reach higher. <br/> <br/> Become..</b></p>
-					</div>
-					
-					</div>
-					</div>
-				</div>
-			</div>
-			</div>
-		
-			<!-- Left and right controls -->
-			<a class="carousel-control-prev" href="#demo" data-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-			</a>
-			<a class="carousel-control-next" href="#demo" data-slide="next">
-			<span class="carousel-control-next-icon"></span>
-			</a>
-		</div>
-		<div class="third-fold" data-scroll-section>
-			<div class="container">
-			<div class="row">
-			<div class="col-lg-6 m-auto">
-				<h1 class="">Dedicated to Agents</h1>
-				<p>Agents are under-appreciated for the value they bring to a negotiation and the contract
-					management. We are an AFT (Agent-Friendly Tech) company at our core and our focus from
-					the beginning was to make a simple but powerful platform that works on the tech you use. We
-					know the right technology will highlight an agents value, produce consistent income, and pave
-					the way for efficient growth. <br/> <br/>That’s the ‘why’ behind Tryckl.</p>
-				
-				<img src="/landing_assets/img/aft2.png" class="img-fluid aft-logo"/><br class="read-more-br"/>
-				<a href="/about-us" class="read-more">Read More</a>
-				</div> 
-				<div class="col-lg-6 text-center">
-					<img src="/landing_assets/img/smart-guy.png" class=" img-fluid">
-				</div>
-				
-			</div>
-			</div>
-		</div>
-		<div class="wrapper-mod" data-scroll-container>
+        <div
+          id="demo"
+          class="carousel slide"
+          data-ride="carousel"
+          data-scroll-section
+        >
+          <!-- Indicators -->
+          <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+          </ul>
 
-			<section class="mod matches" id="reviews" data-scroll-section>
-		<div class="container">
-			<div class="row">
-			<div class="col-lg-6 phone" data-scroll>
-			<img src="/landing_assets/img/mobile1.png">
-			</div>
-			<div class="col-lg-6 feature m-auto" data-scroll>
-			<h3 class="animate-title">01. <br />The hub for <br />getting it done</h3>
-			<p class="animate-text">Every day, agents are coordinating with other agents, <br />regardless of broker borders, to
-				accomplish <br />more than they ever could  themselves.<br /> Call it scale. Call it efficiency. <br />We call it
-				success!
-				</p>
-			</div>
-			
-			</div>
-		</div>
-		<div class="word single-word word-reviews" data-scroll data-scroll-direction="horizontal" data-scroll-speed="-6" data-scroll-target="#reviews"></div>
-			</section>
-	
-			<section class="mod" id="improve" data-scroll-section>
-			<div class="container">
-				<div class="row">
-				<div class="col-lg-6 feature m-auto" data-scroll>
-				<h3 class="animate-title">02. <br />Share the workload<br />far and wide</h3>
-				<p class="animate-text">In mere seconds, push a showing, an open house,<br /> 
-					a contractor’s need, or whatever is on your plate<br /> 
-					out to hundreds of agents in your market based on user settings<br /> 
-					so that it’s a tailored fit for just the right agents.</p>
-				</div>
-				<div class="col-lg-6 phone text-right" data-scroll>
-				<img src="/landing_assets/img/mobile2.png">
-				</div>
-				</div>
-			</div>
-			<div class="word single-word word-improve" data-scroll data-scroll-direction="horizontal" data-scroll-speed="6" data-scroll-target="#improve"></div>
-			</section>
-	
-			<section class="mod" id="learn" data-scroll-section>
-			<div class="container">
-				<div class="row">
-				<div class="col-lg-6 phone" data-scroll>
-				<img src="/landing_assets/img/mobile3.png">
-				</div>
-				<div class="col-lg-6 feature m-auto" data-scroll>
-				<h3 class="animate-title">03. <br />Seeing is believing</h3>
-				<p class="animate-text">Whether you’re accepting offers or posting them, you’ll appreciate how much Tryckl becomes a
-					part of your digital dependency. <br/> Download the app, sign in, begin enjoying the better way to run
-					your real estate business.</p>
-				</div>
-			
-				</div>
-			</div>
-			<div class="word single-word word-learn" data-scroll data-scroll-direction="horizontal" data-scroll-speed="-6" data-scroll-target="#learn"></div>
-			</section>
-	
-			<section class="mod" id="community" data-scroll-section>
-		<div class="container">
-			<div class="row">
-			<div class="col-lg-6 feature m-auto" data-scroll>
-			<h3 class="animate-title">04. <br />Shaking hands <br />in a digital world</h3>
-			<p class="animate-text">An old fashioned handshake is all it took <br />  and a commitment was made.
-				We’ve partnered with <br />  Stripe payments to facilitate the digital handshake <br /> 
-				when the work is done and payment <br /> is
-				passed from one user to another.</p>
-			</div>
-			<div class="col-lg-6 phone text-right" data-scroll>
-			<img src="/landing_assets/img/mobile4.png">
-			</div>
-			</div>
-		</div>
-		<div class="word single-word word-community" data-scroll data-scroll-direction="horizontal" data-scroll-speed="6" data-scroll-target="#community"></div>
-		</section>
-		</div>
-		<div class="three-in-fold" data-scroll-section>
-		<div class="container" id="three-in-fold">
-			<div class="row">
-			<div class="col-lg-4 m-auto">
-				<h1 class="">REthink <br/>your strategy</h1>
-				<p>Whether on the go, or in the office, the Tryckl platform runs on the devices you use so you can
-					connect from the office, the car, or the field. The only question now is, can real estate keep up
-					with you?</p>
-				<a href="https://apps.apple.com/us/app/tryckl/id1561380058" class="mb-2 d-block"><img src="/landing_assets/img/big-apple.png" width="90%"></a>
-				<a href="https://play.google.com/store/apps/details?id=com.tryckl.com"><img src="/landing_assets/img/big-google.png" width="90%"></a>
-				</div>
-				<div class="col-lg-8 text-center">
-					<img src="/landing_assets/img/three-in-one.png" class=" img-fluid">
-				</div>
-			
-			</div>
-			</div>
-		</div>
-		<div id="demo2" class="carousel slide" data-ride="carousel" data-scroll-section>
-		
-			<!-- Indicators -->
-			<ul class="">
-			<!-- <ul class="carousel-indicators"> -->
-			<li data-target="#demo" data-slide-to="0" class="active"></li>
-			<!-- <li data-target="#demo" data-slide-to="1"></li>
+          <!-- The slideshow -->
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row slider-one">
+                <div class="container">
+                  <div class="">
+                    <div class="col-lg-12">
+                      <h3 class="">Avenue for Experience</h3>
+                      <p class="">
+                        <b
+                          >Acelerate training and get exposure to the <br />
+                          top teams, agents and clients</b
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row slider-two">
+                <div class="container">
+                  <div class="">
+                    <div class="col-lg-12 text-right">
+                      <h3 class="">Opportunity for Growth</h3>
+                      <p class="">
+                        <b
+                          >Increase Income, close more deals and recruit <br />
+                          top agents.</b
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row slider-three">
+                <div class="container">
+                  <div class="">
+                    <div class="col-lg-12">
+                      <h3 class="">Potential to Become</h3>
+                      <p class="">
+                        <b
+                          >Make your RE career a realty. Own your time <br />
+                          and your future. Reach higher. <br />
+                          <br />
+                          Become..</b
+                        >
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left and right controls -->
+          <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+        <div class="third-fold" data-scroll-section>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 m-auto">
+                <h1 class="">Dedicated to Agents</h1>
+                <p>
+                  Agents are under-appreciated for the value they bring to a
+                  negotiation and the contract management. We are an AFT
+                  (Agent-Friendly Tech) company at our core and our focus from
+                  the beginning was to make a simple but powerful platform that
+                  works on the tech you use. We know the right technology will
+                  highlight an agents value, produce consistent income, and pave
+                  the way for efficient growth. <br />
+                  <br />That’s the ‘why’ behind Tryckl.
+                </p>
+
+                <img
+                  src="/landing_assets/img/aft2.png"
+                  class="img-fluid aft-logo"
+                /><br class="read-more-br" />
+                <a href="/about-us" class="read-more">Read More</a>
+              </div>
+              <div class="col-lg-6 text-center">
+                <img
+                  src="/landing_assets/img/smart-guy.png"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wrapper-mod" data-scroll-container>
+          <section class="mod matches" id="reviews" data-scroll-section>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 phone" data-scroll>
+                  <img src="/landing_assets/img/mobile1.png" />
+                </div>
+                <div class="col-lg-6 feature m-auto" data-scroll>
+                  <h3 class="animate-title">
+                    01. <br />The hub for <br />getting it done
+                  </h3>
+                  <p class="animate-text">
+                    Every day, agents are coordinating with other agents,
+                    <br />regardless of broker borders, to accomplish <br />more
+                    than they ever could themselves.<br />
+                    Call it scale. Call it efficiency. <br />We call it success!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="word single-word word-reviews"
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="-6"
+              data-scroll-target="#reviews"
+            ></div>
+          </section>
+
+          <section class="mod" id="improve" data-scroll-section>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 feature m-auto" data-scroll>
+                  <h3 class="animate-title">
+                    02. <br />Share the workload<br />far and wide
+                  </h3>
+                  <p class="animate-text">
+                    In mere seconds, push a showing, an open house,<br />
+                    a contractor’s need, or whatever is on your plate<br />
+                    out to hundreds of agents in your market based on user
+                    settings<br />
+                    so that it’s a tailored fit for just the right agents.
+                  </p>
+                </div>
+                <div class="col-lg-6 phone text-right" data-scroll>
+                  <img src="/landing_assets/img/mobile2.png" />
+                </div>
+              </div>
+            </div>
+            <div
+              class="word single-word word-improve"
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="6"
+              data-scroll-target="#improve"
+            ></div>
+          </section>
+
+          <section class="mod" id="learn" data-scroll-section>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 phone" data-scroll>
+                  <img src="/landing_assets/img/mobile3.png" />
+                </div>
+                <div class="col-lg-6 feature m-auto" data-scroll>
+                  <h3 class="animate-title">03. <br />Seeing is believing</h3>
+                  <p class="animate-text">
+                    Whether you’re accepting offers or posting them, you’ll
+                    appreciate how much Tryckl becomes a part of your digital
+                    dependency. <br />
+                    Download the app, sign in, begin enjoying the better way to
+                    run your real estate business.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="word single-word word-learn"
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="-6"
+              data-scroll-target="#learn"
+            ></div>
+          </section>
+
+          <section class="mod" id="community" data-scroll-section>
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6 feature m-auto" data-scroll>
+                  <h3 class="animate-title">
+                    04. <br />Shaking hands <br />in a digital world
+                  </h3>
+                  <p class="animate-text">
+                    An old fashioned handshake is all it took <br />
+                    and a commitment was made. We’ve partnered with <br />
+                    Stripe payments to facilitate the digital handshake <br />
+                    when the work is done and payment <br />
+                    is passed from one user to another.
+                  </p>
+                </div>
+                <div class="col-lg-6 phone text-right" data-scroll>
+                  <img src="/landing_assets/img/mobile4.png" />
+                </div>
+              </div>
+            </div>
+            <div
+              class="word single-word word-community"
+              data-scroll
+              data-scroll-direction="horizontal"
+              data-scroll-speed="6"
+              data-scroll-target="#community"
+            ></div>
+          </section>
+        </div>
+        <div class="three-in-fold" data-scroll-section>
+          <div class="container" id="three-in-fold">
+            <div class="row">
+              <div class="col-lg-4 m-auto">
+                <h1 class="">REthink <br />your strategy</h1>
+                <p>
+                  Whether on the go, or in the office, the Tryckl platform runs
+                  on the devices you use so you can connect from the office, the
+                  car, or the field. The only question now is, can real estate
+                  keep up with you?
+                </p>
+                <a
+                  href="https://apps.apple.com/us/app/tryckl/id1561380058"
+                  class="mb-2 d-block"
+                  ><img src="/landing_assets/img/big-apple.png" width="90%"
+                /></a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.tryckl.com"
+                  ><img src="/landing_assets/img/big-google.png" width="90%"
+                /></a>
+              </div>
+              <div class="col-lg-8 text-center">
+                <img
+                  src="/landing_assets/img/three-in-one.png"
+                  class="img-fluid"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="demo2"
+          class="carousel slide"
+          data-ride="carousel"
+          data-scroll-section
+        >
+          <!-- Indicators -->
+          <ul class="">
+            <!-- <ul class="carousel-indicators"> -->
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <!-- <li data-target="#demo" data-slide-to="1"></li>
 			<li data-target="#demo" data-slide-to="2"></li> -->
-			</ul>
-			
-			<!-- The slideshow -->
-			<div class="carousel-inner container">
-			<div class="carousel-item active">
-				<div class="row">
-					<div class="col-lg-4 m-auto text-white text-center">
-					<img src="/landing_assets/img/summer.png" class="">
-					
-					<p><b>Summer Luke</b></p>
-					<p>Keller Williams Westfield</p>
-					</div>
-					<div class="col-lg-8 m-auto text-white">
-					
-				<p class="demo2">" I was a new agent trying to get my real estate business going. I started
-					picking up offers to show properties and meet with the clients of the #1
-					agent in my area. <br/>After multiple successfully completed offers, I was invited
-					to join that very team and I broke six figures in my first year! " </p>
-					</div>
-				</div>
-			</div>
-			<!-- <div class="carousel-item">
+          </ul>
+
+          <!-- The slideshow -->
+          <div class="carousel-inner container">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-lg-4 m-auto text-white text-center">
+                  <img src="/landing_assets/img/summer.png" class="" />
+
+                  <p><b>Summer Luke</b></p>
+                  <p>Keller Williams Westfield</p>
+                </div>
+                <div class="col-lg-8 m-auto text-white">
+                  <p class="demo2">
+                    " I was a new agent trying to get my real estate business
+                    going. I started picking up offers to show properties and
+                    meet with the clients of the #1 agent in my area.
+                    <br />After multiple successfully completed offers, I was
+                    invited to join that very team and I broke six figures in my
+                    first year! "
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="carousel-item">
 				<div class="row">
 					<div class="col-lg-4 m-auto text-white text-center">
 					<img src="/landing_assets/img/robert.png">
@@ -377,214 +530,333 @@
 					</div>
 				</div>
 			</div> -->
-			</div>
-			
-			<!-- Left and right controls -->
-			<a class="carousel-control-prev" href="#demo2" data-slide="prev">
-			<span class="carousel-control-prev-icon"></span>
-			</a>
-			<a class="carousel-control-next" href="#demo2" data-slide="next">
-			<span class="carousel-control-next-icon"></span>
-			</a>
-		</div>
-	
-	
-		
-   
-    </div>
-    <!--END LANDING PAGE -->
+          </div>
 
-	 
-	<div id="scroll1" data-scroll-container style="display: none;">
-		
-		<div class="first-fold" data-scroll-section>
-			<div class="container">
-				<div class="row">
-				<div class="col-lg-6 m-auto">
-					<h1>It’s simple.</h1>
-		
-		<p>Do what you’re already doing - <br>
-		only faster, easier and more efficiently!</p>
-		<a href="https://apps.apple.com/us/app/tryckl/id1561380058" class="mr-3"><img src="/landing_assets/img/app-store-btn.png" class=""></a>
-		<a href="https://play.google.com/store/apps/details?id=com.tryckl.com"><img src="landing_assets/img/google-play-btn.png" class=""></a>
-				</div>
-				<div class="col-lg-6 text-center">
-					<img src="/landing_assets/img/works-mobile.png" class="how-mob">
-					
-				</div>
-				</div>
-			</div>
-		</div>
+          <!-- Left and right controls -->
+          <a class="carousel-control-prev" href="#demo2" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+          </a>
+          <a class="carousel-control-next" href="#demo2" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+          </a>
+        </div>
+      </div>
+      <!--END LANDING PAGE -->
 
-		<div class="how-it-works" data-scroll-section>
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 text-center">
-					<div class="blue-rounded">
-						<img src="/landing_assets/img/round-1.png" class="">
-					</div>
-						<h4>Create a Listing</h4>
-						<p>Select the type (showing, open house, etc.), the location, and the ‘when’ of a job to be done.</p>
-					</div>
-					<div class="col-lg-6 text-center">
-					<div class="blue-rounded">
-						<img src="/landing_assets/img/round-2.png" class="">
-					</div>
-						<h4>The Listing is 
-		Matched & Accepted</h4>
-						<p>A Listing is matched with user settings and is accepted as a Card by another user.</p>
-					</div>
-					<div class="col-lg-6 text-center">
-						<div class="blue-rounded">
-						<img src="/landing_assets/img/round-3.png" class="">
-					</div>
-						<h4>Complete the Card</h4>
-						<p>Accepted listings become cards that users complete based on the time and date scheduled.</p>
-					</div>
-					<div class="col-lg-6 text-center">
-						<div class="blue-rounded">
-						<img src="/landing_assets/img/round-4.png" class="">
-					</div>
-						<h4>Payment Sent</h4>
-						<p>When a card is completed, payment is approved via Stripe and the work is done!</p>
-					</div>
-				</div>
-			</div>
-			
-		
-		</div>
-		
-	</div>
-	<div class="footer" data-scroll-section>
-			<div class="container">
-				<div class="row">
-				<div class="col-lg-3">
-				<img src="/landing_assets/img/footer-logo.png" class="">
-				<p>Tryckl, LLC</p>
-				<!-- <p>987 California str, Suite 111<br>
+      <div id="scroll1" data-scroll-container style="display: none">
+        <div class="first-fold" data-scroll-section>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 m-auto">
+                <h1>It’s simple.</h1>
+
+                <p>
+                  Do what you’re already doing - <br />
+                  only faster, easier and more efficiently!
+                </p>
+                <a
+                  href="https://apps.apple.com/us/app/tryckl/id1561380058"
+                  class="mr-3"
+                  ><img src="/landing_assets/img/app-store-btn.png" class=""
+                /></a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.tryckl.com"
+                  ><img src="landing_assets/img/google-play-btn.png" class=""
+                /></a>
+              </div>
+              <div class="col-lg-6 text-center">
+                <img
+                  src="/landing_assets/img/works-mobile.png"
+                  class="how-mob"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="how-it-works" data-scroll-section>
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-6 text-center">
+                <div class="blue-rounded">
+                  <img src="/landing_assets/img/round-1.png" class="" />
+                </div>
+                <h4>Create a Listing</h4>
+                <p>
+                  Select the type (showing, open house, etc.), the location, and
+                  the ‘when’ of a job to be done.
+                </p>
+              </div>
+              <div class="col-lg-6 text-center">
+                <div class="blue-rounded">
+                  <img src="/landing_assets/img/round-2.png" class="" />
+                </div>
+                <h4>The Listing is Matched & Accepted</h4>
+                <p>
+                  A Listing is matched with user settings and is accepted as a
+                  Card by another user.
+                </p>
+              </div>
+              <div class="col-lg-6 text-center">
+                <div class="blue-rounded">
+                  <img src="/landing_assets/img/round-3.png" class="" />
+                </div>
+                <h4>Complete the Card</h4>
+                <p>
+                  Accepted listings become cards that users complete based on
+                  the time and date scheduled.
+                </p>
+              </div>
+              <div class="col-lg-6 text-center">
+                <div class="blue-rounded">
+                  <img src="/landing_assets/img/round-4.png" class="" />
+                </div>
+                <h4>Payment Sent</h4>
+                <p>
+                  When a card is completed, payment is approved via Stripe and
+                  the work is done!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer" data-scroll-section>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-3">
+              <img src="/landing_assets/img/footer-logo.png" class="" />
+              <p>Tryckl, LLC</p>
+              <!-- <p>987 California str, Suite 111<br>
 		San Francisco, CA 12345</p>
 		<p>1-123-456-7890<br>
 		info@tryckl.com</p> -->
-				</div>
-				<div class="col-lg-3">
-					<h4>Navigate</h4>
-					<ul>
-					<li><a href="/">Home</a></li>
-					<li><a href="/how-it-works">How it Works</a></li>
-					<!-- <li id="scrolltop" ><a onclick=scrolltop()>Services</a></li> -->
-					<!-- 	<li><a href="javascript:void(0)" onclick="gotoTestimonial();">Testimonials</a></li> -->
-					</ul>
-				</div>
-				<div class="col-lg-3">
-					<h4>About Us</h4>
-					<ul>
-					<li><a href="/about-us">About Company</a></li>
-					<li><a href="/terms-n-condition">Terms & Conditions</a></li>
-					<li><a href="/privacy-policy">Privacy </a></li>
-					<li><a href="/payment-policy">Payment Policy</a></li>
-					<li><a href="/contact-us">Contact</a></li>
-					</ul>
-				</div>
-				<div class="col-lg-3">
-					<h4>Downloads</h4>
-					<ul>
-					<li><a href="https://apps.apple.com/us/app/tryckl/id1561380058"> <img src="/landing_assets/img/footer-app-store.png" class=""></a></li>
-					<li><a href="https://play.google.com/store/apps/details?id=com.tryckl.com"> <img src="/landing_assets/img/footer-google-play.png" class=""></a></li>
-					
-					</ul>
-				</div>
-					
-				</div>
-				</div>
-		</div>
+            </div>
+            <div class="col-lg-3">
+              <h4>Navigate</h4>
+              <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/how-it-works">How it Works</a></li>
+                <!-- <li id="scrolltop" ><a onclick=scrolltop()>Services</a></li> -->
+                <!-- 	<li><a href="javascript:void(0)" onclick="gotoTestimonial();">Testimonials</a></li> -->
+              </ul>
+            </div>
+            <div class="col-lg-3">
+              <h4>About Us</h4>
+              <ul>
+                <li><a href="/about-us">About Company</a></li>
+                <li><a href="/terms-n-condition">Terms & Conditions</a></li>
+                <li><a href="/privacy-policy">Privacy </a></li>
+                <li><a href="/payment-policy">Payment Policy</a></li>
+                <li><a href="/contact-us">Contact</a></li>
+              </ul>
+            </div>
+            <div class="col-lg-3">
+              <h4>Downloads</h4>
+              <ul>
+                <li>
+                  <a href="https://apps.apple.com/us/app/tryckl/id1561380058">
+                    <img
+                      src="/landing_assets/img/footer-app-store.png"
+                      class=""
+                  /></a>
+                </li>
+                <li>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.tryckl.com"
+                  >
+                    <img
+                      src="/landing_assets/img/footer-google-play.png"
+                      class=""
+                  /></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-		<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-				  <div class="modal-content">
-				   
-					<div class="modal-body">
-					  <!-- <iframe width="100%" height="400" src="https://www.youtube.com/embed/zFw6A9LkbpI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered modal-lg"
+          role="document"
+        >
+          <div class="modal-content">
+            <div class="modal-body">
+              <!-- <iframe width="100%" height="400" src="https://www.youtube.com/embed/zFw6A9LkbpI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
 
-					  <iframe width="560" height="315" src="https://www.youtube.com/embed/UUyIaS_CHKA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-					</div>
-					<div class="modal-footer">
-					  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				  
-					</div>
-				  </div>
-				</div>
-		</div>
-			   
-	</div>
-	<!-- SCRIPT-->
-	
-    </body>
-<!-- 	<script src="/assets/js/jquery-1.11.3.min.js"></script> -->
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/UUyIaS_CHKA"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- SCRIPT-->
+  </body>
+  <!-- 	<script src="/assets/js/jquery-1.11.3.min.js"></script> -->
 
-	<script type="text/javascript" src="/landing_assets/js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="/landing_assets/js/bootstrap.js"></script>
-    <script src="/landing_assets/js/locomotive-scroll.min.js"></script>
-	<script src="/landing_assets/js/lettering.min.js"></script>
-	<script src="https://js.stripe.com/v3/"></script>
-	
-	<script>
-		//$('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
-		let userDetails    = localStorage.getItem('userDetails');
-	
-		let userDetailsobj = JSON.parse(userDetails);
-		//console.log(userDetailsobj);
-		if(userDetailsobj !== null){
-		
-			$.ajax({ 
-				method: 'POST', 
-				url: `${apiURLPrefix}/auth/authenticate`, 
-				data: JSON.stringify({ 'brokers_id': userDetailsobj.brokers_id}),
-				dataType: 'json',
-				contentType: 'application/json',
-				headers: {
-				'Content-Type':'application/json'
-				},
-				success: function (res) { 
-					//console.log(res);	
-					localStorage.setItem('jwtToken', res.response._jwtToken);
-					//localStorage.setItem('jwtToken', res.response._jwtToken);
-				}
-       		});
+  <script
+    type="text/javascript"
+    src="/landing_assets/js/jquery-2.1.1.js"
+  ></script>
+  <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+  <script type="text/javascript" src="/landing_assets/js/bootstrap.js"></script>
+  <script src="/landing_assets/js/locomotive-scroll.min.js"></script>
+  <script src="/landing_assets/js/lettering.min.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
 
-			   $.ajax({ 
-				method: 'GET', 
-				url: `${apiURLPrefix}/plaid/create_link_token`, 
-				dataType: 'json',
-				contentType: 'application/json',
-				headers: {
-				Authorization     : 'Bearer ' + localStorage.getItem('jwtToken'),
-				'Content-Type':'application/json'
-				},
-				success: function (res) { 
-					console.log('mycode',res);	
-					localStorage.setItem('link_token', res.response.link_token);
-					//localStorage.setItem('jwtToken', res.response._jwtToken);
-				}
-       		});
+  <script>
+    //$('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
+    let userDetails = localStorage.getItem("userDetails");
+    let loginreg = document.getElementById("loginreg");
+    let userDetailsobj = JSON.parse(userDetails);
+    console.log(loginreg.innerText, userDetailsobj, "userdetobj");
+    if (userDetailsobj !== null) {
+      loginreg.innerText = "Hi, " + userDetailsobj.first_name;
+    }
 
-			   
-		}
-		
+    /* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+    function myFunction() {
+      if (userDetailsobj !== null) {
+        document.getElementById("myDropdown").classList.toggle("show");
+      } else {
+        location.href = "/agent-login";
+      }
+    }
+    function myFunctiondashboard(){
+      location.href = "/agent-login";
+    }
 
-	function init() {
-    // LOCOMOTIVE
-    var scroll = new LocomotiveScroll({
-      el: document.querySelector('#new-design'),
-      smooth: true,
-      getSpeed: true,
-      getDirection: true,
-      repeat: false,
-      smoothMobile: false,
-      class: 'in-view',
-      lerp: .08
-    }); 
+    function myFunctionlogout() {
+      const public_ip = sessionStorage.getItem("public_ip");
+      // return (public_ip !== null ? public_ip : null)
+      $.ajax({
+        method: "POST",
+        url: `${apiURLPrefix}/auth/logout`,
+        data: JSON.stringify({
+          brokers_id: userDetailsobj.brokers_id,
+          device_type: "WEB",
+          device_id: public_ip !== null ? public_ip : null,
+        }),
+        dataType: "json",
+        contentType: "application/json",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+          "Content-Type": "application/json",
+        },
+        success: function (res) {
+          //console.log(res);
+          sessionStorage.removeItem("jwtToken");
+          sessionStorage.removeItem("userDetails");
+          sessionStorage.removeItem("createlisting");
+          sessionStorage.clear();
+          localStorage.removeItem("userDetails");
+          localStorage.removeItem("jwtToken");
+          localStorage.removeItem("login_rememberme");
+          //localStorage.clear();
+          location.href = "/agent-login";
+          //localStorage.setItem('jwtToken', res.response._jwtToken);
+        },
+      });
+    }
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function (event) {
+      if (!event.target.matches(".dropbtn")) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains("show")) {
+            openDropdown.classList.remove("show");
+          }
+        }
+      }
+    };
 
-	/* var scroll = new LocomotiveScroll({
+    if (userDetailsobj !== null) {
+      $.ajax({
+        method: "POST",
+        url: `${apiURLPrefix}/auth/authenticate`,
+        data: JSON.stringify({ brokers_id: userDetailsobj.brokers_id }),
+        dataType: "json",
+        contentType: "application/json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        success: function (res) {
+          //console.log(res);
+          localStorage.setItem("jwtToken", res.response._jwtToken);
+          //localStorage.setItem('jwtToken', res.response._jwtToken);
+        },
+      });
+
+      $.ajax({
+        method: "GET",
+        url: `${apiURLPrefix}/plaid/create_link_token`,
+        dataType: "json",
+        contentType: "application/json",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("jwtToken"),
+          "Content-Type": "application/json",
+        },
+        success: function (res) {
+          console.log("mycode", res);
+          localStorage.setItem("link_token", res.response.link_token);
+          //localStorage.setItem('jwtToken', res.response._jwtToken);
+        },
+      });
+    }
+
+    function init() {
+      // LOCOMOTIVE
+      var scroll = new LocomotiveScroll({
+        el: document.querySelector("#new-design"),
+        smooth: true,
+        getSpeed: true,
+        getDirection: true,
+        repeat: false,
+        smoothMobile: false,
+        class: "in-view",
+        lerp: 0.08,
+      });
+
+      /* var scroll = new LocomotiveScroll({
       el: document.querySelector('#scroll1'),
       smooth: true,
       getSpeed: true,
@@ -594,48 +866,52 @@
       class: 'in-view',
       lerp: .08
     });  */
-  }
- // window.onload = init;
- 	var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-	if(isMobile === false){
-		if (( $("#scroll").css('display') == 'block')  || ( $("#scroll1").css('display') == 'block'))
-		{     $('html, body').css({ 'overflow': 'hidden', 'height': '100%' })
-				window.onload = init;
-		} 
-	}
-	
-
-
-  $(document).ready(function() {
-    // DEFER IMAGE LOAD
-    var imgDefer = document.getElementsByTagName('img');
-    for (var i=0; i<imgDefer.length; i++) {
-      if(imgDefer[i].getAttribute('data-src')) {
-        imgDefer[i].setAttribute('src',imgDefer[i].getAttribute('data-src'));
+    }
+    // window.onload = init;
+    var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile === false) {
+      if (
+        $("#scroll").css("display") == "block" ||
+        $("#scroll1").css("display") == "block"
+      ) {
+        $("html, body").css({ overflow: "hidden", height: "100%" });
+        window.onload = init;
       }
     }
-    // STYLE INDIVIDUAL LINES & LETTERS
-    $(".button").lettering('words');
-    $(".animate-title, .animate-text").lettering('lines');
-  });
-  /* function scrolltop(){
+
+    $(document).ready(function () {
+      // DEFER IMAGE LOAD
+      var imgDefer = document.getElementsByTagName("img");
+      for (var i = 0; i < imgDefer.length; i++) {
+        if (imgDefer[i].getAttribute("data-src")) {
+          imgDefer[i].setAttribute("src", imgDefer[i].getAttribute("data-src"));
+        }
+      }
+      // STYLE INDIVIDUAL LINES & LETTERS
+      $(".button").lettering("words");
+      $(".animate-title, .animate-text").lettering("lines");
+    });
+    /* function scrolltop(){
 	const scroll2 = new LocomotiveScroll();
 	const target = document.querySelector('#three-in-fold');
 
 	scroll2.scrollTo(target,-100);
   } */
-  function gotoAbout(){
-	$('.third-fold')[0].scrollIntoView(true);
-  }
+    function gotoAbout() {
+      $(".third-fold")[0].scrollIntoView(true);
+    }
 
-  function gotoTestimonial(){
-	$('#demo2')[0].scrollIntoView(true);
-  }
+    function gotoTestimonial() {
+      $("#demo2")[0].scrollIntoView(true);
+    }
 
-  $("#exampleModal").on('hidden.bs.modal', function (e) {
-    $("#exampleModal iframe").attr("src", $("#exampleModal iframe").attr("src"));
-  }); 
-	</script> 
+    $("#exampleModal").on("hidden.bs.modal", function (e) {
+      $("#exampleModal iframe").attr(
+        "src",
+        $("#exampleModal iframe").attr("src")
+      );
+    });
+  </script>
 
-    <!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->
-    </html>
+  <!-- Mirrored from hencework.com/theme/splasher/demo-1/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 18 Aug 2020 10:37:47 GMT -->
+</html>

@@ -1,0 +1,12 @@
+.modal-background{
+    background: #666666 !important;
+}
+
+.color-white{
+    color: #ffff !important;
+}
+
+.maxminvalue{
+    display: flex;
+    justify-content: space-between;
+}
