@@ -19,6 +19,7 @@ import {
   SET_COMPLETE_CARD_DETAILS,
   DWOLLA_FUND_TRANSFER_SUCCESS,
   CLEAR_DWOLLA_FUND_TRANSFER_SUCCESS,
+  CLEAR_OFFER_LIST,
 } from "../constants";
 import {
   getPublicIP,
@@ -317,17 +318,36 @@ export const setOfferList = (offerlist) => {
   };
 };
 
+export const clearOfferList = () => {
+  return {
+    type: CLEAR_OFFER_LIST,
+  };
+};
+
 export const requestOfferlisting = (params) => {
+  console.log("HI");
   const headers = {
     Authorization: `Bearer ${getAuthHeader()}`,
     "content-type": "application/json",
   };
 
   return (dispatch, getState) => {
-    const param = JSON.stringify({
-      brokers_id: params,
-      flag: "open",
-    });
+    dispatch(clearOfferList());
+    const param = params
+      ? JSON.stringify({
+          card: params.card,
+          access_type: params.access_type,
+          chk_leads: params.chk_leads,
+          city: params.city,
+          flag: true,
+          keyword: params.keyword,
+          listing_agent: params.listing_agent,
+          zipcode: params.zipcode,
+          type: params.type,
+          max_amount: params.max_amount,
+          min_amount: params.min_amount,
+        })
+      : JSON.stringify({});
 
     postReq(`${apiURLPrefix}/card/list`, param, headers)
       .then(handleResponse)
@@ -388,11 +408,7 @@ export const checkreturncardstatus = (id) => {
       listing_id: id,
     });
 
-    postReq(
-      `${apiURLPrefix}/card/checkCardStatusForReturn`,
-      param,
-      headers
-    )
+    postReq(`${apiURLPrefix}/card/checkCardStatusForReturn`, param, headers)
       .then(handleResponse)
       .then((res) => {
         console.log(res, "res");
@@ -472,7 +488,6 @@ export const requestMyCardlisting = () => {
   };
 };
 
-
 export const paymentrequestSuccess = () => {
   return {
     type: PAYMENT_REQUEST_SUCCESS,
@@ -498,17 +513,17 @@ export const paymentrequest = (param) => {
     "content-type": "application/json",
   };
   return (dispatch, getState) => {
-   postReq(`${apiURLPrefix}/card/complete`, formData, headers)
-     .then(handleResponse)
-     .then((res) => {
-      if (res.status_code === 200) {
-        dispatch(paymentrequestSuccess());
-      } 
-     })
-     .catch((err) => {
-       console.log(err);
-     });
- };
+    postReq(`${apiURLPrefix}/card/complete`, formData, headers)
+      .then(handleResponse)
+      .then((res) => {
+        if (res.status_code === 200) {
+          dispatch(paymentrequestSuccess());
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 };
 
 export const setCompleteCardDetails = (carddetails) => {
@@ -533,17 +548,15 @@ export const getCompleteCarddetails = (listId) => {
       .then(handleResponse)
       .then((res) => {
         console.log(res, "res1");
-        if (res.status_code===200){
+        if (res.status_code === 200) {
           dispatch(setCompleteCardDetails(res.response));
-        } 
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
 };
-
-
 
 export const dwollafundSuccess = () => {
   return {

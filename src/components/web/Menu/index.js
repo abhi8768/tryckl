@@ -49,9 +49,20 @@ class Menu extends Component {
             <ul className="sidebar-nav">
               <li className="" id="menu_profile">
                 {/*  <a href="#dashboard" title="Dashboard"> */}
+                /transactionhistory
                 <Link to="/profile" title="Dashboard">
                   <em className="pro"></em>
                   <span data-localize="sidebar.nav.DASHBOARD">Profile</span>
+                </Link>
+                {/*  </a> */}
+              </li>
+              <li className="" id="menu_profile">
+                {/*  <a href="#dashboard" title="Dashboard"> */}
+                <Link to="/transactionhistory" title="Dashboard">
+                  <em className="pro"></em>
+                  <span data-localize="sidebar.nav.DASHBOARD">
+                    My Transaction
+                  </span>
                 </Link>
                 {/*  </a> */}
               </li>

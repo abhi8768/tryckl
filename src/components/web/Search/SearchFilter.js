@@ -14,16 +14,30 @@ import {
 import { useEffect } from "react";
 import { getAuthHeader } from "../../../helpers/authHelper";
 import Axios from "axios";
+import { requestOfferlisting } from "../../../actions/web/listingAction";
+import { useDispatch } from "react-redux";
 
 export default function SearchFilter(props) {
-    const [card, setCard] = useState([]);
-    const [keyword, setKeyword] = useState([]);
-    const [type, setType] = useState([]);
-    const [agent, setAgent] = useState([]);
-    const [city, setCity] = useState([]);
-    const [zipcode, setZipcode] = useState([]);
-    const [accesstype, setAccesstype] = useState([]);
-
+  const [cardList, setCardList] = useState([]);
+  const [keywordList, setKeywordList] = useState([]);
+  const [typeList, setTypeList] = useState([]);
+  const [agentList, setAgentList] = useState([]);
+  const [cityList, setCityList] = useState([]);
+  const [zipcodeList, setZipcodeList] = useState([]);
+  const [accesstypeList, setAccesstypeList] = useState([]);
+  const [card, setCard] = useState("");
+  const [access_type, setAccess_type] = useState("");
+  const [chk_leads, setChk_leads] = useState(false);
+  const [city, setCity] = useState("");
+  const [flag, setFlag] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [listing_agent, setListing_agent] = useState("");
+  const [zipcode, setZipcode] = useState("");
+  const [type, setType] = useState("");
+  const [max_amount, setMax_amount] = useState("");
+  const [min_amount, setMin_amount] = useState("");
+  const [slidervalue, setSliderValue] = useState([props.min,props.max]);
+  const dispatch = useDispatch();
   useEffect(() => {
     fetchcard();
     fetchkeyword();
@@ -32,6 +46,23 @@ export default function SearchFilter(props) {
     fetchcity();
     fetchzipcode();
     fetchaccesstype();
+    if (props.filterarr.length !== 0) {
+      setCard(props.filterarr[0].card);
+      setAccess_type(props.filterarr[0].access_type);
+      setChk_leads(props.filterarr[0].chk_leads);
+      setCity(props.filterarr[0].city);
+      setFlag(true);
+      setKeyword(props.filterarr[0].keyword);
+      setListing_agent(props.filterarr[0].listing_agent);
+      setZipcode(props.filterarr[0].zipcode);
+      setType(props.filterarr[0].type);
+      setMax_amount(props.filterarr[0].max_amount);
+      setMin_amount(props.filterarr[0].min_amount);
+      setSliderValue([
+        props.filterarr[0].min_amount,
+        props.filterarr[0].max_amount
+      ]);
+    }
   }, []);
   const fetchcard = async () => {
     try {
@@ -47,8 +78,7 @@ export default function SearchFilter(props) {
       );
 
       if (resp.data.status) {
-        setCard([...resp.data.response.list],
-        );
+        setCardList([...resp.data.response.list]);
       }
       console.log(resp, "resp");
     } catch (err) {}
@@ -67,7 +97,7 @@ export default function SearchFilter(props) {
         }
       );
       if (resp.data.status) {
-        setKeyword([...resp.data.response.list]);
+        setKeywordList([...resp.data.response.list]);
       }
       console.log(resp, "resp");
     } catch (err) {}
@@ -86,7 +116,7 @@ export default function SearchFilter(props) {
         }
       );
       if (resp.data.status) {
-        setType([...resp.data.response.list]);
+        setTypeList([...resp.data.response.list]);
       }
 
       console.log(resp, "resp");
@@ -106,7 +136,7 @@ export default function SearchFilter(props) {
         }
       );
       if (resp.data.status) {
-        setAgent([...resp.data.response.list]);
+        setAgentList([...resp.data.response.list]);
       }
       console.log(resp, "resp");
     } catch (err) {}
@@ -125,7 +155,7 @@ export default function SearchFilter(props) {
         }
       );
       if (resp.data.status) {
-        setCity([...resp.data.response.list]);
+        setCityList([...resp.data.response.list]);
       }
       console.log(resp, "resp");
     } catch (err) {}
@@ -144,7 +174,7 @@ export default function SearchFilter(props) {
         }
       );
       if (resp.data.status) {
-        setZipcode([...resp.data.response.list]);
+        setZipcodeList([...resp.data.response.list]);
       }
       console.log(resp, "resp");
     } catch (err) {}
@@ -162,13 +192,14 @@ export default function SearchFilter(props) {
           },
         }
       );
-        if (resp.data.status) {
-            setAccesstype([...resp.data.response.list]);
-        } 
+      if (resp.data.status) {
+        setAccesstypeList([...resp.data.response.list]);
+      }
       console.log(resp, "resp");
     } catch (err) {}
   };
 
+  console.log(props, "props");
   return (
     <div>
       <div
@@ -196,15 +227,21 @@ export default function SearchFilter(props) {
                     >
                       CARD #
                     </InputLabel>
+
                     <Select
                       labelId="demo-simple-select-placeholder-label-label"
                       id="demo-simple-select-placeholder-label"
                       className="color-white"
+                      name="card"
+                      value={card}
+                      onChange={(e) => {
+                        setCard(e.target.value);
+                      }}
                     >
                       <MenuItem value="">
                         <em>Select</em>
                       </MenuItem>
-                      {card.map((val, index) => (
+                      {cardList.map((val, index) => (
                         <MenuItem key={val.id} value={val.id}>
                           {val.value}
                         </MenuItem>
@@ -224,11 +261,17 @@ export default function SearchFilter(props) {
                     <Select
                       labelId="demo-simple-select-placeholder-label-label"
                       id="demo-simple-select-placeholder-label"
+                      name="type"
+                      className="color-white"
+                      value={type}
+                      onChange={(e) => {
+                        setType(e.target.value);
+                      }}
                     >
                       <MenuItem value="">
                         <em>Select</em>
                       </MenuItem>
-                      {type.map((val, index) => (
+                      {typeList.map((val, index) => (
                         <MenuItem key={val.id} value={val.id}>
                           {val.value}
                         </MenuItem>
@@ -248,11 +291,17 @@ export default function SearchFilter(props) {
                     <Select
                       labelId="demo-simple-select-placeholder-label-label"
                       id="demo-simple-select-placeholder-label"
+                      name="keyword"
+                      className="color-white"
+                      value={keyword}
+                      onChange={(e) => {
+                        setKeyword(e.target.value);
+                      }}
                     >
                       <MenuItem value="">
                         <em>Select</em>
                       </MenuItem>
-                      {keyword.map((val, index) => (
+                      {keywordList.map((val, index) => (
                         <MenuItem key={val.id} value={val.id}>
                           {val.value}
                         </MenuItem>
@@ -272,11 +321,17 @@ export default function SearchFilter(props) {
                     <Select
                       labelId="demo-simple-select-placeholder-label-label"
                       id="demo-simple-select-placeholder-label"
+                      name="listing_agent"
+                      className="color-white"
+                      value={listing_agent}
+                      onChange={(e) => {
+                        setListing_agent(e.target.value);
+                      }}
                     >
                       <MenuItem value="">
                         <em>Select</em>
                       </MenuItem>
-                      {agent.map((val, index) => (
+                      {agentList.map((val, index) => (
                         <MenuItem key={val.id} value={val.id}>
                           {val.value}
                         </MenuItem>
@@ -296,11 +351,17 @@ export default function SearchFilter(props) {
                     <Select
                       labelId="demo-simple-select-placeholder-label-label"
                       id="demo-simple-select-placeholder-label"
+                      name="city"
+                      className="color-white"
+                      value={city}
+                      onChange={(e) => {
+                        setCity(e.target.value);
+                      }}
                     >
                       <MenuItem value="">
                         <em>Select</em>
                       </MenuItem>
-                      {city.map((val, index) => (
+                      {cityList.map((val, index) => (
                         <MenuItem key={val.id} value={val.id}>
                           {val.value}
                         </MenuItem>
@@ -320,11 +381,17 @@ export default function SearchFilter(props) {
                     <Select
                       labelId="demo-simple-select-placeholder-label-label"
                       id="demo-simple-select-placeholder-label"
+                      name="zipcode"
+                      className="color-white"
+                      value={zipcode}
+                      onChange={(e) => {
+                        setZipcode(e.target.value);
+                      }}
                     >
                       <MenuItem value="">
                         <em>Select</em>
                       </MenuItem>
-                      {zipcode.map((val, index) => (
+                      {zipcodeList.map((val, index) => (
                         <MenuItem key={val.id} value={val.id}>
                           {val.value}
                         </MenuItem>
@@ -344,11 +411,17 @@ export default function SearchFilter(props) {
                     <Select
                       labelId="demo-simple-select-placeholder-label-label"
                       id="demo-simple-select-placeholder-label"
+                      name="access_type"
+                      className="color-white"
+                      value={access_type}
+                      onChange={(e) => {
+                        setAccess_type(e.target.value);
+                      }}
                     >
                       <MenuItem value="">
                         <em>Select</em>
                       </MenuItem>
-                      {accesstype.map((val, index) => (
+                      {accesstypeList.map((val, index) => (
                         <MenuItem key={val.id} value={val.id}>
                           {val.value}
                         </MenuItem>
@@ -368,34 +441,80 @@ export default function SearchFilter(props) {
                     <FormControlLabel
                       control={
                         <Checkbox
-                          checked={true}
-                          // onChange={handleChange}
+                          checked={chk_leads}
+                          onChange={(e) => {
+                            setChk_leads(e.target.checked);
+                          }}
+                          className="color-blue"
                           name="checkedB"
-                          color="primary"
+                          // color="primary"
                         />
                       }
                       className="color-white"
                       label="Leads"
                     />
+                    {/* flag: "Search",max_amount: "30", min_amount: "20", type:
+                    "Open House" 
+                    name="access_type" 
+                    value={filter.access_type}
+                    onChange=
+                    {(e) => {
+                      handleChange("access_type", e.target.value);
+                    }} */}
                     <Slider
-                      value={[10, 20]}
-                      // onChange={handleChange}
+                      value={slidervalue}
+                      min={props.min}
+                      step={1}
+                      max={props.max}
+                      onChange={(event, newValue) => {
+                        console.log(newValue, "value");
+                        setSliderValue(newValue);
+                        setMax_amount(newValue[1]);
+                        setMin_amount(newValue[0]);
+                      }}
+                      className="color-blue"
                       valueLabelDisplay="auto"
                       aria-labelledby="range-slider"
                     />
                     <div className="maxminvalue">
-                      <p className="color-white">Min: $20</p>
-                      <p className="color-white">Max: $20</p>
+                      <p className="color-white">Min: ${props.min}</p>
+                      <p className="color-white">Max: ${props.max}</p>
                     </div>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                   <button
                     className="sv-btn"
-                    id="cancel-listing"
-                    // onClick={() => {
-                    //   this.props.acceptOffer(this.state.listingid);
-                    // }}
+                    onClick={() => {
+                      dispatch(
+                        requestOfferlisting({
+                          card: card,
+                          access_type: access_type,
+                          chk_leads: chk_leads ? "YES" : "NO",
+                          city: city,
+                          flag: true,
+                          keyword: keyword,
+                          listing_agent: listing_agent,
+                          zipcode: zipcode,
+                          type: type,
+                          max_amount: max_amount,
+                          min_amount: min_amount,
+                        })
+                      );
+                      props.handleFilterarr({
+                        card: card,
+                        access_type: access_type,
+                        chk_leads: chk_leads,
+                        city: city,
+                        keyword: keyword,
+                        listing_agent: listing_agent,
+                        zipcode: zipcode,
+                        type: type,
+                        max_amount: max_amount,
+                        min_amount: min_amount,
+                      });
+                      props.handleClose();
+                    }}
                   >
                     SEARCH
                   </button>
@@ -409,17 +528,21 @@ export default function SearchFilter(props) {
                     BACK
                   </button>
                 </Grid>
-                {/* <Grid item xs={12}>
-                  <button
-                    className="sv-btn"
-                    id="cancel-listing"
-                    // onClick={() => {
-                    //   this.props.acceptOffer(this.state.listingid);
-                    // }}
-                  >
-                    CLEAR
-                  </button>
-                </Grid> */}
+                {props.filterarr.length !== 0 && (
+                  <Grid item xs={12}>
+                    <button
+                      className="sv-btn"
+                      id="cancel-listing"
+                      onClick={() => {
+                        dispatch(requestOfferlisting());
+                        props.handleFilterarr();
+                        props.handleClose();
+                      }}
+                    >
+                      CLEAR
+                    </button>
+                  </Grid>
+                )}
               </Grid>
             </div>
           </div>

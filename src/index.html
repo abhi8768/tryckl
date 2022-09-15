@@ -121,7 +121,7 @@
                     >Login / Register</a
                   >
                   <div id="myDropdown" class="dropdown-homepage-content">
-                    <a onclick="myFunctiondashboard()">My Dashboard</a>
+                    <a onclick="myFunctiondashboard()" class="dropdown-bottom-border">My Dashboard</a>
                     <a onclick="myFunctionlogout()">Logout</a>
                   </div>
                 </li>
@@ -790,7 +790,7 @@ toggle between hiding and showing the dropdown content */
           localStorage.removeItem("jwtToken");
           localStorage.removeItem("login_rememberme");
           //localStorage.clear();
-          location.href = "/agent-login";
+          location.href = "/";
           //localStorage.setItem('jwtToken', res.response._jwtToken);
         },
       });

@@ -14,6 +14,7 @@ const pageTitles = {
   search: "Tryckl | Search",
   mycards: "Tryckl | My Cards",
   paymentcheckout: "Tryckl | Payment Checkout",
+  transactionhistory: "Tryckl | Transaction History",
 };
 
 export default pageTitles;

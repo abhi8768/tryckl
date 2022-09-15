@@ -12,7 +12,7 @@ import {
 import { encrypt } from "../../../helpers/CryptoJs";
 // import "react-responsive-modal/styles.css";
 // import { Modal } from "react-responsive-modal";
-import "./search.css"
+import "./search.css";
 import SearchFilter from "./SearchFilter";
 
 class Searching extends Component {
@@ -20,14 +20,16 @@ class Searching extends Component {
     super(props);
     this.state = {
       open: false,
+      filterarr: [],
     };
     this.gotoDetail = this.gotoDetail.bind(this);
     this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleFilterarr = this.handleFilterarr.bind(this);
   }
 
   componentDidMount() {
-    this.props.requestOfferlisting(this.props.brokerId);
+    this.props.requestOfferlisting();
   }
 
   gotoDetail(listing_id) {
@@ -42,6 +44,15 @@ class Searching extends Component {
   handleClose() {
     this.setState({
       open: false,
+    });
+  }
+  handleFilterarr(filterobj) {
+    let temparr = [];
+    if (filterobj) {
+      temparr.push(filterobj);
+    }
+    this.setState({
+      filterarr: temparr,
     });
   }
   render() {
@@ -200,7 +211,15 @@ class Searching extends Component {
           </div>
         </section>
 
-        {this.state.open && <SearchFilter handleClose={this.handleClose} />}
+        {this.state.open && (
+          <SearchFilter
+            handleClose={this.handleClose}
+            filterarr={this.state.filterarr}
+            handleFilterarr={this.handleFilterarr}
+            max={this.props.offerDetails.max_amount}
+            min={this.props.offerDetails.min_amount}
+          />
+        )}
       </div>
     );
   }

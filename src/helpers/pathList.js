@@ -22,6 +22,10 @@ const pathList = {
     name: "paymentcheckout",
     path: "/paymentcheckout/:id/:section",
   },
+  transactionhistory: {
+    name: "transactionhistory",
+    path: "/transactionhistory",
+  },
 };
 
 

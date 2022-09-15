@@ -1,12 +1,16 @@
-.modal-background{
-    background: #666666 !important;
+.modal-background {
+  background: #666666 !important;
 }
 
-.color-white{
-    color: #ffff !important;
+.color-white {
+  color: #ffff !important;
 }
 
-.maxminvalue{
-    display: flex;
-    justify-content: space-between;
+.color-blue {
+  color: #00ffff !important;
+}
+
+.maxminvalue {
+  display: flex;
+  justify-content: space-between;
 }

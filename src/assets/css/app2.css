@@ -6425,18 +6425,24 @@ body .jvectormap-zoomout {
   overflow: auto;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+  border-radius: 6px;
 }
 
 .dropdown-homepage-content a {
  /* color: black; */
   /* padding: 12px 16px; */
+  
   text-decoration: none;
   display: block;
   border-radius: 0px !important;
     padding: 4px 0px 4px 0px !important;
-    background: #e6e5e5 !important;
-    color: #007bff !important;
+    background: #f7f0f09c !important;
+    color: #3b3b3b !important;
     cursor: pointer;
+}
+
+.dropdown-bottom-border{
+  border-bottom: 1px solid #0000001a;
 }
 
 .dropdown-homepage a:hover {background-color: #ddd;}
