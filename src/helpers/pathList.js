@@ -26,6 +26,10 @@ const pathList = {
     name: "transactionhistory",
     path: "/transactionhistory",
   },
+  bankadd: {
+    name: "bankadd",
+    path: "/addbank",
+  },
 };
 
 

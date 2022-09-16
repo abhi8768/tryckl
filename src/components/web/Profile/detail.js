@@ -1,47 +1,44 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 
-import { getprofileDetails, changeView } from "../../../actions/web/brokerAction";
-
+import {
+  getprofileDetails,
+  changeView,
+} from "../../../actions/web/brokerAction";
+import "./profile.css"
 
 class ProfileDetail extends Component {
   constructor(props) {
     super(props);
-   // setPublicIP();
-	this.state = {
-		details            : {},
-		myGrouplist        : [],
-        joinedGrouplist	   : [],
-        brokerId           : this.props.brokerId,
-        isOwn              : this.props.isOwn
-    }
+    // setPublicIP();
+    this.state = {
+      details: {},
+      myGrouplist: [],
+      joinedGrouplist: [],
+      brokerId: this.props.brokerId,
+      isOwn: this.props.isOwn,
+    };
     this.gotoEdit = this.gotoEdit.bind(this);
-
   }
- 
-    componentDidMount(){
-         
-		this.props.getprofileDetails({brokers_id : this.state.brokerId});
-	}
 
-	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){ 
-        
-		this.setState({
-			details         : nextProps.profiledetail,
-			myGrouplist	    : nextProps.profiledetail.my_group_list,
-			joinedGrouplist	: nextProps.profiledetail.joined_group_list,
-		})
-    }
-    gotoEdit(){
-        this.props.changeView('edit');
-    }
-  
- 
+  componentDidMount() {
+    this.props.getprofileDetails({ brokers_id: this.state.brokerId });
+  }
 
-   render() {
-        
+  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+    this.setState({
+      details: nextProps.profiledetail,
+      myGrouplist: nextProps.profiledetail.my_group_list,
+      joinedGrouplist: nextProps.profiledetail.joined_group_list,
+    });
+  }
+  gotoEdit() {
+    this.props.changeView("edit");
+  }
+
+  render() {
     return (
       <div className="col-lg-6">
         <div className="content-part-wrapper">
@@ -81,12 +78,24 @@ class ProfileDetail extends Component {
               <p>
                 {this.state.details.state_code} {this.state.details.license_no}
               </p>
-              {/* {this.state.details.dwolla_balance && (
-                <p>{this.state.details.dwolla_balance}</p>
-              )} */}
             </div>
           </div>
         </div>
+        {this.state.details.is_bank_account_connected === 1 && (
+          <div
+            className="content-part-wrapper clickable"
+            onClick={() => {
+              this.props.history.push("/addbank");
+            }}
+          >
+            <h2 className="mid-heading-other">Connected Bank</h2>
+            <div className="profile2-list">
+              <p className="mid-heading mid-heading-bank">
+                {this.state.details.bank_name}
+              </p>
+            </div>
+          </div>
+        )}
         <h4 className="white-mid-heading">Groups</h4>
         <div className="content-part-wrapper">
           <h2 className="mid-heading-other">Joined</h2>
@@ -180,22 +189,18 @@ class ProfileDetail extends Component {
   }
 }
 
-const mapStateToProps = state => {
-    return {
-      profiledetail  : state.brokerdetail.profiledetail,
-      changeview     : state.profileactiveview.activeview,
-	}
-  }
-  
-  const mapDispatchToProps = dispatch => {
-	return {
-        getprofileDetails : bindActionCreators(getprofileDetails , dispatch),
-        changeView        : bindActionCreators(changeView , dispatch),
-	}
-  }
+const mapStateToProps = (state) => {
+  return {
+    profiledetail: state.brokerdetail.profiledetail,
+    changeview: state.profileactiveview.activeview,
+  };
+};
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfileDetail);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getprofileDetails: bindActionCreators(getprofileDetails, dispatch),
+    changeView: bindActionCreators(changeView, dispatch),
+  };
+};
 
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileDetail);

@@ -71,6 +71,12 @@ class RouteComponent extends Component {
           />
           <PrivateRoute
             exact={true}
+            path={pathList.bankadd.path}
+            title={pageTitles.bankadd}
+            component={routes.BankAdd}
+          />
+          <PrivateRoute
+            exact={true}
             path={pathList.dashboard.path}
             title={pageTitles.dashboard}
             component={routes.Dashboard}

@@ -15,6 +15,7 @@ const pageTitles = {
   mycards: "Tryckl | My Cards",
   paymentcheckout: "Tryckl | Payment Checkout",
   transactionhistory: "Tryckl | Transaction History",
+  bankadd: "Tryckl | Add Bank",
 };
 
 export default pageTitles;

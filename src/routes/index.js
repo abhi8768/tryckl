@@ -16,6 +16,7 @@ import MyCardsComponent from "../containers/web/MyCards";
 import components from "../components";
 import PaymentCheckout from "../components/web/PaymentCheckout";
 import TransactionHistory from "../containers/web/TransactionHistory";
+import BankAdd from "../containers/web/BankAdd";
 
 /* List of all container classes */
 const allContainers = {
@@ -35,6 +36,7 @@ const allContainers = {
   ContactUs: ContactUs,
   PaymentCheckout: PaymentCheckout,
   TransactionHistory:TransactionHistory,
+  BankAdd:BankAdd,
   LandingPage: LandingPage,
 };
 

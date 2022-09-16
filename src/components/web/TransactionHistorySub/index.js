@@ -9,7 +9,8 @@ import {
 } from "react-toasts";
 import HeaderUser from "../HeaderUser";
 import Menu from "../Menu";
-import "./history.css"
+import "./history.css";
+import moment from "moment";
 
 export default function Transactionhistorysub(props) {
   const [historyList, setHistoryList] = useState([]);
@@ -81,7 +82,7 @@ export default function Transactionhistorysub(props) {
                             </h2>
                           </div>
                         </div>
-                        <div className="row d-flex align-items-center">
+                        {/* <div className="row d-flex align-items-center">
                           <div className="col-sm-8">
                             <div className="item user-block  d-flex align-items-center">
                                 <div className="font-size-txnid user-block-status ohters-color2 ">
@@ -92,7 +93,7 @@ export default function Transactionhistorysub(props) {
                               </div>
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="row d-flex align-items-center">
                           <div className="col-sm-8">
                             <div className="item user-block  d-flex align-items-center">
@@ -114,6 +115,26 @@ export default function Transactionhistorysub(props) {
                                 <div className="user-block-status">
                                   <img
                                     className="rounded-circle"
+                                    src="/assets/img/time-icon.png"
+                                    alt="Avatar"
+                                    width="40"
+                                    height="40"
+                                  />
+                                </div>
+                              </div>
+                              <div className="profile2-list-txt ohters-color2">
+                                {moment(val.transaction_date).format("h:mm a")}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row d-flex align-items-center">
+                          <div className="col-sm-8">
+                            <div className="item user-block  d-flex align-items-center">
+                              <div className="">
+                                <div className="user-block-status">
+                                  <img
+                                    className="rounded-circle"
                                     src="/assets/img/calender-icon.png"
                                     alt="Avatar"
                                     width="40"
@@ -122,7 +143,9 @@ export default function Transactionhistorysub(props) {
                                 </div>
                               </div>
                               <div className="profile2-list-txt ohters-color2">
-                                {val.transaction_date}
+                                {moment(val.transaction_date).format(
+                                  "dddd / MMMM Do,YYYY"
+                                )}
                               </div>
                             </div>
                           </div>

@@ -170,6 +170,9 @@ class Profile extends Component {
                   <ProfileDetail
                     brokerId={this.state.brokerId}
                     isOwn={this.state.isOwn}
+                    history={this.props.history}
+                    location={this.props.location}
+                    match={this.props.match}
                   />
                 ) : (
                   <ProfileCompletion brokerId={this.state.brokerId} />
