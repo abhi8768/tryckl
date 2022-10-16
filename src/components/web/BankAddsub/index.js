@@ -109,6 +109,36 @@ export default function BankAddsub(props) {
                         <div className="row">
                           <div className="col-sm-8">
                             <input type="radio" className="radio-bank" />
+                            <div>
+                              <div className="row d-flex align-items-center">
+                                <div className="col-sm-8">
+                                  <div className="item user-block  d-flex align-items-center">
+                                    <div className="">
+                                      <div className="user-block-status ohters-color2">
+                                        Bank Name -
+                                      </div>
+                                    </div>
+                                    <div className="profile2-list-txt ohters-color2">
+                                      {val.bank_name}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="row d-flex align-items-center">
+                                <div className="col-sm-8">
+                                  <div className="item user-block  d-flex align-items-center">
+                                    <div className="">
+                                      <div className="user-block-status ohters-color2">
+                                        Account Holder Name -
+                                      </div>
+                                    </div>
+                                    <div className="profile2-list-txt ohters-color2">
+                                      {val.account_holder_name}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
                           </div>
                           <div className="col-sm-4 text-right">
                             <button
@@ -125,35 +155,6 @@ export default function BankAddsub(props) {
                                 height="20"
                               />
                             </button>
-                          </div>
-                        </div>
-                        <div className="row d-flex align-items-center">
-                          <div className="col-sm-8">
-                            <div className="item user-block  d-flex align-items-center">
-                              <div className="">
-                                <div className="user-block-status ohters-color2">
-                                  Bank Name -
-                                </div>
-                              </div>
-                              <div className="profile2-list-txt ohters-color2">
-                                {val.bank_name}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="row d-flex align-items-center">
-                          <div className="col-sm-8">
-                            <div className="item user-block  d-flex align-items-center">
-                              <div className="">
-                                <div className="user-block-status ohters-color2">
-                                  Account Holder Name -
-                                </div>
-                              </div>
-                              <div className="profile2-list-txt ohters-color2">
-                                {val.account_holder_name}
-                              </div>
-                            </div>
                           </div>
                         </div>
                       </div>
