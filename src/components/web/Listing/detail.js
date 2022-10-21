@@ -30,6 +30,14 @@ import {
 } from "../../../actions/web/listingAction";
 import $$ from "jquery";
 import MyCardPreview from "./mycardpreview";
+import {
+  Dialog,
+  Button,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
 
 const customStyles = {
   width: "556px",
@@ -55,10 +63,13 @@ class ListingDetail extends Component {
       modal: false,
       saved_payment_method: "",
       saved_card_details: {},
+      open: false,
     };
     this.validURL = this.validURL.bind(this);
     this.gotoProfile = this.gotoProfile.bind(this);
     this.checkcancelStatus = this.checkcancelStatus.bind(this);
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.onClose = this.onClose.bind(this);
     this.paymentIntemt = this.paymentIntemt.bind(this);
@@ -75,6 +86,14 @@ class ListingDetail extends Component {
     this.props.checkListingStatusForCancel({
       listing_id: this.state.listingid,
     });
+  }
+
+  onOpenModal() {
+    console.log("Hi");
+    this.setState({ open: true });
+  }
+  onCloseModal() {
+    this.setState({ open: false });
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
@@ -97,12 +116,12 @@ class ListingDetail extends Component {
       prevProps.returnlistflag !== nextProps.returnlistflag &&
       nextProps.returnlistflag === true
     ) {
-      console.log("Cardreturn")
+      console.log("Cardreturn");
       ToastsStore.success("Card Returned Successfully");
       nextProps.clearreturnListSuccess();
       nextProps.history.push("/mycards");
     }
-    
+
     if (
       nextProps.nowchangeview.includes("detaillisting") == true &&
       nextProps.nowchangeview != this.props.nowchangeview
@@ -425,7 +444,15 @@ class ListingDetail extends Component {
                       className="sv-btn"
                       id="cancel-listing"
                       onClick={() => {
-                        this.props.acceptOffer(this.state.listingid);
+                        if (
+                          this.props.profiledetail.is_bank_account_connected ===
+                          0
+                        ) {
+                          this.onOpenModal();
+                        } else {
+                          this.props.acceptOffer(this.state.listingid);
+                        }
+                        
                       }}
                     >
                       Accept
@@ -481,7 +508,38 @@ class ListingDetail extends Component {
           </div>
         </div>
         <div className="col-lg-3"></div>
-
+        {this.state.open && (
+          <Dialog
+            onClose={this.onCloseModal}
+            open={this.state.open}
+            keepMounted
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle id="alert-dialog-slide-title">
+              {"Connect Bank Account?"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+                Wheather You're the one paying or getting paid, we need to
+                connect your non-business bank account to the tryckl app. The
+                information we ask for is secure and is not shared with anyone
+                outside of the tryckl funds flow
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.onCloseModal} color="primary">
+                No
+              </Button>
+              <Button
+                onClick={() => this.props.history.push(`/connect-account`)}
+                color="primary"
+              >
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
         <Modal
           open={this.state.modal}
           onClose={this.onClose}
@@ -514,6 +572,7 @@ const mapStateToProps = (state) => {
     nopaycancel: state.cacellistingwithoutpay.nopaycancellisting,
     withpaycancel: state.cacellistingwithpay.withpaycancellisting,
     paymentmethod: state.paymentmethodlist.paymentmethodlist,
+    profiledetail: state.brokerdetail.profiledetail,
   };
 };
 

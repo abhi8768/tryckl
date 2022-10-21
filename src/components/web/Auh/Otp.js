@@ -94,8 +94,8 @@ class Otp extends Component {
                 localStorage.removeItem('authorized_in_usa');
                 localStorage.removeItem('terms_n_condition');
                 localStorage.removeItem('terms_stripe')
-                this.props.history.push(`/connect-account`);
-                //this.props.history.push(`/dashboard`);
+                // this.props.history.push(`/connect-account`);
+                this.props.history.push(`/dashboard`);
             }else{
                 ToastsStore.error(nextProps.verifyotpdata.message);
                 this.setState({

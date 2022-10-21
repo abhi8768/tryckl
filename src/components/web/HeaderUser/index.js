@@ -64,6 +64,7 @@ class HeaderUser extends Component {
   }
 
   render() {
+    console.log(this.props.currentUserDetails,"details");
     let letterImage = this.state.name.charAt(0);
     return (
       <header className="topnavbar-wrapper ">
