@@ -371,7 +371,8 @@ class SignUp extends Component {
       this.setState({
         password: e.target.value,
         password_error:
-          e.target.value.length !== 0 ? "" : "Password Is Required",
+          // e.target.value.length !== 0 ? "" : "Password Is Required", // testing
+          e.target.value.length !== 0 ? "" : "Password should be 8 characters and include at least 1 letter in uppercase & lowercase, 1 number and 1 special character!",
       });
     } else if (e.target.name === "confirm_password") {
       // let value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
@@ -595,7 +596,8 @@ class SignUp extends Component {
               <div className="input-group-password">
                 <input
                   type={this.state.showPassword ? "text" : "password"}
-                  // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                  // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" //testing
+                  pattern="(?=^.{8,}$)(?=.*[0-9])((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
                   placeholder="Enter valid password "
                   name="password"
                   id="password"
@@ -736,16 +738,17 @@ class SignUp extends Component {
               <p className="text-danger">{this.state.user_type_error}</p>
               {/* <select className="custom-select" value={this.state.brokerage} name="brokerage" id="brokerage" onChange={this.handleChange} required>
                                 
-                                {   (this.state.master_brokerage.length > 0) ?
-                                                                
-                                    (this.state.master_brokerage).map((listitem,index) => {
-                                        return(
-                                            <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
-                                        )
-                                    })
-                                    : null
-                                }
-                            </select> */}
+                {   (this.state.master_brokerage.length > 0) ?
+                                                
+                    (this.state.master_brokerage).map((listitem,index) => {
+                        return(
+                            <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
+                        )
+                    })
+                    : null
+                }
+                </select> 
+              */}
 
               <label
                 className="container-check float-left"

@@ -83,19 +83,19 @@ class Auth extends Component {
 							/>
 						</div>
 					:
-						<div
-							className={`container2 ${rightPanelActive ? `right-panel-active` : ``}`} 
-							id="container"
-						>
-							<SignUp openOtpBox = {this.openOtpBox} 
-									brokers_id = {this.state.brokers_id} 
-									userNotverified = {this.state.userNotverified}/>
-							<SignIn updateuserNotverified = {this.updateuserNotverified}/>
-							<Overlay
-								handleClickSignInButton={this.handleClickSignInButton.bind(this)}
-								handleClickSignUpButton={this.handleClickSignUpButton.bind(this)}
-							/>
-						</div>
+					<div
+						className={`container2 ${rightPanelActive ? `right-panel-active` : ``}`} 
+						id="container"
+					>
+						<SignUp openOtpBox = {this.openOtpBox} 
+								brokers_id = {this.state.brokers_id} 
+								userNotverified = {this.state.userNotverified}/>
+						<SignIn updateuserNotverified = {this.updateuserNotverified}/>
+						<Overlay
+							handleClickSignInButton={this.handleClickSignInButton.bind(this)}
+							handleClickSignUpButton={this.handleClickSignUpButton.bind(this)}
+						/>
+					</div>
 				}
 				
 				

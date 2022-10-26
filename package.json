@@ -13,8 +13,9 @@
   "author": "Sohom Roy <Appsbee> 2019",
   "license": "Free Licence",
   "devDependencies": {
+    "@babel/core": "^7.19.6",
     "@babel/plugin-transform-spread": "^7.19.0",
-    "@babel/preset-env": "^7.19.1",
+    "@babel/preset-env": "^7.19.4",
     "@babel/preset-react": "^7.18.6",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
