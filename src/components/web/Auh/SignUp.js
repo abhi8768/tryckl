@@ -459,6 +459,7 @@ class SignUp extends Component {
           [e.target.name]: this.state.age === 1 ? 0 : 1,
           age_error: this.state.age === 1 ? "Please Confirm To Proceed" : "",
         }
+
         // ,
         // function () {
         //   this.activeSubmitBtn();
@@ -597,7 +598,7 @@ class SignUp extends Component {
                 <input
                   type={this.state.showPassword ? "text" : "password"}
                   // pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" //testing
-                  pattern="(?=^.{8,}$)(?=.*[0-9])((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                  pattern="(?=^.{8,}$)(?=.*[0-9])((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" // final regex for password
                   placeholder="Enter valid password "
                   name="password"
                   id="password"
