@@ -24,11 +24,9 @@ class Profile extends Component {
       name: "",
       rating: 0,
       currentview: "detail",
-      brokerId:
-        this.props.brokerId == ""
-          ? this.props.currentUserDetails.brokers_id
-          : this.props.brokerId,
+      brokerId:this.props.brokerId == ""? this.props.currentUserDetails.brokers_id:this.props.brokerId,
       isOwn: this.props.brokerId == "" ? true : false,
+      walletIfNotVarified:true
     };
     this.updatePicture = this.updatePicture.bind(this);
   }
@@ -130,30 +128,58 @@ class Profile extends Component {
                       </div>
                     </div>
                   </div>
-                  <div className="content-part-wrapper text-center">
+                  {/* testing start for wallet*/}
+                    {this.state.walletIfNotVarified?
+                      (<div className="content-part-wrapper text-center">                                                              
+                      <div style={{ marginLeft: "15px" }}>
+                      <p className="information">
+                        Wheather You're the one paying or getting paid, we need to 
+                        connect your non-business bank account to the tryckl app.
+                        The information we ask for is secure and is not shared with 
+                        anyone outside of the tryckl funds flow.
+                      </p>
+                      <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>OK</button>
+                      </div>
+                    </div>)
+                        :
+                        (<div className="content-part-wrapper text-center">                                        
+                          <h2 className="mid-heading">DWOLLA BALANCE</h2>
+                          <div style={{ marginLeft: "15px" }}>
+                            <p className="balance-css">
+                              {this.props.profiledetail.dwolla_balance}
+                            </p>
+                          </div>
+                        </div>)}
+                    {/* testing ends for wallet */}
+
+                        {/* testing */}
+                  {/* <div className="content-part-wrapper text-center">                                        
                     <h2 className="mid-heading">DWOLLA BALANCE</h2>
                     <div style={{ marginLeft: "15px" }}>
                       <p className="balance-css">
                         {this.props.profiledetail.dwolla_balance}
                       </p>
                     </div>
-                  </div>
+                  </div> */}
+
                   <div className="content-part-wrapper text-center">
                     <h2 className="mid-heading">RATING</h2>
                     <div style={{ marginLeft: "15px" }}>
-                      {/*  <ReactStars
-                                                value={rating}
-                                                size={20}
-                                                count= {5}
-                                                color= "#00FFFF"
-                                                activeColor= "#00FFFF"
-                                                edit = {false}
-                                                isHalf= {true} 
-                                                a11y = {true}
-                                                emptyIcon = {<i className="far fa-star" />}
-                                                halfIcon= {<i className="fa fa-star-half-alt" />}
-                                                filledIcon= {<i className="fa fa-star" />}
-                                              /> */}
+                      {/*  
+                        <ReactStars
+                          value={rating}
+                          size={20}
+                          count= {5}
+                          color= "#00FFFF"
+                          activeColor= "#00FFFF"
+                          edit = {false}
+                          isHalf= {true} 
+                          a11y = {true}
+                          emptyIcon = {<i className="far fa-star" />}
+                          halfIcon= {<i className="fa fa-star-half-alt" />}
+                          filledIcon= {<i className="fa fa-star" />}
+                        /> 
+                      */}
                       <StarRatings
                         rating={this.state.rating}
                         starRatedColor="#00FFFF"

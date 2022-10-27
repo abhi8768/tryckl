@@ -1,64 +1,72 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 /* import ReactStars from "react-rating-stars-component"; */
-import StarRatings from 'react-star-ratings';
-import { Link } from 'react-router-dom';
+import StarRatings from "react-star-ratings";
+import { Link } from "react-router-dom";
 
-import {encrypt} from "../../../helpers/CryptoJs";
-import HeaderUser from '../HeaderUser';
-import Menu from '../Menu';
+import { encrypt } from "../../../helpers/CryptoJs";
+import HeaderUser from "../HeaderUser";
+import Menu from "../Menu";
 import { dashboardRequest } from "../../../actions/web/dashboardAction";
 import { listinginLocalStorage } from "../../../actions/web/listingAction";
-import $$ from 'jquery';
+import $$ from "jquery";
 import "./dashboard.css";
-
-
+import { DialogContentText, DialogContent } from "@material-ui/core";
+import ReportProblemIcon from '@material-ui/icons/ReportProblem';
 
 class Dashboard extends Component {
   constructor(props) {
     super(props);
-   // setPublicIP();
-	this.state = {
-		notification : [],
-		profilesec   : {},
-		listing	     : [],
-		rating       : 0
-	}
-	this.gotoDetail = this.gotoDetail.bind(this);
-
+    // setPublicIP();
+    this.state = {
+      notification: [],
+      profilesec: {},
+      listing: [],
+      rating: 0,
+      open: true,
+    };
+    this.gotoDetail = this.gotoDetail.bind(this);
+    // this.onOpenModal = this.onOpenModal.bind(this); testing    
   }
- 
-    componentDidMount(){
-		//localStorage.removeItem('login');
-		$$("#home-header-icon").addClass('active');
-		this.props.dashboardRequest();
-	}
 
-	UNSAFE_componentWillReceiveProps(nextProps,prevProps,prevState){  
-		this.setState({
-			notification : nextProps.dasboarddetail.list,
-			profilesec	 : nextProps.dasboarddetail.my_profile_details,
-			listing		 : nextProps.dasboarddetail.my_list,
-			rating		 : Number(nextProps.dasboarddetail.my_profile_details.rating),
-		})
-	}
-  
-	gotoDetail(listing_id){
-		this.props.listinginLocalStorage(`detaillisting/${listing_id}`);
-		this.props.history.push(`detail-listing/${encrypt(listing_id)}`);
-	}
+  // testing for connecting bank Modal On dashboard starts
+  onOpenModal() {
+    console.log("dashboardPopUpOpen");
+    this.setState({ open: true });
+  }  
+  // testing for Modal On dashboard ends
 
-	gotoDetailown(listing_id){
-		this.props.listinginLocalStorage(`detaillisting/${listing_id}/true`);
-		this.props.history.push(`detail-listing/${encrypt(listing_id)}/true`);
-	}
+  componentDidMount() {
+    //localStorage.removeItem('login');
+    $$("#home-header-icon").addClass("active");
+    this.props.dashboardRequest();
+  }
 
-   render() {
-	let profile = this.state.profilesec || {};
-	let notificationlist = this.state.notification || [];
-	let list = this.state.listing || [];
+  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+    this.setState({
+      notification: nextProps.dasboarddetail.list,
+      profilesec: nextProps.dasboarddetail.my_profile_details,
+      listing: nextProps.dasboarddetail.my_list,
+      rating: Number(nextProps.dasboarddetail.my_profile_details.rating),
+    });
+  }
+
+  gotoDetail(listing_id) {
+    this.props.listinginLocalStorage(`detaillisting/${listing_id}`);
+    this.props.history.push(`detail-listing/${encrypt(listing_id)}`);
+  }
+
+  gotoDetailown(listing_id) {
+    this.props.listinginLocalStorage(`detaillisting/${listing_id}/true`);
+    this.props.history.push(`detail-listing/${encrypt(listing_id)}/true`);
+  }
+
+  render() {
+    let profile = this.state.profilesec || {};
+    let notificationlist = this.state.notification || [];
+    let list = this.state.listing || [];
 
     return (
       <div className="wrapper">
@@ -192,13 +200,59 @@ class Dashboard extends Component {
 										<p className="ohters-color2">Thursday / July 15, 2020</p>
 										<p className="ohters-color2">05:45 pm</p>
 									</div>
-								</div>
-								
- */}
+								</div>								
+                */}
                 </div>
                 <div className="col-lg-6">
                   <div className="content-part-wrapper">
                     <h2 className="mid-heading">Your dashboard</h2>
+                    {/* testing start for popup*/}
+                    {this.state.open && (
+                      <div
+                        className="popup-box"
+                        style={{
+                          position: "fixed",
+                          width: "60%",
+                          height: "5vh",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "start",
+                          marginTop: "80px",                          
+                        }}
+                      >
+                      <div
+                        className="box"
+                        style={{
+                          width: "50%",
+                          minHeight: "50px",
+                          backgroundColor: "#FFFFFF",
+                          borderRadius: "10px",
+                          padding: "10px",
+                          alignItems: "center"
+                        }}
+                      >
+                      <p 
+                        style={{
+                          fontWeight:100,
+                          color:"black"
+                        }}
+                      >
+                        <ReportProblemIcon/>{'    '}Please connect your bank account to Tryckl App.</p>
+                      <button 
+                        style={{
+                          float:"right",
+                          border:"none",
+                          backgroundColor: "#FFFFFF",
+                          fontWeight:"lighter",
+                          color:"#0275d8",
+                          paddingRight:"20px"
+                        }}
+                        onClick={() => this.props.history.push(`/connect-account`)}
+                      >Yes</button>
+                      </div>
+                    </div>
+                    )}
+                    {/* testing end's for popup*/}
                     {notificationlist.map((item, index) => {
                       let letterImage = item.sender_name.charAt(0);
                       return (
@@ -343,23 +397,19 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = state => {
-	return {
-	  dasboarddetail  : state.dashboarddetail.dashboard,
-	 
-	}
-  }
-  
-  const mapDispatchToProps = dispatch => {
-	return {
-		dashboardRequest      : bindActionCreators(dashboardRequest , dispatch),
-		listinginLocalStorage : bindActionCreators(listinginLocalStorage , dispatch),
-	  
-	}
-  }
+const mapStateToProps = (state) => {
+  return {
+    dasboarddetail: state.dashboarddetail.dashboard,
+  };
+};
 
-export default withRouter(connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Dashboard));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dashboardRequest: bindActionCreators(dashboardRequest, dispatch),
+    listinginLocalStorage: bindActionCreators(listinginLocalStorage, dispatch),
+  };
+};
 
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+);
