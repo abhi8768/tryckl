@@ -13,7 +13,7 @@ class RouteComponent extends Component {
       <main>
         <Preloader />
         <Switch>
-          {/*  <PublicRoute exact={true} path={pathList.home.path} title={pageTitles.login} component={routes.Auth}/> */}
+          {/*<PublicRoute exact={true} path={pathList.home.path} title={pageTitles.login} component={routes.Auth}/>*/}
           <PublicRoute
             exact={true}
             path={pathList.home.path}

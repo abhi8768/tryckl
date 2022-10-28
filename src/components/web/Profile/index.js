@@ -14,6 +14,7 @@ import ProfileCompletion from "./completion";
 import $$ from "jquery";
 import './profile.css'
 
+
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,8 @@ class Profile extends Component {
       currentview: "detail",
       brokerId:this.props.brokerId == ""? this.props.currentUserDetails.brokers_id:this.props.brokerId,
       isOwn: this.props.brokerId == "" ? true : false,
-      walletIfNotVarified:true
+      walletIfNotVarified:true,
+      details:{}
     };
     this.updatePicture = this.updatePicture.bind(this);
   }
@@ -55,9 +57,13 @@ class Profile extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+    this.setState({
+      details: nextProps.profiledetail, //testing for verification alert
+    })
+
     if (nextProps.profileimage != this.props.profileimage) {
       this.setState({
-        profilepicture: nextProps.profileimage.profile_photo,
+        profilepicture: nextProps.profileimage.profile_photo,        
       });
     } else {
       this.setState({
@@ -69,16 +75,19 @@ class Profile extends Component {
     this.setState({
       currentview: nextProps.changeview,
     });
+    
   }
 
   render() {
     let letterImage = this.state.name.charAt(0);
     console.log(this.props.match.params.section, "stateprops");
+    // console.log(this.state.details,"verificationDetails"); //testing,verification
+
     return (
       <div className="wrapper">
         <HeaderUser />
         <Menu />
-
+        
         <section className="section-container">
           <div className="content-wrapper">
             <div className="container gapfrm-top">
@@ -110,7 +119,7 @@ class Profile extends Component {
                               <label htmlFor="up">
                                 <img
                                   className=""
-                                  src="assets/img/edit.png"
+                                  src="assets/img/edit-image2.png"
                                   alt="Image upload"
                                 />
                               </label>
@@ -129,18 +138,48 @@ class Profile extends Component {
                     </div>
                   </div>
                   {/* testing start for wallet*/}
-                    {this.state.walletIfNotVarified?
+                    {this.state.details.is_bank_account_connected === 0?
                       (<div className="content-part-wrapper text-center">                                                              
-                      <div style={{ marginLeft: "15px" }}>
-                      <p className="information">
-                        Wheather You're the one paying or getting paid, we need to 
-                        connect your non-business bank account to the tryckl app.
-                        The information we ask for is secure and is not shared with 
-                        anyone outside of the tryckl funds flow.
-                      </p>
-                      <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>OK</button>
-                      </div>
-                    </div>)
+                          <div style={{ marginLeft: "15px" }}>
+                          <p className="information">
+                          Wheather You're the one paying or getting paid, we need to 
+                          connect your non-business bank account to the tryckl app.
+                          The information we ask for is secure and is not shared with 
+                          anyone outside of the tryckl funds flow.
+                        </p>                          
+                          <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>
+                            OK
+                          </button>
+                          </div>
+                        </div>):(<div className="content-part-wrapper text-center">                                                              
+                        <div style={{ marginLeft: "15px" }}>
+                        <p className="information">
+                            This balance reflects the amount in your Tryckl Wallet. 
+                            If you've not yet created a Listing in Tryckl, you do 
+                            not have a wallet yet and the balance will be $0. To 
+                            use the wallet feature, please click OK and complete 
+                            the verification process.
+                          </p>
+                        <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>
+                          OK
+                        </button>
+                        </div>
+                      </div>)
+                    }
+                    {/* {this.state.walletIfNotVarified?
+                      (<div className="content-part-wrapper text-center">                                                              
+                        <div style={{ marginLeft: "15px" }}>
+                        <p className="information">
+                          Wheather You're the one paying or getting paid, we need to 
+                          connect your non-business bank account to the tryckl app.
+                          The information we ask for is secure and is not shared with 
+                          anyone outside of the tryckl funds flow.
+                        </p>
+                        <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>
+                          OK
+                        </button>
+                        </div>
+                      </div>)
                         :
                         (<div className="content-part-wrapper text-center">                                        
                           <h2 className="mid-heading">DWOLLA BALANCE</h2>
@@ -149,10 +188,10 @@ class Profile extends Component {
                               {this.props.profiledetail.dwolla_balance}
                             </p>
                           </div>
-                        </div>)}
-                    {/* testing ends for wallet */}
+                        </div>)} */}
+                  {/* testing ends for wallet */}
 
-                        {/* testing */}
+                  {/* testing, this is Dwolla Wallet Portion UI */}
                   {/* <div className="content-part-wrapper text-center">                                        
                     <h2 className="mid-heading">DWOLLA BALANCE</h2>
                     <div style={{ marginLeft: "15px" }}>

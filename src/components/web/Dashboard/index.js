@@ -25,17 +25,17 @@ class Dashboard extends Component {
       profilesec: {},
       listing: [],
       rating: 0,
-      open: true,
+      open: true,      
     };
     this.gotoDetail = this.gotoDetail.bind(this);
     // this.onOpenModal = this.onOpenModal.bind(this); testing    
   }
 
-  // testing for connecting bank Modal On dashboard starts
-  onOpenModal() {
+  // testing for connecting bank alert Modal On dashboard.
+  /* onOpenModal() {
     console.log("dashboardPopUpOpen");
     this.setState({ open: true });
-  }  
+  } */  
   // testing for Modal On dashboard ends
 
   componentDidMount() {
@@ -49,8 +49,8 @@ class Dashboard extends Component {
       notification: nextProps.dasboarddetail.list,
       profilesec: nextProps.dasboarddetail.my_profile_details,
       listing: nextProps.dasboarddetail.my_list,
-      rating: Number(nextProps.dasboarddetail.my_profile_details.rating),
-    });
+      rating: Number(nextProps.dasboarddetail.my_profile_details.rating),      
+    });    
   }
 
   gotoDetail(listing_id) {
@@ -67,6 +67,7 @@ class Dashboard extends Component {
     let profile = this.state.profilesec || {};
     let notificationlist = this.state.notification || [];
     let list = this.state.listing || [];
+    
 
     return (
       <div className="wrapper">
@@ -206,8 +207,8 @@ class Dashboard extends Component {
                 <div className="col-lg-6">
                   <div className="content-part-wrapper">
                     <h2 className="mid-heading">Your dashboard</h2>
-                    {/* testing start for popup*/}
-                    {this.state.open && (
+                    {/* testing start for popup*/}                   
+                    {this.state.open &&(
                       <div
                         className="popup-box"
                         style={{

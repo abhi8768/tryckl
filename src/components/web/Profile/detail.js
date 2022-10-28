@@ -3,11 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 
-import {
-  getprofileDetails,
-  changeView,
-} from "../../../actions/web/brokerAction";
-import "./profile.css"
+import {getprofileDetails,changeView} from "../../../actions/web/brokerAction";
+import "./profile.css";
 
 class ProfileDetail extends Component {
   constructor(props) {
@@ -34,6 +31,7 @@ class ProfileDetail extends Component {
       joinedGrouplist: nextProps.profiledetail.joined_group_list,
     });
   }
+
   gotoEdit() {
     this.props.changeView("edit");
   }
@@ -99,9 +97,11 @@ class ProfileDetail extends Component {
         <h4 className="white-mid-heading">Groups</h4>
         <div className="content-part-wrapper">
           <h2 className="mid-heading-other">Joined</h2>
-          {/*  <div className="add-part">
-                        <a href=""><img src="assets/img/color-plus.png" /> New Invitation</a>
-                    </div> */}
+          {/*  
+            <div className="add-part">
+              <a href=""><img src="assets/img/color-plus.png" /> New Invitation</a>
+            </div> 
+          */}
           <ul className="profile2-list">
             {this.state.joinedGrouplist.map((joined, index) => {
               let letterImage = joined.group_name.charAt(0);

@@ -180,13 +180,13 @@ class ConnectAccount extends Component {
             ) : null}
 
             {/* <button id="submit">CONNECT TO STRIPE</button>
-                        {
-                          (sessionStorage.getItem('connectfromlisting') == '1')  ? 
-                          <p className="skip"><a href={void(0)} id="submit2" onClick={() => this.onSkip('BACK')}>BACK</a></p> :
-                          <p className="skip"><a href={void(0)} id="submit2" onClick={() => this.onSkip('SKIP')}>SKIP</a> FOR NOW</p> 
+              {
+                (sessionStorage.getItem('connectfromlisting') == '1')  ? 
+                <p className="skip"><a href={void(0)} id="submit2" onClick={() => this.onSkip('BACK')}>BACK</a></p> :
+                <p className="skip"><a href={void(0)} id="submit2" onClick={() => this.onSkip('SKIP')}>SKIP</a> FOR NOW</p> 
 
-                        }
-                         */}
+              }
+            */}
           </div>
         </div>
       </Modal>

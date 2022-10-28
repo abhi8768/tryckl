@@ -5,8 +5,7 @@ import React, { Component } from 'react';
     handleClickSignInButton(event: any): void;
 } */
 
-function Overlay(props) {
-   
+function Overlay(props) {   
     const { handleClickSignUpButton, handleClickSignInButton } = props;
     return (
         <div className="overlay-container">
