@@ -48,6 +48,7 @@
     "@material-ui/icons": "^4.5.1",
     "@material-ui/lab": "^4.0.0-alpha.39",
     "@material-ui/pickers": "^3.2.8",
+    "@material-ui/styles": "^4.11.5",
     "@progress/kendo-react-tooltip": "^3.12.0",
     "@stripe/react-stripe-js": "^1.4.0",
     "@stripe/stripe-js": "^1.13.2",

@@ -11,6 +11,7 @@ import {
 import { fetchMasterData } from "../../../actions/web/masterAction";
 import Datepicker from "./datepicker";
 // import { ToastsStore } from "react-toasts";
+import SearchIcon from '@material-ui/icons/Search';
 
 class ProfileCompletion extends Component {
   constructor(props) {
@@ -274,7 +275,7 @@ class ProfileCompletion extends Component {
                     required
                   />
 
-                  <label>Street</label>
+                  {/* <label>Street</label>
                   <input
                     type="text"
                     placeholder="Enter Street"
@@ -283,8 +284,32 @@ class ProfileCompletion extends Component {
                     value={this.state.brokerage_street_name}
                     onChange={this.handleChange}
                     required
+                  /> */}
+                  
+                  {/* fields newly added start*/}
+                  {/* <div className="col-lg-10"> */}
+                  <label>Address Line 1</label> 
+                  <input
+                    type="text"
+                    placeholder="Enter Address"
+                    name="brokerage_street_name"
+                    id="brokerage_street_name"
+                    value={this.state.brokerage_street_name}
+                    onChange={this.handleChange}
+                    required
                   />
-
+                                    
+                  <label>Address Line 2</label> 
+                  <input
+                    type="text"
+                    placeholder="Enter Address"
+                    name="brokerage_street_name"
+                    id="brokerage_street_name"
+                    value={this.state.brokerage_street_name}
+                    onChange={this.handleChange}
+                    required
+                  />
+                  {/* fields newly added ends */}
                   <label>City</label>
                   <input
                     type="text"
@@ -309,14 +334,11 @@ class ProfileCompletion extends Component {
                             localStorage.getItem("userDetails")
                           ).ssn)
                     }
-                    maxLength={4}
+                    maxLength={9}
                     onChange={this.handleChange}
                     //disabled={this.state.ssn != ""?true:false}
-                    disabled={
-                      JSON.parse(sessionStorage.getItem("userDetails")).ssn
-                        ? true
-                        : false
-                    }
+                    disabled={JSON.parse(sessionStorage.getItem("userDetails")).ssn? true: false}
+                    pattern="(1[0-2]|0[1-9])\/(1[5-9]|2\d)"
                     required
                   />
 
@@ -324,7 +346,7 @@ class ProfileCompletion extends Component {
                   <Datepicker
                     onChangeDate={this.handleDate}
                     defaultVal={moment().format("YYYY-MM-DD")}
-                    required
+                    required                    
                   />
                   {/* <Datepicker setDate={this.setDate}  defaultVal={moment().format('YYYY-MM-DD')} required/> */}
 
@@ -354,14 +376,15 @@ class ProfileCompletion extends Component {
                       </select>
                     </div>
                     <div className="col-lg-6">
-                      <label>Zipcode</label>
+                      <label>POSTAL CODE</label>
                       <input
                         type="text"
-                        placeholder="Enter Zip"
+                        placeholder="Enter Postal Code"
                         name="zipcode"
                         id="zipcode"
                         value={this.state.zipcode}
                         onChange={this.handleChange}
+                        maxLength={5}
                         required
                       />
                     </div>

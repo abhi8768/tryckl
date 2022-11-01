@@ -9,11 +9,11 @@ import HeaderUser from "../HeaderUser";
 import Menu from "../Menu";
 import Footer from "../Footer";
 import { updateprofilePicture } from "../../../actions/web/brokerAction";
+
 import ProfileDetail from "./detail";
 import ProfileCompletion from "./completion";
 import $$ from "jquery";
-import './profile.css'
-
+import "./profile.css";
 
 class Profile extends Component {
   constructor(props) {
@@ -25,45 +25,52 @@ class Profile extends Component {
       name: "",
       rating: 0,
       currentview: "detail",
-      brokerId:this.props.brokerId == ""? this.props.currentUserDetails.brokers_id:this.props.brokerId,
+      brokerId:
+        this.props.brokerId == ""
+          ? this.props.currentUserDetails.brokers_id
+          : this.props.brokerId,
       isOwn: this.props.brokerId == "" ? true : false,
-      walletIfNotVarified:true,
-      details:{}
+
+      details: {},
     };
-    this.updatePicture = this.updatePicture.bind(this);
+    this.updatePicture = this.updatePicture.bind(this);    
   }
 
   componentDidMount() {
+    //* for opening verification form
+    setTimeout(() => {
+      if (this.props.match.params.section) {
+        // ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
+        this.setState({currentview: "edit"});
+      }
+    }, 800);
+
     $$("#menu_profile").addClass("active");
     $$("#listing-header-icon").removeClass("active");
-    $$("#home-header-icon").removeClass("active");
+    $$("#home-header-icon").removeClass("active");        
   }
 
   updatePicture(e) {
     this.props.updateprofilePicture({ image: e.target.files[0] });
   }
-
-  componentDidMount() {
+  
+  /* componentDidMount() {
     setTimeout(() => {
       if (this.props.match.params.section) {
-        ToastsStore.error(
-          "Please Verify Your Account By Updating Your Account To Create List"
-        );
-        this.setState({
-          currentview: "edit",
-        });
+        ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
+        this.setState({currentview: "edit"});
       }
     }, 800);
-  }
+  } */  
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
     this.setState({
       details: nextProps.profiledetail, //testing for verification alert
-    })
+    });
 
     if (nextProps.profileimage != this.props.profileimage) {
       this.setState({
-        profilepicture: nextProps.profileimage.profile_photo,        
+        profilepicture: nextProps.profileimage.profile_photo,
       });
     } else {
       this.setState({
@@ -75,7 +82,7 @@ class Profile extends Component {
     this.setState({
       currentview: nextProps.changeview,
     });
-    
+
   }
 
   render() {
@@ -87,7 +94,7 @@ class Profile extends Component {
       <div className="wrapper">
         <HeaderUser />
         <Menu />
-        
+
         <section className="section-container">
           <div className="content-wrapper">
             <div className="container gapfrm-top">
@@ -138,35 +145,45 @@ class Profile extends Component {
                     </div>
                   </div>
                   {/* testing start for wallet*/}
-                    {this.state.details.is_bank_account_connected === 0?
-                      (<div className="content-part-wrapper text-center">                                                              
-                          <div style={{ marginLeft: "15px" }}>
-                          <p className="information">
-                          Wheather You're the one paying or getting paid, we need to 
-                          connect your non-business bank account to the tryckl app.
-                          The information we ask for is secure and is not shared with 
-                          anyone outside of the tryckl funds flow.
-                        </p>                          
-                          <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>
-                            OK
-                          </button>
-                          </div>
-                        </div>):(<div className="content-part-wrapper text-center">                                                              
-                        <div style={{ marginLeft: "15px" }}>
+                  {this.state.details.is_bank_account_connected === 0 ? (
+                    <div className="content-part-wrapper text-center">
+                      <div style={{ marginLeft: "15px" }}>
                         <p className="information">
-                            This balance reflects the amount in your Tryckl Wallet. 
-                            If you've not yet created a Listing in Tryckl, you do 
-                            not have a wallet yet and the balance will be $0. To 
-                            use the wallet feature, please click OK and complete 
-                            the verification process.
-                          </p>
-                        <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>
+                          Wheather You're the one paying or getting paid, we
+                          need to connect your non-business bank account to the
+                          tryckl app. The information we ask for is secure and
+                          is not shared with anyone outside of the tryckl funds
+                          flow.
+                        </p>
+                        <button
+                          className="okBtn"
+                          onClick={() =>
+                            this.props.history.push(`/connect-account`)
+                          }
+                        >
                           OK
                         </button>
-                        </div>
-                      </div>)
-                    }
-                    {/* {this.state.walletIfNotVarified?
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="content-part-wrapper text-center">
+                      <div style={{ marginLeft: "15px" }}>
+                        <p className="information">
+                          {/* Please Verify Your Account By Updating Your Account ! */}
+                          You don't have Tryckl Wallet yet. To use Wallet
+                          features please complete your user verification
+                          process !
+                        </p>
+                        <button
+                          className="okBtn"
+                          //onClick={()=>{this.setState({currentview: "edit"})}}
+                        >
+                          OK
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                  {/* {this.state.walletIfNotVarified?
                       (<div className="content-part-wrapper text-center">                                                              
                         <div style={{ marginLeft: "15px" }}>
                         <p className="information">

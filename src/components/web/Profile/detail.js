@@ -86,7 +86,7 @@ class ProfileDetail extends Component {
               this.props.history.push("/addbank");
             }}
           >
-            <h2 className="mid-heading-other">Connected Bank</h2>
+            <h2 className="mid-heading-other">CONNECTED BANK</h2>
             <div className="profile2-list">
               <p className="mid-heading mid-heading-bank">
                 {this.state.details.bank_name}
