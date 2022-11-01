@@ -159,7 +159,7 @@ class Menu extends Component {
   
   const mapDispatchToProps = dispatch => {
     return {
-      logoutRequest   : bindActionCreators(logoutRequest , dispatch),
+      logoutRequest:bindActionCreators(logoutRequest , dispatch),
     }
   }
 

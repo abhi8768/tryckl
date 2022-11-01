@@ -28,16 +28,11 @@ class Dashboard extends Component {
       open: true,      
     };
     this.gotoDetail = this.gotoDetail.bind(this);
-    // this.onOpenModal = this.onOpenModal.bind(this); testing    
+
   }
 
-  // testing for connecting bank alert Modal On dashboard.
-  /* onOpenModal() {
-    console.log("dashboardPopUpOpen");
-    this.setState({ open: true });
-  } */  
-  // testing for Modal On dashboard ends
 
+  
   componentDidMount() {
     //localStorage.removeItem('login');
     $$("#home-header-icon").addClass("active");
@@ -208,7 +203,7 @@ class Dashboard extends Component {
                   <div className="content-part-wrapper">
                     <h2 className="mid-heading">Your dashboard</h2>
                     {/* testing start for popup*/}                   
-                    {this.state.open &&(
+                    {/* {this.state.open &&(
                       <div
                         className="popup-box"
                         style={{
@@ -252,7 +247,7 @@ class Dashboard extends Component {
                       >Yes</button>
                       </div>
                     </div>
-                    )}
+                    )} */}
                     {/* testing end's for popup*/}
                     {notificationlist.map((item, index) => {
                       let letterImage = item.sender_name.charAt(0);

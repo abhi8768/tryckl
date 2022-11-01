@@ -78,6 +78,7 @@
     "react-hot-loader": "^4.12.18",
     "react-linkify": "^1.0.0-alpha",
     "react-modal": "^3.15.1",
+    "react-places-autocomplete": "^7.3.0",
     "react-plaid": "^0.13.0",
     "react-plaid-link": "^3.3.1",
     "react-rating-stars-component": "^2.2.0",

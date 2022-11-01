@@ -18,52 +18,37 @@ import "./profile.css";
 class Profile extends Component {
   constructor(props) {
     super(props);
-
     // setPublicIP();
     this.state = {
       profilepicture: "",
       name: "",
       rating: 0,
       currentview: "detail",
-      brokerId:
-        this.props.brokerId == ""
-          ? this.props.currentUserDetails.brokers_id
-          : this.props.brokerId,
+      brokerId:this.props.brokerId == ""? this.props.currentUserDetails.brokers_id: this.props.brokerId,
       isOwn: this.props.brokerId == "" ? true : false,
-
       details: {},
     };
-    this.updatePicture = this.updatePicture.bind(this);    
+    this.updatePicture = this.updatePicture.bind(this);      
   }
 
-  componentDidMount() {
-    //* for opening verification form
-    setTimeout(() => {
-      if (this.props.match.params.section) {
-        // ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
-        this.setState({currentview: "edit"});
-      }
-    }, 800);
-
+  componentDidMount() {           
     $$("#menu_profile").addClass("active");
     $$("#listing-header-icon").removeClass("active");
-    $$("#home-header-icon").removeClass("active");        
+    $$("#home-header-icon").removeClass("active");
+    
+    //* for opening the verification form after plaid verification. 
+    if (this.props.match.params.section) {
+    ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
+    this.setState({currentview: "edit"});
+    }		
   }
 
   updatePicture(e) {
     this.props.updateprofilePicture({ image: e.target.files[0] });
   }
-  
-  /* componentDidMount() {
-    setTimeout(() => {
-      if (this.props.match.params.section) {
-        ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
-        this.setState({currentview: "edit"});
-      }
-    }, 800);
-  } */  
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+   
     this.setState({
       details: nextProps.profiledetail, //testing for verification alert
     });
@@ -79,15 +64,15 @@ class Profile extends Component {
         rating: Number(nextProps.profiledetail.rating),
       });
     }
-    this.setState({
-      currentview: nextProps.changeview,
-    });
+    // this.setState({
+    //   currentview: nextProps.changeview,
+    // });
 
   }
 
   render() {
     let letterImage = this.state.name.charAt(0);
-    console.log(this.props.match.params.section, "stateprops");
+    console.log(this.props.match.params.section,this.state.currentview, "stateprops");
     // console.log(this.state.details,"verificationDetails"); //testing,verification
 
     return (
@@ -157,9 +142,8 @@ class Profile extends Component {
                         </p>
                         <button
                           className="okBtn"
-                          onClick={() =>
-                            this.props.history.push(`/connect-account`)
-                          }
+                          // onClick={() => this.props.history.push(`/connect-account`)}                          
+                          onClick={() => this.props.history.push(`/connect-account`)}
                         >
                           OK
                         </button>
@@ -174,39 +158,16 @@ class Profile extends Component {
                           features please complete your user verification
                           process !
                         </p>
-                        <button
+                        {/* <button
                           className="okBtn"
-                          //onClick={()=>{this.setState({currentview: "edit"})}}
+                          //onClick={()=>{this.setState({currentview: "edit"})}}                          
                         >
                           OK
-                        </button>
+                        </button> */}
                       </div>
                     </div>
                   )}
-                  {/* {this.state.walletIfNotVarified?
-                      (<div className="content-part-wrapper text-center">                                                              
-                        <div style={{ marginLeft: "15px" }}>
-                        <p className="information">
-                          Wheather You're the one paying or getting paid, we need to 
-                          connect your non-business bank account to the tryckl app.
-                          The information we ask for is secure and is not shared with 
-                          anyone outside of the tryckl funds flow.
-                        </p>
-                        <button className="okBtn" onClick={() => this.props.history.push(`/connect-account`)}>
-                          OK
-                        </button>
-                        </div>
-                      </div>)
-                        :
-                        (<div className="content-part-wrapper text-center">                                        
-                          <h2 className="mid-heading">DWOLLA BALANCE</h2>
-                          <div style={{ marginLeft: "15px" }}>
-                            <p className="balance-css">
-                              {this.props.profiledetail.dwolla_balance}
-                            </p>
-                          </div>
-                        </div>)} */}
-                  {/* testing ends for wallet */}
+
 
                   {/* testing, this is Dwolla Wallet Portion UI */}
                   {/* <div className="content-part-wrapper text-center">                                        
