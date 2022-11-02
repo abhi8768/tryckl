@@ -11,7 +11,13 @@ import {
 import { fetchMasterData } from "../../../actions/web/masterAction";
 import Datepicker from "./datepicker";
 // import { ToastsStore } from "react-toasts";
-import SearchIcon from '@material-ui/icons/Search';
+// import SearchIcon from '@material-ui/icons/Search';
+import { useState } from "react";
+// import PlacesAutocomplete, {
+//   geocodeByAddress,
+//   getLatLng,
+// } from "react-places-autocomplete";
+import PlacesAutocomplete from 'react-places-autocomplete';
 
 class ProfileCompletion extends Component {
   constructor(props) {
@@ -39,11 +45,13 @@ class ProfileCompletion extends Component {
       brokerage_state: "",
       zipcode: "",
       brokerId: this.props.brokerId,
+      address: "",
     };
     this.gotoEdit = this.gotoEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleDate = this.handleDate.bind(this);
+    this.handleDate = this.handleDate.bind(this); 
+    this.handleAddressChange = this.handleAddressChange.bind(this);      
   }
 
   componentDidMount() {
@@ -61,6 +69,19 @@ class ProfileCompletion extends Component {
     };
     this.props.fetchMasterData(param2);
   }
+  //* for address
+  handleAddressChange(e){
+    this.setState({address: this.state.address})  
+    function initAutocomplete() {
+      var input = document.getElementById('pac-input');
+      var searchBox = new window.google.maps.places.SearchBox(input);
+      searchBox.addListener('places_changed', function() {
+        this.setState({ CollegeName: document.getElementById('pac-input').value });
+      });
+    }   
+    initAutocomplete();
+  }
+  //* address ends
 
   gotoEdit() {
     this.props.changeView("detail");
@@ -151,6 +172,7 @@ class ProfileCompletion extends Component {
 
   render() {
     // console.log(this.state, "dob");
+    console.log(this.state.address)
     return (
       <div className="col-lg-6">
         <div className="content-part-wrapper">
@@ -285,21 +307,21 @@ class ProfileCompletion extends Component {
                     onChange={this.handleChange}
                     required
                   /> */}
+
+                  {/* fields newly added start*/}                  
                   
-                  {/* fields newly added start*/}
-                  {/* <div className="col-lg-10"> */}
-                  <label>Address Line 1</label> 
+                  <label>Address Line 1</label>
                   <input
+                    defaultValue={this.state.address}
+                    // value={this.state.address}
+                    onChange={this.handleAddressChange}
+                    id="pac-input" 
+                    className="controls"
                     type="text"
-                    placeholder="Enter Address"
-                    name="brokerage_street_name"
-                    id="brokerage_street_name"
-                    value={this.state.brokerage_street_name}
-                    onChange={this.handleChange}
-                    required
-                  />
-                                    
-                  <label>Address Line 2</label> 
+                    placeholder="Search your address"
+                  />                  
+
+                  <label>Address Line 2</label>
                   <input
                     type="text"
                     placeholder="Enter Address"
@@ -337,7 +359,11 @@ class ProfileCompletion extends Component {
                     maxLength={9}
                     onChange={this.handleChange}
                     //disabled={this.state.ssn != ""?true:false}
-                    disabled={JSON.parse(sessionStorage.getItem("userDetails")).ssn? true: false}
+                    disabled={
+                      JSON.parse(sessionStorage.getItem("userDetails")).ssn
+                        ? true
+                        : false
+                    }
                     pattern="(1[0-2]|0[1-9])\/(1[5-9]|2\d)"
                     required
                   />
@@ -346,7 +372,7 @@ class ProfileCompletion extends Component {
                   <Datepicker
                     onChangeDate={this.handleDate}
                     defaultVal={moment().format("YYYY-MM-DD")}
-                    required                    
+                    required
                   />
                   {/* <Datepicker setDate={this.setDate}  defaultVal={moment().format('YYYY-MM-DD')} required/> */}
 
@@ -391,7 +417,7 @@ class ProfileCompletion extends Component {
                   </div>
 
                   <button type="submit" className="saveBtn">
-                    SAVE
+                    VERIFY
                   </button>
                 </form>
               </div>

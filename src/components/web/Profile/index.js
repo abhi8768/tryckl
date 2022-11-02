@@ -38,7 +38,7 @@ class Profile extends Component {
     
     //* for opening the verification form after plaid verification. 
     if (this.props.match.params.section) {
-    ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
+    // ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
     this.setState({currentview: "edit"});
     }		
   }
