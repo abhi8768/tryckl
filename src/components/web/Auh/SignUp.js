@@ -593,6 +593,7 @@ class SignUp extends Component {
                 value={this.state.last_name}
               />
               <p className="text-danger">{this.state.last_name_error}</p>
+              
               <label>Password </label>
               <div className="input-group-password">
                 <input

@@ -11,13 +11,7 @@ import {
 import { fetchMasterData } from "../../../actions/web/masterAction";
 import Datepicker from "./datepicker";
 // import { ToastsStore } from "react-toasts";
-// import SearchIcon from '@material-ui/icons/Search';
-import { useState } from "react";
-// import PlacesAutocomplete, {
-//   geocodeByAddress,
-//   getLatLng,
-// } from "react-places-autocomplete";
-import PlacesAutocomplete from 'react-places-autocomplete';
+
 
 class ProfileCompletion extends Component {
   constructor(props) {
@@ -45,13 +39,13 @@ class ProfileCompletion extends Component {
       brokerage_state: "",
       zipcode: "",
       brokerId: this.props.brokerId,
-      address: "",
+      address: "",      
     };
     this.gotoEdit = this.gotoEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleDate = this.handleDate.bind(this); 
-    this.handleAddressChange = this.handleAddressChange.bind(this);      
+    this.handleAddressChange = this.handleAddressChange.bind(this);    
   }
 
   componentDidMount() {
@@ -87,7 +81,7 @@ class ProfileCompletion extends Component {
     this.props.changeView("detail");
   }
 
-  handleChange(e) {
+  handleChange(e) {    
     this.setState({
       [e.target.name]: e.target.value,
       // dob:new Date()
@@ -103,13 +97,19 @@ class ProfileCompletion extends Component {
         this.props.fetchMasterData(param);
       }
     }
-  }
 
+    /* const ssnRegex = "^(?!666|000|9\\d{2})\\d{3}-(?!00)\\d{2}-(?!0{4})\\d{4}$"
+    if(e.target.name === 'ssn'){
+      if(e.target.value !== ssnRegex){
+      }
+    } */
+  }
+ 
   onSubmit(e) {
     e.preventDefault();
     console.log(this.state);
-    if (this.state.ssn && this.state.ssn.length < 3) {
-      ToastsStore.error("SSN cannot be less than 4");
+    if (this.state.ssn && this.state.ssn.length < 9) {
+      ToastsStore.error("SSN cannot be less than 9");
     } else {
       this.props.updateprofileDetails(this.state);
     }
@@ -127,7 +127,7 @@ class ProfileCompletion extends Component {
     );
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
+  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {  
     if (
       nextProps.masterlicensedata != this.props.masterlicensedata &&
       nextProps.masterlicensedata.status == false
@@ -172,7 +172,9 @@ class ProfileCompletion extends Component {
 
   render() {
     // console.log(this.state, "dob");
-    console.log(this.state.address)
+    console.log(this.state.ssn,"SSN No. Submited")
+    // console.log(this.state.address)
+
     return (
       <div className="col-lg-6">
         <div className="content-part-wrapper">
@@ -342,14 +344,14 @@ class ProfileCompletion extends Component {
                     onChange={this.handleChange}
                     required
                   />
-
-                  <label>SSN</label>
+{/* //*RegEx validation for SSN starts */}
+                  {/* <label>SSN</label>
                   <input
-                    type="text"
-                    placeholder="Enter SSN"
+                    type="number"
+                    placeholder="123-45-6789"
                     name="ssn"
                     id="ssn"
-                    value={
+                    value={   
                       this.state.ssn
                         ? this.state.ssn
                         : (this.state.ssn = JSON.parse(
@@ -364,9 +366,23 @@ class ProfileCompletion extends Component {
                         ? true
                         : false
                     }
-                    pattern="(1[0-2]|0[1-9])\/(1[5-9]|2\d)"
+                    pattern="(1[0-2]|0[1-9])\/(1[5-9]|2\d)"                    
+                    required
+                  /> */}
+                  <label>SSN</label>
+                  <input
+                    type="text"                    
+                    placeholder="123-45-6789"
+                    name="ssn"
+                    id="ssn"
+                    value={this.state.ssn}
+                    maxLength={11}
+                    onChange={this.handleChange}
+                    disabled={JSON.parse(sessionStorage.getItem("userDetails")).ssn? true:false}                                                                                
+                    pattern="^(?!(000|666|9))\d{3}-(?!00)\d{2}-(?!0000)\d{4}$"                   
                     required
                   />
+{/* //*RegEx validation for SSN ends */}
 
                   <label>DOB</label>
                   <Datepicker
