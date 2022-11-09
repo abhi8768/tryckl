@@ -11,7 +11,7 @@ import {
 import { fetchMasterData } from "../../../actions/web/masterAction";
 import Datepicker from "./datepicker";
 // import { ToastsStore } from "react-toasts";
-
+// import PlacesAutocomplete, {geocodeByAddress} from "react-places-autocomplete";
 
 class ProfileCompletion extends Component {
   constructor(props) {
@@ -34,17 +34,17 @@ class ProfileCompletion extends Component {
       brokerage: "",
       other_brokerage_name: "",
       brokerage_office_name: "",
-      brokerage_street_name: "",
+      brokerage_street_name: "", //* Testing state
       brokerage_city_name: "",
       brokerage_state: "",
       zipcode: "",
       brokerId: this.props.brokerId,
-      address: "",      
+      address: "",
     };
     this.gotoEdit = this.gotoEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.handleDate = this.handleDate.bind(this); 
+    this.handleDate = this.handleDate.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);    
   }
 
@@ -63,8 +63,14 @@ class ProfileCompletion extends Component {
     };
     this.props.fetchMasterData(param2);
   }
+
+
+  gotoEdit() {
+    this.props.changeView("detail");
+  }
+
   //* for address
-  handleAddressChange(e){
+  /* handleAddressChange(e){
     this.setState({address: this.state.address})  
     function initAutocomplete() {
       var input = document.getElementById('pac-input');
@@ -74,14 +80,23 @@ class ProfileCompletion extends Component {
       });
     }   
     initAutocomplete();
+  } */
+  handleAddressChange(e){
+    // this.setState({address: this.state.address})  
+    this.setState({address: e.target.value})  
+    function initAutocomplete() {
+      var input = document.getElementById('pac-input');
+      var searchBox = new window.google.maps.places.SearchBox(input);
+      searchBox.addListener('places_changed', function() {
+        this.setState({ address: document.getElementById('pac-input').value });
+        
+      });
+    }   
+    initAutocomplete();
   }
   //* address ends
 
-  gotoEdit() {
-    this.props.changeView("detail");
-  }
-
-  handleChange(e) {    
+  handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
       // dob:new Date()
@@ -104,10 +119,10 @@ class ProfileCompletion extends Component {
       }
     } */
   }
- 
+
   onSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    console.log("Verification Form Submitted:- ",this.state);
     if (this.state.ssn && this.state.ssn.length < 9) {
       ToastsStore.error("SSN cannot be less than 9");
     } else {
@@ -127,7 +142,7 @@ class ProfileCompletion extends Component {
     );
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {  
+  UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
     if (
       nextProps.masterlicensedata != this.props.masterlicensedata &&
       nextProps.masterlicensedata.status == false
@@ -161,7 +176,7 @@ class ProfileCompletion extends Component {
         brokerage: nextProps.profiledetail.brokerage_id,
         brokerage_name: nextProps.profiledetail.brokerage_name,
         brokerage_office_name: nextProps.profiledetail.brokerage_office_name,
-        brokerage_street_name: nextProps.profiledetail.street_name,
+        brokerage_street_name: nextProps.profiledetail.street_name, //*testing
         brokerage_city_name: nextProps.profiledetail.city,
         brokerage_state: nextProps.profiledetail.state_id,
         zipcode: nextProps.profiledetail.zipcode,
@@ -172,9 +187,8 @@ class ProfileCompletion extends Component {
 
   render() {
     // console.log(this.state, "dob");
-    console.log(this.state.ssn,"SSN No. Submited")
-    // console.log(this.state.address)
-
+    // console.log(this.state.ssn,"SSN No. Submited")
+    // console.log(this.state.brokerage_street_name);
     return (
       <div className="col-lg-6">
         <div className="content-part-wrapper">
@@ -310,20 +324,20 @@ class ProfileCompletion extends Component {
                     required
                   /> */}
 
-                  {/* fields newly added start*/}                  
-                  
+                  {/* address fields newly added start*/}
                   <label>Address Line 1</label>
                   <input
-                    defaultValue={this.state.address}
-                    // value={this.state.address}
+                    // defaultValue={this.state.address}
+                    value={this.state.address}
                     onChange={this.handleAddressChange}
                     id="pac-input" 
                     className="controls"
                     type="text"
                     placeholder="Search your address"
-                  />                  
-
-                  <label>Address Line 2</label>
+                    autoComplete="off"
+                  />
+                  
+                  {/* <label>Address Line 2</label>
                   <input
                     type="text"
                     placeholder="Enter Address"
@@ -332,8 +346,9 @@ class ProfileCompletion extends Component {
                     value={this.state.brokerage_street_name}
                     onChange={this.handleChange}
                     required
-                  />
+                  /> */}
                   {/* fields newly added ends */}
+
                   <label>City</label>
                   <input
                     type="text"
@@ -344,7 +359,7 @@ class ProfileCompletion extends Component {
                     onChange={this.handleChange}
                     required
                   />
-{/* //*RegEx validation for SSN starts */}
+                  {/* //*RegEx validation for SSN starts */}
                   {/* <label>SSN</label>
                   <input
                     type="number"
@@ -371,19 +386,22 @@ class ProfileCompletion extends Component {
                   /> */}
                   <label>SSN</label>
                   <input
-                    type="text"                    
+                    type="text"
                     placeholder="123-45-6789"
                     name="ssn"
                     id="ssn"
                     value={this.state.ssn}
                     maxLength={11}
                     onChange={this.handleChange}
-                    disabled={JSON.parse(sessionStorage.getItem("userDetails")).ssn? true:false}                                                                                
-                    pattern="^(?!(000|666|9))\d{3}-(?!00)\d{2}-(?!0000)\d{4}$"                   
+                    disabled={
+                      JSON.parse(sessionStorage.getItem("userDetails")).ssn
+                        ? true
+                        : false
+                    }
+                    pattern="^(?!(000|666|9))\d{3}-(?!00)\d{2}-(?!0000)\d{4}$"
                     required
                   />
-{/* //*RegEx validation for SSN ends */}
-
+                  {/* //*RegEx validation for SSN ends */}
                   <label>DOB</label>
                   <Datepicker
                     onChangeDate={this.handleDate}

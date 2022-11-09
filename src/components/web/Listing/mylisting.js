@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { ToastsStore } from "react-toasts";
-
+import ReportProblemIcon from "@material-ui/icons/ReportProblem";
 import { encrypt } from "../../../helpers/CryptoJs";
 import {
   requestMylisting,
@@ -22,6 +22,8 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@material-ui/core";
+// const BrowserHistory = require('react-router/lib/BrowserHistory').default;
+import {BrowserHistory} from 'react-router-dom'
 
 class MyListing extends Component {
   constructor(props) {
@@ -32,6 +34,7 @@ class MyListing extends Component {
       dropdownValue: "Open",
       conneected_account: null,
       open: false,
+      onVerificationModal: false,      
     };
     this.openDropdown = this.openDropdown.bind(this);
     this.requestmylisting = this.requestmylisting.bind(this);
@@ -40,11 +43,13 @@ class MyListing extends Component {
     this.gotoProfile = this.gotoProfile.bind(this);
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
+    this.openNonVerifiedModal = this.openNonVerifiedModal.bind(this)
+    this.closeNonVerifiedModal = this.closeNonVerifiedModal.bind(this)
   }
 
   onOpenModal() {
-    console.log("Hi");
-    this.setState({ open: true });
+    console.log("Hi");    
+    this.setState({ open: true });       
   }
   onCloseModal() {
     this.setState({ open: false });
@@ -54,28 +59,45 @@ class MyListing extends Component {
     this.requestmylisting("");
     this.props.getprofileDetails({
       brokers_is: this.props.currentUserDetails.user.brokers_id,
-    });
+    }); 
+    localStorage.setItem('page', "mylisting");//* for doing redirection after plaid verification       
   }
+  //* activating modal popup into my listing page for dwolla start
+  openNonVerifiedModal() {
+    this.setState({ onVerificationModal: true });
+  }
+  closeNonVerifiedModal(){
+    console.log("no button clicked")
+    this.setState({ onVerificationModal: false });
+  }
+  //* activating modal popup into my listing page for dwolla ends
+
   requestmylisting(type) {
     this.setState({ dropdownValue: type == "" ? "OPEN" : type });
     this.props.requestMylisting({ flag: type });
   }
+
   linktocreate() {
     if (
       this.state.conneected_account != null &&
       this.state.conneected_account === "verified"
     ) {
+      console.log("if");
       this.props.listinginLocalStorage("createlisting");
       this.props.history.push(`create-listing`);
     } else {
+      console.log("else");
       sessionStorage.setItem("connectfromlisting", "1");
-      this.props.history.push(`/profile/edit`);
+      // this.props.history.push(`/profile/edit`); //testing
+      this.props.history.push(`/my-listing`);       
+      
     }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps, prevProps, prevState) {
     console.log(nextProps.profiledetail, "check");
     //console.log('nextProps.mylisting.list',nextProps.mylisting.list);
+
     if (nextProps.mylisting.list) {
       this.setState({
         myListing: nextProps.mylisting.list,
@@ -94,6 +116,7 @@ class MyListing extends Component {
     //     });
     //   }
     // }
+    
     if (nextProps.profiledetail) {
       //console.log(nextProps.profiledetail.payment_onboard_acc_id);
       if (
@@ -136,11 +159,21 @@ class MyListing extends Component {
                   </h2>
                   <div
                     className="user-block-status d-flex align-items-center other-color clickable"
+                    // onClick={() => { //* testing
+                    //   if (
+                    //     this.props.profiledetail.is_bank_account_connected === 0
+                    //   ) {
+                    //     this.onOpenModal();
+                    //   } else {
+                    //     this.linktocreate();
+                    //   }
+                    // }}
                     onClick={() => {
-                      if (
-                        this.props.profiledetail.is_bank_account_connected === 0
-                      ) {
+                      //* testing
+                      if (this.props.profiledetail.is_bank_account_connected === 0) {
                         this.onOpenModal();
+                      }else if (this.props.profiledetail.is_bank_account_connected !== 0) {
+                        this.openNonVerifiedModal();                        
                       } else {
                         this.linktocreate();
                       }
@@ -160,7 +193,7 @@ class MyListing extends Component {
               style={{ paddingBottom: "9px" }}
             >
               <h2 className="mid-heading">
-                LISTings
+                LISTINGS
                 <div className="dropdown show custom-drop">
                   <a
                     className="btn btn-secondary dropdown-toggle"
@@ -200,6 +233,107 @@ class MyListing extends Component {
                 </div>
               </h2>
             </div>
+            {/* Implementing Popup for plaid & dwolla verification starts*/}
+            {this.props.profiledetail.is_bank_account_connected === 0 ? (
+              <div
+                className="popup-box"
+                style={{
+                  position: "fixed",
+                  width: "60%",
+                  height: "5vh",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "start",
+                  marginTop: "40px",
+                }}
+              >
+                <div
+                  className="box"
+                  style={{
+                    width: "50%",
+                    minHeight: "50px",
+                    backgroundColor: "#FFFFFF",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    alignItems: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontWeight: 100,
+                      color: "black",
+                    }}
+                  >
+                    <ReportProblemIcon />
+                    {"    "}Please connect your bank account to Tryckl App.
+                  </p>
+                  <button
+                    style={{
+                      float: "right",
+                      border: "none",
+                      backgroundColor: "#FFFFFF",
+                      fontWeight: "lighter",
+                      color: "#0275d8",
+                      paddingRight: "20px",
+                    }}
+                    onClick={() => this.props.history.push(`/connect-account`)}
+                  >
+                    Yes
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div
+                className="popup-box"
+                style={{
+                  position: "fixed",
+                  width: "60%",
+                  height: "5vh",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "start",
+                  marginTop: "50px",
+                }}
+              >
+                <div
+                  className="box"
+                  style={{
+                    width: "50%",
+                    minHeight: "50px",
+                    backgroundColor: "#FFFFFF",
+                    borderRadius: "10px",
+                    padding: "10px",
+                    alignItems: "center",
+                  }}
+                >
+                  <p
+                    style={{
+                      fontWeight: 100,
+                      color: "black",
+                    }}
+                  >
+                    <ReportProblemIcon />
+                    {"    "}You have to complete your verification process in order 
+                    <div style={{marginLeft:'32px'}}>to create list and use features of Wallet.</div>
+                  </p>
+                  <button
+                    style={{
+                      float: "right",
+                      border: "none",
+                      backgroundColor: "#FFFFFF",
+                      fontWeight: "lighter",
+                      color: "#0275d8",
+                      paddingRight: "20px",
+                    }}
+                    onClick={() => this.props.history.push(`/connect-account`)}
+                  >
+                    Yes
+                  </button>
+                </div>
+              </div>
+            )}
+            {/* Implementing Popup for plaid & dwolla verification ends*/}
+
             {this.state.myListing.length > 0 ? (
               this.state.myListing.map((item, index) => {
                 let letterImage = item.accepted_by_name.charAt(0);
@@ -360,11 +494,12 @@ class MyListing extends Component {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.onCloseModal} color="primary">
+              {/* <Button onClick={this.onCloseModal} color="primary">
                 No
-              </Button>
+              </Button> */}
               <Button
                 onClick={() => this.props.history.push(`/connect-account`)}
+                // onClick={() => this.props.history.push(`/profile`)}
                 color="primary"
               >
                 Yes
@@ -372,6 +507,89 @@ class MyListing extends Component {
             </DialogActions>
           </Dialog>
         )}
+        {/* //* popup onClick of create listing icon after plaid verification starts */}
+        {this.state.onVerificationModal && (
+          <Dialog
+            onClose={this.closeNonVerifiedModal}
+            open={this.state.onVerificationModal}
+            keepMounted
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            {/* <DialogTitle id="alert-dialog-slide-title">
+              {"Connect Bank Account with Dwolla Account?"}
+            </DialogTitle> */}
+            <DialogContent>
+              <DialogContentText id="alert-dialog-slide-description">
+              <ReportProblemIcon />
+              {"    "}You have to complete your verification process in order to create list and 
+              <div style={{marginLeft:"32px"}}>use features of Wallet.</div> 
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              {/* <Button onClick={()=>this.closeNonVerifiedModal} color="primary">              
+                No
+              </Button> */}
+              <Button
+                onClick={() => this.props.history.push(`/connect-account`)}
+                // onClick={() => this.props.history.push(`/profile`)}
+                color="primary"
+              >
+                Yes
+              </Button>
+            </DialogActions>
+          </Dialog>)}
+        {/* {this.state.onVerificationModal && (
+          <div
+            className="popup-box"
+            style={{
+              position: "fixed",
+              width: "60%",
+              height: "5vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+              marginTop: "40px",
+            }}
+          >
+            <div
+              className="box"
+              style={{
+                width: "50%",
+                minHeight: "50px",
+                backgroundColor: "#FFFFFF",
+                borderRadius: "10px",
+                padding: "10px",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{
+                  fontWeight: 100,
+                  color: "black",
+                }}
+              >
+                <ReportProblemIcon />
+                {"    "}Please connect your bank account with Dwolla.
+              </p>
+              <button
+                style={{
+                  float: "right",
+                  border: "none",
+                  backgroundColor: "#FFFFFF",
+                  fontWeight: "lighter",
+                  color: "#0275d8",
+                  paddingRight: "20px",
+                }}
+                onClick={() => this.props.history.push(`/connect-account`)}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        )} */}
+        {/* //* popup onClick of creat listing icon after plaid verification ends */}
+
       </React.Fragment>
     );
   }

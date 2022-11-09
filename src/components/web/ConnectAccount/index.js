@@ -21,16 +21,19 @@ class ConnectAccount extends Component {
     super(props);
     this.state = {
       open: true,
-      linkToken: "",
+      linkToken: "",      
     };
     this.onOpenModal = this.onOpenModal.bind(this);
     this.onCloseModal = this.onCloseModal.bind(this);
     this.onSkip = this.onSkip.bind(this);
     this.checkout = this.checkout.bind(this);
+    
   }
+
   onOpenModal() {
     this.setState({ open: true });
   }
+
   onCloseModal() {
     this.setState({ open: false });
   }
@@ -127,7 +130,18 @@ class ConnectAccount extends Component {
         console.log(this.props, "propsss");
         // checkout();
         // this.props.history.push(`/profile`, { profileEdit: true });
-        window.location = "/profile/edit";
+        //*testing for redirecting same page from where plaid verification started
+        // window.location = "/profile/edit"; //testing , default code 
+          var page =localStorage.getItem('page');
+          console.log(page);
+          if(page === 'profile'){
+            window.location = "/profile/edit"
+          }
+          if(page === 'mylisting'){
+            window.location = "/my-listing"
+          }
+
+        //*testing for redirecting same page from where plaid verification ends        
         // if(data.status_code === 200)
         // {
         //   window.location = "/dashboard";
@@ -173,7 +187,7 @@ class ConnectAccount extends Component {
                 token={localStorage.getItem("link_token")}
                 env="sandbox"
                 onSuccess={this.handleOnSuccess}
-                onExit={this.handleOnExit}
+                onExit={this.handleOnExit}                
               >
                 Connect To Plaid
               </PlaidLink>

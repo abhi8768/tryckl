@@ -41,6 +41,8 @@ class Profile extends Component {
     // ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
     this.setState({currentview: "edit"});
     }		
+    
+    localStorage.setItem('page', 'profile'); //* for doing redirection after plaid verification
   }
 
   updatePicture(e) {
@@ -79,7 +81,6 @@ class Profile extends Component {
       <div className="wrapper">
         <HeaderUser />
         <Menu />
-
         <section className="section-container">
           <div className="content-wrapper">
             <div className="container gapfrm-top">

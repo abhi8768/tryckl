@@ -30,8 +30,6 @@ class Dashboard extends Component {
     this.gotoDetail = this.gotoDetail.bind(this);
 
   }
-
-
   
   componentDidMount() {
     //localStorage.removeItem('login');
