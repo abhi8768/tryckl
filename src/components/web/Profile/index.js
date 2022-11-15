@@ -39,9 +39,9 @@ class Profile extends Component {
     //* for opening the verification form after plaid verification. 
     if (this.props.match.params.section) {
     // ToastsStore.error("Please Verify Your Account By Updating Your Account To Create List");
-    this.setState({currentview: "edit"});
-    }		
-    
+    this.setState({currentview: "edit"})    
+    }	
+
     localStorage.setItem('page', 'profile'); //* for doing redirection after plaid verification
   }
 
@@ -66,9 +66,10 @@ class Profile extends Component {
         rating: Number(nextProps.profiledetail.rating),
       });
     }
-    // this.setState({
-    //   currentview: nextProps.changeview,
-    // });
+    
+    this.setState({
+      currentview: nextProps.changeview,
+    });
 
   }
 
@@ -150,27 +151,10 @@ class Profile extends Component {
                         </button>
                       </div>
                     </div>
-                  ) : (
-                    <div className="content-part-wrapper text-center">
-                      <div style={{ marginLeft: "15px" }}>
-                        <p className="information">
-                          {/* Please Verify Your Account By Updating Your Account ! */}
-                          You don't have Tryckl Wallet yet. To use Wallet
-                          features please complete your user verification
-                          process !
-                        </p>
-                        {/* <button
-                          className="okBtn"
-                          //onClick={()=>{this.setState({currentview: "edit"})}}                          
-                        >
-                          OK
-                        </button> */}
-                      </div>
-                    </div>
-                  )}
+                  ) : (null)}
 
 
-                  {/* testing, this is Dwolla Wallet Portion UI */}
+                  {/* testing, this is Dwolla Wallet Portion UI */}                  
                   {/* <div className="content-part-wrapper text-center">                                        
                     <h2 className="mid-heading">DWOLLA BALANCE</h2>
                     <div style={{ marginLeft: "15px" }}>

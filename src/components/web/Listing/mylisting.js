@@ -23,7 +23,7 @@ import {
   DialogTitle,
 } from "@material-ui/core";
 // const BrowserHistory = require('react-router/lib/BrowserHistory').default;
-import {BrowserHistory} from 'react-router-dom'
+// import {BrowserHistory} from 'react-router-dom'
 
 class MyListing extends Component {
   constructor(props) {
@@ -244,7 +244,8 @@ class MyListing extends Component {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "start",
-                  marginTop: "40px",
+                  marginTop: "70px",
+                  
                 }}
               >
                 <div
@@ -292,7 +293,7 @@ class MyListing extends Component {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "start",
-                  marginTop: "50px",
+                  marginTop: "70px",
                 }}
               >
                 <div
@@ -325,7 +326,8 @@ class MyListing extends Component {
                       color: "#0275d8",
                       paddingRight: "20px",
                     }}
-                    onClick={() => this.props.history.push(`/connect-account`)}
+                    onClick={() => this.props.history.push(`/profile/edit`)}
+                    // onClick={() => this.props.history.push(`/profile`)}
                   >
                     Yes
                   </button>
@@ -531,7 +533,7 @@ class MyListing extends Component {
                 No
               </Button> */}
               <Button
-                onClick={() => this.props.history.push(`/connect-account`)}
+                onClick={() => this.props.history.push(`/profile/edit`)}
                 // onClick={() => this.props.history.push(`/profile`)}
                 color="primary"
               >

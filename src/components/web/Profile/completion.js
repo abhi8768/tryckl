@@ -13,7 +13,13 @@ import Datepicker from "./datepicker";
 // import { ToastsStore } from "react-toasts";
 // import PlacesAutocomplete, {geocodeByAddress} from "react-places-autocomplete";
 
-class ProfileCompletion extends Component {
+import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import HourglassFullIcon from '@material-ui/icons/HourglassFull';
+
+import Axios from "axios";
+import { getAuthHeader } from "../../../helpers/authHelper";
+
+export class ProfileCompletion extends Component {
   constructor(props) {
     super(props);
     // setPublicIP();
@@ -40,12 +46,17 @@ class ProfileCompletion extends Component {
       zipcode: "",
       brokerId: this.props.brokerId,
       address: "",
+      oneTimeChargeModal: false,
+      oneTimeChargeStatusModal:false
     };
     this.gotoEdit = this.gotoEdit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.handleDate = this.handleDate.bind(this);
-    this.handleAddressChange = this.handleAddressChange.bind(this);    
+    this.handleAddressChange = this.handleAddressChange.bind(this);
+    this.openOneTimeChargeModal = this.openOneTimeChargeModal.bind(this);
+    this.closeOneTimeChargeModal = this.closeOneTimeChargeModal.bind(this);    
+
   }
 
   componentDidMount() {
@@ -62,14 +73,31 @@ class ProfileCompletion extends Component {
       logged_in_brokerid: "",
     };
     this.props.fetchMasterData(param2);
-  }
 
+    // console.log("OnTimeChargeVlue:-",this.props.profiledetail.one_time_charge)
+  }
+  //*new approach for address autocomplete starts
+  /* 
+    handlePlaceSelect() {
+    let addressObject = this.autocomplete.getPlace()
+    let address = addressObject.address_components
+    this.setState({
+      name: addressObject.name,
+      brokerage_street_name: `${address[0].long_name} ${address[1].long_name}`,
+      brokerage_city_name: address[4].long_name,
+      state: address[6].short_name,
+      zipcode: address[8].short_name,
+      googleMapLink: addressObject.url
+    })
+    } 
+  */
+  //*new approach for address autocomplete ends
 
   gotoEdit() {
     this.props.changeView("detail");
   }
 
-  //* for address
+  //* for address starts
   /* handleAddressChange(e){
     this.setState({address: this.state.address})  
     function initAutocomplete() {
@@ -81,20 +109,19 @@ class ProfileCompletion extends Component {
     }   
     initAutocomplete();
   } */
-  handleAddressChange(e){
-    // this.setState({address: this.state.address})  
-    this.setState({address: e.target.value})  
+  handleAddressChange(e) {
+    // this.setState({address: this.state.address})
+    this.setState({ address: e.target.value });
     function initAutocomplete() {
-      var input = document.getElementById('pac-input');
+      var input = document.getElementById("pac-input");
       var searchBox = new window.google.maps.places.SearchBox(input);
-      searchBox.addListener('places_changed', function() {
-        this.setState({ address: document.getElementById('pac-input').value });
-        
+      searchBox.addListener("places_changed", function () {
+        this.setState({ address: document.getElementById("pac-input").value });
       });
-    }   
+    }
     initAutocomplete();
   }
-  //* address ends
+  //* for address ends
 
   handleChange(e) {
     this.setState({
@@ -120,15 +147,67 @@ class ProfileCompletion extends Component {
     } */
   }
 
+  //* Function for passing broker_id (OTC) starts.
+  async oneTimeChargeAPI() {
+    //  https://stagingapi.tryckl.com/api/v1/dwolla/transfer_one_time_charge
+    try {
+      const resp = await Axios.post(
+        `${apiURLPrefix}/dwolla/transfer_one_time_charge`,
+        { brokers_id: this.state.broker_id },
+        {
+          headers: {
+            Authorization: `Bearer ${getAuthHeader()}`,
+            "content-type": "application/json",
+          },
+        }
+      );
+
+      // if (resp.data.status) {
+      // this.setState({oneTimeChargeStatusModal:true})
+      // console.log(resp.data.one_time_charge_status,"==OTCS");
+      // }
+
+      //* logic for OTCS popup to appear depending upon transfer_one_time_charge API status response.
+      if (!resp.data.status) {
+        console.log("OTC response false");
+        this.setState({ oneTimeChargeStatusModal: false });
+      } else {
+        console.log("OTC response true");
+        this.setState({ oneTimeChargeStatusModal: true });
+      }
+
+      console.log(resp, "resp");
+    } catch (err) {}
+  }
+  //* Function for passing broker_id (OTC) ends  
+
   onSubmit(e) {
     e.preventDefault();
-    console.log("Verification Form Submitted:- ",this.state);
+    console.log("Verification Form Submitted:- ", this.state);
+    // alert(this.props.profiledetail.one_time_charge+' : value of oneTimeCharge') //* checking state value
+
+    //* for opening one_time_charge modal
+    if (this.props.profiledetail.one_time_charge === 0) {
+      this.openOneTimeChargeModal();
+    }
+
     if (this.state.ssn && this.state.ssn.length < 9) {
       ToastsStore.error("SSN cannot be less than 9");
     } else {
       this.props.updateprofileDetails(this.state);
     }
   }
+
+  //* open one_time_charge modal starts
+  openOneTimeChargeModal() {
+    this.setState({ oneTimeChargeModal: true });
+  }
+  closeOneTimeChargeModal() {
+    this.setState({ oneTimeChargeModal: false });
+  }
+  //* open one_time_charge modal ends
+
+ 
 
   handleDate(date) {
     console.log(date, "dob1");
@@ -152,20 +231,16 @@ class ProfileCompletion extends Component {
         license_number: "",
         license_number_id: nextProps.masterlicensedata.masterlicense.id,
       });
-    } /* else if(nextProps.profiledetail){
-
-      this.setState({
-      
-      });
-
-    } */ else {
+    } /* else if(nextProps.profiledetail){this.setState({});} */ else {
       //return console.log(nextProps.profiledetail);
       this.setState({
         master_state: nextProps.masterstatedata,
         master_brokerage: nextProps.masterbrokeragedata,
         first_name: nextProps.profiledetail.first_name,
         last_name: nextProps.profiledetail.last_name,
-        //broker_id: nextProps.profiledetail.brokers_id,
+        broker_id: nextProps.profiledetail.brokers_id, // uncommented for
+        // one_time_charge_status:nextProps.profiledetail.one_time_charge_status, // added for OTCS
+        // one_time_charge:nextProps.profiledetail.one_time_charge, // added for OTC
         other_brokerage_name: nextProps.profiledetail.other_brokerage_name,
         user_id: nextProps.profiledetail.phone,
         email: nextProps.profiledetail.email,
@@ -189,6 +264,9 @@ class ProfileCompletion extends Component {
     // console.log(this.state, "dob");
     // console.log(this.state.ssn,"SSN No. Submited")
     // console.log(this.state.brokerage_street_name);
+    // console.log("Address Object:- ", this.state.address);
+    // console.log("OTC",this.state.oneTimeChargeModal);
+
     return (
       <div className="col-lg-6">
         <div className="content-part-wrapper">
@@ -207,6 +285,121 @@ class ProfileCompletion extends Component {
           </h2>
           <div className="content-part-wrapper profile-content-part-wrapper">
             <div className="form-container2">
+              {/* one_time_charge PopUp */}
+              {this.state.oneTimeChargeModal && (
+                <div
+                  className="popup-box"
+                  style={{
+                    position: "fixed",
+                    width: "60%",
+                    height: "5vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "start",
+                    marginTop: "40px",
+                  }}
+                >
+                  <div
+                    className="box"
+                    style={{
+                      width: "50%",
+                      minHeight: "50px",
+                      backgroundColor: "#FFFFFF",
+                      borderRadius: "10px",
+                      padding: "10px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontWeight: 100,
+                        color: "black",
+                      }}
+                    >
+                      <ReportProblemIcon /> There is onte-time charge of $3.20
+                      that will be charged
+                      <div style={{ marginLeft: "32px" }}>
+                        {" "}
+                        to your connected account.
+                      </div>
+                    </p>
+                    <button
+                      style={{
+                        float: "right",
+                        border: "none",
+                        backgroundColor: "#FFFFFF",
+                        fontWeight: "lighter",
+                        color: "#0275d8",
+                        paddingRight: "20px",
+                      }}
+                      onClick={() => {
+                        this.oneTimeChargeAPI(); // change the value from 0 to 1
+                        this.closeOneTimeChargeModal(); //close the popup
+                      }}
+                    >
+                      AGREE
+                    </button>
+                  </div>
+                </div>
+              )}
+              {/* one_time_charge popup ends*/}
+
+              {/* one_time_charge_status PopUp start */}
+
+              {this.state.oneTimeChargeStatusModal && (
+                <div
+                  className="popup-box"
+                  style={{
+                    position: "fixed",
+                    width: "60%",
+                    height: "5vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "start",
+                    marginTop: "40px",
+                  }}
+                >
+                  <div
+                    className="box"
+                    style={{
+                      width: "50%",
+                      minHeight: "50px",
+                      backgroundColor: "#FFFFFF",
+                      borderRadius: "10px",
+                      padding: "10px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontWeight: 100,
+                        color: "black",
+                      }}
+                    >
+                      <HourglassFullIcon /> Transaction staus of one-time charge
+                      of $3.20 is pending.
+                      <div style={{ marginLeft: "32px" }}>
+                        Click refresh to reflect the transaction status
+                      </div>
+                    </p>
+                    <button
+                      style={{
+                        float: "right",
+                        border: "none",
+                        backgroundColor: "#FFFFFF",
+                        fontWeight: "lighter",
+                        color: "#0275d8",
+                        paddingRight: "20px",
+                      }}
+                      onClick={()=>this.setState({ oneTimeChargeStatusModal: false })}
+                    >
+                      OK
+                    </button>
+                  </div>
+                </div>
+              )}
+              {/* one_time_charge_status PopUp ends */}
+
               <div className="frm-wrapper text-left frm-wrapper-profile">
                 <form onSubmit={this.onSubmit}>
                   <label>FIRST NAME</label>
@@ -294,12 +487,12 @@ class ProfileCompletion extends Component {
                   {/* <select className="custom-select2" name="brokerage" id="brokerage"  value={this.state.brokerage} onChange={this.handleChange} required>
                     {   (this.state.master_brokerage.length > 0) ?
                                                     
-                        (this.state.master_brokerage).map((listitem,index) => {
-                            return(
-                                <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
-                            )
-                        })
-                        : null
+                      (this.state.master_brokerage).map((listitem,index) => {
+                          return(
+                              <option key={`brokerage_${index}`} value={listitem.id}>{listitem.name}</option>
+                          )
+                      })
+                      : null
                     }
                     </select> */}
                   <label>Brokerage Office Name</label>
@@ -327,17 +520,17 @@ class ProfileCompletion extends Component {
                   {/* address fields newly added start*/}
                   <label>Address Line 1</label>
                   <input
-                    // defaultValue={this.state.address}
-                    value={this.state.address}
+                    defaultValue={this.state.address}
+                    // value={this.state.address}
                     onChange={this.handleAddressChange}
-                    id="pac-input" 
+                    id="pac-input"
                     className="controls"
                     type="text"
-                    placeholder="Search your address"
+                    placeholder="Enter Address"
                     autoComplete="off"
                   />
-                  
-                  {/* <label>Address Line 2</label>
+
+                  <label>Address Line 2</label>
                   <input
                     type="text"
                     placeholder="Enter Address"
@@ -346,7 +539,7 @@ class ProfileCompletion extends Component {
                     value={this.state.brokerage_street_name}
                     onChange={this.handleChange}
                     required
-                  /> */}
+                  />
                   {/* fields newly added ends */}
 
                   <label>City</label>
@@ -449,9 +642,15 @@ class ProfileCompletion extends Component {
                       />
                     </div>
                   </div>
+                  {/* //testing for one-time-charge popup
 
+                  {this.props.profiledetail.customer_status === "verified" ? (
+                    <button type="submit" className="saveBtn">SUBMIT</button>
+                  ) : (
+                    <button type="submit" className="saveBtn">APPROVE</button>
+                  )} */}
                   <button type="submit" className="saveBtn">
-                    VERIFY
+                    APPROVE
                   </button>
                 </form>
               </div>
@@ -483,3 +682,55 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileCompletion);
+
+{
+  /* {this.state.onVerificationModal && (
+          <div
+            className="popup-box"
+            style={{
+              position: "fixed",
+              width: "60%",
+              height: "5vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "start",
+              marginTop: "40px",
+            }}
+          >
+            <div
+              className="box"
+              style={{
+                width: "50%",
+                minHeight: "50px",
+                backgroundColor: "#FFFFFF",
+                borderRadius: "10px",
+                padding: "10px",
+                alignItems: "center",
+              }}
+            >
+              <p
+                style={{
+                  fontWeight: 100,
+                  color: "black",
+                }}
+              >
+                <ReportProblemIcon />
+                {"    "}Please connect your bank account with Dwolla.
+              </p>
+              <button
+                style={{
+                  float: "right",
+                  border: "none",
+                  backgroundColor: "#FFFFFF",
+                  fontWeight: "lighter",
+                  color: "#0275d8",
+                  paddingRight: "20px",
+                }}
+                onClick={() => this.props.history.push(`/connect-account`)}
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        )} */
+}
